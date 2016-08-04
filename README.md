@@ -73,7 +73,7 @@ Test data from the Drosophila melanogaster species are located in the example fo
 
  and press ENTER.
 
- That's it ! The result should be output on STDOUT.
+ That's it ! The result will be printed to STDOUT.
  
  In order to write the result in the desired file use this command:
  
