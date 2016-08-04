@@ -30,8 +30,11 @@ In order to install biopython and bcbio-gff please use the following steps:
 
  Executing:
  >./GFF2EMBL.py
+ 
  or
+ 
  >./GFF2EMBL.py -h
+ 
  should give you lot of information how to use it.
  
 
@@ -41,6 +44,31 @@ A correct **gff3 file** and the **genome in fasta format** that has been used to
 
  Executing:
  >./GFF2EMBL.py example/chr4.gff3 example/chr4.fa
- should prompt you a remind that even if it's not mandatory, some information are always nice to add for a better EMBL file.
- should produce the result on STDOUT.
+ 
+ should prompt you a remind that even if it's not mandatory, some information are always nice to add to an EMBL file.
+ To skip that step just press ENTER.
+ 
+ Then as the taxonomy option has not ben filled in this case and it's a mandatory field, a prompt ask you top chose between these 15 values:
+  - MUS	Mus musculus
+  - PHG	Bacteriophage
+  - UNC	Unclassified
+  - ENV	Environmental Sample
+  - FUN	Fungal
+  - VRT	Other Vertebrate
+  - HUM	Human
+  - INV	Invertebrate
+  - TGN	Transgenic
+  - ROD	Other Rodent
+  - SYN	Synthetic
+  - PLN	Plant
+  - MAM	Other Mammal
+  - PRO	Prokaryote
+  - VRL	Viral
+ 
+ type:
+ >INV
+
+ and press ENTER.
+
+ That's it ! The result should be output on STDOUT.
  
