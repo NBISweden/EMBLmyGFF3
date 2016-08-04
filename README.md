@@ -17,11 +17,11 @@ In order to install biopython and bcbio-gff please use the following steps:
 
 **Mac OS X:**
 
- Intall pip the python package manager
+ Intall pip the python package manager:
  >sudo easy_install pip 
 
- Install biopython using pip 
+ Install biopython using pip:
  >pip install biopython
 
- Install bcbio-gff using pip 
+ Install bcbio-gff using pip:
  >pip install bcbio-gff
