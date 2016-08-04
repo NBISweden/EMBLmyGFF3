@@ -990,7 +990,7 @@ So we will fill all information expected by ENA for unpublished work.
 BUT it's always interesting to know who produced the record. So, please enter a Reference Group (or leave it empty :-( ) and press ENTER:\n""")
         key = raw_input()
         if key == "":
-            print "It's a pity... Let's go anyway !"
+            sys.stderr.write( "It's a pity... Let's go anyway !")
         else:
             args.rg="key"
 
