@@ -38,7 +38,9 @@ In order to install biopython and bcbio-gff please use the following steps:
  should give you lot of information how to use it.
  
 
-## Test
+## Example
+
+### Simple case
 
 A correct **gff3 file** and the **genome in fasta format** that has been used to produce the gff file are the only things mandatory.
 Test data from the Drosophila melanogaster species are located in the example folder.
@@ -76,3 +78,13 @@ Test data from the Drosophila melanogaster species are located in the example fo
  In order to write the result in the desired file use this command:
  
  >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa > result.embl
+
+### Use through a bash script
+
+In order to help its use, especially when you want to fill many optional information, you could write a quick bash script. We provide an example of such here **example/script.sh**.
+
+In order to use it move in the example folder, then launch the script:
+./script.sh
+
+
+
