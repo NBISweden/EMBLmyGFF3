@@ -1,7 +1,6 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 import sys
-from IPython.core.debugger import Tracer
 
 """
 Location examples (http://www.insdc.org/files/feature_table.html)
