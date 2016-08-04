@@ -9,6 +9,10 @@ ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
 
 The output can be validated using the ENA flat file validator "embl-client_10_09_2015.jar". For an up-to-date ENA flat file validator, please visit http://www.ebi.ac.uk/ena/software/flat-file-validator.
 
+## VERSION 
+**GFF2EMBL.1.0.0**
+This is the first version released (4 August 2016). 
+
 ## PREREQUISITE
 
 **Python 2.7**, **biopython** and the **bcbio-gff** python packages.
