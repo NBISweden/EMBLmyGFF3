@@ -986,8 +986,8 @@ if __name__ == '__main__':
     referenceExist=""
     if not args.rg :
         sys.stderr.write( """It is not mandatory to add a reference. Yes I know it'obvious when it's an unpublished work and you don't plan to. 
-So we will fill all infromation expected by ENA for unpublished work.
-BUT it's always interesting to know who produced the record. So, please enter a Reference Group (or leave it empty) and press ENTER:\n""")
+So we will fill all information expected by ENA for unpublished work.
+BUT it's always interesting to know who produced the record. So, please enter a Reference Group (or leave it empty :-( ) and press ENTER:\n""")
         key = raw_input()
         if key == "":
             print "It's a pity... Let's go anyway !"
