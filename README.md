@@ -81,7 +81,7 @@ Test data from the Drosophila melanogaster species are located in the example fo
 
 ### Use through a bash script
 
-In order to help its use, especially when you want to fill many optional information, you could write a quick bash script. We provide an example of such here **example/script.sh**.
+In order to help its use, especially when you want to fill many optional information, you could write a quick bash script. We provide an example of such script here **example/script.sh**.
 
 In order to use it move in the example folder, then launch the script:
 ./script.sh
