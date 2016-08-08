@@ -97,7 +97,6 @@ class EMBL( object ):
                                  "mitochondrion:kinetoplast", "plastid:chloroplast", "plastid:apicoplast", 
                                  "plastid:chromoplast", "plastid:cyanelle", "plastid:leucoplast", "plastid:proplastid"],
                     'transl_table':[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
-#                    'transl_table':["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],
                     }
     
     release_dates = {125:time.strptime("2015-09-23", "%Y-%m-%d"),
@@ -950,7 +949,6 @@ if __name__ == '__main__':
     parser.add_argument("-m", "--molecule_class", default="genomic DNA", help="Molecule class of the sample.", choices=["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"])
     parser.add_argument("-o", "--output", default=None, help="output filename.")
     parser.add_argument("-p", "--project_id", default=None, help="Project ID (optional).")
-#    parser.add_argument("-r", "--table", default="1", help="Translation table.", choices=["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24",25"])
     parser.add_argument("-r", "--table", type=int, default=1, help="Translation table.", choices=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
     parser.add_argument("-s", "--species", default=None, help="Sample Species, formatted as 'Genus species (english name)'.")
     parser.add_argument("-t", "--topology", default="linear", help="Sequence topology.", choices=[None, "linear", "circular"])

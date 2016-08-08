@@ -55,6 +55,7 @@ class Feature(object):
                 output += str(value)
         return output
     
+    # Default translation will affect all features
     def _load_default_translations(self):
         if "Dbxref" not in self.translate:
             self.translate["Dbxref"] = "db_xref"
@@ -76,9 +77,10 @@ class Feature(object):
     def add_qualifier(self, qualifier, value):
         if qualifier in self.disregard:
             return
+
         if qualifier in self.translate:
             qualifier = self.translate[qualifier]
-        
+
         # handle mandatory qualifiers
         if qualifier not in self.mandatory_qualifiers:
             for i,q in enumerate([q.lower() for q in self.mandatory_qualifiers]):
@@ -119,8 +121,8 @@ class Feature(object):
                 traceback.print_exc(limit=5)
                 
                 #sys.stderr.write( "Unknown qualifier '%s' for feature '%s'. " % (qualifier, type(qualifier)) + "\n" )
-        #else:
-        #    sys.stderr.write( "unknown qualifier '%s' with value '%s' in %s" % (qualifier, value, type(self)) + "\n" )
+        else:
+            sys.stderr.write( "unknown qualifier '%s' with value '%s' in %s" % (qualifier, value, type(self)) + "\n" )
 
 # class Assembly_gapFeature
 # class C_region
@@ -338,7 +340,7 @@ class MRNAFeature( Feature ):
     definition="""region of biological interest identified as a gene
                   and for which a name has been assigned"""
 
-    def __init__(self, feature = None, translate={"Name":"standard_name", "ID":"standard_name"}, disregard = ['phase', "source", "eC_number", "Parent", "parent_name"]):
+    def __init__(self, feature = None, translate={"Name":"standard_name", "ID":"standard_name"}, disregard = ['phase', "source", "eC_number", "Parent", "parent_name", "_QI", "_AED", "_eAED"]):
         super(MRNAFeature, self).__init__(feature, translate, disregard)
         self.type = "mRNA"
         self.optional_qualifiers = {'allele':None,
