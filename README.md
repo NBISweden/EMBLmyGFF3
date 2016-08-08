@@ -9,6 +9,11 @@ ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
 
 The output can be validated using the ENA flat file validator "embl-client_10_09_2015.jar". For an up-to-date ENA flat file validator, please visit http://www.ebi.ac.uk/ena/software/flat-file-validator.
 
+## VERSION 
+**GFF2EMBL.1.0.0**
+
+This is the first version released (4 August 2016). 
+
 ## PREREQUISITE
 
 **Python 2.7**, **biopython** and the **bcbio-gff** python packages.
@@ -38,7 +43,9 @@ In order to install biopython and bcbio-gff please use the following steps:
  should give you lot of information how to use it.
  
 
-## Test
+## Example
+
+### Simple case
 
 A correct **gff3 file** and the **genome in fasta format** that has been used to produce the gff file are the only things mandatory.
 Test data from the Drosophila melanogaster species are located in the example folder.
@@ -71,8 +78,18 @@ Test data from the Drosophila melanogaster species are located in the example fo
 
  and press ENTER.
 
- That's it ! The result should be output on STDOUT.
+ That's it ! The result will be printed to STDOUT.
  
  In order to write the result in the desired file use this command:
  
  >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa > result.embl
+
+### Use through a bash script
+
+In order to help its use, especially when you want to fill many optional information, you could write a quick bash script. We provide an example of such script here **example/script.sh**.
+
+In order to use it move in the example folder, then launch the script:
+./script.sh
+
+
+
