@@ -913,7 +913,7 @@ class EMBL( object ):
         if self.construct_information:
             out.write( self.CO() )
         
-        self.SQ( out )         # SQ - sequence header            (1 per entry)
+        #self.SQ( out )         # SQ - sequence header            (1 per entry)
                                # + sequence...
         
         out.write( self.termination ) # // - termination line    (ends each entry; 1 per entry)

@@ -16,13 +16,19 @@ from qualifiers import *
 #   Rfam
 #   Transcript -?-> does 'prim_transcript' work?
 
+legal_dbxref = ["AFTOL","APHIDBASE","ASAP","ATCC","ATCC(dna)","ATCC(inhost)","AceView/WormGenes","AntWeb","ApiDB","ApiDB_CryptoDB","ApiDB_PlasmoDB","ApiDB_ToxoDB","Axeldb",
+    "BDGP_EST","BDGP_INS","BEETLEBASE","BGD","Bold","CABRI","CCAP","CDD","CGD","ENSEMBL","EPD","ERIC","ESTLIB","EcoGene","EnsemblGenomes","FANTOM_DB","FBOL","FLYBASE","Fungorum",
+    "GABI","GDB","GI","GO","GOA","GRIN","GeneDB","GeneID","Greengenes","H-InvDB","HGNC","HMP","HOMD","HPM","HSSP","IKMC","IMGT/GENE-DB","IMGT/HLA","IMGT/LIGM","IRD","ISFinder","InterPro","IntrepidBio",
+    "JCM","JGIDB","LocusID","MGI","MIM","MaizeGDB","MedGen","MycoBank","NBRC","NMPDR","NRESTdb","NextDB","OrthoMCL","Osa1","PBmice","PDB","PFAM","PGN","PIR","PSEUDO","Pathema","Phytozme","Phytozome","PomBase","PseudoCap",
+    "RAP-DB","RATMAP","RFAM","RGD","RZPD","RiceGenes","SEED","SGD","SGN","SK-FST","SRPDB","SoyBase","SubtiList","TAIR","TIGRFAM","TubercuList",
+    "UNILIB","UNITE","UniProtKB/Swiss-Prot","UniProtKB/TrEMBL","UniSTS","VBASE2","VectorBase","ViPR","WorfDB","WormBase","ZFIN","dbEST","dbProbe","dbSNP","dbSTS","Xenbase","dictyBase","miRBase","niaEST","taxon"]
 
 class Feature(object):
     """
     Super-class for the various feature types defined in:
     http://www.insdc.org/files/feature_table.html.
     """
-    
+
     def __init__(self, feature, translate = {}, disregard = []):
         self.type = None
         self.location = Location(feature, feature.location)
@@ -59,8 +65,6 @@ class Feature(object):
     def _load_default_translations(self):
         if "Dbxref" not in self.translate:
             self.translate["Dbxref"] = "db_xref"
-        if "description" not in self.translate:
-            self.translate["description"] = "note"
     
     @staticmethod
     def parse(feature, output = None):
@@ -75,11 +79,24 @@ class Feature(object):
         return output
     
     def add_qualifier(self, qualifier, value):
+
         if qualifier in self.disregard:
             return
 
         if qualifier in self.translate:
             qualifier = self.translate[qualifier]
+
+        #check the qualifier dv_xref
+
+
+        if qualifier == "db_xref":
+            new_value=[]
+            for val in value:
+                if val.split(':')[0].lower() in [v.lower() for v in legal_dbxref]:
+                  new_value.append(val)
+                else:
+                  sys.stderr.write( "WARNING db_xref type '%s', we skip it !\n" % val )    
+            value=new_value
 
         # handle mandatory qualifiers
         if qualifier not in self.mandatory_qualifiers:
@@ -105,16 +122,16 @@ class Feature(object):
                             self.optional_qualifiers[qualifier] = eval("%s('%s')" % (qualifier_type, value))
                         else:
                             self.optional_qualifiers[qualifier] = eval("%s(%s)" % (qualifier_type, value))
-                    #else:
-                    #    self.optional_qualifiers[qualifier].add(value)
+                    else: # We add to list arleady existing (case where several time the same qualifier)
+                        self.optional_qualifiers[qualifier].add(value)
                 elif qualifier in self.mandatory_qualifiers:
                     if self.mandatory_qualifiers[qualifier] == None:
                         if type(value) == type(""):
                             self.mandatory_qualifiers[qualifier] = eval("%s('%s')" % (qualifier_type, value))
                         else:
                             self.mandatory_qualifiers[qualifier] = eval("%s(%s)" % (qualifier_type, value))
-                    #else:
-                    #    self.mandatory_qualifiers[qualifier].add(value)
+                    else: # We add to list arleady existing (case where several time the same qualifier)
+                        self.mandatory_qualifiers[qualifier].add(value)
             except Exception as e:
                 sys.stderr.write( str(e) )
                 import traceback
@@ -122,6 +139,7 @@ class Feature(object):
                 
                 #sys.stderr.write( "Unknown qualifier '%s' for feature '%s'. " % (qualifier, type(qualifier)) + "\n" )
         else:
+          if(qualifier not in ['has_start', 'has_stop']): #specific qualifier used only within the GFF2EMBL process
             sys.stderr.write( "unknown qualifier '%s' with value '%s' in %s" % (qualifier, value, type(self)) + "\n" )
 
 # class Assembly_gapFeature
@@ -150,7 +168,7 @@ class CDSFeature( Feature ):
                  a result will permanently be associated with a given
                  protein;"""
 
-    def __init__(self, feature = None, translate = {'phase':'codon_start', "Name":"standard_name", "ID":"standard_name", "gene_name":"gene", "gene_type":"function"}, disregard = ["source", "Parent"]):
+    def __init__(self, feature = None, translate = {'phase':'codon_start', "Name":"standard_name", "gene_name":"gene", "gene_type":"function"}, disregard = ["source", "Parent", "ID"]):
         super(CDSFeature, self).__init__(feature, translate, disregard)
         self.type = "CDS"
 
@@ -196,7 +214,7 @@ class ExonFeature( Feature ):
     definition="""region of genome that codes for portion of spliced mRNA,
                   rRNA and tRNA; may contain 5'UTR, all CDSs and 3' UTR;"""
 
-    def __init__(self, feature = None, translate = {"Name":"standard_name", "ID":"standard_name", "gene_name":"gene", "gene_type":"function"}, disregard = ['phase', "source", "Parent"]):
+    def __init__(self, feature = None, translate = {"Name":"standard_name", "gene_name":"gene", "gene_type":"function"}, disregard = ['phase', "source", "Parent", "ID"]):
         super(ExonFeature, self).__init__(feature, translate, disregard)
         self.type = "exon"
 
@@ -234,7 +252,7 @@ class GapFeature( Feature ):
                   "n"'s in the sequence. 
                   No upper or lower limit is set on the size of the gap."""
 
-    def __init__(self, feature = None, translate = {"Name":"standard_name", "ID":"standard_name"}, disregard = ['phase', "source", "Parent"]):
+    def __init__(self, feature = None, translate = {"Name":"standard_name"}, disregard = ['phase', "source", "Parent", "ID"]):
         super(GapFeature, self).__init__(feature, translate, disregard)
         self.type = "gap"
         
@@ -261,7 +279,7 @@ class GeneFeature( Feature ):
                  transfer RNA, the functional molecule of which is the RNA
                  transcript;"""
     
-    def __init__(self, feature = None, translate = {"Name":"standard_name", "ID":"standard_name"}, disregard = ["orthology", "source", "phase", "eC_number"]):
+    def __init__(self, feature = None, translate = {"Name":"gene", "description":"standard_name" ,"ID":"note"}, disregard = ["orthology", "source", "phase", "eC_number", "ID"]):
         super(GeneFeature, self).__init__(feature, translate, disregard)
         self.type = "gene"
         self.optional_qualifiers = {'allele':None,
@@ -305,7 +323,7 @@ class Misc_RNAFeature( Feature ):
                   5'UTR, 3'UTR, exon, CDS, sig_peptide, transit_peptide,
                   mat_peptide, intron, polyA_site, ncRNA, rRNA and tRNA);"""
 
-    def __init__(self, feature = None, translate={"Name":"standard_name", "ID":"standard_name"}, disregard = ['phase', "source", "Parent"]):
+    def __init__(self, feature = None, translate={"Name":"standard_name"}, disregard = ['phase', "source", "Parent", "ID"]):
         super(Misc_RNAFeature, self).__init__(feature, translate, disregard)
         self.type = "misc_RNA"
         self.optional_qualifiers = {'allele':None,
@@ -340,7 +358,7 @@ class MRNAFeature( Feature ):
     definition="""region of biological interest identified as a gene
                   and for which a name has been assigned"""
 
-    def __init__(self, feature = None, translate={"Name":"standard_name", "ID":"standard_name"}, disregard = ['phase', "source", "eC_number", "Parent", "parent_name", "_QI", "_AED", "_eAED"]):
+    def __init__(self, feature = None, translate={"Name":"gene", "description":"standard_name" ,"ID":"note", "Ontology_term":"db_xref"}, disregard = ['phase', "source", "eC_number", "Parent", "parent_name", "_QI", "_AED", "_eAED", "ID"]):
         super(MRNAFeature, self).__init__(feature, translate, disregard)
         self.type = "mRNA"
         self.optional_qualifiers = {'allele':None,
@@ -379,7 +397,7 @@ class NcRNAFeature( Feature ):
                RNA annotation, for which the rRNA and tRNA feature keys
                should be used, respectively;"""
     
-    def __init__(self, feature = None, translate={"Name":"standard_name", "ID":"standard_name"}, disregard = ['phase', "source", "eC_number", "Parent"]):
+    def __init__(self, feature = None, translate={"Name":"standard_name"}, disregard = ['phase', "source", "eC_number", "Parent", "ID"]):
         super(NcRNAFeature, self).__init__(feature, translate, disregard)
         self.type = "mRNA"
         self.mandatory_qualifiers = {'ncRNA_class':None,
@@ -426,7 +444,7 @@ class RRNAFeature( Feature ):
                   ribonucleoprotein particle (ribosome) which assembles
                   amino acids into proteins"""
 
-    def __init__(self, feature = None, translate={"Name":"standard_name", "ID":"standard_name"}, disregard = ['phase', "source", "Parent"]):
+    def __init__(self, feature = None, translate={"Name":"standard_name"}, disregard = ['phase', "source", "Parent", "ID"]):
         super(RRNAFeature, self).__init__(feature, translate, disregard)
         self.type = "rRNA"
         self.optional_qualifiers = {'allele':None,
@@ -460,7 +478,7 @@ class Sig_peptideFeature( Feature ):
                   involved in attaching nascent polypeptide to the
                   membrane leader sequence;"""
 
-    def __init__(self, feature = None, translate={"Name":"standard_name", "ID":"standard_name"}, disregard = ['phase', "source", "Parent"]):
+    def __init__(self, feature = None, translate={"Name":"standard_name"}, disregard = ['phase', "source", "Parent", "ID"]):
         super(Sig_peptideFeature, self).__init__(feature, translate, disregard)
         self.type = "sig_peptide"
 
@@ -495,7 +513,7 @@ class SourceFeature( Feature ):
                   sequence or multiple source keys, which together, span the
                   entire sequence."""
 
-    def __init__(self, feature = None, translate={"Name":"standard_name", "ID":"standard_name"}, disregard = ['phase', "source"]):
+    def __init__(self, feature = None, translate={"Name":"standard_name"}, disregard = ['phase', "source", "ID"]):
         super(SourceFeature, self).__init__(feature, translate, disregard)
         self.type = "source"
         
@@ -572,7 +590,7 @@ class TmRNAFeature( Feature ):
                   unfinished protein; this attached tag targets the protein for
                   destruction or proteolysis;"""
 
-    def __init__(self, feature = None, translate={"Name":"standard_name", "ID":"standard_name"}, disregard = ['phase', "source", "eC_number", "Parent"]):
+    def __init__(self, feature = None, translate={"Name":"standard_name"}, disregard = ['phase', "source", "eC_number", "Parent", "ID"]):
         super(TmRNAFeature, self).__init__(feature, translate, disregard)
         self.type = "tmRNA"
         self.optional_qualifiers = {'allele':None,
@@ -605,7 +623,7 @@ class TRNAFeature( Feature ):
                   long) that mediates the translation of a nucleic acid
                   sequence into an amino acid sequence;"""
 
-    def __init__(self, feature = None, translate={"Name":"standard_name", "ID":"standard_name"}, disregard = ['phase', "source", "Parent"]):
+    def __init__(self, feature = None, translate={"Name":"standard_name"}, disregard = ['phase', "source", "Parent", "ID"]):
         super(TRNAFeature, self).__init__(feature, translate, disregard)
         self.type = "tRNA"
         self.optional_qualifiers = {'allele':None,
@@ -645,7 +663,7 @@ class Three_prime_UTRFeature( Feature ):
                   virus (following the last stop codon) that is not
                   translated into a protein;"""
     
-    def __init__(self, feature = None, translate={"Name":"standard_name", "ID":"standard_name"}, disregard = ['phase', "source", "eC_number", "Parent"]):
+    def __init__(self, feature = None, translate={"Name":"standard_name"}, disregard = ['phase', "source", "eC_number", "Parent", "ID"]):
         super(Three_prime_UTRFeature, self).__init__(feature, translate, disregard)
         self.type = "3'UTR"
 
@@ -677,7 +695,7 @@ class Five_prime_UTRFeature( Feature ):
                   genome (preceding the first initiation codon) that is
                   not translated into a protein;"""
     
-    def __init__(self, feature = None, translate={"Name":"standard_name", "ID":"standard_name"}, disregard = ['phase', "source", "eC_number", "Parent"]):
+    def __init__(self, feature = None, translate={"Name":"standard_name"}, disregard = ['phase', "source", "eC_number", "Parent", "ID"]):
         super(Five_prime_UTRFeature, self).__init__(feature, translate, disregard)
         self.type = "5'UTR"
 
@@ -718,10 +736,6 @@ def parse_gff_feature(accessions, feature_l1, sequence):
         ##############################
         ###### LEVEL 1 FEATURE ######
         ##############################
-        ### First check if a feature has a mulitple parents.
-        if('Parent' in feature_l1.qualifiers):
-            if(len(feature_l1.qualifiers['Parent']) > 1):
-                sys.stderr.write( "WARNING Feature "+str(feature_l1)+" has more than one parent.\n")
 
         # create locus_tag from ID
         output_accession=""
@@ -747,11 +761,6 @@ def parse_gff_feature(accessions, feature_l1, sequence):
         
         for feature_l2 in feature_l1.sub_features:
             
-            ### First check if a feature has a mulitple parents.
-            if('Parent' in feature_l1.qualifiers):
-                if(len(feature_l1.qualifiers['Parent']) > 1):
-                    sys.stderr.write( "WARNING Feature "+str(feature_l1)+" has more than one parent.\n")
-
             # add locus tag
             feature_l2.qualifiers['locus_tag']=locus_tag
 
@@ -760,13 +769,9 @@ def parse_gff_feature(accessions, feature_l1, sequence):
             ##############################
             bucket_l3={}
             new_location_l2 = "empty" # for location level2 feature we have to restart it from scratch
+            bucket_exon=[]
 
             for l3_feature in feature_l2.sub_features:
-
-                ### First check if a feature has a mulitple parents.
-                if('Parent' in feature_l1.qualifiers):
-                    if(len(feature_l1.qualifiers['Parent']) > 1):
-                        sys.stderr.write( "WARNING Feature "+str(feature_l1)+" has more than one parent.\n")
 
                 # add locus tag
                 l3_feature.qualifiers['locus_tag']=locus_tag
@@ -777,6 +782,7 @@ def parse_gff_feature(accessions, feature_l1, sequence):
                         new_location_l2=l3_feature.location
                     else:        
                         new_location_l2=new_location_l2+l3_feature.location
+                    bucket_exon.append(l3_feature)
 
                 # other multifeature case. Here we save result in bucket that we will process later
                 elif(l3_feature.type.lower() == "utr" in l3_feature.type.lower()):
@@ -819,36 +825,66 @@ def parse_gff_feature(accessions, feature_l1, sequence):
                 sys.stderr.write("WARNING location for feature_l2: No subfeature location found to create the feature location. We skip it: '%s'\n" % feature_l2 )
                 continue
             features += feature_modeler(feature_l2)
-            
+
+            ##### NOW ADD THE EXONS
+            if bucket_exon:
+              for exon in bucket_exon:
+                 features += feature_modeler(exon)
+
             ###### MANAGE LEVEL 3 FEATURE because now it is fine ####    
             for feature_l3_spread in bucket_l3.values():
               if feature_l3_spread.type.lower() == "cds":
                 
+                codon_table = CodonTable.unambiguous_dna_by_id[feature_l3_spread.qualifiers['transl_table']]
+
+                #extract sequence:
+                cds_sequence=""
+                
+                for part in feature_l3_spread.location.parts:
+                    cds_sequence+=sequence[part.start: part.end]
+                if  feature_l3_spread.location.strand  == -1:
+                    cds_sequence=cds_sequence.reverse_complement()    
+
+
                 #get start and stop codon
                 startCodon=""
                 stopCodon=""
-                if  feature_l3_spread.location.strand  == -1:
-                  startCodon=sequence[ feature_l3_spread.location.end-3: feature_l3_spread.location.end].reverse_complement()
-                  stopCodon=sequence[ feature_l3_spread.location.start: feature_l3_spread.location.start+3].reverse_complement()                 
-                else:
-                  startCodon=sequence[ feature_l3_spread.location.start: feature_l3_spread.location.start+3]
-                  stopCodon=sequence[ feature_l3_spread.location.end-3: feature_l3_spread.location.end]
-                  
+
+                startCodon=cds_sequence[ 0: 3]
+                stopCodon= cds_sequence[ len(cds_sequence)-3: len(cds_sequence)]
                 
-                #check start and stop codon
-                codon_table = CodonTable.unambiguous_dna_by_id[feature_l3_spread.qualifiers['transl_table']]
-                start="yes"
-                stop="yes"
-                if not str(startCodon).upper() in codon_table.start_codons:
-                  #sys.stderr.write("'%s' is not a start codon \n" % startCodon)
-                  start="no"
-                if not str(stopCodon).upper() in codon_table.stop_codons:
-                  #sys.stderr.write("'%s' is not a stop codon \n" % stopCodon)
-                  stop="no"
+                stop="no"
+                start="no"
+                cds_sequence_to_translate=cds_sequence
+                if int(feature_l3_spread.qualifiers['phase'][0]) == 0 : # the first codon is complete   (phase in gff is 0,1 or 2 !!)
+                  if str(startCodon).upper() in codon_table.start_codons:
+                    start="yes"
+                  if len(cds_sequence)%3 == 0:
+
+                    if str(stopCodon).upper() in codon_table.stop_codons:
+                       stop="yes"
+                       cds_sequence_to_translate=cds_sequence_to_translate[ 0 : len(cds_sequence_to_translate)-3]# remove the stop codon'
+                  else:
+                    piece_end=(len(cds_sequence_to_translate) - piece) % 3
+                    cds_sequence_to_translate=cds_sequence_to_translate[ 0 : len(cds_sequence_to_translate)-piece_end ] # remove the incomplete last codon
+                else: # the first codon is incomplete
+                  piece=3 - int(feature_l3_spread.qualifiers['phase'][0]) #remove the incomplete first codon
+                  cds_sequence_to_translate=cds_sequence_to_translate[ piece : len(cds_sequence_to_translate)]# remove the incomplete first codon
+
+                  if(len(cds_sequence) - piece) % 3 == 0:  #check the last codon is incomplete 
+                    if str(stopCodon).upper() in codon_table.stop_codons:
+                       stop="yes"
+                       cds_sequence_to_translate=cds_sequence_to_translate[ 0 : len(cds_sequence_to_translate)-3]# remove the stop codon            
+                  else:
+                    piece_end=(len(cds_sequence_to_translate) - piece) % 3
+                    cds_sequence_to_translate=cds_sequence_to_translate[ 0 : len(cds_sequence_to_translate)-piece_end ] # remove the incomplete last codon
                 
                 #Add new qualifier to keep track about start and stop. Will be used in the location class
                 feature_l3_spread.qualifiers['has_start']=start
                 feature_l3_spread.qualifiers['has_stop']=stop
+                
+                protein_seqence=cds_sequence_to_translate.translate(table=codon_table)
+                feature_l3_spread.qualifiers['translation']= str(protein_seqence)
 
                 features += feature_modeler(feature_l3_spread)
               else:
@@ -860,6 +896,10 @@ def parse_gff_feature(accessions, feature_l1, sequence):
 def feature_modeler(feature):
     feature_result=""
     feature_type=feature.type[0].upper() + feature.type[1:] + "Feature"
+
+    #Modify all ID to keep track of them within NOTE
+    #if 'ID' in feature.qualifiers.keys():
+    #  feature.qualifiers['ID']=( "ID=%s" % feature.qualifiers['ID'][0])
 
     try:
       feature_result = [eval("%s( feature )" % feature_type)] #### Where the different methods are called ####
