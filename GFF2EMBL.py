@@ -955,7 +955,7 @@ if __name__ == '__main__':
     
     parser.add_argument("--rc", default="", help="Reference Comment.")
     parser.add_argument("--rx", default="", help="Reference cross-reference.")
-    parser.add_argument("--rg", default="", help="Reference Group.")
+    parser.add_argument("--rg", default="", help="Reference Group, the working groups/consortia that produced the record.")
     parser.add_argument("--ra", "--author", nargs="+", default="", help="Author for the reference")
     parser.add_argument("--rt", default=";", help="Reference Title.")
     parser.add_argument("--rl", default="Unpublished", help="Reference publishing location.")
@@ -983,9 +983,11 @@ if __name__ == '__main__':
     #Manage reference(s)
     referenceExist=""
     if not args.rg :
-        sys.stderr.write( """It is not mandatory to add a reference. Yes I know it'obvious when it's an unpublished work and you don't plan to. 
-So we will fill all information expected by ENA for unpublished work.
-BUT it's always interesting to know who produced the record. So, please enter a Reference Group (or leave it empty :-( ) and press ENTER:\n""")
+        sys.stderr.write( """It is not mandatory to add a reference, and we know it's sometimes you never plan to publish your work. 
+We will fill all information expected by ENA for unpublished work in the mean time.
+BUT it's always interesting to know who produced the record. So, please enter a Reference Group 
+(the working groups/consortia that produced the record)! ... or leave it empty... 
+and press ENTER:\n""")
         key = raw_input()
         if key == "":
             sys.stderr.write( "It's a pity... Let's go anyway !")
