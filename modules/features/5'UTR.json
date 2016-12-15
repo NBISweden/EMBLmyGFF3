@@ -1,0 +1,20 @@
+{
+ "definition": "1) region at the 5' end of a mature transcript (preceding the initiation codon) that is not translated into a protein; 2) region at the 5' end of an RNA virus genome (preceding the first initiation codon) that is not translated into a protein;", 
+ "optional_qualifiers": {
+  "function": "\"text\"", 
+  "map": "\"text\"", 
+  "locus_tag": "\"text\" (single token)", 
+  "inference": "\"[CATEGORY:]TYPE[ (same species)][:EVIDENCE_BASIS]\"", 
+  "old_locus_tag": "\"text\" (single token)", 
+  "citation": "[number]", 
+  "gene_synonym": "\"text\"", 
+  "trans_splicing": null, 
+  "note": "\"text\"", 
+  "db_xref": "\"<database>:<identifier>\"", 
+  "standard_name": "\"text\"", 
+  "experiment": "\"[CATEGORY:]text\"", 
+  "allele": "\"text\"", 
+  "gene": "\"text\""
+ }, 
+ "feature_key": "5'UTR"
+}

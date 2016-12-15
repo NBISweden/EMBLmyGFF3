@@ -135,6 +135,8 @@ def parse_raw_to_json(infile):
                 continue
             value = row[len(identifier):].strip()
             setattr(current, identifier, value)
+    if current:
+        current.save()
 
 
 if __name__ == '__main__':
