@@ -1,0 +1,13 @@
+{
+ "comment": "the centromere feature describes the interval of DNA that corresponds to a region where chromatids are held and a kinetochore is formed", 
+ "definition": "region of biological interest identified as a centromere and which has been experimentally characterized;", 
+ "optional_qualifiers": {
+  "inference": "\"[CATEGORY:]TYPE[(same species)][:EVIDENCE_BASIS]\"", 
+  "citation": "[number]", 
+  "note": "\"text\"", 
+  "db_xref": "\"<database>:<identifier>\"", 
+  "standard_name": "\"text\"", 
+  "experiment": "\"[CATEGORY:]text\""
+ }, 
+ "feature_key": "centromere"
+}

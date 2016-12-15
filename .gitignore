@@ -1,2 +1,6 @@
 # exclude .pyc files
-*.pyc
+__pycache__/
+*.py[cod]
+
+# exclude OS X stores
+.DS_Store

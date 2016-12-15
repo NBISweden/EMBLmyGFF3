@@ -1,0 +1,7 @@
+{
+ "comment": "the values are case-insensitive, i.e. both \"INVERTED\" and \"inverted\" are valid; For the most current list of allowed values and their definitions please visit: http://www.insdc.org/controlled-vocabulary-rpttype-qualifier", 
+ "definition": "structure and distribution of repeated sequence", 
+ "example": "/rpt_type=INVERTED", 
+ "qualifier": "rpt_type", 
+ "value_format": "tandem, direct, inverted, flanking, nested, dispersed, terminal, long_terminal_repeat, non_ltr_retrotransposon_polymeric_tract, centromeric_repeat, telomeric_repeat, x_element_combinatorial_repeat, y_prime_element and other"
+}

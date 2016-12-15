@@ -1,0 +1,7 @@
+{
+ "comment": "This qualifier is used only for assembly_gap features and its values are controlled by the AGP Specification version 2.0: https://www.ncbi.nlm.nih.gov/assembly/agp/AGP_Specification/ Please also visit: http://www.insdc.org/controlled-vocabulary-linkageevidence-qualifier", 
+ "definition": "type of evidence establishing linkage across an assembly_gap. Only allowed to be used with assembly_gap features that have a /gap_type value of \"within scaffold\"or \"repeat within scaffold\";", 
+ "example": "/linkage_evidence=\"paired-ends\" /linkage_evidence=\"within clone\"", 
+ "qualifier": "linkage_evidence", 
+ "value_format": "\"pcr\", \"paired-ends\", \"align genus\", \"align xgenus\", \"align trnscpt\", \"within clone\", \"clone contig\", \"map\", \"strobe\", \"unspecified\""
+}

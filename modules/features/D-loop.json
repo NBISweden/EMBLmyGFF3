@@ -1,0 +1,18 @@
+{
+ "definition": "displacement loop; a region within mitochondrial DNA in which a short stretch of RNA is paired with one strand of DNA, displacing the original partner DNA strand in this region; also used to describe the displacement of a region of one strand of duplex DNA by a single stranded invader in the reaction catalyzed by RecA protein", 
+ "optional_qualifiers": {
+  "map": "\"text\"", 
+  "locus_tag": "\"text\" (single token)", 
+  "inference": "\"[CATEGORY:]TYPE[ (same species)][:EVIDENCE_BASIS]\"", 
+  "old_locus_tag": "\"text\" (single token)", 
+  "citation": "[number]", 
+  "gene_synonym": "\"text\"", 
+  "note": "\"text\"", 
+  "db_xref": "\"<database>:<identifier>\"", 
+  "experiment": "\"[CATEGORY:]text\"", 
+  "allele": "\"text\"", 
+  "gene": "\"text\""
+ }, 
+ "molecule_scope": "DNA", 
+ "feature_key": "D-loop"
+}

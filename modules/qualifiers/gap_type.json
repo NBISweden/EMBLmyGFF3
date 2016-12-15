@@ -1,0 +1,7 @@
+{
+ "comment": "This qualifier is used only for assembly_gap features and its values are controlled by the AGP Specification version 2.0: https://www.ncbi.nlm.nih.gov/assembly/agp/AGP_Specification/ Please also visit: http://www.insdc.org/controlled-vocabulary-gaptype-qualifier", 
+ "definition": "type of gap connecting components in records of a genome assembly, or the type of biological gap in a record that is part of a genome assembly;", 
+ "example": "/gap_type=\"between scaffolds\" /gap_type=\"within scaffold\"", 
+ "qualifier": "gap_type", 
+ "value_format": "\"between scaffolds\", \"within scaffold\", \"telomere\", \"centromere\", \"short arm\", \"heterochromatin\", \"repeat within scaffold\", \"repeat between scaffolds\", \"unknown\""
+}

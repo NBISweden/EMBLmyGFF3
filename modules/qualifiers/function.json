@@ -1,0 +1,7 @@
+{
+ "comment": "/function is used when the gene name and/or product name do not convey the function attributable to a sequence.", 
+ "definition": "function attributed to a sequence", 
+ "example": "function=\"essential for recognition of cofactor\"", 
+ "qualifier": "function", 
+ "value_format": "\"text\""
+}

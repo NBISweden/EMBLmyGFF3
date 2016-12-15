@@ -1,0 +1,26 @@
+{
+ "comment": "rep_origin should be used for origins of replication; /direction has legal values RIGHT, LEFT and BOTH, however only RIGHT and LEFT are valid when used in conjunction with the oriT feature; origins of transfer can be present in the chromosome; plasmids can contain multiple origins of transfer", 
+ "definition": "origin of transfer; region of a DNA molecule where transfer is initiated during the process of conjugation or mobilization", 
+ "optional_qualifiers": {
+  "bound_moiety": "\"text\"", 
+  "map": "\"text\"", 
+  "direction": "value", 
+  "rpt_unit_seq": "\"text\"", 
+  "inference": "\"[CATEGORY:]TYPE[ (same species)][:EVIDENCE_BASIS]\"", 
+  "old_locus_tag": "\"text\" (single token)", 
+  "citation": "[number]", 
+  "locus_tag": "\"text\" (single token)", 
+  "gene_synonym": "\"text\"", 
+  "rpt_family": "\"text\"", 
+  "note": "\"text\"", 
+  "db_xref": "\"<database>:<identifier>\"", 
+  "standard_name": "\"text\"", 
+  "experiment": "\"[CATEGORY:]text\"", 
+  "rpt_unit_range": "<base_range>", 
+  "allele": "\"text\"", 
+  "gene": "\"text\"", 
+  "rpt_type": "<repeat_type>"
+ }, 
+ "molecule_scope": "DNA", 
+ "feature_key": "oriT"
+}

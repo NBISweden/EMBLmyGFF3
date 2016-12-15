@@ -1,0 +1,24 @@
+{
+ "definition": "region of genome containing mobile elements;", 
+ "mandatory_qualifiers": {
+  "mobile_element_type": "\"<mobile_element_type> [:<mobile_element_name>]\""
+ }, 
+ "optional_qualifiers": {
+  "function": "\"text\"", 
+  "map": "\"text\"", 
+  "locus_tag": "\"text\" (single token)", 
+  "inference": "\"[CATEGORY:]TYPE[ (same species)][:EVIDENCE_BASIS]\"", 
+  "old_locus_tag": "\"text\" (single token)", 
+  "citation": "[number]", 
+  "gene_synonym": "\"text\"", 
+  "rpt_family": "\"text\"", 
+  "note": "\"text\"", 
+  "db_xref": "\"<database>:<identifier>\"", 
+  "standard_name": "\"text\"", 
+  "experiment": "\"[CATEGORY:]text\"", 
+  "allele": "\"text\"", 
+  "gene": "\"text\"", 
+  "rpt_type": "<repeat_type>"
+ }, 
+ "feature_key": "mobile_element"
+}

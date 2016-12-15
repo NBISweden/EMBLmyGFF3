@@ -4,8 +4,18 @@ EMBL writer for ENA data submission. Note that this implementation is basically
 just the documentation at ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt 
 in python form - the implementation could be a lot more efficient!
 
+GFF convertion is based on specifications from https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md
+"""
 
-TODO: find list of previous ENA release dates and numbers
+shameless_plug="""
+    #######################################################################
+    # NBIS 2016 - Sweden                                                  #
+    # Authors: Martin Norling, Jacques Dainat                             #
+    # Please cite NBIS (www.nbis.se) when using this tool.                #
+    #######################################################################
+\n"""
+
+TODO="""TODO: find list of previous ENA release dates and numbers
 TODO: find way to retrieve current release date
 TODO: implement all features
 TODO: implement proper data types for all feature qualifiers
@@ -13,19 +23,23 @@ TODO: make better guessing system
 TODO: add reasonable way to add references
 TODO: add helpful way to get classification via tax_id or scientific name
 TODO: add way to handle mandatory features and feature qualifiers (especially contingent dependencies)
-
-
 """
 
+import os
 import sys
 import gzip
 import time
+import logging
 import argparse
 import curses.ascii
 from Bio import SeqIO
 from BCBio import GFF
 from Bio.SeqFeature import SeqFeature, FeatureLocation, ExactPosition
-from modules.feature import *
+from modules.feature import Feature
+
+SCRIPT_DIR=os.path.dirname(os.path.abspath(sys.argv[0]))
+FEATURE_DIR=SCRIPT_DIR + "/modules/features"
+QUALIFIER_DIR=SCRIPT_DIR + "/modules/qualifiers"
 
 class EMBL( object ):
     """
@@ -621,19 +635,26 @@ class EMBL( object ):
         in the document "The DDBJ/ENA/GenBank Feature Table:  Definition". 
         URL: ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.txt
         """
+        
         #add extra information to CDS features
-        for feature in self.record.features:
-            if not feature.type.lower() == "source":
-                for feature_l2 in feature.sub_features:
-                    for l3_feature in feature_l2.sub_features:
-                        if(l3_feature.type.lower() == "cds"):
-                            l3_feature.qualifiers['transl_table']=self.transl_table
-
+        # try:
+        #     for feature in self.record.features:
+        #         if not feature.type.lower() == "source":
+        #             for feature_l2 in feature.sub_features:
+        #                 for l3_feature in feature_l2.sub_features:
+        #                     if(l3_feature.type.lower() == "cds"):
+        #                         l3_feature.qualifiers['transl_table']=self.transl_table
+        # except Exception as e:
+        #     logging.error(e)
+        
         #process features
         output = ""
+        logging.warn( self.accessions )
         for feature in self.record.features:
-             for feat in parse_gff_feature(self.accessions, feature, self.record.seq):
-                 output += str(feat)
+            f = Feature(feature, seq = self.record.seq, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR)
+            output += str(f)
+#             for feat in parse_gff_feature(self.accessions, feature, self.record.seq):
+        
         return output + self.spacer
     
     def CO(self):
@@ -869,7 +890,8 @@ class EMBL( object ):
             self.transl_table = ""
         
         if self.verify:
-            self.transl_table = self._verify( self.transl_table,       "transl_table")   
+            self.transl_table = self._verify( self.transl_table,       "transl_table")
+    
     def set_version(self, version = None):
         """
         Sets the release version, or parses it from the current record.
@@ -927,13 +949,6 @@ class EMBL( object ):
 
 if __name__ == '__main__':
     
-    sys.stderr.write( """
-    ########################################################
-    # NBIS 2016 - Sweden                                   #  
-    # Authors: Martin Norling, Jacques Dainat              #
-    # Please cite NBIS (www.nbis.se) when using this tool. #
-    ########################################################\n\n""")
-
     parser = argparse.ArgumentParser( description = __doc__ )
     
     parser.add_argument("gff_file", help="input gff-file")
@@ -959,14 +974,21 @@ if __name__ == '__main__':
     parser.add_argument("--ra", "--author", nargs="+", default="", help="Author for the reference")
     parser.add_argument("--rt", default=";", help="Reference Title.")
     parser.add_argument("--rl", default="Unpublished", help="Reference publishing location.")
+    parser.add_argument("--shame", action="store_true", help="suppress the shameless plug")
     
     
-    parser.add_argument("-v", "--version", default=1, type=int, help="Sequence version number")
+    parser.add_argument("--version", default=1, type=int, help="Sequence version number")
     parser.add_argument("-x", "--taxonomy", default=None, help="Source taxonomy.", choices=["PHG", "ENV", "FUN", "HUM", "INV", "MAM", "VRT", "MUS", "PLN", "PRO", "ROD", "SYN", "TGN", "UNC", "VRL"])
     
     parser.add_argument("--organelle_name", default=None, help="Sample organelle name.")
+    parser.add_argument("-v", "--verbose", action="count", default=2, help="increase verbosity")
+    parser.add_argument("-q", "--quiet", action="count", default=0, help="decrease verbosity")
     
     args = parser.parse_args()
+    
+    logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s', 
+                        level = (5-args.verbose+args.quiet)*10, 
+                        datefmt="%H:%M:%S")
     
     if args.output:
         outfile = args.output
@@ -980,7 +1002,10 @@ if __name__ == '__main__':
     infasta = gzip.open(args.fasta) if args.fasta.endswith(".gz") else open(args.fasta)
     seq_dict = SeqIO.to_dict( SeqIO.parse(infasta, "fasta") )
     
-    #Manage reference(s)
+    if not args.shame:
+        sys.stderr.write(shameless_plug)
+    
+    # Manage reference(s)
     referenceExist=""
     if not args.rg :
         sys.stderr.write( """It is not mandatory to add a reference, and we know it's sometimes you never plan to publish your work. 
@@ -992,7 +1017,7 @@ and press ENTER:\n""")
         if key == "":
             sys.stderr.write( "It's a pity... Let's go anyway !")
         else:
-            args.rg="key"
+            args.rg=""
 
     for record in GFF.parse(infile, base_dict=seq_dict):
         
@@ -1012,7 +1037,7 @@ and press ENTER:\n""")
         writer.set_transl_table( args.table )
         writer.set_version( args.version )
         writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)
-
+        
         writer.write_all( outfile )
      
     sys.stderr.write( """Well done\n""")

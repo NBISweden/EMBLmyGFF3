@@ -25,7 +25,9 @@ TAXONOMY="INV"
 # The Organism Classification (can be retrieved here http://www.ncbi.nlm.nih.gov/Taxonomy/)
 CLASSIFICATION="cellular organisms; Eukaryota; Opisthokonta; Metazoa; Eumetazoa; Bilateria; Protostomia; Ecdysozoa; Panarthropoda; Arthropoda; Mandibulata; Pancrustacea; Hexapoda; Insecta; Dicondylia; Pterygota; Neoptera; Endopterygota; Diptera; Brachycera; Muscomorpha; Eremoneura; Cyclorrhapha; Schizophora; Acalyptratae; Ephydroidea; Drosophilidae; Drosophilinae; Drosophilini; Drosophila; Sophophora; melanogaster group; melanogaster subgroup"
 
+REFERENCE_GROUP="example"
+
 # Converter script location
 GFF2EMBL="../GFF2EMBL.py"
 
-$GFF2EMBL -a $ACCESSION -p $PROJECT -l $CLASSIFICATION -t linear -s "$SPECIES" -x "$TAXONOMY" $ANNOTATION $GENOME $@ > result.embl
+$GFF2EMBL --rg $REFERENCE_GROUP -a $ACCESSION -p $PROJECT -l $CLASSIFICATION -t linear -s "$SPECIES" -x "$TAXONOMY" $ANNOTATION $GENOME $@ > result.embl

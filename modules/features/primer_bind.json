@@ -1,0 +1,20 @@
+{
+ "comment": "used to annotate the site on a given sequence to which a primer molecule binds - not intended to represent the sequence of the primer molecule itself; PCR components and reaction times may be stored under the \"/PCR_conditions\" qualifier; since PCR reactions most often involve pairs of primers, a single primer_bind key may use the order() operator with two locations, or a pair of primer_bind keys may be used.", 
+ "definition": "non-covalent primer binding site for initiation of replication, transcription, or reverse transcription; includes site(s) for synthetic e.g., PCR primer elements;", 
+ "optional_qualifiers": {
+  "map": "\"text\"", 
+  "locus_tag": "\"text\" (single token)", 
+  "inference": "\"[CATEGORY:]TYPE[ (same species)][:EVIDENCE_BASIS]\"", 
+  "PCR_conditions": "\"text\"", 
+  "old_locus_tag": "\"text\" (single token)", 
+  "citation": "[number]", 
+  "gene_synonym": "\"text\"", 
+  "note": "\"text\"", 
+  "db_xref": "\"<database>:<identifier>\"", 
+  "standard_name": "\"text\"", 
+  "experiment": "\"[CATEGORY:]text\"", 
+  "allele": "\"text\"", 
+  "gene": "\"text\""
+ }, 
+ "feature_key": "primer_bind"
+}

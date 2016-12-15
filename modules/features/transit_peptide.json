@@ -1,0 +1,22 @@
+{
+ "definition": "transit peptide coding sequence; coding sequence for an N-terminal domain of a nuclear-encoded organellar protein; this domain is involved in post-translational import of the protein into the organelle;", 
+ "optional_qualifiers": {
+  "function": "\"text\"", 
+  "map": "\"text\"", 
+  "locus_tag": "\"text\" (single token)", 
+  "pseudogene": "\"TYPE\"", 
+  "inference": "\"[CATEGORY:]TYPE[ (same species)][:EVIDENCE_BASIS]\"", 
+  "old_locus_tag": "\"text\" (single token)", 
+  "citation": "[number]", 
+  "pseudo": null, 
+  "gene_synonym": "\"text\"", 
+  "note": "\"text\"", 
+  "db_xref": "\"<database>:<identifier>\"", 
+  "standard_name": "\"text\"", 
+  "experiment": "\"[CATEGORY:]text\"", 
+  "allele": "\"text\"", 
+  "gene": "\"text\"", 
+  "product": "\"text\""
+ }, 
+ "feature_key": "transit_peptide"
+}

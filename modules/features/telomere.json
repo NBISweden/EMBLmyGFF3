@@ -1,0 +1,16 @@
+{
+ "comment": "the telomere feature describes the interval of DNA that corresponds to a specific structure at the end of the linear eukaryotic chromosome which is required for the integrity and maintenance of the end; this region is unique compared to the rest of the chromosome and represent the physical end of the chromosome;", 
+ "definition": "region of biological interest identified as a telomere and which has been experimentally characterized;", 
+ "optional_qualifiers": {
+  "rpt_unit_seq": "\"text\"", 
+  "inference": "\"[CATEGORY:]TYPE[(same species)][:EVIDENCE_BASIS]\"", 
+  "citation": "[number]", 
+  "note": "\"text\"", 
+  "db_xref": "\"<database>:<identifier>\"", 
+  "standard_name": "\"text\"", 
+  "experiment": "\"[CATEGORY:]text\"", 
+  "rpt_unit_range": "<base_range>", 
+  "rpt_type": "<repeat_type>"
+ }, 
+ "feature_key": "telomere"
+}

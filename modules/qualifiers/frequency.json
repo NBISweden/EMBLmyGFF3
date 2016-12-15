@@ -1,0 +1,6 @@
+{
+ "definition": "frequency of the occurrence of a feature", 
+ "example": "/frequency=\"23/108\" /frequency=\"1 in 12\" /frequency=\".85\"", 
+ "qualifier": "frequency", 
+ "value_format": "text representing the proportion of a population carrying the feature expressed as a fraction"
+}

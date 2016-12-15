@@ -1,0 +1,97 @@
+{
+ "source": {
+   "source description": "The source is a free text qualifier intended to describe the algorithm or operating procedure that generated this feature. Typically this is the name of a piece of software, such as \"Genescan\" or a database name, such as \"Genbank.\" In effect, the source is used to extend the feature ontology by adding a qualifier to the type creating a new composite type that is a subclass of the type in the type column.",
+   "target": "note",
+   "dev comment": "EMBL qualifiers tend to be more specific than this, so very hard to create a good mapping."
+ },
+ "type": {
+   "source description": "The type of the feature (previously called the \"method\"). This is constrained to be either a term from the Sequence Ontology or an SO accession number. The latter alternative is distinguished using the syntax SO:000000. In either case, it must be sequence_feature (SO:0000110) or an is_a child of it.",
+   "target": "",
+   "dev comment": ""
+ },
+ "score": {
+   "source description": "The score of the feature, a floating point number. As in earlier versions of the format, the semantics of the score are ill-defined. It is strongly recommended that E-values be used for sequence similarity features, and that P-values be used for ab initio gene prediction features.",
+   "target": "",
+   "dev comment": "too vague to EMBL"
+ },
+ "phase": {
+   "source description": "For features of type \"CDS\", the phase indicates where the feature begins with reference to the reading frame. The phase is one of the integers 0, 1, or 2, indicating the number of bases that should be removed from the beginning of this feature to reach the first base of the next codon.",
+   "target": "codon_start",
+   "dev comment": ""
+ },
+ "ID": {
+   "source description": "Indicates the ID of the feature. IDs for each feature must be unique within the scope of the GFF file. In the case of discontinuous features (i.e. a single feature that exists over multiple genomic locations) the same ID may appear on multiple lines. All lines that share an ID collectively represent a single feature.",
+   "target": "",
+   "dev comment": "for now this is un-mapped in the final EMBL"
+ },
+ "Name": {
+   "source description": "Display name for the feature. This is the name to be displayed to the user. Unlike IDs, there is no requirement that the Name be unique within the file.",
+   "target": "standard_name",
+   "dev comment": ""
+ },
+ "Alias": {
+   "source description": "A secondary name for the feature. It is suggested that this tag be used whenever a secondary identifier for the feature is needed, such as locus names and accession numbers. Unlike ID, there is no requirement that Alias be unique within the file.",
+   "target": "",
+   "dev comment": "/gene_synonym maybe? /locus_tag?"
+ },
+ "Parent": {
+   "source description": "Indicates the parent of the feature. A parent ID can be used to group exons into transcripts, transcripts into genes, an so forth. A feature may have multiple parents. Parent can only be used to indicate a partof relationship.",
+   "target": "gene",
+   "dev comment": "EMBL isn't formatted with parent pointers, so this i unmapped"
+ },
+ "Target": {
+   "source description": "Indicates the target of a nucleotide-to-nucleotide or protein-to-nucleotide alignment. The format of the value is \"target_id start end [strand]\", where strand is optional and may be \"+\" or \"-\". If the target_id contains spaces, they must be escaped as hex escape %20.",
+   "target": "",
+   "dev comment": ""
+ },
+ "Gap": {
+   "source description": "The alignment of the feature to the target if the two are not collinear (e.g. contain gaps). The alignment format is taken from the CIGAR format described in the Exonerate documentation.",
+   "target": "",
+   "dev comment": ""
+ },
+ "Derives_from": {
+   "source description": "Used to disambiguate the relationship between one feature and another when the relationship is a temporal one rather than a purely structural \"part of\" one. This is needed for polycistronic genes.",
+   "target": "",
+   "dev comment": ""
+ },
+ "Note": {
+   "source description": "A free text note.",
+   "target": "note",
+   "dev comment": ""
+ },
+ "Dbxref": {
+   "source description": "A database cross reference.",
+   "target": "db_xref",
+   "dev comment": ""
+ },
+ "Ontology_term": {
+   "source description": "A cross reference to an ontology term.",
+   "target": "",
+   "dev comment": ""
+ },
+ "Is_circular": {
+   "source description": "A flag to indicate whether a feature is circular.",
+   "target": "",
+   "dev comment": ""
+ },
+ "gene_name": {
+   "source description": "The source is a free text qualifier intended to describe the algorithm or operating procedure that generated this feature. Typically this is the name of a piece of software, such as \"Genescan\" or a database name, such as \"Genbank.\" In effect, the source is used to extend the feature ontology by adding a qualifier to the type creating a new composite type that is a subclass of the type in the type column.",
+   "target": "gene",
+   "dev comment": "could possibly map to 'gene_synonym' as well."
+ },
+ "gene_biotype": {
+   "source description": "",
+   "target": "",
+   "dev comment": ""
+ },
+ "geneID": {
+   "source description": "No description",
+   "target": "gene",
+   "dev comment": "from commend in /standard_name docs: 'use /gene to give gene symbol'"
+ },
+ "protein_id": {
+   "source description": "No description",
+   "target": "protein_id",
+   "dev comment": "finally something maps easy"
+ }
+}

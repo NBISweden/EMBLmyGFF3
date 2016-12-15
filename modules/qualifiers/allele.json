@@ -1,0 +1,7 @@
+{
+ "comment": "all gene-related features (exon, CDS etc) for a given gene should share the same /allele qualifier value; the /allele qualifier value must, by definition, be different from the /gene qualifier value; when used with the variation feature key, the allele qualifier value should be that of the variant.", 
+ "definition": "name of the allele for the given gene", 
+ "example": "/allele=\"adh1-1\"", 
+ "qualifier": "allele", 
+ "value_format": "\"text\""
+}

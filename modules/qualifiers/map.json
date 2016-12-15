@@ -1,0 +1,6 @@
+{
+ "definition": "genomic map position of feature", 
+ "example": "/map=\"8q12-q13\"", 
+ "qualifier": "map", 
+ "value_format": "\"text\""
+}

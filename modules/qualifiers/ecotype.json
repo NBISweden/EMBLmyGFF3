@@ -1,0 +1,7 @@
+{
+ "comment": "an example of such a population is one that has adapted hairier than normal leaves as a response to an especially sunny habitat. 'Ecotype' is often applied to standard genetic stocks of Arabidopsis thaliana, but it can be applied to any sessile organism.", 
+ "definition": "a population within a given species displaying genetically based, phenotypic traits that reflect adaptation to a local habitat.", 
+ "example": "/ecotype=\"Columbia\"", 
+ "qualifier": "ecotype", 
+ "value_format": "\"text\""
+}

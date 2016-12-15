@@ -1,0 +1,28 @@
+{
+ "comment": "This feature has replaced the following Feature Keys on 15-DEC-2014: enhancer, promoter, CAAT_signal, TATA_signal, -35_signal, -10_signal, RBS, GC_signal, polyA_signal, attenuator, terminator, misc_signal.", 
+ "definition": "any region of sequence that functions in the regulation of transcription, translation, replication or chromatin structure;", 
+ "mandatory_qualifiers": {
+  "regulatory_class": "\"TYPE\""
+ }, 
+ "optional_qualifiers": {
+  "bound_moiety": "\"text\"", 
+  "function": "\"text\"", 
+  "locus_tag": "\"text\" (single token)", 
+  "pseudogene": "\"TYPE\"", 
+  "inference": "\"[CATEGORY:]TYPE[ (same species)][:EVIDENCE_BASIS]\"", 
+  "map": "\"text\"", 
+  "old_locus_tag": "\"text\" (single token)", 
+  "citation": "[number]", 
+  "pseudo": null, 
+  "gene_synonym": "\"text\"", 
+  "note": "\"text\"", 
+  "db_xref": "\"<database>:<identifier>\"", 
+  "standard_name": "\"text\"", 
+  "experiment": "\"[CATEGORY:]text\"", 
+  "phenotype": "\"text\"", 
+  "operon": "\"text\"", 
+  "allele": "\"text\"", 
+  "gene": "\"text\""
+ }, 
+ "feature_key": "regulatory"
+}

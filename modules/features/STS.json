@@ -1,0 +1,21 @@
+{
+ "comment": "STS location to include primer(s) in primer_bind key or primers.", 
+ "definition": "sequence tagged site; short, single-copy DNA sequence that characterizes a mapping landmark on the genome and can be detected by PCR; a region of the genome can be mapped by determining the order of a series of STSs;", 
+ "molecule_scope": "DNA", 
+ "feature_key": "STS", 
+ "parent_key": "misc_binding", 
+ "optional_qualifiers": {
+  "map": "\"text\"", 
+  "locus_tag": "\"text\" (single token)", 
+  "inference": "\"[CATEGORY:]TYPE[ (same species)][:EVIDENCE_BASIS]\"", 
+  "old_locus_tag": "\"text\" (single token)", 
+  "citation": "[number]", 
+  "gene_synonym": "\"text\"", 
+  "note": "\"text\"", 
+  "db_xref": "\"<database>:<identifier>\"", 
+  "standard_name": "\"text\"", 
+  "experiment": "\"[CATEGORY:]text\"", 
+  "allele": "\"text\"", 
+  "gene": "\"text\""
+ }
+}

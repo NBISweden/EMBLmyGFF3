@@ -1,0 +1,6 @@
+{
+ "definition": "any comment or additional information", 
+ "example": "/note=\"This qualifier is equivalent to a comment.\"", 
+ "qualifier": "note", 
+ "value_format": "\"text\""
+}

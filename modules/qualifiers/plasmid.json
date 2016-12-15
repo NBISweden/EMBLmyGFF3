@@ -1,0 +1,6 @@
+{
+ "definition": "name of naturally occurring plasmid from which the sequence was obtained, where plasmid is defined as an independently replicating genetic unit that cannot be described by /chromosome or /segment", 
+ "example": "/plasmid=\"C-589\"", 
+ "qualifier": "plasmid", 
+ "value_format": "\"text\""
+}

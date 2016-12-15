@@ -1,0 +1,7 @@
+{
+ "comment": "used to indicate the base range of the sequence that constitutes a repeated sequence specified by the feature keys oriT and repeat_region; qualifiers /rpt_unit_range and /rpt_unit_seq replaced qualifier /rpt_unit in December 2005", 
+ "definition": "identity of a repeat range", 
+ "example": "/rpt_unit_range=202..245", 
+ "qualifier": "rpt_unit_range", 
+ "value_format": "<base_range>"
+}

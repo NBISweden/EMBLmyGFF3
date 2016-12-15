@@ -1,0 +1,6 @@
+{
+ "definition": "direction of DNA replication", 
+ "example": "/direction=LEFT", 
+ "qualifier": "direction", 
+ "value_format": "left, right, or both where left indicates toward the 5' end of the entry sequence (as presented) and right indicates toward the 3' end"
+}

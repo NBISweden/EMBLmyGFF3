@@ -58,8 +58,8 @@ join(1..100,J00194.1:100..202)
                           100..202 of remote entry J00194
 
    /\
-  /| \  We do not deal with features that behave like join(complement(4918..5163),complement(2691..4571)). 
- / .  \ If a feature is on the negative strand we will always deal like complement(join(2691..4571,4918..5163))
+  /| \  TODO: This script can't parse locations on the format 'join(complement(4918..5163),complement(2691..4571))',
+ / .  \ if a feature is on the negative strand we only deal with 'complement(join(2691..4571,4918..5163))'.
 /______\
 """
 

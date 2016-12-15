@@ -1,0 +1,6 @@
+{
+ "definition": "symbol of the gene corresponding to a sequence region", 
+ "example": "/gene=\"ilvE\"", 
+ "qualifier": "gene", 
+ "value_format": "\"text\""
+}

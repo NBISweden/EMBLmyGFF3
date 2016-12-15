@@ -1,0 +1,6 @@
+{
+ "definition": "name of the expert who identified the specimen taxonomically", 
+ "example": "/identified_by=\"John Burns\"", 
+ "qualifier": "identified_by", 
+ "value_format": "\"text\""
+}

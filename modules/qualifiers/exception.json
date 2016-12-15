@@ -1,0 +1,7 @@
+{
+ "comment": "only to be used to describe biological mechanisms such as RNA editing;  where the exception cannot easily be described a published citation must be referred to; protein translation of /exception CDS will be different from the according conceptual translation; - An /inference qualifier should accompany any use of /exception=\"annotated by transcript or proteomic data\", to provide support for the existence of the transcript/protein. - must not be used where transl_except would be adequate, e.g. in case of stop codon completion use: /transl_except=(pos:6883,aa:TERM) /note=\"TAA stop codon is completed by addition of 3' A residues to mRNA\". - must not be used for ribosomal slippage, instead use join operator, e.g.: CDS   join(486..1784,1787..4810) /note=\"ribosomal slip on tttt sequence at 1784..1787\"", 
+ "definition": "indicates that the coding region cannot be translated using standard biological rules", 
+ "example": "/exception=\"RNA editing\" /exception=\"reasons given in citation\" /exception=\"rearrangement required for product\" /exception=\"annotated by transcript or proteomic data\"", 
+ "qualifier": "exception", 
+ "value_format": "\"RNA editing\", \"reasons given in citation\", \"rearrangement required for product\", \"annotated by transcript or proteomic data\""
+}

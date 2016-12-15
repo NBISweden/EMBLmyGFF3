@@ -1,0 +1,7 @@
+{
+ "comment": "the organism name which appears on the OS or ORGANISM line will match the value of the /organism qualifier of the source key in the simplest case of a one-source sequence.", 
+ "definition": "scientific name of the organism that provided the sequenced genetic material.", 
+ "example": "/organism=\"Homo sapiens\"", 
+ "qualifier": "organism", 
+ "value_format": "\"text\""
+}

@@ -1,0 +1,7 @@
+{
+ "comment": "the complete list of allowed database types is kept at http://www.insdc.org/db_xref.html", 
+ "definition": "database cross-reference: pointer to related information in another database.", 
+ "example": "/db_xref=\"UniProtKB/Swiss-Prot:P28763\"", 
+ "qualifier": "db_xref", 
+ "value_format": "\"<database:identifier>\" where database is the name of the database containing related information, and identifier is the internal identifier of the related information according to the naming conventions of the cross-referenced database."
+}

@@ -1,0 +1,6 @@
+{
+ "definition": "name for a combination of alleles that are linked together on the same physical chromosome. In the absence of recombination, each haplotype is inherited as a unit, and may be used to track gene flow in populations.", 
+ "example": "/haplotype=\"Dw3 B5 Cw1 A1\"", 
+ "qualifier": "haplotype", 
+ "value_format": "\"text\""
+}
