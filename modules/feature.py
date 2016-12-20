@@ -127,51 +127,6 @@ class Feature(object):
         logging.debug("Adding value '%s' to qualifier '%s'" % (value, qualifier))
         
         self.qualifiers[qualifier].add_value(value)
-        
-        
-    #     # handle mandatory qualifiers
-    #     if qualifier not in self.mandatory_qualifiers:
-    #         for i,q in enumerate([q.lower() for q in self.mandatory_qualifiers]):
-    #             if q == qualifier.lower():
-    #                 qualifier = self.mandatory_qualifiers.keys()[i]
-    #                 break
-    #
-    #     # handle optional qualifiers
-    #     if qualifier not in self.optional_qualifiers:
-    #         for i,q in enumerate([q.lower() for q in self.optional_qualifiers]):
-    #             if q == qualifier.lower():
-    #                 qualifier = self.optional_qualifiers.keys()[i]
-    #                 break
-    #
-    #     qualifier_type=qualifier[0].upper() + qualifier[1:] + "Qualifier"
-    #     if qualifier in self.optional_qualifiers or qualifier in self.mandatory_qualifiers:
-    #
-    #         try:
-    #             if qualifier in self.optional_qualifiers:
-    #                 if self.optional_qualifiers[qualifier] == None:
-    #                     if type(value) == type(""):
-    #                         self.optional_qualifiers[qualifier] = eval("%s('%s')" % (qualifier_type, value))
-    #                     else:
-    #                         self.optional_qualifiers[qualifier] = eval("%s(%s)" % (qualifier_type, value))
-    #                 else: # We add to list arleady existing (case where several time the same qualifier)
-    #                     self.optional_qualifiers[qualifier].add(value)
-    #             elif qualifier in self.mandatory_qualifiers:
-    #                 if self.mandatory_qualifiers[qualifier] == None:
-    #                     if type(value) == type(""):
-    #                         self.mandatory_qualifiers[qualifier] = eval("%s('%s')" % (qualifier_type, value))
-    #                     else:
-    #                         self.mandatory_qualifiers[qualifier] = eval("%s(%s)" % (qualifier_type, value))
-    #                 else: # We add to list arleady existing (case where several time the same qualifier)
-    #                     self.mandatory_qualifiers[qualifier].add(value)
-    #         except Exception as e:
-    #             sys.stderr.write( str(e) )
-    #             import traceback
-    #             traceback.print_exc(limit=5)
-    #
-    #             #sys.stderr.write( "Unknown qualifier '%s' for feature '%s'. " % (qualifier, type(qualifier)) + "\n" )
-    #     else:
-    #       if(qualifier not in ['has_start', 'has_stop']): #specific qualifier used only within the GFF2EMBL process
-    #         sys.stderr.write( "unknown qualifier '%s' with value '%s' in %s" % (qualifier, value, type(self)) + "\n" )
 
 if __name__ == '__main__':
 

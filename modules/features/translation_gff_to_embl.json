@@ -37,7 +37,7 @@
  "Parent": {
    "source description": "Indicates the parent of the feature. A parent ID can be used to group exons into transcripts, transcripts into genes, an so forth. A feature may have multiple parents. Parent can only be used to indicate a partof relationship.",
    "target": "gene",
-   "dev comment": "EMBL isn't formatted with parent pointers, so this i unmapped"
+   "dev comment": "EMBL isn't formatted with parent pointers, but some things like CDS have pointers back to their gene"
  },
  "Target": {
    "source description": "Indicates the target of a nucleotide-to-nucleotide or protein-to-nucleotide alignment. The format of the value is \"target_id start end [strand]\", where strand is optional and may be \"+\" or \"-\". If the target_id contains spaces, they must be escaped as hex escape %20.",
