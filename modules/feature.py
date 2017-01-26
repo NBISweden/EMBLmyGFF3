@@ -84,8 +84,8 @@ class Feature(object):
         """
         
         if self.type == "CDS":
-            with open("feature_%00i.txt" % Feature.CDS_COUNTER, "w") as out:
-                self.CDS_report(out)
+            # with open("feature_%00i.txt" % Feature.CDS_COUNTER, "w") as out:
+            #     self.CDS_report(out)
             Feature.CDS_COUNTER += 1
         
         output = ""
