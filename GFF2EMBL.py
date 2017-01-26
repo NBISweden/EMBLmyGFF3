@@ -981,7 +981,7 @@ if __name__ == '__main__':
         outfile = args.output
         if not outfile.endswith(".embl.gz"):
             outfile += ".gz" if outfile.endswith(".embl") else ".embl.gz"
-        outfile = gzip.open(args.output, "wb")
+        outfile = gzip.open(outfile, "wb")
     else:
         outfile = sys.stdout
     
