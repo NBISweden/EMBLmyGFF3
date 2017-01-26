@@ -636,24 +636,11 @@ class EMBL( object ):
         URL: ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.txt
         """
         
-        #add extra information to CDS features
-        # try:
-        #     for feature in self.record.features:
-        #         if not feature.type.lower() == "source":
-        #             for feature_l2 in feature.sub_features:
-        #                 for l3_feature in feature_l2.sub_features:
-        #                     if(l3_feature.type.lower() == "cds"):
-        #                         l3_feature.qualifiers['transl_table']=self.transl_table
-        # except Exception as e:
-        #     logging.error(e)
-        
         #process features
         output = ""
-        logging.warn( self.accessions )
-        for feature in self.record.features:
-            f = Feature(feature, seq = self.record.seq, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR)
+        for i, feature in enumerate(self.record.features):
+            f = Feature(feature, self.record.seq, self.accessions, self.transl_table, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR)
             output += str(f)
-#             for feat in parse_gff_feature(self.accessions, feature, self.record.seq):
         
         return output + self.spacer
     
@@ -935,7 +922,7 @@ class EMBL( object ):
         if self.construct_information:
             out.write( self.CO() )
         
-        #self.SQ( out )         # SQ - sequence header            (1 per entry)
+        self.SQ( out )         # SQ - sequence header            (1 per entry)
                                # + sequence...
         
         out.write( self.termination ) # // - termination line    (ends each entry; 1 per entry)
@@ -986,7 +973,7 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
     
-    logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s', 
+    logging.basicConfig(format='%(asctime)s %(levelname)s %(module)s: %(message)s', 
                         level = (5-args.verbose+args.quiet)*10, 
                         datefmt="%H:%M:%S")
     
