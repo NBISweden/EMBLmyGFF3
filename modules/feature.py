@@ -11,16 +11,6 @@ from location import EMBLLocation
 from Bio.SeqFeature import SeqFeature, FeatureLocation, BeforePosition, AfterPosition
 from qualifier import *
 
-#
-# required for next project:
-#
-#   NcRNA -> ncRNA
-#   Non_canonical_five_prime_splice_site
-#   Non_canonical_three_prime_splice_site
-#   Rfam
-#   Transcript -?-> does 'prim_transcript' work?
-
-
 def chunk_format(string, chunk_string = None, offset = 0, chunk_size = 3, chunks_per_line = 30, indent = 6):
     offset = offset%chunk_size
     even = True if len(string)%chunk_size == 0 else False
@@ -58,6 +48,7 @@ class Feature(object):
     """
     
     CDS_COUNTER = 0
+    OK_COUNTER = 0
     DEFAULT_TRANSLATION_FILE="translation_gff_to_embl.json"
     
     def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", format_data = True):
@@ -156,19 +147,9 @@ class Feature(object):
     
     def _infer_ORFs(self, feature):
         if self.type in ['CDS']:
-            # create a sequence feature using the location of the current EMBLFeature
-            # seq = SeqFeature(location = self.location).extract(self.seq)
-            # start_codon = seq[:3].upper()
-            
-            offset = len(self.location)%3 if len(self.location) %3 != 0 else 0
-            if  self.location.strand < 0:
-              start_codon=self.seq[ self.location.end - 3 : self.location.end].reverse_complement()
-              stop_codon=self.seq[ self.location.start - 3 + offset: self.location.start + offset].reverse_complement()
-            else:
-              start_codon=self.seq[ self.location.start : self.location.start + 3]
-              stop_codon=self.seq[ self.location.end - offset: self.location.end + 3 - offset]
-            
-            #logging.error("%s - %s %s" % (seq_start_codon, start_codon, "<----" if seq_start_codon == start_codon else ""))
+            seq = self.sequence()
+            start_codon = seq[:3]
+            stop_codon = seq[-3:]#self.seq[self.location.end:self.location.end+3]
             
             # load the current codon table
             codon_table = CodonTable.unambiguous_dna_by_id[self.transl_table]
@@ -183,6 +164,9 @@ class Feature(object):
                 start = self.location.parts[-1].start
                 end = AfterPosition(self.location.parts[-1].end)
                 self.location.parts[-1] = FeatureLocation( start, end, strand = strand )
+            
+            if start_codon in codon_table.start_codons and stop_codon in codon_table.stop_codons:
+                Feature.OK_COUNTER += 1
             
         for sub_feature in self.sub_features:
             sub_feature._infer_ORFs(feature)
@@ -273,13 +257,8 @@ class Feature(object):
         seq = "%s" % self.sequence()
         aa = self.translation()
         
-        offset = len(self.location)%3
-        if  self.location.strand < 0:
-            start_codon=self.seq[ self.location.end - 3 : self.location.end].reverse_complement()
-            stop_codon=self.seq[ self.location.start - 3 + offset : self.location.start + offset].reverse_complement()
-        else:
-            start_codon=self.seq[ self.location.start : self.location.start + 3]
-            stop_codon=self.seq[ self.location.end - offset: self.location.end + 3 - offset]
+        start_codon = seq[:3]
+        stop_codon = seq[-3:]
         
         out.write("Name: %s\n" % self.type)
         out.write("Location: %s\n" % EMBLLocation(self.location))
@@ -304,19 +283,11 @@ class Feature(object):
         
         if codon_info:
             codon_table = CodonTable.unambiguous_dna_by_id[self.transl_table]
-            out.write("Start codon: %s (%s)\n" % (start_codon, ", ".join(codon_table.start_codons)))
-            out.write("Stop codon: %s (%s)\n" % (stop_codon, ", ".join(codon_table.stop_codons)))
+            out.write("Start codon: %s (%s) \n" % (start_codon, ", ".join(codon_table.start_codons)))
+            out.write("Stop codon: %s (%s) \n" % (stop_codon, ", ".join(codon_table.stop_codons)))
     
     def sequence(self):
-        seq = Seq("", self.seq.alphabet)
-        if self.location.strand > 0:
-            for part in self.location.parts:
-                seq += SeqFeature(location = part).extract(self.seq)
-        else:
-            for part in reversed(self.location.parts):
-                seq += SeqFeature(location = part).extract(self.seq)
-        
-        return seq
+        return SeqFeature(location = self.location).extract(self.seq)
     
     def translation(self):
         codon_table = CodonTable.unambiguous_dna_by_id[self.transl_table]
