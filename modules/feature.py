@@ -260,7 +260,7 @@ class Feature(object):
         start_codon = seq[:3]
         stop_codon = seq[-3:]
         
-        out.write("Name: %s\n" % self.type)
+        out.write("Name: %s\n" % self.qualifiers.get("gene").value[0])
         out.write("Location: %s\n" % EMBLLocation(self.location))
         
         if parts:
@@ -287,7 +287,14 @@ class Feature(object):
             out.write("Stop codon: %s (%s) \n" % (stop_codon, ", ".join(codon_table.stop_codons)))
     
     def sequence(self):
-        return SeqFeature(location = self.location).extract(self.seq)
+        if self.location.strand > 0:
+            return SeqFeature(location = self.location).extract(self.seq)
+        
+        seq = Seq("")
+        for part in reversed(self.location.parts):
+            seq += SeqFeature(location = part).extract(self.seq)
+        
+        return seq
     
     def translation(self):
         codon_table = CodonTable.unambiguous_dna_by_id[self.transl_table]
