@@ -51,6 +51,8 @@ class Feature(object):
     OK_COUNTER = 0
     DEFAULT_TRANSLATION_FILE="translation_gff_to_embl.json"
     
+    PREVIOUS_ERRORS = []
+    
     def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", format_data = True):
         self.type = feature.type
         self.seq = seq
@@ -227,7 +229,10 @@ class Feature(object):
             try:
                 os.stat( "%s/%s.json" % (self.qualifier_definition_dir, qualifier) )
             except Exception as e:
-                logging.info("Unknown qualifier '%s'" % qualifier)
+                msg = "Unknown qualifier '%s'" % qualifier
+                if msg not in Feature.PREVIOUS_ERRORS:
+                    logging.warn(msg)
+                    Feature.PREVIOUS_ERRORS += [msg]
             else:
                 logging.debug("'%s' is not a legal qualifier for feature type '%s'" % (qualifier, self.type))
                 
