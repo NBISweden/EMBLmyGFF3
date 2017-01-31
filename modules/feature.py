@@ -149,21 +149,30 @@ class Feature(object):
         if self.type in ['CDS']:
             seq = self.sequence()
             start_codon = seq[:3]
-            stop_codon = seq[-3:]#self.seq[self.location.end:self.location.end+3]
+            stop_codon = seq[-3:]
             
             # load the current codon table
             codon_table = CodonTable.unambiguous_dna_by_id[self.transl_table]
             
+            # basic info
+            strand = self.location.parts[0].strand
+            start = self.location.parts[-1].start
+            end = self.location.parts[0].end
+            
             if start_codon not in codon_table.start_codons:
-                strand = self.location.parts[0].strand
-                start = BeforePosition(self.location.parts[0].start)
-                end = self.location.parts[0].end
-                self.location.parts[0] = FeatureLocation( start, end, strand = strand )
+                if strand > 0:
+                    start = BeforePosition(self.location.parts[0].start)
+                    self.location.parts[0] = FeatureLocation( start, end, strand = strand )
+                else:
+                    end = AfterPosition(self.location.parts[-1].end)
+                    self.location.parts[-1] = FeatureLocation( start, end, strand = strand )
             if stop_codon not in codon_table.stop_codons:
-                strand = self.location.parts[-1].strand
-                start = self.location.parts[-1].start
-                end = AfterPosition(self.location.parts[-1].end)
-                self.location.parts[-1] = FeatureLocation( start, end, strand = strand )
+                if strand < 0:
+                    start = BeforePosition(self.location.parts[0].start)
+                    self.location.parts[0] = FeatureLocation( start, end, strand = strand )
+                else:
+                    end = AfterPosition(self.location.parts[-1].end)
+                    self.location.parts[-1] = FeatureLocation( start, end, strand = strand )
             
             if start_codon in codon_table.start_codons and stop_codon in codon_table.stop_codons:
                 Feature.OK_COUNTER += 1
@@ -189,7 +198,7 @@ class Feature(object):
                         # it to have a bit of debugging information.
                         setattr(self, key, value)
         except IOError as e:
-            print e
+            logging.error(e)
     
     def _load_translations(self, filenames):
         """
@@ -218,7 +227,7 @@ class Feature(object):
             try:
                 os.stat( "%s/%s.json" % (self.qualifier_definition_dir, qualifier) )
             except Exception as e:
-                logging.warn("Unknown qualifier '%s'" % qualifier)
+                logging.info("Unknown qualifier '%s'" % qualifier)
             else:
                 logging.debug("'%s' is not a legal qualifier for feature type '%s'" % (qualifier, self.type))
                 
