@@ -37,6 +37,8 @@ class Qualifier( object ):
         for val in value:
             if val == []:
                 continue
+            if type(val) == type([]) and len(val):
+                val = val[0]
             if type(val) == type(""):
                 val = "\"%s\"" % val
             if getattr(self, "value_type", None) == "none":
