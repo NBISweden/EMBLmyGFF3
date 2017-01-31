@@ -126,6 +126,8 @@ class EMBL( object ):
                      114:time.strptime("2012-12-21", "%Y-%m-%d"),
                      }
     
+    PREVIOUS_VALUES = {}
+    
     spacer = "\nXX"
     termination = "\n//\n"
     
@@ -279,6 +281,9 @@ class EMBL( object ):
         self.set_taxonomy()
     
     def _verify(self, key, key_type):
+        if key_type in EMBL.PREVIOUS_VALUES:
+            return EMBL.PREVIOUS_VALUES[key_type]
+        
         if key_type not in self.legal_values:
             sys.stderr.write("Can't verify value for %s, legal values unknown." % key_type)
             return key
@@ -294,6 +299,8 @@ class EMBL( object ):
                     sys.stderr.write("  - %s\n" % value)
             sys.stderr.write("Please enter new value: ")
             key = raw_input()
+            if key in self.legal_values[key_type]:
+                EMBL.PREVIOUS_VALUES[key_type] = key
             
         return key
     
@@ -927,6 +934,7 @@ class EMBL( object ):
         
         out.write( self.termination ) # // - termination line    (ends each entry; 1 per entry)
         
+        logging.debug("Wrote %i CDS features, where %i is sound" % (Feature.CDS_COUNTER, Feature.OK_COUNTER))
         
         # CO - contig/construct line      (0 or >=1 per entry) ?????
     
@@ -1005,7 +1013,7 @@ and press ENTER:\n""")
             sys.stderr.write( "It's a pity... Let's go anyway !")
         else:
             args.rg=""
-
+    
     for record in GFF.parse(infile, base_dict=seq_dict):
         
         writer = EMBL( record, True )
@@ -1024,7 +1032,7 @@ and press ENTER:\n""")
         writer.set_transl_table( args.table )
         writer.set_version( args.version )
         writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)
-        
+    
         writer.write_all( outfile )
      
     sys.stderr.write( """Well done\n""")
