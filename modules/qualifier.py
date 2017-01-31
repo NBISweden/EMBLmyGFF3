@@ -35,6 +35,8 @@ class Qualifier( object ):
         if type(value) != type([]):
             value = [value]
         for val in value:
+            if val == []:
+                continue
             if type(val) == type(""):
                 val = "\"%s\"" % val
             if getattr(self, "value_type", None) == "none":
@@ -84,13 +86,13 @@ class Qualifier( object ):
                 return ""
             elif self.value_format.startswith("\"<database:identifier>\""): # Handle dbxref's 
                 self._load_legal_dbxref( LEGAL_DBXREF_FILE )
-            
+                value = value if type(value) == type([]) else [value]
                 new_value=[]
-                for val in self.value:
+                for val in value:
                     if val.split(':')[0].lower() in [v.lower() for v in self.legal_dbxref]:
                         new_value.append(val)
                     else:
-                        logging.warn("Unknown db_xref '%s' - removing." % val)
+                        logging.info("Unknown db_xref '%s' - removing." % val)
                 formatted_value=new_value
             elif self.value_format == "<identifier>":
                 pass
