@@ -157,24 +157,26 @@ class Feature(object):
             codon_table = CodonTable.unambiguous_dna_by_id[self.transl_table]
             
             # basic info
-            strand = self.location.parts[0].strand
-            start = self.location.parts[-1].start
-            end = self.location.parts[0].end
+            strand = self.location.strand
             
             if start_codon not in codon_table.start_codons:
-                if strand > 0:
+                if strand >= 0:
                     start = BeforePosition(self.location.parts[0].start)
-                    self.location.parts[0] = FeatureLocation( start, end, strand = strand )
+                    end = self.location.parts[0].end
+                    self.location.parts[0] = FeatureLocation( start, end, strand = self.location.parts[0].strand )
                 else:
+                    start = self.location.parts[-1].start
                     end = AfterPosition(self.location.parts[-1].end)
-                    self.location.parts[-1] = FeatureLocation( start, end, strand = strand )
+                    self.location.parts[-1] = FeatureLocation( start, end, strand = self.location.parts[-1].strand )
             if stop_codon not in codon_table.stop_codons:
                 if strand < 0:
                     start = BeforePosition(self.location.parts[0].start)
-                    self.location.parts[0] = FeatureLocation( start, end, strand = strand )
+                    end = self.location.parts[0].end
+                    self.location.parts[0] = FeatureLocation( start, end, strand = self.location.parts[0].strand )
                 else:
+                    start = self.location.parts[-1].start
                     end = AfterPosition(self.location.parts[-1].end)
-                    self.location.parts[-1] = FeatureLocation( start, end, strand = strand )
+                    self.location.parts[-1] = FeatureLocation( start, end, strand = self.location.parts[-1].strand )
             
             if start_codon in codon_table.start_codons and stop_codon in codon_table.stop_codons:
                 Feature.OK_COUNTER += 1

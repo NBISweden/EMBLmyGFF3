@@ -934,7 +934,7 @@ class EMBL( object ):
         
         out.write( self.termination ) # // - termination line    (ends each entry; 1 per entry)
         
-        logging.debug("Wrote %i CDS features, where %i is sound" % (Feature.CDS_COUNTER, Feature.OK_COUNTER))
+        logging.info("Wrote %i CDS features, where %i is sound" % (Feature.CDS_COUNTER, Feature.OK_COUNTER))
         
         # CO - contig/construct line      (0 or >=1 per entry) ?????
     

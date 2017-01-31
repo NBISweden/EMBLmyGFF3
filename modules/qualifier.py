@@ -13,6 +13,7 @@ LEGAL_DBXREF_FILE="legal_dbxref.json"
 class Qualifier( object ):
     
     SINGLE_VALUE_QUALIFIERS = ["gene"]
+    PREVIOUS_ERRORS = []
     
     def __init__(self, qualifier, value = [], mandatory = False, qualifier_definition_dir = "modules/qualifiers"):
         self.name = qualifier
@@ -94,7 +95,10 @@ class Qualifier( object ):
                     if val.split(':')[0].lower() in [v.lower() for v in self.legal_dbxref]:
                         new_value.append(val)
                     else:
-                        logging.info("Unknown db_xref '%s' - removing." % val)
+                        msg = "Unknown db_xref '%s' - removing." % (val.split(':')[0])
+                        if msg not in Qualifier.PREVIOUS_ERRORS:
+                            logging.info(msg)
+                            Qualifier.PREVIOUS_ERRORS += [msg]
                 formatted_value=new_value
             elif self.value_format == "<identifier>":
                 pass
