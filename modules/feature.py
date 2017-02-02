@@ -159,11 +159,11 @@ class Feature(object):
             # basic info
             strand = self.location.strand
             
-            if start_codon not in codon_table.start_codons:
+            if start_codon.upper() not in codon_table.start_codons:
                 self.location = self._set_before(self.location)
-            if stop_codon not in codon_table.stop_codons:
+            if stop_codon.upper() not in codon_table.stop_codons:
                 self.location = self._set_after(self.location)
-            if start_codon in codon_table.start_codons and stop_codon in codon_table.stop_codons:
+            if start_codon.upper() in codon_table.start_codons and stop_codon.upper() in codon_table.stop_codons:
                 Feature.OK_COUNTER += 1
             
         for sub_feature in self.sub_features:

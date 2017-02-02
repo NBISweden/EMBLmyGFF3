@@ -963,6 +963,8 @@ if __name__ == '__main__':
     parser.add_argument("-s", "--species", default=None, help="Sample Species, formatted as 'Genus species (english name)'.")
     parser.add_argument("-t", "--topology", default="linear", help="Sequence topology.", choices=[None, "linear", "circular"])
     
+    parser.add_argument("-z", "--gzip", default=False, action="store_true", help="Gzip output file")
+    
     parser.add_argument("--rc", default="", help="Reference Comment.")
     parser.add_argument("--rx", default="", help="Reference cross-reference.")
     parser.add_argument("--rg", default="", help="Reference Group, the working groups/consortia that produced the record.")
@@ -987,9 +989,14 @@ if __name__ == '__main__':
     
     if args.output:
         outfile = args.output
-        if not outfile.endswith(".embl.gz"):
-            outfile += ".gz" if outfile.endswith(".embl") else ".embl.gz"
-        outfile = gzip.open(outfile, "wb")
+        if args.gzip:
+            if not outfile.endswith(".embl.gz"):
+                outfile += ".gz" if outfile.endswith(".embl") else ".embl.gz"
+            outfile = gzip.open(outfile, "wb")
+        else:
+            if not outfile.endswith(".embl"):
+                outfile += ".embl"
+            outfile = open(outfile, "wb")
     else:
         outfile = sys.stdout
     
