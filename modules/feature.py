@@ -49,7 +49,7 @@ class Feature(object):
     
     CDS_COUNTER = 0
     OK_COUNTER = 0
-    DEFAULT_TRANSLATION_FILE="translation_gff_to_embl.json"
+    DEFAULT_TRANSLATION_FILE="translation_gff_attribute_to_embl_qualifier.json"
     
     PREVIOUS_ERRORS = []
     
