@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/env python2.7
 """
 EMBL writer for ENA data submission. Note that this implementation is basically 
 just the documentation at ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt 
