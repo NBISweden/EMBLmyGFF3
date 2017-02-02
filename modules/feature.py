@@ -160,29 +160,40 @@ class Feature(object):
             strand = self.location.strand
             
             if start_codon not in codon_table.start_codons:
-                if strand >= 0:
-                    start = BeforePosition(self.location.parts[0].start)
-                    end = self.location.parts[0].end
-                    self.location.parts[0] = FeatureLocation( start, end, strand = self.location.parts[0].strand )
-                else:
-                    start = self.location.parts[-1].start
-                    end = AfterPosition(self.location.parts[-1].end)
-                    self.location.parts[-1] = FeatureLocation( start, end, strand = self.location.parts[-1].strand )
+                self.location = self._set_before(self.location)
             if stop_codon not in codon_table.stop_codons:
-                if strand < 0:
-                    start = BeforePosition(self.location.parts[0].start)
-                    end = self.location.parts[0].end
-                    self.location.parts[0] = FeatureLocation( start, end, strand = self.location.parts[0].strand )
-                else:
-                    start = self.location.parts[-1].start
-                    end = AfterPosition(self.location.parts[-1].end)
-                    self.location.parts[-1] = FeatureLocation( start, end, strand = self.location.parts[-1].strand )
-            
+                self.location = self._set_after(self.location)
             if start_codon in codon_table.start_codons and stop_codon in codon_table.stop_codons:
                 Feature.OK_COUNTER += 1
             
         for sub_feature in self.sub_features:
             sub_feature._infer_ORFs(feature)
+    
+    def _set_before(self, location):
+        if location.strand >= 0: # forward strand
+            if len(location.parts) > 1:
+                location.parts[0] = FeatureLocation( BeforePosition(location.parts[0].start), location.parts[0].end, strand = location.parts[0].strand )
+            else:
+                location = FeatureLocation( BeforePosition(location.start), location.end, strand = location.strand)
+        else:
+            if len(location.parts) > 1:
+                location.parts[-1] = FeatureLocation( location.parts[-1].start, AfterPosition(location.parts[-1].end), strand = location.parts[-1].strand )
+            else:
+                location = FeatureLocation( location.start, AfterPosition(location.end), strand = location.strand)
+        return location
+    
+    def _set_after(self, location):
+        if location.strand >= 0: # forward strand
+            if len(location.parts) > 1:
+                location.parts[-1] = FeatureLocation( location.parts[-1].start, AfterPosition(location.parts[-1].end), strand = location.parts[-1].strand )
+            else:
+                location = FeatureLocation( location.start, AfterPosition(location.end), strand = location.strand)
+        else:
+            if len(location.parts) > 1:
+                location.parts[0] = FeatureLocation( BeforePosition(location.parts[0].start), location.parts[0].end, strand = location.parts[0].strand )
+            else:
+                location = FeatureLocation( BeforePosition(location.start), location.end, strand = location.strand)
+        return location
     
     def _load_definition(self, filename):
         """
