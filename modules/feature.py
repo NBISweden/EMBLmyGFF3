@@ -51,7 +51,6 @@ class Feature(object):
     OK_COUNTER = 0
     DEFAULT_FEATURE_TRANSLATION_FILE="translation_gff_feature_to_embl_feature.json"
     DEFAULT_QUALIFIER_TRANSLATION_FILE="translation_gff_attribute_to_embl_qualifier.json"
-    
     PREVIOUS_ERRORS = []
     
     def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", format_data = True):
@@ -234,7 +233,6 @@ class Feature(object):
             data = json.load( open("%s/%s" % (module_dir, filename)) )
             for gff_feature, info in data.iteritems():
                 self.feature_translation_list[gff_feature] = info["target"]
-    
     
     def _load_qualifier_translations(self, filenames):
         """
