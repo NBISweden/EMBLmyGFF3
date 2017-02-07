@@ -87,11 +87,16 @@
  "geneID": {
    "source description": "No description",
    "target": "gene",
-   "dev comment": "from commend in /standard_name docs: 'use /gene to give gene symbol'"
+   "dev comment": "from comment in /standard_name docs: 'use /gene to give gene symbol'"
  },
  "protein_id": {
    "source description": "No description",
    "target": "protein_id",
    "dev comment": "finally something maps easy"
+ },
+ "description": {
+   "source description": "No description",
+   "target": "note",
+   "dev comment": "Hard to march more directly than to note sadly."
  }
 }

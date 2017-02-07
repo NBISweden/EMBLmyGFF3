@@ -1,0 +1,8 @@
+{
+ "five_prime_UTR": {
+   "target": "5'UTR"
+ },
+ "three_prime_UTR": {
+   "target": "3'UTR"
+ }
+}

@@ -49,24 +49,28 @@ class Feature(object):
     
     CDS_COUNTER = 0
     OK_COUNTER = 0
-    DEFAULT_TRANSLATION_FILE="translation_gff_to_embl.json"
+    DEFAULT_FEATURE_TRANSLATION_FILE="translation_gff_feature_to_embl_feature.json"
+    DEFAULT_QUALIFIER_TRANSLATION_FILE="translation_gff_attribute_to_embl_qualifier.json"
     
     PREVIOUS_ERRORS = []
     
     def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", format_data = True):
-        self.type = feature.type
-        self.seq = seq
-        self.transl_table = transl_table
-        
         self.location = feature.location
         self.feature_definition_dir = feature_definition_dir
         self.qualifier_definition_dir = qualifier_definition_dir
         self.qualifiers = {}
-        self.translation_list = {}
+        self.qualifier_translation_list = {}
+        self.feature_translation_list = {}
         self.sub_features = []
         self.translation_files = translation_files
-        self._load_translations([self.DEFAULT_TRANSLATION_FILE] + translation_files)
-        self._load_definition("%s/%s.json" % (feature_definition_dir, feature.type))
+        self._load_qualifier_translations([Feature.DEFAULT_QUALIFIER_TRANSLATION_FILE] + translation_files)
+        self._load_feature_translations([Feature.DEFAULT_FEATURE_TRANSLATION_FILE])
+        
+        self.type = self._from_gff_feature(feature.type)
+        self.seq = seq
+        self.transl_table = transl_table
+        
+        self._load_definition("%s/%s.json" % (feature_definition_dir, self.type))
         self._load_data(feature, accessions)
         if format_data:
             self._format_data(feature)
@@ -99,8 +103,11 @@ class Feature(object):
             output += str(sub_feature)
         return output
     
+    def _from_gff_feature(self, feature):
+        return self.feature_translation_list[feature] if feature in self.feature_translation_list else feature
+    
     def _from_gff_qualifier(self, qualifier):
-        return self.translation_list[qualifier] if qualifier in self.translation_list else qualifier
+        return self.qualifier_translation_list[qualifier] if qualifier in self.qualifier_translation_list else qualifier
     
     def _load_data(self, feature, accessions):
         for qualifier, value in feature.qualifiers.iteritems():
@@ -215,7 +222,7 @@ class Feature(object):
         except IOError as e:
             logging.error(e)
     
-    def _load_translations(self, filenames):
+    def _load_feature_translations(self, filenames):
         """
         Load translation json files. Files are loaded in order that they are given, 
         thus newer rules can be loaded to replace default rules.
@@ -223,10 +230,24 @@ class Feature(object):
         module_dir = os.path.dirname(os.path.abspath(sys.modules[Feature.__module__].__file__))
         
         for filename in filenames:
-            logging.debug("Loading translation file: %s/%s" % (module_dir, filename))
+            logging.debug("Loading feature translation file: %s/%s" % (module_dir, filename))
             data = json.load( open("%s/%s" % (module_dir, filename)) )
             for gff_feature, info in data.iteritems():
-                self.translation_list[gff_feature] = info["target"]
+                self.feature_translation_list[gff_feature] = info["target"]
+    
+    
+    def _load_qualifier_translations(self, filenames):
+        """
+        Load translation json files. Files are loaded in order that they are given, 
+        thus newer rules can be loaded to replace default rules.
+        """
+        module_dir = os.path.dirname(os.path.abspath(sys.modules[Feature.__module__].__file__))
+        
+        for filename in filenames:
+            logging.debug("Loading qualifier translation file: %s/%s" % (module_dir, filename))
+            data = json.load( open("%s/%s" % (module_dir, filename)) )
+            for gff_feature, info in data.iteritems():
+                self.qualifier_translation_list[gff_feature] = info["target"]
     
     def add_qualifier(self, qualifier, value):
         """
