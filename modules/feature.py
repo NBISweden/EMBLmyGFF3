@@ -50,7 +50,7 @@ class Feature(object):
     CDS_COUNTER = 0
     OK_COUNTER = 0
     DEFAULT_FEATURE_TRANSLATION_FILE="translation_gff_feature_to_embl_feature.json"
-    DEFAULT_QUALIFIER_TRANSLATION_FILE="translation_gff_attribute_to_embl_qualifier.json"
+    DEFAULT_QUALIFIER_TRANSLATION_FILE=["translation_gff_attribute_to_embl_qualifier.json", "translation_gff_other_to_embl_qualifier.json"]
     PREVIOUS_ERRORS = []
     
     def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", format_data = True):
@@ -62,7 +62,7 @@ class Feature(object):
         self.feature_translation_list = {}
         self.sub_features = []
         self.translation_files = translation_files
-        self._load_qualifier_translations([Feature.DEFAULT_QUALIFIER_TRANSLATION_FILE] + translation_files)
+        self._load_qualifier_translations(Feature.DEFAULT_QUALIFIER_TRANSLATION_FILE + translation_files)
         self._load_feature_translations([Feature.DEFAULT_FEATURE_TRANSLATION_FILE])
         
         self.type = self._from_gff_feature(feature.type)
