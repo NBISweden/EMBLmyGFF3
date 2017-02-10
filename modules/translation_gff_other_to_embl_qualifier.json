@@ -2,6 +2,7 @@
  "source": {
    "source description": "The source is a free text qualifier intended to describe the algorithm or operating procedure that generated this feature. Typically this is the name of a piece of software, such as \"Genescan\" or a database name, such as \"Genbank.\" In effect, the source is used to extend the feature ontology by adding a qualifier to the type creating a new composite type that is a subclass of the type in the type column.",
    "target": "note",
+   "prefix": "source:",
    "dev comment": "EMBL qualifiers tend to be more specific than this, so very hard to create a good mapping."
  },
  "score": {

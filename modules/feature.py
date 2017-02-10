@@ -60,6 +60,8 @@ class Feature(object):
         self.qualifiers = {}
         self.qualifier_translation_list = {}
         self.feature_translation_list = {}
+        self.qualifier_prefix = {}
+        self.qualifier_suffix = {}
         self.sub_features = []
         self.translation_files = translation_files
         self._load_qualifier_translations(Feature.DEFAULT_QUALIFIER_TRANSLATION_FILE + translation_files)
@@ -111,7 +113,7 @@ class Feature(object):
     def _load_data(self, feature, accessions):
         for qualifier, value in feature.qualifiers.iteritems():
             logging.debug("Reading qualifier: %s (%s), translating to %s" % (qualifier, value, self._from_gff_qualifier(qualifier)))
-            self.add_qualifier( self._from_gff_qualifier(qualifier), value )
+            self.add_qualifier( qualifier, value )
         
         # create locus tag from feature ID and accessions
         output_accession="|".join(accessions if type(accessions) == type([]) else [accessions])
@@ -232,7 +234,8 @@ class Feature(object):
             logging.debug("Loading feature translation file: %s/%s" % (module_dir, filename))
             data = json.load( open("%s/%s" % (module_dir, filename)) )
             for gff_feature, info in data.iteritems():
-                self.feature_translation_list[gff_feature] = info["target"]
+                if "target" in info:
+                    self.feature_translation_list[gff_feature] = info["target"]
     
     def _load_qualifier_translations(self, filenames):
         """
@@ -245,12 +248,18 @@ class Feature(object):
             logging.debug("Loading qualifier translation file: %s/%s" % (module_dir, filename))
             data = json.load( open("%s/%s" % (module_dir, filename)) )
             for gff_feature, info in data.iteritems():
-                self.qualifier_translation_list[gff_feature] = info["target"]
+                if "target" in info:
+                    self.qualifier_translation_list[gff_feature] = info["target"]
+                if "prefix" in info:
+                    self.qualifier_prefix[gff_feature] = info["prefix"]
+                if "suffix" in info:
+                    self.qualifier_suffix[gff_feature] = info["suffix"]
     
-    def add_qualifier(self, qualifier, value):
+    def add_qualifier(self, gff_qualifier, value):
         """
         This is where qualifier values are added to the feature.
         """
+        qualifier = self._from_gff_qualifier(gff_qualifier)
         logging.debug("Qualifier: %s - %s" % (qualifier, value))
         
         if not qualifier:
@@ -271,6 +280,12 @@ class Feature(object):
             return
         
         logging.debug("Adding value '%s' to qualifier '%s'" % (value, qualifier))
+        
+        if self.qualifier_prefix.get(gff_qualifier, None):
+            value = ["%s%s" % (self.qualifier_prefix[gff_qualifier], v) for v in value]
+        
+        if self.qualifier_suffix.get(gff_qualifier, None):
+            value = ["%s%s" % (v, self.qualifier_suffix[gff_qualifier]) for v in value]
         
         self.qualifiers[qualifier].add_value(value)
     
