@@ -271,7 +271,6 @@ class EMBL( object ):
         self.set_classification()
         self.set_created()
         self.set_description()
-        self.set_sample_id()
         self.set_project_id
         self.set_version()
         self.set_topology()
@@ -822,17 +821,6 @@ class EMBL( object ):
     def set_record(self, record):
         self.record = record
     
-    def set_sample_id(self, sample_id = None):
-        """
-        Sets the sample id, or parses it from the current record
-        """
-        if sample_id:
-            self.sample_id = sample_id
-        elif hasattr(self.record, "id"):
-            self.sample_id = self.record.id
-        elif not hasattr(self, "sample_id"):
-            self.sample_id = "Unknown"
-    
     def set_species(self, species = None):
         """
         Sets the species, or parses it from the current record
@@ -953,7 +941,6 @@ if __name__ == '__main__':
     parser.add_argument("-d", "--data_class", default="STD", help="Data class of the sample.", choices=["CON", "PAT", "EST", "GSS", "HTC", "HTG", "MGA", "WGS", "TSA", "STS", "STD"])
     parser.add_argument("-g", "--organelle", default=None, help="Sample organelle.")
     
-    parser.add_argument("-i", "--sample_id", default=None, help="Sample ID, as returned from ENA.")
     parser.add_argument("-k", "--keyword", default=[], nargs="+", help="Keywords for the entry")
     parser.add_argument("-l", "--classification", default=["Life"], nargs="+", help="Organism classification")
     parser.add_argument("-m", "--molecule_type", default="genomic DNA", help="Molecule type of the sample.", choices=["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"])
@@ -1032,7 +1019,6 @@ and press ENTER:\n""")
         writer.set_molecule_type( args.molecule_type )
         writer.set_organelle( args.organelle, args.organelle_name )
         writer.set_project_id( args.project_id )
-        writer.set_sample_id( args.sample_id )
         writer.set_species( args.species )
         writer.set_taxonomy( args.taxonomy )
         writer.set_topology( args.topology )
