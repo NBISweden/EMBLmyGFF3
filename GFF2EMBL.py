@@ -518,7 +518,7 @@ class EMBL( object ):
         """
         
         if self.organelle:
-            return ("OG   %s %s" % (self.organelle, self.organelle_name)).strip() + "\n" + self.spacer
+            return ("OG   %s" % (self.organelle,)).strip() + "\n" + self.spacer
         return ""
     
     def RF(self):
@@ -786,9 +786,9 @@ class EMBL( object ):
         if self.verify:
             self.molecule_type = self._verify( self.molecule_type, "molecule_type")
     
-    def set_organelle(self, organelle = None, organelle_name = None):
+    def set_organelle(self, organelle = None):
         """
-        Sets the sample organelle, and organelle name, or parses them from the current record.
+        Sets the sample organelle, or parses it from the current record.
         """
         if organelle:
             self.organelle = organelle
@@ -796,13 +796,6 @@ class EMBL( object ):
             self.organelle = self.record.organelle
         elif not hasattr(self, "organelle"):
             self.organelle = ""
-        
-        if organelle_name:
-            self.organelle_name = organelle_name
-        elif hasattr(self.record, "organelle name"):
-            self.organelle_name = organelle_name
-        elif not hasattr(self, "organelle_name"):
-            self.organelle_name = ""
         
         if self.verify and self.organelle:
             self.organelle = self._verify( self.organelle, "organelle")
@@ -964,7 +957,6 @@ if __name__ == '__main__':
     parser.add_argument("--version", default=1, type=int, help="Sequence version number")
     parser.add_argument("-x", "--taxonomy", default=None, help="Source taxonomy.", choices=["PHG", "ENV", "FUN", "HUM", "INV", "MAM", "VRT", "MUS", "PLN", "PRO", "ROD", "SYN", "TGN", "UNC", "VRL"])
     
-    parser.add_argument("--organelle_name", default=None, help="Sample organelle name.")
     parser.add_argument("-v", "--verbose", action="count", default=2, help="increase verbosity")
     parser.add_argument("-q", "--quiet", action="count", default=0, help="decrease verbosity")
     
@@ -1017,7 +1009,7 @@ and press ENTER:\n""")
         writer.set_data_class( args.data_class )
         writer.set_keywords( args.keyword )
         writer.set_molecule_type( args.molecule_type )
-        writer.set_organelle( args.organelle, args.organelle_name )
+        writer.set_organelle( args.organelle )
         writer.set_project_id( args.project_id )
         writer.set_species( args.species )
         writer.set_taxonomy( args.taxonomy )
