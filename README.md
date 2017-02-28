@@ -1,18 +1,18 @@
 GFF3 to EMBL convertion script
 ==============================
 
-script to attempt to convert GFF3 and fasta to legal EMBL format suitable for 
+Software to convert GFF3 and fasta to legal EMBL format suitable for 
 ENA submission.
 
 Based on documentation from http://www.insdc.org/files/feature_table.html, http://www.ebi.ac.uk/ena/WebFeat/ and
 ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
 
-The output can be validated using the ENA flat file validator "embl-client_10_09_2015.jar". For an up-to-date ENA flat file validator, please visit http://www.ebi.ac.uk/ena/software/flat-file-validator.
+The output can be validated using the ENA flat file validator distributed by EMBL. Please visit http://www.ebi.ac.uk/ena/software/flat-file-validator and/or https://github.com/enasequence/sequencetools for more information.
 
 ## VERSION 
 **GFF2EMBL.1.0.0**
 
-This is the first version released (4 August 2016). 
+This is the first version released (1 March 2017). 
 
 ## PREREQUISITE
 
@@ -40,7 +40,7 @@ In order to install biopython and bcbio-gff please use the following steps:
  
  >./GFF2EMBL.py -h
  
- should give you lot of information how to use it.
+will display some help.
  
 
 ## Example
