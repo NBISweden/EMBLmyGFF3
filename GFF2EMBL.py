@@ -140,6 +140,7 @@ class EMBL( object ):
         self.assembly_information = []
         self.construct_information = []
         self.comment = ""
+        self.translate = False
         super(EMBL, self).__init__()
     
     def _add_mandatory(self):
@@ -645,7 +646,7 @@ class EMBL( object ):
         #process features
         output = ""
         for i, feature in enumerate(self.record.features):
-            f = Feature(feature, self.record.seq, self.accessions, self.transl_table, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR)
+            f = Feature(feature, self.record.seq, self.accessions, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR)
             output += str(f)
         
         return output + self.spacer
@@ -867,6 +868,12 @@ class EMBL( object ):
         if self.verify:
             self.transl_table = self._verify( self.transl_table,       "transl_table")
     
+    def set_translation(self, translate = False):
+        """
+        Sets flag whether to translate CDS features.
+        """
+        self.translate = translate
+    
     def set_version(self, version = None):
         """
         Sets the release version, or parses it from the current record.
@@ -951,8 +958,9 @@ if __name__ == '__main__':
     parser.add_argument("--ra", "--author", nargs="+", default="", help="Author for the reference")
     parser.add_argument("--rt", default=";", help="Reference Title.")
     parser.add_argument("--rl", default=None, help="Reference publishing location.")
-    parser.add_argument("--shame", action="store_true", help="suppress the shameless plug")
     
+    parser.add_argument("--shame", action="store_true", help="suppress the shameless plug")
+    parser.add_argument("--translate", action="store_true", help="include translation in CDS features.")
     
     parser.add_argument("--version", default=1, type=int, help="Sequence version number")
     parser.add_argument("-x", "--taxonomy", default=None, help="Source taxonomy.", choices=["PHG", "ENV", "FUN", "HUM", "INV", "MAM", "VRT", "MUS", "PLN", "PRO", "ROD", "SYN", "TGN", "UNC", "VRL"])
@@ -1017,6 +1025,7 @@ and press ENTER:\n""")
         writer.set_transl_table( args.table )
         writer.set_version( args.version )
         writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)
+        writer.set_translation(args.translate)
     
         writer.write_all( outfile )
      
