@@ -92,15 +92,16 @@ In order to use it move in the example folder, then launch the script:
 
 ## Parameter
 
-The software can work directly form a gff3 file and the fasta file used to produce the gff3 with nothing else. 
+The software can work directly from the annotation file in gff3 format and the genome file in fasta format. 
 To produce a proper EMBL output file the software actually needs some information, only the _taxonomy_ information will be asked to the user, all others inportant and mandatory information will be filled with default values. If these options don't reflect your data, you must inform the tool using the corresponding options. Here is a list of such options:
 
   - **--data_class** the default value is **STD** *(This option is used to set up the 5th token of the ID line.)*
   - **--topology** the default value is **linear** *(This option is used to set up the Topology that is the 3th token of the ID line.)*
   - **--molecule_type** the default value is **genomic DNA** *(This option is used to set up the Molecule type that is the 4th token of the ID line.)*
   - **--table** the defalut value is **1** *(This option is used to set up the translation table qualifier transl_table of the CDS features.)*
- 
-
+ /!\ In order to submit the embl file you will need a project ID provided by EMBL. Please visit the (EMBL web site)[http://www.ebi.ac.uk/ena/support/genome-submission-faq] to learn how to get this project ID.
+  - **--project_id** the defalut value is **Unknown** *(This option is used to set up the PR line.)*
+  
 Some fields of the EMBL output are optional and are no used by default. If you want to fill them, you will have to inform the tool with the corresponding options. Please use the software help to get a comprehensive list of the available options.
 
 
