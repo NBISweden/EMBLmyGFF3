@@ -47,10 +47,10 @@ will display some help.
 The software can work directly form a gff3 file and the fasta file used to produce the gff3 with nothing else. 
 To produce a proper EMBL output file the software actually needs some information, only the _taxonomy_ information will be asked to the user, all others inportant and mandatory information will be filled with default values. If these options don't reflect your data, you must inform the tool using the corresponding options. Here is a list of such options:
 
-  - --data_class the default value is *STD* (This option is used to set up the 5th token of the ID line.)
-  - --topology the default value is *linear* (This option is used to set up the Topology that is the 3th token of the ID line.)
-  - --molecule_type the default value is *genomic DNA* (This option is used to set up the Molecule type that is the 4th token of the ID line.)
-  - --table the defalut value is *1* (This option is used to set up the translation table qualifier transl_table of the CDS features.)
+  - **--data_class** the default value is **STD** *(This option is used to set up the 5th token of the ID line.)*
+  - **--topology** the default value is **linear** *(This option is used to set up the Topology that is the 3th token of the ID line.)*
+  - **--molecule_type** the default value is **genomic DNA** *(This option is used to set up the Molecule type that is the 4th token of the ID line.)*
+  - **--table** the defalut value is **1** *(This option is used to set up the translation table qualifier transl_table of the CDS features.)*
  
 
 Some fields of the EMBL output are optional and are no used by default. If you want to fill them, you will have to inform the tool with the corresponding options. Please use the software help to have a comprehensive list of the options.
