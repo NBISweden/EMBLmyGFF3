@@ -99,7 +99,9 @@ To produce a proper EMBL output file the software actually needs some informatio
   - **--topology** the default value is **linear** *(This option is used to set up the Topology that is the 3th token of the ID line.)*
   - **--molecule_type** the default value is **genomic DNA** *(This option is used to set up the Molecule type that is the 4th token of the ID line.)*
   - **--table** the defalut value is **1** *(This option is used to set up the translation table qualifier transl_table of the CDS features.)*
- /!\ In order to submit the embl file you will need a project ID provided by EMBL. Please visit the (EMBL web site)[http://www.ebi.ac.uk/ena/support/genome-submission-faq] to learn how to get this project ID.
+  
+ /!\ In order to submit the embl file you will need a project ID provided by EMBL. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to get this project ID.
+ 
   - **--project_id** the defalut value is **Unknown** *(This option is used to set up the PR line.)*
   
 Some fields of the EMBL output are optional and are no used by default. If you want to fill them, you will have to inform the tool with the corresponding options. Please use the software help to get a comprehensive list of the available options.
