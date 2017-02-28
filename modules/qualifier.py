@@ -40,7 +40,7 @@ class Qualifier( object ):
                 continue
             if type(val) == type([]) and len(val):
                 val = val[0]
-            if type(val) == type(""):
+            if type(val) in [type(""), type(u"")]:
                 val = "\"%s\"" % val
             if getattr(self, "value_type", None) == "none":
                 output += "\nFT                   /%s\n"
