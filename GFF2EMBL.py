@@ -105,7 +105,7 @@ class EMBL( object ):
                                 "VRL":"Viral",
                                },
                     'topology':['linear', 'circular'],
-                    'molecule_class':["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", 
+                    'molecule_type':["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", 
                                       "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"],
                     'organelle':["chromatophore", "hydrogenosome", "mitochondrion", "nucleomorph", "plastid", 
                                  "mitochondrion:kinetoplast", "plastid:chloroplast", "plastid:apicoplast", 
@@ -148,7 +148,7 @@ class EMBL( object ):
             source_location = FeatureLocation(ExactPosition(0), ExactPosition(len(self.record.seq)))
             source_location.strand = 1
             source_feature = SeqFeature( source_location )
-            source_feature.qualifiers["mol_type"] = self.molecule_class
+            source_feature.qualifiers["mol_type"] = self.molecule_type
             source_feature.qualifiers["organism"] = self.species
             source_feature.type = "source"
             self.record.features[0:0] = [source_feature]
@@ -276,7 +276,7 @@ class EMBL( object ):
         self.set_version()
         self.set_topology()
         self.set_transl_table()
-        self.set_molecule_class()
+        self.set_molecule_type()
         self.set_data_class()
         self.set_taxonomy()
     
@@ -386,12 +386,12 @@ class EMBL( object ):
         
         if self.verify:
             self.topology       = self._verify( self.topology,       "topology")
-            self.molecule_class = self._verify( self.molecule_class, "molecule_class")
+            self.molecule_type = self._verify( self.molecule_type, "molecule_type")
             self.data_class     = self._verify( self.data_class,     "data_class")
             self.taxonomy       = self._verify( self.taxonomy,       "taxonomy")
         
         return "ID   %s; SV %s; %s; %s; %s; %s; %i BP." % (self.accessions[0], self.version, self.topology, 
-                                                           self.molecule_class, self.data_class, self.taxonomy, 
+                                                           self.molecule_type, self.data_class, self.taxonomy, 
                                                            len(self.record.seq) ) + self.spacer
     
     def AC(self):
@@ -712,7 +712,7 @@ class EMBL( object ):
         if hasattr(self.record, "dbxrefs"):
             self.accessions += self.record.dbxrefs
         if not getattr(self, "accessions", False):
-            self.accessions = ["Unknown"]
+            self.accessions = ["UNKNOWN"]
     
     def set_classification(self, classification = []):
         """
@@ -773,19 +773,19 @@ class EMBL( object ):
         if not getattr(self, "keywords", False):
             self.keywords = [""]
     
-    def set_molecule_class(self, molecule_class = None):
+    def set_molecule_type(self, molecule_type = None):
         """
-        Sets the sample molecule class, or parses it from the current record.
+        Sets the sample molecule type, or parses it from the current record.
         """
-        if molecule_class:
-            self.molecule_class = molecule_class
-        elif hasattr(self.record, "molecule_class"):
-            self.molecule_class = self.record.molecule_class
-        elif not hasattr(self, "molecule_class"):
-            self.molecule_class = ""
+        if molecule_type:
+            self.molecule_type = molecule_type
+        elif hasattr(self.record, "molecule_type"):
+            self.molecule_type = self.record.molecule_type
+        elif not hasattr(self, "molecule_type"):
+            self.molecule_type = ""
         
         if self.verify:
-            self.molecule_class = self._verify( self.molecule_class, "molecule_class")
+            self.molecule_type = self._verify( self.molecule_type, "molecule_type")
     
     def set_organelle(self, organelle = None, organelle_name = None):
         """
@@ -842,7 +842,7 @@ class EMBL( object ):
         elif hasattr(self.record, "species"):
             self.species = self.record.species
         if not getattr(self, "species", False):
-            self.species = "Unknown (Unknown)"
+            self.species = "Genus species (name)"
         
     def set_taxonomy(self, taxonomy = None):
         """
@@ -955,13 +955,13 @@ if __name__ == '__main__':
     
     parser.add_argument("-i", "--sample_id", default=None, help="Sample ID, as returned from ENA.")
     parser.add_argument("-k", "--keyword", default=[], nargs="+", help="Keywords for the entry")
-    parser.add_argument("-l", "--classification", default=["Life"], nargs="+", help="Phylogenetic classification")
-    parser.add_argument("-m", "--molecule_class", default="genomic DNA", help="Molecule class of the sample.", choices=["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"])
+    parser.add_argument("-l", "--classification", default=["Life"], nargs="+", help="Organism classification")
+    parser.add_argument("-m", "--molecule_type", default="genomic DNA", help="Molecule type of the sample.", choices=["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"])
     parser.add_argument("-o", "--output", default=None, help="output filename.")
-    parser.add_argument("-p", "--project_id", default=None, help="Project ID (optional).")
+    parser.add_argument("-p", "--project_id", default=None, help="Project ID.")
     parser.add_argument("-r", "--table", type=int, default=1, help="Translation table.", choices=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
     parser.add_argument("-s", "--species", default=None, help="Sample Species, formatted as 'Genus species (english name)'.")
-    parser.add_argument("-t", "--topology", default="linear", help="Sequence topology.", choices=[None, "linear", "circular"])
+    parser.add_argument("-t", "--topology", default="linear", help="Sequence topology.", choices=["linear", "circular"])
     
     parser.add_argument("-z", "--gzip", default=False, action="store_true", help="Gzip output file")
     
@@ -1029,7 +1029,7 @@ and press ENTER:\n""")
         writer.set_classification( args.classification )
         writer.set_data_class( args.data_class )
         writer.set_keywords( args.keyword )
-        writer.set_molecule_class( args.molecule_class )
+        writer.set_molecule_type( args.molecule_type )
         writer.set_organelle( args.organelle, args.organelle_name )
         writer.set_project_id( args.project_id )
         writer.set_sample_id( args.sample_id )
