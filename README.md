@@ -53,7 +53,7 @@ To produce a proper EMBL output file the software actually needs some informatio
   - **--table** the defalut value is **1** *(This option is used to set up the translation table qualifier transl_table of the CDS features.)*
  
 
-Some fields of the EMBL output are optional and are no used by default. If you want to fill them, you will have to inform the tool with the corresponding options. Please use the software help to have a comprehensive list of the options.
+Some fields of the EMBL output are optional and are no used by default. If you want to fill them, you will have to inform the tool with the corresponding options. Please use the software help to get a comprehensive list of the available options.
 
 
 ## Example
