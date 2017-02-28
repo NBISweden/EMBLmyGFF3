@@ -75,6 +75,8 @@ class Feature(object):
         self._load_data(feature, accessions)
         if format_data:
             self._format_data(feature)
+        if self.type == "CDS":
+            self.qualifiers['transl_table'].set_value(self.transl_table)
     
     def __repr__(self):
         """

@@ -24,7 +24,7 @@
   "map": "\"text\"", 
   "product": "\"text\"", 
   "pseudogene": "\"TYPE\"", 
-  "transl_table ": "<integer>", 
+  "transl_table": "<integer>", 
   "translation": "\"text\"", 
   "exception": "\"[exception_value]\"", 
   "pseudo": null, 
