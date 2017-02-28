@@ -309,7 +309,7 @@ class EMBL( object ):
     def add_reference(self, title, positions = "all", location = "", comment = "", xrefs = [], group = [], authors = []):
         self.refs += [{'title':title,
                        'positions':positions if positions != 'all' else [(1,len(self.record.seq))],
-                       'location':location,
+                       'location':location if location else "Submitted (%s) to the INSDC." % (time.strftime("%d-%b-%Y").upper()),
                        'comment':comment,
                        'xrefs':xrefs,
                        'group':group,
@@ -950,7 +950,7 @@ if __name__ == '__main__':
     parser.add_argument("--rg", default="", help="Reference Group, the working groups/consortia that produced the record.")
     parser.add_argument("--ra", "--author", nargs="+", default="", help="Author for the reference")
     parser.add_argument("--rt", default=";", help="Reference Title.")
-    parser.add_argument("--rl", default="Unpublished", help="Reference publishing location.")
+    parser.add_argument("--rl", default=None, help="Reference publishing location.")
     parser.add_argument("--shame", action="store_true", help="suppress the shameless plug")
     
     
