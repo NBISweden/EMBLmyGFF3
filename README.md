@@ -1,20 +1,12 @@
 GFF3 to EMBL convertion script
 ==============================
-
+**GFF3+FASTA => EMBL format**
 Software to convert GFF3 and fasta to legal EMBL format suitable for ENA submission.
 
 Based on documentation from http://www.insdc.org/files/feature_table.html, http://www.ebi.ac.uk/ena/WebFeat/ and
 ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
 
 The output can be validated using the ENA flat file validator distributed by EMBL. Please visit http://www.ebi.ac.uk/ena/software/flat-file-validator and/or https://github.com/enasequence/sequencetools for more information.
-
-## FOREWORD
-
-**The software translate GFF3+FASTA to EMBL format**
-To get a valid EMBL flat file suitable for submission you have to check that all mandatory metadata are correct,  where necessary fill the information needed to be sure that the software is aware about all information needed.
-
-####**/!\/!\/!\ In order to submit an embl file to [ENA](http://www.ebi.ac.uk/ena) you will need a project ID provided by EMBL. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to obtain a project ID. The project ID must be provided to the software through the -a or --accession in order to get a valid embl file for submission !**
-
 
 ## VERSION 
 **GFF2EMBL.1.0.0**
@@ -51,7 +43,14 @@ will display some help.
  
 ## USAGE
 
-Please add the  **--project_id PRJXXXX** parameter in any of this case when you have your EMBL project ID in order to have a correct EMBL file for submission. If you don't have yet this information you can add it later in the PR line. You don't need this information if you don't plan to submit the data.
+### FOREWORD
+
+
+To get a valid EMBL flat file suitable for submission you have to check that all mandatory metadata are correct,  where necessary fill the information needed to be sure that the software is aware about all information needed.
+
+####**/!\/!\/!\ In order to submit an embl file to [ENA](http://www.ebi.ac.uk/ena) you will need a project ID provided by EMBL. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to obtain a project ID. The project ID must be provided to the software through the -a or --accession in order to get a valid embl file for submission !**
+
+Please add the  **--project_id PRJXXXX** parameter in any of these cases when you have your EMBL project ID in order to have a correct EMBL file for submission. If you don't have yet this information you can add it later in the PR line. You don't need this information if you don't plan to submit the data.
 
 ### Simple case (Suitable for common submissions)
 
