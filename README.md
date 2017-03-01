@@ -42,7 +42,7 @@ In order to install biopython and bcbio-gff please use the following steps:
  
 will display some help.
  
-## Example
+## Example usage
 
 ### Simple case
 
@@ -81,7 +81,16 @@ Test data from the Drosophila melanogaster species are located in the example fo
  
  In order to write the result in the desired file use this command:
  
- >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa > result.embl
+ >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa -o result.embl
+
+When you use the software in its simpliest way, some default values are assumed.
+When you must control parameters ? (i.e Parameter paragraph)
+
+  - When your data class are **part of this list**: Patent (PAT), Expressed Sequence Tag (EST), Genome Survey Sequence (GSS), High Thoughput CDNA sequencing (HTC), High Thoughput Genome sequencing (HTG), Mass Genome Annotation (MGA), Whole Genome Shotgun (WGS), Transcriptome Shotgun AssEMBLy (TSA), Sequence Tagged Site (STS). Otherwise by default we use the Standard class (STD)
+  - When the topology of your sequence **is not** linear. You will have to set it to "circular"
+  - When the molecule type **is not** "genomic DNA". The possible value are: genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"
+
+### More verbose case§
 
 ### Use through a bash script
 
@@ -100,9 +109,9 @@ To produce a proper EMBL output file the software actually needs some informatio
   - **--molecule_type** the default value is **genomic DNA** *(This option is used to set up the Molecule type that is the 4th token of the ID line.)*
   - **--table** the defalut value is **1** *(This option is used to set up the translation table qualifier transl_table of the CDS features.)*
   
- /!\ In order to submit the embl file you will need a project ID provided by EMBL. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to get this project ID.
- 
-  - **--project_id** the defalut value is **Unknown** *(This option is used to set up the PR line.)*
+/!\ In order to submit the embl file you will need a project ID provided by EMBL. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to obtain a project ID.
+
+  - **--project_id** the defalut value is **Unknown** *(This option is used to set up the PR line.)*
   
 Some fields of the EMBL output are optional and are no used by default. If you want to fill them, you will have to inform the tool with the corresponding options. Please use the software help to get a comprehensive list of the available options.
 
