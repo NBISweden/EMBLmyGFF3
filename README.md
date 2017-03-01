@@ -1,13 +1,20 @@
 GFF3 to EMBL convertion script
 ==============================
 
-Software to convert GFF3 and fasta to legal EMBL format suitable for 
-ENA submission.
+Software to convert GFF3 and fasta to legal EMBL format suitable for ENA submission.
 
 Based on documentation from http://www.insdc.org/files/feature_table.html, http://www.ebi.ac.uk/ena/WebFeat/ and
 ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
 
 The output can be validated using the ENA flat file validator distributed by EMBL. Please visit http://www.ebi.ac.uk/ena/software/flat-file-validator and/or https://github.com/enasequence/sequencetools for more information.
+
+## FOREWORD
+
+**The software translate GFF3+FASTA to EMBL format**
+To get a valid EMBL flat file suitable for submission you have to check that all mandatory metadata are correct,  where necessary fill the information needed to be sure that the software is aware about all information needed.
+
+####**/!\/!\/!\ In order to submit an embl file to [ENA](http://www.ebi.ac.uk/ena) you will need a project ID provided by EMBL. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to obtain a project ID. The project ID must be provided to the software through the -a or --accession in order to get a valid embl file for submission !**
+
 
 ## VERSION 
 **GFF2EMBL.1.0.0**
@@ -42,9 +49,11 @@ In order to install biopython and bcbio-gff please use the following steps:
  
 will display some help.
  
-## Example usage
+## USAGE
 
-### Simple case
+Please add the  **--project_id PRJXXXX** parameter in any of this case when you have your EMBL project ID in order to have a correct EMBL file for submission. If you don't have yet this information you can add it later in the PR line. You don't need this information if you don't plan to submit the data.
+
+### Simple case (Suitable for common submissions)
 
 A correct **gff3 file** and the **genome in fasta format** that has been used to produce the gff file are the only things mandatory.
 Test data from the Drosophila melanogaster species are located in the example folder.
@@ -84,13 +93,21 @@ Test data from the Drosophila melanogaster species are located in the example fo
  >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa -o result.embl
 
 When you use the software in its simpliest way, some default values are assumed.
-When you must control parameters ? (i.e Parameter paragraph)
+When you must control the parameters ? (i.e Parameter paragraph)
 
   - When your data class are **part of this list**: Patent (PAT), Expressed Sequence Tag (EST), Genome Survey Sequence (GSS), High Thoughput CDNA sequencing (HTC), High Thoughput Genome sequencing (HTG), Mass Genome Annotation (MGA), Whole Genome Shotgun (WGS), Transcriptome Shotgun AssEMBLy (TSA), Sequence Tagged Site (STS). Otherwise by default we use the Standard class (STD)
   - When the topology of your sequence **is not** linear. You will have to set it to "circular"
   - When the molecule type **is not** "genomic DNA". The possible value are: genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"
+  - When your organism do not use the Standard genetic code (table 1). Please visit this [NCBI genetic code] (https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.
+  - When you want to add extra information.
 
-### More verbose case§
+### Complete case (Suitable when default values are not adapted)
+
+ >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1 -o result.embl
+
+### Comprehensive case (When you want to create an EMBL file with all the possible information)
+
+ >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1 -o result.embl
 
 ### Use through a bash script
 
@@ -99,7 +116,7 @@ In order to help its use, especially when you want to fill many optional informa
 In order to use it move in the example folder, then launch the script:
 ./script.sh
 
-## Parameter
+## PARAMETER
 
 The software can work directly from the annotation file in gff3 format and the genome file in fasta format. 
 To produce a proper EMBL output file the software actually needs some information, only the _taxonomy_ information will be asked to the user, all others inportant and mandatory information will be filled with default values. If these options don't reflect your data, you must inform the tool using the corresponding options. Here is a list of such options:
@@ -108,9 +125,6 @@ To produce a proper EMBL output file the software actually needs some informatio
   - **--topology** the default value is **linear** *(This option is used to set up the Topology that is the 3th token of the ID line.)*
   - **--molecule_type** the default value is **genomic DNA** *(This option is used to set up the Molecule type that is the 4th token of the ID line.)*
   - **--table** the defalut value is **1** *(This option is used to set up the translation table qualifier transl_table of the CDS features.)*
-  
-/!\ In order to submit the embl file you will need a project ID provided by EMBL. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to obtain a project ID.
-
   - **--project_id** the defalut value is **Unknown** *(This option is used to set up the PR line.)*
   
 Some fields of the EMBL output are optional and are no used by default. If you want to fill them, you will have to inform the tool with the corresponding options. Please use the software help to get a comprehensive list of the available options.
