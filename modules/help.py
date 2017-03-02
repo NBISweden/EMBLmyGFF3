@@ -453,7 +453,17 @@ def help(string):
       """
    elif(string == "shame"):
       return """GFF2EMBL tool specific
-      Not yet documented
+      Suppress the shameless plug. A “shameless plug” is a term often used to refer when someone has included (or “plugged”) 
+      some information that helps advance their own selfish interests.
+
+      i.e remove the following lines:
+      #######################################################################
+      # NBIS 2016 - Sweden                                                  #
+      # Authors: Martin Norling, Jacques Dainat                             #
+      # Please cite NBIS (www.nbis.se) when using this tool.                #
+      #######################################################################
+
+      Yes being silent is useful when you do piping and so on.
       """
    elif(string == "v" or string == "verbose"):
       return """GFF2EMBL tool specific
