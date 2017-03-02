@@ -16,6 +16,10 @@ class Qualifier( object ):
     PREVIOUS_ERRORS = []
     
     def __init__(self, qualifier, value = [], mandatory = False, qualifier_definition_dir = "modules/qualifiers"):
+        """
+        Initializes a Qualifier, loads json definition and starts 
+        parsing the input data.
+        """
         self.name = qualifier
         self.mandatory = mandatory
         self.qualifier_definition_dir = qualifier_definition_dir
@@ -25,6 +29,9 @@ class Qualifier( object ):
             self.add_value( value )
     
     def __repr__(self):
+        """
+        Prints the current Qualifier in EMBL format
+        """
         return self._embl_format()
     
     def _embl_format(self):
@@ -60,6 +67,10 @@ class Qualifier( object ):
         return output
     
     def _load_definition(self, filename):
+        """
+        Loads the json definition for a qualifier type and sets its
+        own attributes based on the content
+        """
         try:
             with open(filename) as data:
                 raw = json.load( data )
@@ -69,6 +80,9 @@ class Qualifier( object ):
             logging.error(e)
     
     def _load_legal_dbxref(self, filename):
+        """
+        Loads a list of legal external references
+        """
         self.legal_dbxref = json.load(open("%s/%s" % (self.qualifier_definition_dir, filename)))
     
     def _by_value_format(self, value):
@@ -76,6 +90,7 @@ class Qualifier( object ):
         This is the main function of the qualifier class, it attempts to validate qualifier 
         format by using the value_format tag of the qualifier definition.
         These definitions are written for humans though, not for scripts...
+        TODO: keep implementing these
         """
         formatted_value = value
         
@@ -134,6 +149,9 @@ class Qualifier( object ):
         return formatted_value
     
     def add_value(self, value):
+        """
+        Adds a value to the current set of values for this qualifier.
+        """
         if not value:
             logging.debug("%s - Not adding value (current value: %s)" % (self.name, self.value))
             return

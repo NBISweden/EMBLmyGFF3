@@ -54,6 +54,10 @@ class Feature(object):
     PREVIOUS_ERRORS = []
     
     def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False, feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", format_data = True):
+        """
+        Initializes a Feature, loads json files for feature and 
+        qualifiers, and starts parsing the data.
+        """
         self.location = feature.location
         self.feature_definition_dir = feature_definition_dir
         self.qualifier_definition_dir = qualifier_definition_dir
@@ -110,12 +114,23 @@ class Feature(object):
         return output
     
     def _from_gff_feature(self, feature):
+        """
+        Returns the EMBL feature name from the translation list based
+        on the GFF feature name.
+        """
         return self.feature_translation_list[feature] if feature in self.feature_translation_list else feature
     
     def _from_gff_qualifier(self, qualifier):
+        """
+        Returns the EMBL qualifier name from the translation list based
+        on the GFF qualifier name.
+        """
         return self.qualifier_translation_list[qualifier] if qualifier in self.qualifier_translation_list else qualifier
     
     def _load_data(self, feature, accessions):
+        """
+        Parses a GFF feature and stores the data in the current Feature
+        """
         for qualifier, value in feature.qualifiers.iteritems():
             logging.debug("Reading qualifier: %s (%s), translating to %s" % (qualifier, value, self._from_gff_qualifier(qualifier)))
             self.add_qualifier( qualifier, value )
@@ -138,6 +153,10 @@ class Feature(object):
                                               self.feature_definition_dir, self.qualifier_definition_dir, format_data = False)]
     
     def _format_data(self, feature):
+        """
+        Reformats the data somewhat to better map to the expected EMBL
+        structure
+        """
         # according to Jacques, EMBL files shouldn't have an mRNA feature but use the 
         # exon information together with the mRNA features as an mRNA feature
         self._reformat_exons()
@@ -148,6 +167,11 @@ class Feature(object):
         self._infer_ORFs(feature)
     
     def _reformat_exons(self):
+        """
+        Reformats mRNA features to have the location of its exon sub-features,
+        and removes the exon sub-features.
+        """
+        
         if self.type == "mRNA":
             for i, sf in enumerate(self.sub_features):
                 if sf.type != 'exon':
@@ -161,6 +185,10 @@ class Feature(object):
             sf._reformat_exons()
     
     def _infer_ORFs(self, feature):
+        """
+        Checks a CDS feature to see if it has a start codon and a stop codon,
+        and adjusts the location after that.
+        """
         if self.type in ['CDS']:
             seq = self.sequence()
             start_codon = seq[:3]
@@ -183,6 +211,11 @@ class Feature(object):
             sub_feature._infer_ORFs(feature)
     
     def _set_before(self, location):
+        """
+        Changes a FeatureLocation to include a "BeforePosition" or 
+        "AfterPosition" to indicate that the mRNA does not include 
+        start codon.
+        """
         if location.strand >= 0: # forward strand
             if len(location.parts) > 1:
                 location.parts[0] = FeatureLocation( BeforePosition(location.parts[0].start), location.parts[0].end, strand = location.parts[0].strand )
@@ -196,6 +229,11 @@ class Feature(object):
         return location
     
     def _set_after(self, location):
+        """
+        Changes a FeatureLocation to include a "BeforePosition" or 
+        "AfterPosition" to indicate that the mRNA does not include 
+        stop codon.
+        """
         if location.strand >= 0: # forward strand
             if len(location.parts) > 1:
                 location.parts[-1] = FeatureLocation( location.parts[-1].start, AfterPosition(location.parts[-1].end), strand = location.parts[-1].strand )
@@ -320,6 +358,9 @@ class Feature(object):
             self.qualifiers["codon_start"].set_value(phase)
     
     def CDS_report(self, out = sys.stdout, parts = False, codon_info = True):
+        """
+        Writes a short report about a CDS to a file, used for debugging.
+        """
         seq = "%s" % self.sequence()
         aa = self.translation()
         
@@ -353,6 +394,9 @@ class Feature(object):
             out.write("Stop codon: %s (%s) \n" % (stop_codon, ", ".join(codon_table.stop_codons)))
     
     def sequence(self):
+        """
+        Returns the nucleotide sequence of self
+        """
         if self.location.strand > 0:
             return SeqFeature(location = self.location).extract(self.seq)
         
@@ -363,6 +407,9 @@ class Feature(object):
         return seq
     
     def translation(self):
+        """
+        Returns the amino acid sequence of self
+        """
         codon_table = CodonTable.unambiguous_dna_by_id[self.transl_table]
         seq = self.sequence()
         

@@ -15,12 +15,10 @@ shameless_plug="""
     #######################################################################
 \n"""
 
-TODO="""TODO: find list of previous ENA release dates and numbers
+TODO="""
+TODO: find list of previous ENA release dates and numbers
 TODO: find way to retrieve current release date
-TODO: implement all features
-TODO: implement proper data types for all feature qualifiers
-TODO: make better guessing system
-TODO: add reasonable way to add references
+TODO: add more reasonable way to add references
 TODO: add helpful way to get classification via tax_id or scientific name
 TODO: add way to handle mandatory features and feature qualifiers (especially contingent dependencies)
 """
@@ -113,7 +111,8 @@ class EMBL( object ):
                     'transl_table':[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
                     }
     
-    release_dates = {125:time.strptime("2015-09-23", "%Y-%m-%d"),
+    release_dates = {130:time.strptime("2016-11-13", "%Y-%m-%d"),
+                     125:time.strptime("2015-09-23", "%Y-%m-%d"),
                      124:time.strptime("2015-07-01", "%Y-%m-%d"), 
                      123:time.strptime("2015-03-23", "%Y-%m-%d"),
                      122:time.strptime("2014-12-09", "%Y-%m-%d"),
@@ -132,6 +131,10 @@ class EMBL( object ):
     termination = "\n//\n"
     
     def __init__(self, record = None, verify = False, guess = True):
+        """
+        Only sets some basic variables.
+        """
+        super(EMBL, self).__init__()
         self.record = record
         self.verify = verify
         self.guess = guess
@@ -141,10 +144,16 @@ class EMBL( object ):
         self.construct_information = []
         self.comment = ""
         self.translate = False
-        super(EMBL, self).__init__()
     
     def _add_mandatory(self):
-        # Make sure that there's at least one source qualifier
+        """
+        Adds mandatory qualifiers that are not always part of the GFF.
+        
+        Right now, these are specifically a "source" feature, and that
+        all spans of n-characters in the sequence has a "gap" feature
+        associated.
+        """
+        # Make sure that there's at least one source feature
         if not [f for f in self.record.features if f.type == 'source']:
             source_location = FeatureLocation(ExactPosition(0), ExactPosition(len(self.record.seq)))
             source_location.strand = 1
@@ -164,7 +173,6 @@ class EMBL( object ):
                 if start != None:
                     found = False
                     for f in [f for f in self.record.features if f.type == 'gap']:
-
                         if f.location.start == start and f.location.end == i:
                             found = True
                     if not found:
@@ -176,10 +184,21 @@ class EMBL( object ):
                         self.record.features += [gap_feature]
                     
                 start = None
-
+    
     def _get_release(self, date):
         """
         Tries to find the correct release number for a given date.
+        
+        This currently only uses a hard list of release numbers though,
+        so a way of getting all releases directly from ENA would really 
+        help!
+        
+        There is a file called Release_[num] in 
+        ftp://ftp.ebi.ac.uk/pub/databases/ena/sequence/release/doc/
+        which could help with this, but it's not certain to be
+        persistent.
+        
+        TODO: find way to get latest release number and date!
         """
         
         previous = None
@@ -190,17 +209,7 @@ class EMBL( object ):
             if date > previous and date < self.release_dates[release]:
                 return release
         
-        #TODO: find way to get latest release number and date!
-        
         return max(self.release_dates.keys())+1
-    
-    @staticmethod
-    def guess_qualifier(qualifier):
-        if qualifier in ['Dbxref']:
-            return "db_xref"
-        if qualifier in ['description']:
-            return "note"
-        return False
     
     def _multiline(self, prefix, data, sep=";", suffix="", indent = 3, quoted = False):
         """
@@ -215,7 +224,7 @@ class EMBL( object ):
             output = "%s%s" % (prefix, " "*indent)
             output += str(data)
             return "\n" + output + suffix
-
+        
         output = "%s%s" % (prefix, " "*indent)
         if type(data) == type([]):
             for item in data:
@@ -232,42 +241,13 @@ class EMBL( object ):
                 if string or (len(line)+indent+2) == 80:
                     output += "\n%s%s" % (prefix, " "*indent)
             output += "\"" if quoted else ""
-                
+        
         return "\n" + output.strip().strip(sep) + suffix
     
-    def _print_feature(self, feature):
-        output = "FT   %s %i..%i\n" % ("{:15}".format(feature.type), feature.location.start+1, feature.location.end)
-        
-        for key, values in feature.qualifiers.iteritems():
-            key, values = EMBL.legal_qualifier(feature.type, key, values, self.guess)
-            if not key:
-                continue
-            
-            for value in values:
-                line = "FT                   /%s=" % key
-                if type(value) == type(0):
-                    line += str(value) + "\n"
-                else:
-                    while value:
-                        linebreak = 80-len(line)
-                        line += value[:linebreak]
-                        value = value[linebreak:]
-                        if value:
-                            output += line + "\n"
-                            line = "FT                   "
-                        else:
-                            line += "\n"
-                output += line
-        
-        for sub_feature in feature.sub_features:
-            sub_feature.type = EMBL.legal_feature(sub_feature.type)
-            if not sub_feature.type:
-                continue
-            output += self._print_feature(sub_feature)
-        
-        return output
-    
     def _set_all(self):
+        """
+        Sets all header information to default values
+        """
         self.set_accession()
         self.set_classification()
         self.set_created()
@@ -281,6 +261,11 @@ class EMBL( object ):
         self.set_taxonomy()
     
     def _verify(self, key, key_type):
+        """
+        Looks through the dictionary of legal values to try to validate header values.
+        if an illegal value is found, the user is asked to add a new value, which is 
+        the assumed for all other instances of the same key (for multi-record GFFs).
+        """
         if key_type in EMBL.PREVIOUS_VALUES:
             return EMBL.PREVIOUS_VALUES[key_type]
         
@@ -305,9 +290,15 @@ class EMBL( object ):
         return key
     
     def add_xref(self, xref):
+        """
+        adds an external reference to the list.
+        """
         self.dbxref += [xref]
     
     def add_reference(self, title, positions = "all", location = "", comment = "", xrefs = [], group = [], authors = []):
+        """
+        Adds a reference for the data in the file to the header.
+        """
         self.refs += [{'title':title,
                        'positions':positions if positions != 'all' else [(1,len(self.record.seq))],
                        'location':location if location else "Submitted (%s) to the INSDC." % (time.strftime("%d-%b-%Y").upper()),
@@ -315,56 +306,6 @@ class EMBL( object ):
                        'xrefs':xrefs,
                        'group':group,
                        'authors':authors}]
-    
-    @staticmethod
-    def legal_feature(feature_type):
-        while feature_type not in FeatureTable.features:
-            sys.stderr.write("\n%s is not a legal feature type.\n" % feature_type)
-            sys.stderr.write("Please enter new feature type: ")
-            string = raw_input()
-            feature_type = string
-        return feature_type
-    
-    @staticmethod
-    def legal_qualifier(feature_type, qualifier, values, guess = False):
-        if not FeatureTable.features[feature_type]:
-            return qualifier, values
-        while qualifier and qualifier not in FeatureTable.features[feature_type]['qualifiers']:
-            if guess:
-                temp = EMBL.guess_qualifier(qualifier)
-                if temp:
-                    qualifier = temp
-                else:
-                    sys.stderr.write( "\nqualifier: '%s' with value(s) '%s' is illegal for feature '%s'\n" % (qualifier, ", ".join(values), feature_type) )
-                    sys.stderr.write( "  Legal qualifiers are:\n" )
-                    for key, value in FeatureTable.features[feature_type]['qualifiers'].iteritems():
-                        sys.stderr.write( "  -  %s\n" % key )
-                    sys.stderr.write( "Please enter new qualifier name (or blank to remove): ")
-                    qualifier = raw_input()
-        
-        if not qualifier:
-            return qualifier, values
-        
-        out_values = []
-        if type(values) != type([]):
-            values = [values]
-        for value in values:
-            if str in FeatureTable.features[feature_type]['qualifiers'][qualifier]:
-                out_values += ["\"%s\"" % value]
-            elif int in FeatureTable.features[feature_type]['qualifiers'][qualifier]:
-                out_values += [int(value)]
-            else:
-                try:
-                    value = int(value)
-                except:
-                    value = "\"%s\"" % value
-                out_values += [value]
-                
-                #sys.stderr.write( "\nqualifier: '%s' is illegal for feature '%s'\n" % (qualifier, feature_type) )
-                #sys.stderr.write( "Please enter new qualifier name (or blank to remove): ")
-                #qualifier = raw_input()
-        
-        return qualifier, out_values
     
     def ID(self):
         """
@@ -580,6 +521,11 @@ class EMBL( object ):
         return ""
     
     def CC(self):
+        """
+        CC lines are free text comments about the entry, and may be used to convey 
+        any sort of information thought to be useful that is unsuitable for
+        inclusion in other line types.
+        """
         return self._multiline("CC", self.comment, quoted=True) + self.spacer if self.comment else ""
     
     def AH(self):
@@ -643,7 +589,6 @@ class EMBL( object ):
         URL: ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.txt
         """
         
-        #process features
         output = ""
         for i, feature in enumerate(self.record.features):
             f = Feature(feature, self.record.seq, self.accessions, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR)
@@ -660,6 +605,8 @@ class EMBL( object ):
         to building the constructed sequence. The assembly information is represented in
         the CO lines.
         """
+        
+        logging.error("CO lines are not currently implemented.")
     
     def SQ(self, out = None):
         """
@@ -813,6 +760,9 @@ class EMBL( object ):
             self.project_id = "Unknown"
     
     def set_record(self, record):
+        """
+        Sets the project record (the original GFF data that is currently being converted).
+        """
         self.record = record
     
     def set_species(self, species = None):
@@ -886,6 +836,9 @@ class EMBL( object ):
             self.version = 1
     
     def write_all(self, out = sys.stdout):
+        """
+        Writes all EMBL information to the given buffer (default stdout).
+        """
         
         self._set_all()
         
@@ -924,7 +877,7 @@ class EMBL( object ):
         
         logging.info("Wrote %i CDS features, where %i is sound" % (Feature.CDS_COUNTER, Feature.OK_COUNTER))
         
-        # CO - contig/construct line      (0 or >=1 per entry) ?????
+        # CO - contig/construct line      (0 or >=1 per entry) 
     
 ##########################
 #        MAIN            #
