@@ -1,7 +1,7 @@
 
 def help(string):
    
-   if(string == "a"):   
+   if(string == "a" or string == "accession"):   
       return """EMBL specific
       This option is used to set up the accession number of the AC line (see above) and the first token of the ID line as well as the prefix of the locus_tag qualifier.
       Default value = UNKNOWN
@@ -40,7 +40,7 @@ def help(string):
       An accession number is dropped from the database only when the data to
       which it was assigned have been completely removed from the database.
       """
-   elif(string == "c"):   
+   elif(string == "c" or string == "created"):   
       return """EMBL specific
       This option is used to set up the DT line (see above).
       The default value will be the current date.
@@ -73,7 +73,7 @@ def help(string):
       two DT lines and the "Last updated" line will have the same date (and 
       release number) as the "Created" line.
       """
-   elif(string == "d"):   
+   elif(string == "d" or string == "data_class"):   
       return """EMBL specific
       This option is used to set up the 5th token of the ID line.
       Default value = STD
@@ -99,7 +99,7 @@ def help(string):
         STS            Sequence Tagged Site
         STD            Standard (all entries not classified as above)
       """
-   elif(string == "k"):
+   elif(string == "k" or string == "keyword"):
       return """EMBL specific
       This option is used to set up the KW line.
       No default value.
@@ -121,7 +121,7 @@ def help(string):
       it will contain a single KW line like this:
            KW   .
       """
-   elif(string == "l"):
+   elif(string == "l" or string == "classification"):
       return """EMBL specific
       This option is used to set up the OC line.
       Default value = Life
@@ -141,7 +141,7 @@ def help(string):
       OC   euphyllophytes; Spermatophyta; Magnoliophyta; eudicotyledons; Rosidae;
       OC   Fabales; Fabaceae; Papilionoideae; Trifolium.
       """
-   elif(string == "m"):
+   elif(string == "m" or string == "molecule_type"):
       return """EMBL specific
       This option is used to set up the Molecule type that is the 4th token of the ID line.
       Default value = genomic DNA
@@ -153,7 +153,7 @@ def help(string):
       possible value: ["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", 
                                   "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"]
       """
-   elif(string == "p"):
+   elif(string == "p" or string == "project_id"):
       return """EMBL specific
       This option is used to set up the PR line. The value should have been provided to you by EMBL.
       Default value = Unknown
@@ -165,12 +165,12 @@ def help(string):
       http://www.ebi.ac.uk/ena/about/page.php?page=project_guidelines.
       Example:        PR   Project:17285;
       """
-   elif(string == "r"):
+   elif(string == "r" or string == "table"):
       return """EMBL specific
       This option is used to set up the translation table qualifier transl_table of the CDS features.
       Default value = 1
       """
-   elif(string == "s"):
+   elif(string == "s" or string == "species"):
       return """EMBL specific
       This option is used to set up the OS line.
       Default value = Genus species (name)
@@ -230,7 +230,7 @@ def help(string):
       P.S: The organism name which appears on the OS or ORGANISM line will match the value of
            the /organism qualifier of the source key in the simplest case of a one-source sequence.
       """
-   elif(string == "t"):
+   elif(string == "t" or string == "topology"):
       return """EMBL specific
       This option is used to set up the Topology that is the 3th token of the ID line.
       Default value = linear
@@ -282,7 +282,7 @@ def help(string):
       blocks, but could also be used in paper reference if the working group is 
       cited as an author in the paper.
       """
-   elif(string == "ra"):
+   elif(string == "ra" or string == "author"):
       return """EMBL specific
       3.4.10.6  The RA Line
       The RA (Reference Author) lines list the authors of the paper (or other 
@@ -382,7 +382,12 @@ def help(string):
       This parameter is used to set up the Sequence version number which is the 2nd token of the ID line.
       Default value = 1
       """
-   elif(string == "c"):   
+   elif(string == "translate"):
+      return """EMBL specific
+      This parameter is used to add the translation of the CDS sequence into the <translation> qualifier of the CDS feature.
+      Default value = 1
+      """
+   elif(string == "x" or string == "taxonomy"):   
       return """EMBL specific
       This option is used to set the taxonomic division within ID line (6th token).
       This option is mandatory and do not have any default value.
@@ -415,15 +420,32 @@ def help(string):
                           Unclassified             UNC
                           Viral                    VRL
       """
-   elif(string == "organelle_name"):
+   elif(string == "g" or string == "organelle"):
       return """EMBL specific
-      """
-   elif(string == "g"):
-      return """EMBL specific
+      This option is used to set uo the OG line.
+      There is no default value. Possible choices are: 
+      "chromatophore", "hydrogenosome", "mitochondrion", "nucleomorph", "plastid", 
+      "mitochondrion:kinetoplast", "plastid:chloroplast", "plastid:apicoplast", 
+      "plastid:chromoplast", "plastid:cyanelle", "plastid:leucoplast", "plastid:proplastid"
+
+      3.4.9  The OG Line
+      The OG (OrGanelle) linetype indicates the sub-cellular location of non-nuclear
+      sequences.  It is only present in entries containing non-nuclear sequences
+      and appears after the last OC line in such entries.
+      The OG line contains
+      a) one data item (title cased) from the controlled list detailed under the
+      /organelle qualifier definition in the Feature Table Definition document
+      that accompanies this release or
+      b) a plasmid name.
+      Examples include "Mitochondrion", "Plastid:Chloroplast" and "Plasmid pBR322".
+
+      For example, a chloroplast sequence from Euglena gracilis would appear as:
+           OS   Euglena gracilis (green algae)
+           OC   Eukaryota; Planta; Phycophyta; Euglenophyceae.
+           OG   Plastid:Chloroplast
       """
 
-
-   elif(string == "o"):
+   elif(string == "o" or string == "output"):
       return """GFF2EMBL tool specific
       This option allows to set the file name where the output will be written.
       By default the output is written to STDOUT, which means it will be displayed within the shell you are executing the script, 
@@ -431,14 +453,27 @@ def help(string):
       """
    elif(string == "shame"):
       return """GFF2EMBL tool specific
+      Not yet documented
       """
-   elif(string == "v"):
+   elif(string == "v" or string == "verbose"):
       return """GFF2EMBL tool specific
+      This option allows to increase the verbosity level. V stands for verbose.
+
+      There is 5 verbosity level:  Critical > Error > Warning > Info > Debug
+      By default the verbosity level is set to Warning (Critical, Error, Warning messages will be displayed).
+      -v will increase the level to the Info level
+      -vv will increase the level to the Debug level
       """
-   elif(string == "q"):
+   elif(string == "q" or string == "quiet"):
       return """GFF2EMBL tool specific
+      This option allows to decrease the verbosity level. Q stands for quiet
+
+      There is 5 verbosity level:  Critical > Error > Warning > Info > Debug
+      By default the verbosity level is set to Warning (Critical, Error, Warning messages will be displayed).
+      -q will decrease the level to the Error level
+      -qq will decrease the level to the Critical level
       """
-   elif(string == "z"):
+   elif(string == "z" or string == "gzip"):
       return """GFF2EMBL tool specific
       This option allows to compress the output file in gzip format. This option does not expect any value.
       """
