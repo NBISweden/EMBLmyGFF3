@@ -15,10 +15,10 @@ The output can be validated using the ENA flat file validator distributed by EMB
 [Prerequisite](#prerequisite)</br>
 [Usage](#usage)</br>
 &nbsp;&nbsp;&nbsp;[Foreword](#foreword)</br>
-&nbsp;&nbsp;&nbsp;[Simple case](#simple case (suitable for common submissions))</br>
-    [Complete case](#complete)</br>
-    [Advanced case](#advanced)</br>
-    [Use through a bash script](#use)</br>
+&nbsp;&nbsp;&nbsp;[Simple case](#simple-case)</br>
+&nbsp;&nbsp;&nbsp;[Complete case](#complete-case)</br>
+&nbsp;&nbsp;&nbsp;[Advanced case](#advanced-case)</br>
+&nbsp;&nbsp;&nbsp;[Use through a bash script](#use-through-a-bash-script)</br>
 [Parameter](#parameter)</br>       
         
 ## VERSION 
@@ -65,7 +65,9 @@ Then, in order to get a valid EMBL flat file suitable for submission you have to
 
 Test data from the Drosophila melanogaster species are located in the example folder.
 
-### Simple case (Suitable for common submissions)
+### Simple case 
+
+Suitable for common submissions.
 
 Executing:
 
@@ -78,11 +80,15 @@ In order to write the result in the desired file use the **-o** option:
  
  >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa -o result.embl
 
-### Complete case (Minimum requirement to launch the software and avoid any prompt)
+### Complete case 
+
+Minimum requirement to launch the software and avoid any prompt.
 
  >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --taxonomy INV --project_id PRJXXXX -o result.embl
 
-### Advanced case (When you want add more information than those mandatory: e.g publication)
+### Advanced case 
+
+When you want add more information than those mandatory: e.g publication.
 
  >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --taxonomy INV --project_id Unknown --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
 
