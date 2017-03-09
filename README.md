@@ -12,8 +12,15 @@ The output can be validated using the ENA flat file validator distributed by EMB
 ## INDEX
 
 [Version](#version)</br>
-[Prerequisite](#prerequisite)
-
+[Prerequisite](#prerequisite)</br>
+[Usage](#usage)</br>
+    [Foreword](#foreword)</br>
+    [Simple case](#simple)</br>
+    [Complete case](#complete)</br>
+    [Advanced case](#advanced)</br>
+    [Use through a bash script](#use)</br>
+[Parameter](#parameter)</br>       
+        
 ## VERSION 
 **GFF2EMBL.1.0.0**
 
