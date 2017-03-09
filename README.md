@@ -92,36 +92,36 @@ positional arguments:
   
 Arguments related to the EMBL format to check carrefully:
 
-  -p , --project_id     Project ID. The defalut value is **Unknown** *(This option is used to set up the PR line.)*
-  -r , --table          Translation table. The defalut value is **1** *(This option is used to set up the translation table qualifier transl_table of the CDS features.)* Please visit this [NCBI genetic code] (https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.
-  -s , --species        Sample Species, formatted as 'Genus species (english name)'. Default value: **Genus species (english name)**. This option is used to set up the OS line.
-  -t , --topology       Sequence topology. The default value is **linear** *(This option is used to set up the Topology that is the 3th token of the ID line.)*
-  -d , --data_class     Data class of the sample. The default value is **STD** *(This option is used to set up the 5th token of the ID line.)*
-  -m , --molecule_type  Molecule type of the sample. -the default value is **genomic DNA**
-  -a , --accession      Accession number(s) for the entry. Default value: **UNKNOWN** . This option is used to set up the accession number of the AC line and the first token of the ID line as well as the prefix of the locus_tag qualifier.    
-  -x , --taxonomy       Source taxonomy. No default value. This option is used to set the taxonomic division within ID line (6th token).
+  - -p , --project_id     Project ID. The defalut value is **Unknown** *(This option is used to set up the PR line.)*
+  - -r , --table          Translation table. The defalut value is **1** *(This option is used to set up the translation table qualifier transl_table of the CDS features.)* Please visit this [NCBI genetic code] (https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.
+  - -s , --species        Sample Species, formatted as 'Genus species (english name)'. Default value: **Genus species (english name)**. This option is used to set up the OS line.
+  - -t , --topology       Sequence topology. The default value is **linear** *(This option is used to set up the Topology that is the 3th token of the ID line.)*
+  - -d , --data_class     Data class of the sample. The default value is **STD** *(This option is used to set up the 5th token of the ID line.)*
+  - -m , --molecule_type  Molecule type of the sample. -the default value is **genomic DNA**
+  - -a , --accession      Accession number(s) for the entry. Default value: **UNKNOWN** . This option is used to set up the accession number of the AC line and the first token of the ID line as well as the prefix of the locus_tag qualifier.    
+  - -x , --taxonomy       Source taxonomy. No default value. This option is used to set the taxonomic division within ID line (6th token).
   
 optional arguments related to the software:
 
-  -h, --help            Show this help message and exit
-  -v, --verbose         increase verbosity
-  -q, --quiet           decrease verbosity
-  --shame               Suppress the shameless plug
-  -z, --gzip            Gzip output file
-  -o , --output         Output filename.
+  - -h, --help            Show this help message and exit
+  - -v, --verbose         increase verbosity
+  - -q, --quiet           decrease verbosity
+  - --shame               Suppress the shameless plug
+  - -z, --gzip            Gzip output file
+  - -o , --output         Output filename.
 
 optional arguments related to the EMBL format:
 
-  -c , --created        Creation time of the original entry. The default value is the **date of the day**.
-  -g , --organelle      Sample organelle. No default value.
-  -k , --keyword        Keywords for the entry. No default value.
-  -l , --classification Organism classification. The default value is **Life** 
-  --rc                  Reference Comment. No default value.
-  --rx                  Reference cross-reference. No default value.
-  --rg                  Reference Group, the working groups/consortia that produced the record. No default value.
-  --ra , --author       Author for the reference. No default value.
-  --rt                  Reference Title. No default value.
-  --rl                  Reference publishing location. No default value.
-  --translate           Include translation in CDS features. Not activated by default.
-  --version             Sequence version number. The default value is **1** 
+  - -c , --created        Creation time of the original entry. The default value is the **date of the day**.
+  - -g , --organelle      Sample organelle. No default value.
+  - -k , --keyword        Keywords for the entry. No default value.
+  - -l , --classification Organism classification. The default value is **Life** 
+  - --rc                  Reference Comment. No default value.
+  - --rx                  Reference cross-reference. No default value.
+  - --rg                  Reference Group, the working groups/consortia that produced the record. No default value.
+  - --ra , --author       Author for the reference. No default value.
+  - --rt                  Reference Title. No default value.
+  - --rl                  Reference publishing location. No default value.
+  - --translate           Include translation in CDS features. Not activated by default.
+  - --version             Sequence version number. The default value is **1** 
   
