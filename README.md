@@ -1,7 +1,8 @@
 GFF3 to EMBL convertion script
 ==============================
 **GFF3+FASTA => EMBL format**
-Software to convert GFF3 and fasta to legal EMBL format suitable for ENA submission.
+
+Software to convert GFF3 and fasta to legal EMBL format suitable for [ENA](http://www.ebi.ac.uk/ena) submission.
 
 Based on documentation from http://www.insdc.org/files/feature_table.html, http://www.ebi.ac.uk/ena/WebFeat/ and
 ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
@@ -45,87 +46,82 @@ will display some help.
 
 ### FOREWORD
 
+A correct **gff3 file** and the **genome in fasta format** that has been used to produce the gff file are the mandatory input files.
+Then, in order to get a valid EMBL flat file suitable for submission you have to fill carefully all mandatory metadata.
 
-To get a valid EMBL flat file suitable for submission you have to check that all mandatory metadata are correct,  where necessary fill the information needed to be sure that the software is aware about all information needed.
+**/!\ Please be aware that a __project ID__ and an __accession number__ are mandatory for a submission to [ENA](http://www.ebi.ac.uk/ena). You don't need this information if you don't plan to submit the data. If you don't have yet this information you can add it later by replacing the corresponding fields. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to obtain a __project ID__ and an __accession number__.**
 
-####**/!\/!\/!\ In order to submit an embl file to [ENA](http://www.ebi.ac.uk/ena) you will need a project ID provided by EMBL. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to obtain a project ID. The project ID must be provided to the software through the -a or --accession in order to get a valid embl file for submission !**
-
-Please add the  **--project_id PRJXXXX** parameter in any of these cases when you have your EMBL project ID in order to have a correct EMBL file for submission. If you don't have yet this information you can add it later in the PR line. You don't need this information if you don't plan to submit the data.
+Test data from the Drosophila melanogaster species are located in the example folder.
 
 ### Simple case (Suitable for common submissions)
 
-A correct **gff3 file** and the **genome in fasta format** that has been used to produce the gff file are the only things mandatory.
-Test data from the Drosophila melanogaster species are located in the example folder.
+Executing:
 
- Executing:
  >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa
  
- should prompt you a remind that even if it's not mandatory, some information are always nice to add to an EMBL file.
- To skip that step just press ENTER.
+Will prompt you to fill one by one the mandatory information needed to produce a proper EMBL file.
+Most of time a default value is suggested. Once the software has all the information it need, it will process the input files and will print the result to STDOUT.
  
- Then as the taxonomy option has not ben filled in this case and it's a mandatory field, a prompt ask you top chose between these 15 values:
-  - MUS	Mus musculus
-  - PHG	Bacteriophage
-  - UNC	Unclassified
-  - ENV	Environmental Sample
-  - FUN	Fungal
-  - VRT	Other Vertebrate
-  - HUM	Human
-  - INV	Invertebrate
-  - TGN	Transgenic
-  - ROD	Other Rodent
-  - SYN	Synthetic
-  - PLN	Plant
-  - MAM	Other Mammal
-  - PRO	Prokaryote
-  - VRL	Viral
- 
- type:
- >INV
-
- and press ENTER.
-
- That's it ! The result will be printed to STDOUT.
- 
- In order to write the result in the desired file use this command:
+In order to write the result in the desired file use the **-o** option:
  
  >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa -o result.embl
 
-When you use the software in its simpliest way, some default values are assumed.
-When you must control the parameters ? (i.e Parameter paragraph)
+### Complete case (Minimum requirement to launch the software and avoid any prompt)
 
-  - When your data class are **part of this list**: Patent (PAT), Expressed Sequence Tag (EST), Genome Survey Sequence (GSS), High Thoughput CDNA sequencing (HTC), High Thoughput Genome sequencing (HTG), Mass Genome Annotation (MGA), Whole Genome Shotgun (WGS), Transcriptome Shotgun AssEMBLy (TSA), Sequence Tagged Site (STS). Otherwise by default we use the Standard class (STD)
-  - When the topology of your sequence **is not** linear. You will have to set it to "circular"
-  - When the molecule type **is not** "genomic DNA". The possible value are: genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"
-  - When your organism do not use the Standard genetic code (table 1). Please visit this [NCBI genetic code] (https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.
-  - When you want to add extra information.
+ >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --taxonomy INV --project_id PRJXXXX -o result.embl
 
-### Complete case (Suitable when default values are not adapted)
+### Advanced case (When you want add more information than those mandatory: e.g publication)
 
- >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1 -o result.embl
-
-### Comprehensive case (When you want to create an EMBL file with all the possible information)
-
- >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1 -o result.embl
+ >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --taxonomy INV --project_id Unknown --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
 
 ### Use through a bash script
 
-In order to help its use, especially when you want to fill many optional information, you could write a quick bash script. We provide an example of such script here **example/script.sh**.
+You may prefer to launch the software through a bash script especially when you want to fill many information, so we provide an example of such script here **example/script.sh**.
 
 In order to use it move in the example folder, then launch the script:
 ./script.sh
 
 ## PARAMETER
 
-The software can work directly from the annotation file in gff3 format and the genome file in fasta format. 
-To produce a proper EMBL output file the software actually needs some information, only the _taxonomy_ information will be asked to the user, all others inportant and mandatory information will be filled with default values. If these options don't reflect your data, you must inform the tool using the corresponding options. Here is a list of such options:
+Some parameters are mandatory and sone other are not. Here is a list of all parameters available. 
+You can also find a comprehensive help about the different parameters using the software help command.
 
-  - **--data_class** the default value is **STD** *(This option is used to set up the 5th token of the ID line.)*
-  - **--topology** the default value is **linear** *(This option is used to set up the Topology that is the 3th token of the ID line.)*
-  - **--molecule_type** the default value is **genomic DNA** *(This option is used to set up the Molecule type that is the 4th token of the ID line.)*
-  - **--table** the defalut value is **1** *(This option is used to set up the translation table qualifier transl_table of the CDS features.)*
-  - **--project_id** the defalut value is **Unknown** *(This option is used to set up the PR line.)*
+positional arguments:
+  gff_file              input gff-file
+  fasta                 input fasta sequence
   
-Some fields of the EMBL output are optional and are no used by default. If you want to fill them, you will have to inform the tool with the corresponding options. Please use the software help to get a comprehensive list of the available options.
+Arguments related to the EMBL format to check carrefully:
 
+  -p , --project_id     Project ID. The defalut value is **Unknown** *(This option is used to set up the PR line.)*
+  -r , --table          Translation table. The defalut value is **1** *(This option is used to set up the translation table qualifier transl_table of the CDS features.)* Please visit this [NCBI genetic code] (https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.
+  -s , --species        Sample Species, formatted as 'Genus species (english name)'. Default value: **Genus species (english name)**. This option is used to set up the OS line.
+  -t , --topology       Sequence topology. The default value is **linear** *(This option is used to set up the Topology that is the 3th token of the ID line.)*
+  -d , --data_class     Data class of the sample. The default value is **STD** *(This option is used to set up the 5th token of the ID line.)*
+  -m , --molecule_type  Molecule type of the sample. -the default value is **genomic DNA**
+  -a , --accession      Accession number(s) for the entry. Default value: **UNKNOWN** . This option is used to set up the accession number of the AC line and the first token of the ID line as well as the prefix of the locus_tag qualifier.    
+  -x , --taxonomy       Source taxonomy. No default value. This option is used to set the taxonomic division within ID line (6th token).
+  
+optional arguments related to the software:
 
+  -h, --help            Show this help message and exit
+  -v, --verbose         increase verbosity
+  -q, --quiet           decrease verbosity
+  --shame               Suppress the shameless plug
+  -z, --gzip            Gzip output file
+  -o , --output         Output filename.
+
+optional arguments related to the EMBL format:
+
+  -c , --created        Creation time of the original entry. The default value is the **date of the day**.
+  -g , --organelle      Sample organelle. No default value.
+  -k , --keyword        Keywords for the entry. No default value.
+  -l , --classification Organism classification. The default value is **Life** 
+  --rc                  Reference Comment. No default value.
+  --rx                  Reference cross-reference. No default value.
+  --rg                  Reference Group, the working groups/consortia that produced the record. No default value.
+  --ra , --author       Author for the reference. No default value.
+  --rt                  Reference Title. No default value.
+  --rl                  Reference publishing location. No default value.
+  --translate           Include translation in CDS features. Not activated by default.
+  --version             Sequence version number. The default value is **1** 
+  
