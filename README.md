@@ -9,6 +9,11 @@ ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
 
 The output can be validated using the ENA flat file validator distributed by EMBL. Please visit http://www.ebi.ac.uk/ena/software/flat-file-validator and/or https://github.com/enasequence/sequencetools for more information.
 
+## INDEX
+
+[Version](#version)</br>
+[Prerequisite](#prerequisite)
+
 ## VERSION 
 **GFF2EMBL.1.0.0**
 
@@ -83,7 +88,7 @@ In order to use it move in the example folder, then launch the script:
 
 ## PARAMETER
 
-Some parameters are mandatory and sone other are not. Here is a list of all parameters available. 
+Some parameters are mandatory and some others are not. Here is a list of all parameters available. 
 You can also find a comprehensive help about the different parameters using the software help command.
 
 positional arguments:
