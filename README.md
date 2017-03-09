@@ -14,8 +14,8 @@ The output can be validated using the ENA flat file validator distributed by EMB
 [Version](#version)</br>
 [Prerequisite](#prerequisite)</br>
 [Usage](#usage)</br>
-    [Foreword](#foreword)</br>
-    [Simple case](#simple)</br>
+&nbsp;&nbsp;&nbsp;[Foreword](#foreword)</br>
+&nbsp;&nbsp;&nbsp;[Simple case](#simple case (suitable for common submissions))</br>
     [Complete case](#complete)</br>
     [Advanced case](#advanced)</br>
     [Use through a bash script](#use)</br>
