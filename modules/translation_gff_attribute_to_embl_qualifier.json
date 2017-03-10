@@ -1,8 +1,9 @@
 {
  "ID": {
    "source description": "Indicates the ID of the feature. IDs for each feature must be unique within the scope of the GFF file. In the case of discontinuous features (i.e. a single feature that exists over multiple genomic locations) the same ID may appear on multiple lines. All lines that share an ID collectively represent a single feature.",
-   "target": "",
-   "dev comment": "for now this is un-mapped in the final EMBL"
+   "target": "note",
+   "prefix": "ID:",
+   "dev comment": ""
  },
  "Name": {
    "source description": "Display name for the feature. This is the name to be displayed to the user. Unlike IDs, there is no requirement that the Name be unique within the file.",
@@ -16,13 +17,13 @@
  },
  "Parent": {
    "source description": "Indicates the parent of the feature. A parent ID can be used to group exons into transcripts, transcripts into genes, an so forth. A feature may have multiple parents. Parent can only be used to indicate a partof relationship.",
-   "target": "gene",
+   "target": "",
    "dev comment": "EMBL isn't formatted with parent pointers, but some things like CDS have pointers back to their gene"
  },
  "Target": {
    "source description": "Indicates the target of a nucleotide-to-nucleotide or protein-to-nucleotide alignment. The format of the value is \"target_id start end [strand]\", where strand is optional and may be \"+\" or \"-\". If the target_id contains spaces, they must be escaped as hex escape %20.",
    "target": "",
-   "dev comment": ""
+   "dev comment": "for now this is un-mapped in the final EMBL"
  },
  "Gap": {
    "source description": "The alignment of the feature to the target if the two are not collinear (e.g. contain gaps). The alignment format is taken from the CIGAR format described in the Exonerate documentation.",

@@ -10,7 +10,7 @@ GFF convertion is based on specifications from https://github.com/The-Sequence-O
 shameless_plug="""
     #######################################################################
     # NBIS 2016 - Sweden                                                  #
-    # Authors: Martin Norling, Jacques Dainat                             #
+    # Authors: Martin Norling, Niclas Jareborg, Jacques Dainat            #
     # Please cite NBIS (www.nbis.se) when using this tool.                #
     #######################################################################
 \n"""
@@ -252,7 +252,7 @@ class EMBL( object ):
         self.set_classification()
         self.set_created()
         self.set_description()
-        self.set_project_id
+        self.set_project_id()
         self.set_version()
         self.set_topology()
         self.set_transl_table()
@@ -274,7 +274,10 @@ class EMBL( object ):
             return key
         legal_values = self.legal_values[key_type]
         while key not in self.legal_values[key_type]:
-            sys.stderr.write("\n'%s' is not a legal value for %s.\n" % (key, key_type))
+            if key == '':
+                sys.stderr.write("\nNo value provided for %s.\n" % (key_type))
+            else:
+                sys.stderr.write("\n'%s' is not a legal value for %s.\n" % (key, key_type))
             sys.stderr.write("Legal values are:\n")
             if type(self.legal_values[key_type]) == type({}):
                 for value, description in self.legal_values[key_type].iteritems():
@@ -282,8 +285,12 @@ class EMBL( object ):
             else:
                 for value in self.legal_values[key_type]:
                     sys.stderr.write("  - %s\n" % value)
-            sys.stderr.write("Please enter new value: ")
+            if key == '':
+                sys.stderr.write("Please enter a value: ")
+            else:
+                sys.stderr.write("Please enter new value: ")
             key = raw_input()
+            if key.isdigit(): key = int(key) 
             if key in self.legal_values[key_type]:
                 EMBL.PREVIOUS_VALUES[key_type] = key
             
@@ -774,8 +781,14 @@ class EMBL( object ):
         elif hasattr(self.record, "species"):
             self.species = self.record.species
         if not getattr(self, "species", False):
-            self.species = "Genus species (name)"
-        
+            #self.species = "Genus species (name)"
+            
+            while species is None:
+                sys.stderr.write("No value provided for species.\nPlease provide the scientific name of the organism:")
+                species = raw_input()
+
+            self.species = species
+
     def set_taxonomy(self, taxonomy = None):
         """
         Sets the sample taxonomy, or parses it from the current record.
@@ -891,17 +904,17 @@ if __name__ == '__main__':
     parser.add_argument("fasta", help="input fasta sequence")
     parser.add_argument("-a", "--accession", default=[], nargs="+", help="Accession number(s) for the entry")
     parser.add_argument("-c", "--created", default=None, help="Creation time of the original entry")
-    parser.add_argument("-d", "--data_class", default="STD", help="Data class of the sample.", choices=["CON", "PAT", "EST", "GSS", "HTC", "HTG", "MGA", "WGS", "TSA", "STS", "STD"])
+    parser.add_argument("-d", "--data_class", default=None, help="Data class of the sample.", choices=["CON", "PAT", "EST", "GSS", "HTC", "HTG", "MGA", "WGS", "TSA", "STS", "STD"])
     parser.add_argument("-g", "--organelle", default=None, help="Sample organelle.")
     
     parser.add_argument("-k", "--keyword", default=[], nargs="+", help="Keywords for the entry")
     parser.add_argument("-l", "--classification", default=["Life"], nargs="+", help="Organism classification")
-    parser.add_argument("-m", "--molecule_type", default="genomic DNA", help="Molecule type of the sample.", choices=["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"])
+    parser.add_argument("-m", "--molecule_type", default=None, help="Molecule type of the sample.", choices=["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"])
     parser.add_argument("-o", "--output", default=None, help="output filename.")
     parser.add_argument("-p", "--project_id", default=None, help="Project ID.")
-    parser.add_argument("-r", "--table", type=int, default=1, help="Translation table.", choices=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
+    parser.add_argument("-r", "--table", type=int, default=None, help="Translation table.", choices=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
     parser.add_argument("-s", "--species", default=None, help="Sample Species, formatted as 'Genus species (english name)'.")
-    parser.add_argument("-t", "--topology", default="linear", help="Sequence topology.", choices=["linear", "circular"])
+    parser.add_argument("-t", "--topology", default=None, help="Sequence topology.", choices=["linear", "circular"])
     
     parser.add_argument("-z", "--gzip", default=False, action="store_true", help="Gzip output file")
     
@@ -946,20 +959,6 @@ if __name__ == '__main__':
     
     if not args.shame:
         sys.stderr.write(shameless_plug)
-    
-    # Manage reference(s)
-    referenceExist=""
-    if not args.rg :
-        sys.stderr.write( """It is not mandatory to add a reference, and we know it's sometimes you never plan to publish your work. 
-We will fill all information expected by ENA for unpublished work in the mean time.
-BUT it's always interesting to know who produced the record. So, please enter a Reference Group 
-(the working groups/consortia that produced the record)! ... or leave it empty... 
-and press ENTER:\n""")
-        key = raw_input()
-        if key == "":
-            sys.stderr.write( "It's a pity... Let's go anyway !")
-        else:
-            args.rg=""
     
     for record in GFF.parse(infile, base_dict=seq_dict):
         
