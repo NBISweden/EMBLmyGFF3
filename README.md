@@ -1,4 +1,4 @@
-GFF3 to EMBL convertion script
+GFF3 to EMBL conversion script
 ==============================
 **GFF3+FASTA => EMBL format**
 
@@ -19,8 +19,12 @@ The output can be validated using the ENA flat file validator distributed by EMB
 &nbsp;&nbsp;&nbsp;[Complete case](#complete-case)</br>
 &nbsp;&nbsp;&nbsp;[Advanced case](#advanced-case)</br>
 &nbsp;&nbsp;&nbsp;[Use through a bash script](#use-through-a-bash-script)</br>
-[Parameter](#parameter)</br>       
-        
+[Parameter](#parameter)</br>
+[Mapping](#mapping)</br> 
+&nbsp;&nbsp;&nbsp;[Feature type](#feature-type)</br>
+&nbsp;&nbsp;&nbsp;[Attribute to qualifier](#attribute-to-qualifier)</br>       
+&nbsp;&nbsp;&nbsp;[Other](#other)</br>    
+
 ## VERSION 
 **GFF2EMBL.1.0.0**
 
@@ -67,10 +71,6 @@ Test data from the Drosophila melanogaster species are located in the example fo
 
 ### Simple case 
 
-Suitable for common submissions.
-
-Executing:
-
  >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa
  
 Will prompt you to fill one by one the mandatory information needed to produce a proper EMBL file.
@@ -97,7 +97,7 @@ When you want add more information than those mandatory: e.g publication.
 You may prefer to launch the software through a bash script especially when you want to fill many information, so we provide an example of such script here **example/script.sh**.
 
 In order to use it move in the example folder, then launch the script:
-./script.sh
+>./script.sh
 
 ## PARAMETER
 
@@ -143,3 +143,62 @@ optional arguments related to the EMBL format:
   - --translate           Include translation in CDS features. Not activated by default.
   - --version             Sequence version number. The default value is **1** 
   
+## MAPPING
+
+The challenge for a correct conversion is the correct mapping between the feature types described in the 3th column as well as the different attribute’s tags of the 9th column of the gff3 file and the corresponding EMBL features and qualifiers.
+If a feature type or an attribute's tag is not yet handle by the software it will inform you during the conversion process. You can then add the information needed in the corresponding mapping file.
+If you figure out that a feature type or an attribute's tag is no mapped to the corresponding EMBL features or qualifiers you would like, you will have to modify the corresponding information in the mapping files.
+
+### Feature type
+
+The embl format accepts 52 different feature types whereas the gff3 is constrained to be a Sequence Ontology term or accession number (3th column of the gff3), but nevertheless this constitutes 2278 terms in version 2.5.3 of the Sequence Ontology.
+
+The file handling the proper mapping is ***translation_gff_feature_to_embl_feature.json***
+
+**example:**
+
+  >"three_prime_UTR": {</br>
+  &nbsp;&nbsp;"target": "3'UTR"</br>
+  }
+ 
+This will map the **three_prime_UTR** featury type from the 3th column of the gff3 file to the **3'UTR** embl feature type.
+ 
+### Attribute to qualifier
+
+The embl format accepts 98 different qualifiers where the corresponding attribute tag types in the 9th column of the gff3 are unlimited.
+The file handling the proper mapping is ***translation_gff_attribute_to_embl_qualifier.json***
+
+**example:**
+
+  >"Dbxref": {</br>
+  &nbsp;&nbsp;"source description": "A database cross reference.",</br>
+  &nbsp;&nbsp;"target": "db_xref",</br>
+  &nbsp;&nbsp;"dev comment": ""</br>
+  },
+ 
+This will map the **Dbxref** attribute's tag from the 9th columm of the gff3 file to the **db_xref** embl qualifier.
+
+### Other
+
+The **source** (2nd column) as well as the **score** (6th column) from the gff3 file can also be handled through the ***translation_gff_other_to_embl_qualifier.json*** mapping file.
+
+  >"source": {</br>&nbsp;&nbsp;
+  "source description": "The source is a free text qualifier intended to describe the algorithm or operating procedure that generated this
+                           feature. Typically this is the name of a piece of software, such as Genescan or a database name, such
+                           as Genbank. In effect, the source is used to extend the feature ontology by adding a qualifier to the type 
+                           creating a new composite type that is a subclass of the type in the type column.", </br>
+  &nbsp;&nbsp;"target": "note",</br>
+  &nbsp;&nbsp;"prefix": "source:",</br>
+  &nbsp;&nbsp;"dev comment": "EMBL qualifiers tend to be more specific than this, so very hard to create a good mapping."</br>
+  },
+ 
+This will map the **source** from the 2nd columm of the gff3 file to the **note** embl qualifier. 
+
+**/!\\** Please notice the *prefix* allows to add information dowstream the source value wihtin the qualifier (Upstream information is also possible using *suffix*).</br>
+e.g: The source value is "Prokka":</br> 
+Wihtin the embl file, instead to get **note="Prokka"**, here we will get **note="source:Prokka"**
+
+## Known Issues
+
+Following what is mentioned in the [EMBL/ENA user manual](ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt), the RA and RG lines are optionals, but the last version of the embl-flat-file-validator does not accept the embl file without those information.
+So we strongly encourage to submit at least one of those information to the software.
