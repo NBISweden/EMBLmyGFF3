@@ -22,6 +22,7 @@ The output can be validated using the ENA flat file validator distributed by EMB
 [Parameter](#parameter)</br>
 [Mapping](#mapping)</br>
 &nbsp;&nbsp;&nbsp;[Feature type](#feature-type)</br>
+&nbsp;&nbsp;&nbsp;[Attribute to qualifier](#attribute-to-qualifier)</br>
 &nbsp;&nbsp;&nbsp;[Other](#other)</br>
 [Known issues](#known-issues)
 
@@ -66,7 +67,7 @@ will display some help.
 A correct **gff3 file** and the **genome in fasta format** that has been used to produce the gff file are the mandatory input files.
 Then, in order to get a valid EMBL flat file suitable for submission you have to fill carefully all mandatory metadata.
 
-**/!\ Please be aware that a __project ID__ and an __accession number__ are mandatory for a submission to [ENA](http://www.ebi.ac.uk/ena). You don't need this information if you don't plan to submit the data. If you don't have yet this information you can add it later by replacing the corresponding fields. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to obtain a __project ID__ and an __accession number__.**
+**/!\ Please be aware that a *project ID* and an *accession number* are mandatory for a submission to [ENA](http://www.ebi.ac.uk/ena). You don't need this information if you don't plan to submit the data (In case you just want an EMBL-like flat file for other purposes). If you don't have yet those information you can add them later by replacing the corresponding fields. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to obtain a *project ID* and an *accession number*.**
 
 Test data from the Drosophila melanogaster species are located in the example folder.
 
@@ -109,7 +110,7 @@ positional arguments:
   gff_file              input gff-file
   fasta                 input fasta sequence
   
-Arguments related to the EMBL format to check carrefully:
+**Arguments related to the EMBL format to check carrefully:**
 
   - -p , --project_id     Project ID. The defalut value is **Unknown** *(This option is used to set up the PR line.)*
   - -r , --table          Translation table. The defalut value is **1** *(This option is used to set up the translation table qualifier transl_table of the CDS features.)* Please visit this [NCBI genetic code] (https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.
@@ -120,7 +121,7 @@ Arguments related to the EMBL format to check carrefully:
   - -a , --accession      Accession number(s) for the entry. Default value: **UNKNOWN** . This option is used to set up the accession number of the AC line and the first token of the ID line as well as the prefix of the locus_tag qualifier.    
   - -x , --taxonomy       Source taxonomy. No default value. This option is used to set the taxonomic division within ID line (6th token).
   
-optional arguments related to the software:
+**Optional arguments related to the software:**
 
   - -h, --help            Show this help message and exit
   - -v, --verbose         increase verbosity
@@ -129,7 +130,7 @@ optional arguments related to the software:
   - -z, --gzip            Gzip output file
   - -o , --output         Output filename.
 
-optional arguments related to the EMBL format:
+**Optional arguments related to the EMBL format:**
 
   - -c , --created        Creation time of the original entry. The default value is the **date of the day**.
   - -g , --organelle      Sample organelle. No default value.
