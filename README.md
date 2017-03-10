@@ -24,6 +24,7 @@ The output can be validated using the ENA flat file validator distributed by EMB
 &nbsp;&nbsp;&nbsp;[Feature type](#feature-type)</br>
 &nbsp;&nbsp;&nbsp;[Attribute to qualifier](#attribute-to-qualifier)</br>       
 &nbsp;&nbsp;&nbsp;[Other](#other)</br>    
+[Known issues](#known-issues)</br>
 
 ## VERSION 
 **GFF2EMBL.1.0.0**
@@ -198,7 +199,7 @@ This will map the **source** from the 2nd columm of the gff3 file to the **note*
 e.g: The source value is "Prokka":</br> 
 Wihtin the embl file, instead to get **note="Prokka"**, here we will get **note="source:Prokka"**
 
-## Known Issues
+## KNOWN ISSUES
 
 Following what is mentioned in the [EMBL/ENA user manual](ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt), the RA and RG lines are optionals, but the last version of the embl-flat-file-validator does not accept the embl file without those information.
 So we strongly encourage to submit at least one of those information to the software.
