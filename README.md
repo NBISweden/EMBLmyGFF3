@@ -27,9 +27,9 @@ The output can be validated using the ENA flat file validator distributed by EMB
 [Known issues](#known-issues)</br>
 
 ## VERSION 
-**GFF2EMBL.1.0.0**
+**GFF2EMBL.X.0.0**
 
-This is the first version released (1 March 2017). 
+This is the first version released (X March 2017). 
 
 ## PREREQUISITE
 
@@ -37,7 +37,7 @@ This is the first version released (1 March 2017).
 
 In order to install biopython and bcbio-gff please use the following steps:
 
-**Mac OS X:**
+**Mac OS X / LINUX:**
 
  Intall pip the python package manager:
  >sudo easy_install pip 
