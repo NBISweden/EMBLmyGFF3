@@ -86,13 +86,13 @@ In order to write the result in the desired file use the **-o** option:
 
 Minimum requirement to launch the software and avoid any prompt.
 
- >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --taxonomy INV --project_id PRJXXXX -o result.embl
+ >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX -o result.embl
 
 ### Advanced case 
 
 When you want add more information than those mandatory: e.g publication.
 
- >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --taxonomy INV --project_id Unknown --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
+ >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
 
 ### Use through a bash script
 
