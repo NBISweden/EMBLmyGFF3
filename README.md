@@ -20,13 +20,13 @@ The output can be validated using the ENA flat file validator distributed by EMB
 &nbsp;&nbsp;&nbsp;[Advanced case](#advanced-case)</br>
 &nbsp;&nbsp;&nbsp;[Use through a bash script](#use-through-a-bash-script)</br>
 [Parameter](#parameter)</br>
-[Mapping](#mapping)</br> 
+[Mapping](#mapping)</br>
 &nbsp;&nbsp;&nbsp;[Feature type](#feature-type)</br>
-&nbsp;&nbsp;&nbsp;[Attribute to qualifier](#attribute-to-qualifier)</br>       
-&nbsp;&nbsp;&nbsp;[Other](#other)</br>    
-[Known issues](#known-issues)</br>
+&nbsp;&nbsp;&nbsp;[Other](#other)</br>
+[Known issues](#known-issues)
 
-## VERSION 
+## VERSION
+
 **GFF2EMBL.X.0.0**
 
 This is the first version released (X March 2017). 
@@ -58,7 +58,7 @@ In order to install biopython and bcbio-gff please use the following steps:
  >./GFF2EMBL.py -h
  
 will display some help.
- 
+
 ## USAGE
 
 ### FOREWORD
@@ -143,7 +143,7 @@ optional arguments related to the EMBL format:
   - --rl                  Reference publishing location. No default value.
   - --translate           Include translation in CDS features. Not activated by default.
   - --version             Sequence version number. The default value is **1** 
-  
+
 ## MAPPING
 
 The challenge for a correct conversion is the correct mapping between the feature types described in the 3th column as well as the different attribute’s tags of the 9th column of the gff3 file and the corresponding EMBL features and qualifiers.
