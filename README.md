@@ -76,7 +76,7 @@ Test data from the Drosophila melanogaster species are located in the example fo
  >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa
  
 Will prompt you to fill one by one the mandatory information needed to produce a proper EMBL file.
-Most of time a default value is suggested. Once the software has all the information it need, it will process the input files and will print the result to STDOUT.
+Once the software has all the information it needs, it will process the input files and will print the result to STDOUT.
  
 In order to write the result in the desired file use the **-o** option:
  
@@ -86,13 +86,13 @@ In order to write the result in the desired file use the **-o** option:
 
 Minimum requirement to launch the software and avoid any prompt.
 
- >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --taxonomy INV --project_id PRJXXXX -o result.embl
+ >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX -o result.embl
 
 ### Advanced case 
 
 When you want add more information than those mandatory: e.g publication.
 
- >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --taxonomy INV --project_id Unknown --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
+ >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
 
 ### Use through a bash script
 
@@ -113,11 +113,11 @@ positional arguments:
 **Arguments related to the EMBL format to check carrefully:**
 
   - -p , --project_id     Project ID. The defalut value is **Unknown** *(This option is used to set up the PR line.)*
-  - -r , --table          Translation table. The defalut value is **1** *(This option is used to set up the translation table qualifier transl_table of the CDS features.)* Please visit this [NCBI genetic code] (https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.
-  - -s , --species        Sample Species, formatted as 'Genus species (english name)'. Default value: **Genus species (english name)**. This option is used to set up the OS line.
-  - -t , --topology       Sequence topology. The default value is **linear** *(This option is used to set up the Topology that is the 3th token of the ID line.)*
-  - -d , --data_class     Data class of the sample. The default value is **STD** *(This option is used to set up the 5th token of the ID line.)*
-  - -m , --molecule_type  Molecule type of the sample. -the default value is **genomic DNA**
+  - -r , --table          Translation table. No default value. *(This option is used to set up the translation table qualifier transl_table of the CDS features.)* Please visit this [NCBI genetic code] (https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.
+  - -s , --species        Sample Species, formatted as 'Genus species (english name)'. No default value. This option is used to set up the OS line.
+  - -t , --topology       Sequence topology. No default value. *(This option is used to set up the Topology that is the 3th token of the ID line.)*
+  - -d , --data_class     Data class of the sample. No default value. *(This option is used to set up the 5th token of the ID line.)*
+  - -m , --molecule_type  Molecule type of the sample. No default value.
   - -a , --accession      Accession number(s) for the entry. Default value: **UNKNOWN** . This option is used to set up the accession number of the AC line and the first token of the ID line as well as the prefix of the locus_tag qualifier.    
   - -x , --taxonomy       Source taxonomy. No default value. This option is used to set the taxonomic division within ID line (6th token).
   
