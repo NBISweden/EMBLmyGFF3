@@ -53,7 +53,7 @@ class Feature(object):
     DEFAULT_QUALIFIER_TRANSLATION_FILE=["translation_gff_attribute_to_embl_qualifier.json", "translation_gff_other_to_embl_qualifier.json"]
     PREVIOUS_ERRORS = []
     
-    def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False, feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", format_data = True):
+    def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False, feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", locus_tag = None, format_data = True):
         """
         Initializes a Feature, loads json files for feature and 
         qualifiers, and starts parsing the data.
@@ -73,6 +73,7 @@ class Feature(object):
         
         self.type = self._from_gff_feature(feature.type)
         self.seq = seq
+        self.locus_tag = locus_tag
         self.transl_table = transl_table
         self.translate = translate
         
@@ -135,13 +136,14 @@ class Feature(object):
             logging.debug("Reading qualifier: %s (%s), translating to %s" % (qualifier, value, self._from_gff_qualifier(qualifier)))
             self.add_qualifier( qualifier, value )
         
-        # create locus tag from feature ID and accessions
+        # create locus tag from locus_tag and accessions
         output_accession="|".join(accessions if type(accessions) == type([]) else [accessions])
         
         if 'locus_tag' in self.qualifiers:
-            locus_tag = "%s_%s" % (output_accession, "_".join(feature.qualifiers['ID']))
-            self.qualifiers['locus_tag'].set_value( locus_tag )
-        
+            
+            complete_locus_tag = "%s_%s" % (output_accession, self.locus_tag)
+            self.qualifiers['locus_tag'].set_value( complete_locus_tag )
+
         # Parse through subfeatures
         sub_feature_types = []
         for sub_feature in feature.sub_features:
@@ -150,7 +152,7 @@ class Feature(object):
                 old_feature.combine(sub_feature)
             else:
                 self.sub_features += [Feature(sub_feature, self.seq, accessions, self.transl_table, self.translation_files, self.translate, 
-                                              self.feature_definition_dir, self.qualifier_definition_dir, format_data = False)]
+                                              self.feature_definition_dir, self.qualifier_definition_dir, self.locus_tag, format_data = False)]
     
     def _format_data(self, feature):
         """

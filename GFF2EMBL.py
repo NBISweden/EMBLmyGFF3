@@ -595,10 +595,21 @@ class EMBL( object ):
         in the document "The DDBJ/ENA/GenBank Feature Table:  Definition". 
         URL: ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.txt
         """
-        
+
         output = ""
+        cpt_locus=0
         for i, feature in enumerate(self.record.features):
-            f = Feature(feature, self.record.seq, self.accessions, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR)
+            
+            #manage locus_tag
+            locus_tag=None
+            if feature.type.lower() != "source" and feature.type.lower() != "gap":
+                cpt_locus+=1
+                locus_tag="locus"+str(cpt_locus)
+                for qualifier in feature.qualifiers:
+                    if 'locus_tag' == qualifier.lower():
+                        locus_tag = "%s" % "_".join(feature.qualifiers[qualifier])
+
+            f = Feature(feature, self.record.seq, self.accessions, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, locus_tag=locus_tag)
             output += str(f)
         
         return output + self.spacer
