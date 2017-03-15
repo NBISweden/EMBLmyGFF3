@@ -71,7 +71,6 @@ class Feature(object):
         self.translation_files = translation_files
         self._load_qualifier_translations(Feature.DEFAULT_QUALIFIER_TRANSLATION_FILE + translation_files)
         self._load_feature_translations([Feature.DEFAULT_FEATURE_TRANSLATION_FILE])
-        
         self.type = self._from_gff_feature(feature.type)
         self.seq = seq
         self.transl_table = transl_table
@@ -136,13 +135,10 @@ class Feature(object):
             logging.debug("Reading qualifier: %s (%s), translating to %s" % (qualifier, value, self._from_gff_qualifier(qualifier)))
             self.add_qualifier( qualifier, value )
         
-        # create locus tag from feature ID and accessions
-        output_accession="|".join(accessions if type(accessions) == type([]) else [accessions])
-        
-        if 'locus_tag' in self.qualifiers:
-            locus_tag = "%s_%s" % (output_accession, "_".join(feature.qualifiers['ID']))
-            self.qualifiers['locus_tag'].set_value( locus_tag )
-        
+
+        if 'locus_tag' in self.qualifiers:          
+            self.qualifiers['locus_tag'].set_value( accessions )
+
         # Parse through subfeatures
         sub_feature_types = []
         for sub_feature in feature.sub_features:

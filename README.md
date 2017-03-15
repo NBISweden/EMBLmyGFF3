@@ -1,17 +1,36 @@
-GFF3 to EMBL convertion script
+GFF3 to EMBL conversion script
 ==============================
 **GFF3+FASTA => EMBL format**
-Software to convert GFF3 and fasta to legal EMBL format suitable for ENA submission.
+
+Software to convert GFF3 and fasta to legal EMBL format suitable for [ENA](http://www.ebi.ac.uk/ena) submission.
 
 Based on documentation from http://www.insdc.org/files/feature_table.html, http://www.ebi.ac.uk/ena/WebFeat/ and
 ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
 
 The output can be validated using the ENA flat file validator distributed by EMBL. Please visit http://www.ebi.ac.uk/ena/software/flat-file-validator and/or https://github.com/enasequence/sequencetools for more information.
 
-## VERSION 
-**GFF2EMBL.1.0.0**
+## INDEX
 
-This is the first version released (1 March 2017). 
+[Version](#version)</br>
+[Prerequisite](#prerequisite)</br>
+[Usage](#usage)</br>
+&nbsp;&nbsp;&nbsp;[Foreword](#foreword)</br>
+&nbsp;&nbsp;&nbsp;[Simple case](#simple-case)</br>
+&nbsp;&nbsp;&nbsp;[Complete case](#complete-case)</br>
+&nbsp;&nbsp;&nbsp;[Advanced case](#advanced-case)</br>
+&nbsp;&nbsp;&nbsp;[Use through a bash script](#use-through-a-bash-script)</br>
+[Parameter](#parameter)</br>
+[Mapping](#mapping)</br>
+&nbsp;&nbsp;&nbsp;[Feature type](#feature-type)</br>
+&nbsp;&nbsp;&nbsp;[Attribute to qualifier](#attribute-to-qualifier)</br>
+&nbsp;&nbsp;&nbsp;[Other](#other)</br>
+[Known issues](#known-issues)
+
+## VERSION
+
+**GFF2EMBL.X.0.0**
+
+This is the first version released (X March 2017). 
 
 ## PREREQUISITE
 
@@ -19,7 +38,7 @@ This is the first version released (1 March 2017).
 
 In order to install biopython and bcbio-gff please use the following steps:
 
-**Mac OS X:**
+**Mac OS X / LINUX:**
 
  Intall pip the python package manager:
  >sudo easy_install pip 
@@ -40,92 +59,148 @@ In order to install biopython and bcbio-gff please use the following steps:
  >./GFF2EMBL.py -h
  
 will display some help.
- 
+
 ## USAGE
 
 ### FOREWORD
 
+A correct **gff3 file** and the **genome in fasta format** that has been used to produce the gff file are the mandatory input files.
+Then, in order to get a valid EMBL flat file suitable for submission you have to fill carefully all mandatory metadata.
 
-To get a valid EMBL flat file suitable for submission you have to check that all mandatory metadata are correct,  where necessary fill the information needed to be sure that the software is aware about all information needed.
+**/!\ Please be aware that a *project ID* and an *accession number* are mandatory for a submission to [ENA](http://www.ebi.ac.uk/ena). You don't need this information if you don't plan to submit the data (In case you just want an EMBL-like flat file for other purposes). If you don't have yet those information you can add them later by replacing the corresponding fields. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to obtain a *project ID* and an *accession number*.**
 
-####**/!\/!\/!\ In order to submit an embl file to [ENA](http://www.ebi.ac.uk/ena) you will need a project ID provided by EMBL. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to obtain a project ID. The project ID must be provided to the software through the -a or --accession in order to get a valid embl file for submission !**
-
-Please add the  **--project_id PRJXXXX** parameter in any of these cases when you have your EMBL project ID in order to have a correct EMBL file for submission. If you don't have yet this information you can add it later in the PR line. You don't need this information if you don't plan to submit the data.
-
-### Simple case (Suitable for common submissions)
-
-A correct **gff3 file** and the **genome in fasta format** that has been used to produce the gff file are the only things mandatory.
 Test data from the Drosophila melanogaster species are located in the example folder.
 
- Executing:
+### Simple case 
+
  >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa
  
- should prompt you a remind that even if it's not mandatory, some information are always nice to add to an EMBL file.
- To skip that step just press ENTER.
+Will prompt you to fill one by one the mandatory information needed to produce a proper EMBL file.
+Once the software has all the information it needs, it will process the input files and will print the result to STDOUT.
  
- Then as the taxonomy option has not ben filled in this case and it's a mandatory field, a prompt ask you top chose between these 15 values:
-  - MUS	Mus musculus
-  - PHG	Bacteriophage
-  - UNC	Unclassified
-  - ENV	Environmental Sample
-  - FUN	Fungal
-  - VRT	Other Vertebrate
-  - HUM	Human
-  - INV	Invertebrate
-  - TGN	Transgenic
-  - ROD	Other Rodent
-  - SYN	Synthetic
-  - PLN	Plant
-  - MAM	Other Mammal
-  - PRO	Prokaryote
-  - VRL	Viral
- 
- type:
- >INV
-
- and press ENTER.
-
- That's it ! The result will be printed to STDOUT.
- 
- In order to write the result in the desired file use this command:
+In order to write the result in the desired file use the **-o** option:
  
  >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa -o result.embl
 
-When you use the software in its simpliest way, some default values are assumed.
-When you must control the parameters ? (i.e Parameter paragraph)
+### Complete case 
 
-  - When your data class are **part of this list**: Patent (PAT), Expressed Sequence Tag (EST), Genome Survey Sequence (GSS), High Thoughput CDNA sequencing (HTC), High Thoughput Genome sequencing (HTG), Mass Genome Annotation (MGA), Whole Genome Shotgun (WGS), Transcriptome Shotgun AssEMBLy (TSA), Sequence Tagged Site (STS). Otherwise by default we use the Standard class (STD)
-  - When the topology of your sequence **is not** linear. You will have to set it to "circular"
-  - When the molecule type **is not** "genomic DNA". The possible value are: genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"
-  - When your organism do not use the Standard genetic code (table 1). Please visit this [NCBI genetic code] (https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.
-  - When you want to add extra information.
+Minimum requirement to launch the software and avoid any prompt.
 
-### Complete case (Suitable when default values are not adapted)
+ >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX -o result.embl
 
- >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1 -o result.embl
+### Advanced case 
 
-### Comprehensive case (When you want to create an EMBL file with all the possible information)
+When you want add more information than those mandatory: e.g publication.
 
- >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1 -o result.embl
+ >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
 
 ### Use through a bash script
 
-In order to help its use, especially when you want to fill many optional information, you could write a quick bash script. We provide an example of such script here **example/script.sh**.
+You may prefer to launch the software through a bash script especially when you want to fill many information, so we provide an example of such script here **example/script.sh**.
 
 In order to use it move in the example folder, then launch the script:
-./script.sh
+>./script.sh
 
 ## PARAMETER
 
-The software can work directly from the annotation file in gff3 format and the genome file in fasta format. 
-To produce a proper EMBL output file the software actually needs some information, only the _taxonomy_ information will be asked to the user, all others inportant and mandatory information will be filled with default values. If these options don't reflect your data, you must inform the tool using the corresponding options. Here is a list of such options:
+Some parameters are mandatory and some others are not. Here is a list of all parameters available. 
+You can also find a comprehensive help about the different parameters using the software help command.
 
-  - **--data_class** the default value is **STD** *(This option is used to set up the 5th token of the ID line.)*
-  - **--topology** the default value is **linear** *(This option is used to set up the Topology that is the 3th token of the ID line.)*
-  - **--molecule_type** the default value is **genomic DNA** *(This option is used to set up the Molecule type that is the 4th token of the ID line.)*
-  - **--table** the defalut value is **1** *(This option is used to set up the translation table qualifier transl_table of the CDS features.)*
-  - **--project_id** the defalut value is **Unknown** *(This option is used to set up the PR line.)*
+positional arguments:
+  gff_file              input gff-file
+  fasta                 input fasta sequence
   
-Some fields of the EMBL output are optional and are no used by default. If you want to fill them, you will have to inform the tool with the corresponding options. Please use the software help to get a comprehensive list of the available options.
+**Arguments related to the EMBL format to check carrefully:**
 
+  - -p , --project_id     Project ID. The defalut value is **Unknown** *(This option is used to set up the PR line.)*
+  - -r , --table          Translation table. No default value. *(This option is used to set up the translation table qualifier transl_table of the CDS features.)* Please visit this [NCBI genetic code] (https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.
+  - -s , --species        Sample Species, formatted as 'Genus species (english name)'. No default value. This option is used to set up the OS line.
+  - -t , --topology       Sequence topology. No default value. *(This option is used to set up the Topology that is the 3th token of the ID line.)*
+  - -d , --data_class     Data class of the sample. No default value. *(This option is used to set up the 5th token of the ID line.)*
+  - -m , --molecule_type  Molecule type of the sample. No default value.
+  - -a , --accession      Accession number(s) for the entry. Default value: **UNKNOWN** . This option is used to set up the accession number of the AC line and the first token of the ID line as well as the prefix of the locus_tag qualifier.    
+  - -x , --taxonomy       Source taxonomy. No default value. This option is used to set the taxonomic division within ID line (6th token).
+  
+**Optional arguments related to the software:**
 
+  - -h, --help            Show this help message and exit
+  - -v, --verbose         increase verbosity
+  - -q, --quiet           decrease verbosity
+  - --shame               Suppress the shameless plug
+  - -z, --gzip            Gzip output file
+  - -o , --output         Output filename.
+
+**Optional arguments related to the EMBL format:**
+
+  - -c , --created        Creation time of the original entry. The default value is the **date of the day**.
+  - -g , --organelle      Sample organelle. No default value.
+  - -k , --keyword        Keywords for the entry. No default value.
+  - -l , --classification Organism classification. The default value is **Life** 
+  - --rc                  Reference Comment. No default value.
+  - --rx                  Reference cross-reference. No default value.
+  - --rg                  Reference Group, the working groups/consortia that produced the record. No default value.
+  - --ra , --author       Author for the reference. No default value.
+  - --rt                  Reference Title. No default value.
+  - --rl                  Reference publishing location. No default value.
+  - --translate           Include translation in CDS features. Not activated by default.
+  - --version             Sequence version number. The default value is **1** 
+
+## MAPPING
+
+The challenge for a correct conversion is the correct mapping between the feature types described in the 3th column as well as the different attribute’s tags of the 9th column of the gff3 file and the corresponding EMBL features and qualifiers.
+If a feature type or an attribute's tag is not yet handle by the software it will inform you during the conversion process. You can then add the information needed in the corresponding mapping file.
+If you figure out that a feature type or an attribute's tag is no mapped to the corresponding EMBL features or qualifiers you would like, you will have to modify the corresponding information in the mapping files.
+
+### Feature type
+
+The embl format accepts 52 different feature types whereas the gff3 is constrained to be a Sequence Ontology term or accession number (3th column of the gff3), but nevertheless this constitutes 2278 terms in version 2.5.3 of the Sequence Ontology.
+
+The file handling the proper mapping is ***translation_gff_feature_to_embl_feature.json***
+
+**example:**
+
+  >"three_prime_UTR": {</br>
+  &nbsp;&nbsp;"target": "3'UTR"</br>
+  }
+ 
+This will map the **three_prime_UTR** featury type from the 3th column of the gff3 file to the **3'UTR** embl feature type.
+ 
+### Attribute to qualifier
+
+The embl format accepts 98 different qualifiers where the corresponding attribute tag types in the 9th column of the gff3 are unlimited.
+The file handling the proper mapping is ***translation_gff_attribute_to_embl_qualifier.json***
+
+**example:**
+
+  >"Dbxref": {</br>
+  &nbsp;&nbsp;"source description": "A database cross reference.",</br>
+  &nbsp;&nbsp;"target": "db_xref",</br>
+  &nbsp;&nbsp;"dev comment": ""</br>
+  },
+ 
+This will map the **Dbxref** attribute's tag from the 9th columm of the gff3 file to the **db_xref** embl qualifier.
+
+### Other
+
+The **source** (2nd column) as well as the **score** (6th column) from the gff3 file can also be handled through the ***translation_gff_other_to_embl_qualifier.json*** mapping file.
+
+  >"source": {</br>&nbsp;&nbsp;
+  "source description": "The source is a free text qualifier intended to describe the algorithm or operating procedure that generated this
+                           feature. Typically this is the name of a piece of software, such as Genescan or a database name, such
+                           as Genbank. In effect, the source is used to extend the feature ontology by adding a qualifier to the type 
+                           creating a new composite type that is a subclass of the type in the type column.", </br>
+  &nbsp;&nbsp;"target": "note",</br>
+  &nbsp;&nbsp;"prefix": "source:",</br>
+  &nbsp;&nbsp;"dev comment": "EMBL qualifiers tend to be more specific than this, so very hard to create a good mapping."</br>
+  },
+ 
+This will map the **source** from the 2nd columm of the gff3 file to the **note** embl qualifier. 
+
+**/!\\** Please notice the *prefix* allows to add information dowstream the source value wihtin the qualifier (Upstream information is also possible using *suffix*).</br>
+e.g: The source value is "Prokka":</br> 
+Wihtin the embl file, instead to get **note="Prokka"**, here we will get **note="source:Prokka"**
+
+## KNOWN ISSUES
+
+Following what is mentioned in the [EMBL/ENA user manual](ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt), the RA and RG lines are optionals, but the last version of the embl-flat-file-validator does not accept the embl file without those information.
+So we strongly encourage to submit at least one of those information to the software.
