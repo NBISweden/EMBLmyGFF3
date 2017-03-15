@@ -8,7 +8,7 @@
 GENOME="dmel_chr4.fa"
 
 # ANNOATION in gff3 FORMAT
-ANNOTATION="dmel_chr4.gff3"
+ANNOTATION="dmel_chr4_clean.gff3"
 
 #PROJECT name registered on EMBL
 PROJECT="my_EMBL_project"

@@ -596,11 +596,16 @@ class EMBL( object ):
         URL: ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.txt
         """
 
+
+        
         output = ""
         cpt_locus=0
+        accession="|".join(self.accessions if type(self.accessions) == type([]) else [self.accessions])
+
         for i, feature in enumerate(self.record.features):
             
             #manage locus_tag
+            output_accession=accession
             locus_tag=None
             if feature.type.lower() != "source" and feature.type.lower() != "gap":
                 cpt_locus+=1
@@ -608,8 +613,10 @@ class EMBL( object ):
                 for qualifier in feature.qualifiers:
                     if 'locus_tag' == qualifier.lower():
                         locus_tag = "%s" % "_".join(feature.qualifiers[qualifier])
+                # create locus tag from locus_tag and accessions      
+                output_accession = "%s_%s" % (accession, locus_tag)
 
-            f = Feature(feature, self.record.seq, self.accessions, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, locus_tag=locus_tag)
+            f = Feature(feature, self.record.seq, output_accession, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR)
             output += str(f)
         
         return output + self.spacer
