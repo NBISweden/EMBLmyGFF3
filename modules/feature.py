@@ -66,6 +66,7 @@ class Feature(object):
         self.feature_translation_list = {}
         self.qualifier_prefix = {}
         self.qualifier_suffix = {}
+        self.legal_qualifiers = []
         self.sub_features = []
         self.translation_files = translation_files
         self._load_qualifier_translations(Feature.DEFAULT_QUALIFIER_TRANSLATION_FILE + translation_files)
@@ -256,6 +257,7 @@ class Feature(object):
                 for key, value in raw.iteritems():
                     if "qualifier" in key:
                         for item, definition in value.iteritems():
+                            self.legal_qualifiers += [key]
                             mandatory = "mandatory" in key
                             self.qualifiers[item] = Qualifier(item, mandatory = mandatory, qualifier_definition_dir=self.qualifier_definition_dir)
                     else:
@@ -352,10 +354,11 @@ class Feature(object):
         other_phase = int(other.qualifiers.get("phase", [0])[0])
         
         phase = current_phase if self.location.start < other.location.start else other_phase
-        if not "codon_start" in self.qualifiers:
-            self.qualifiers["codon_start"] = Qualifier("codon_start", phase, qualifier_definition_dir = self.qualifier_definition_dir)
-        else:
-            self.qualifiers["codon_start"].set_value(phase)
+        if "codon_start" in self.legal_qualifiers:
+            if not "codon_start" in self.qualifiers:
+                self.qualifiers["codon_start"] = Qualifier("codon_start", phase, qualifier_definition_dir = self.qualifier_definition_dir)
+            else:
+                self.qualifiers["codon_start"].set_value(phase)
     
     def CDS_report(self, out = sys.stdout, parts = False, codon_info = True):
         """
