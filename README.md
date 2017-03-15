@@ -202,3 +202,6 @@ Wihtin the embl file, instead to get **note="Prokka"**, here we will get **note=
 
 ## KNOWN ISSUES
 
+**Duplicated Features**</br>
+Features that have the same key (feature type) and location as another feature are considered as duplicates and aren't allowed by the EMBL database.</br>
+How to fix => Consider removing the isoforms and keep only the longest prediction per locus.
