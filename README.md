@@ -86,13 +86,13 @@ In order to write the result in the desired file use the **-o** option:
 
 Minimum requirement to launch the software and avoid any prompt.
 
- >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX -o result.embl
+ >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type 'genomic DNA' --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP -o result.embl
 
 ### Advanced case 
 
 When you want add more information than those mandatory: e.g publication.
 
- >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
+ >./GFF2EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
 
 ### Use through a bash script
 
@@ -110,7 +110,7 @@ positional arguments:
   gff_file              input gff-file
   fasta                 input fasta sequence
   
-**Arguments related to the EMBL format to check carrefully:**
+**Mandatory Arguments related to the EMBL format to check carrefully:**
 
   - -p , --project_id     Project ID. The defalut value is **Unknown** *(This option is used to set up the PR line.)*
   - -r , --table          Translation table. No default value. *(This option is used to set up the translation table qualifier transl_table of the CDS features.)* Please visit this [NCBI genetic code] (https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.
@@ -120,6 +120,7 @@ positional arguments:
   - -m , --molecule_type  Molecule type of the sample. No default value.
   - -a , --accession      Accession number(s) for the entry. Default value: **UNKNOWN** . This option is used to set up the accession number of the AC line and the first token of the ID line as well as the prefix of the locus_tag qualifier.    
   - -x , --taxonomy       Source taxonomy. No default value. This option is used to set the taxonomic division within ID line (6th token).
+  - --rg                  Reference Group, the working groups/consortia that produced the record. No default value.
   
 **Optional arguments related to the software:**
 
@@ -138,7 +139,6 @@ positional arguments:
   - -l , --classification Organism classification. The default value is **Life** 
   - --rc                  Reference Comment. No default value.
   - --rx                  Reference cross-reference. No default value.
-  - --rg                  Reference Group, the working groups/consortia that produced the record. No default value.
   - --ra , --author       Author for the reference. No default value.
   - --rt                  Reference Title. No default value.
   - --rl                  Reference publishing location. No default value.
@@ -202,5 +202,3 @@ Wihtin the embl file, instead to get **note="Prokka"**, here we will get **note=
 
 ## KNOWN ISSUES
 
-Following what is mentioned in the [EMBL/ENA user manual](ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt), the RA and RG lines are optionals, but the last version of the embl-flat-file-validator does not accept the embl file without those information.
-So we strongly encourage to submit at least one of those information to the software.
