@@ -56,7 +56,7 @@ class EMBL( object ):
     RC - reference comment          (>=0 per entry)
     RP - reference positions        (>=1 per entry)
     RX - reference cross-reference  (>=0 per entry)
-    RG - reference group            (>=0 per entry)
+    RG - reference group            (>=0 per entry) RA,RG => At least one of them is mandatory
     RA - reference author(s)        (>=0 per entry)
     RT - reference title            (>=1 per entry)
     RL - reference location         (>=1 per entry)
@@ -306,6 +306,10 @@ class EMBL( object ):
         """
         Adds a reference for the data in the file to the header.
         """
+        if not authors and not group:
+            sys.stderr.write("It is mandatory to provide a Reference Group (RG) that produced the record\nPlease enter the RG: ")
+            group = [raw_input()]
+
         self.refs += [{'title':title,
                        'positions':positions if positions != 'all' else [(1,len(self.record.seq))],
                        'location':location if location else "Submitted (%s) to the INSDC." % (time.strftime("%d-%b-%Y").upper()),
@@ -493,8 +497,9 @@ class EMBL( object ):
                 output += self._multiline("RC", ref['comment'])
                                                                     # RP - reference positions        (>=1 per entry)
             output += self._multiline("RP", ["%i-%i" % pos for pos in ref['positions']])   
-            for xref in ref['xrefs']:                               # RX - reference cross-reference  (>=0 per entry)
-                output += self._multiline("RX", xref, suffix=".")
+            if ref['xrefs']:
+                for xref in ref['xrefs']:                               # RX - reference cross-reference  (>=0 per entry)
+                    output += self._multiline("RX", xref, suffix=".")
             if ref['group']:                                        # RG - reference group            (>=0 per entry)
                 output += self._multiline("RG", ref['group'])
             if ref['authors']:                                      # RA - reference author(s)        (>=0 per entry)
@@ -936,9 +941,9 @@ if __name__ == '__main__':
     
     parser.add_argument("-z", "--gzip", default=False, action="store_true", help="Gzip output file")
     
-    parser.add_argument("--rc", default="", help="Reference Comment.")
-    parser.add_argument("--rx", default="", help="Reference cross-reference.")
-    parser.add_argument("--rg", default="", help="Reference Group, the working groups/consortia that produced the record.")
+    parser.add_argument("--rc", default=None, help="Reference Comment.")
+    parser.add_argument("--rx", default=None, help="Reference cross-reference.")
+    parser.add_argument("--rg", default=None, help="Reference Group, the working groups/consortia that produced the record.")
     parser.add_argument("--ra", "--author", nargs="+", default="", help="Author for the reference")
     parser.add_argument("--rt", default=";", help="Reference Title.")
     parser.add_argument("--rl", default=None, help="Reference publishing location.")

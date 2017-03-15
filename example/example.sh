@@ -26,7 +26,7 @@ TAXONOMY="INV"
 CLASSIFICATION="cellular organisms; Eukaryota; Opisthokonta; Metazoa; Eumetazoa; Bilateria; Protostomia; Ecdysozoa; Panarthropoda; Arthropoda; Mandibulata; Pancrustacea; Hexapoda; Insecta; Dicondylia; Pterygota; Neoptera; Endopterygota; Diptera; Brachycera; Muscomorpha; Eremoneura; Cyclorrhapha; Schizophora; Acalyptratae; Ephydroidea; Drosophilidae; Drosophilinae; Drosophilini; Drosophila; Sophophora; melanogaster group; melanogaster subgroup"
 
 #The working groups/consortia that produced the record. No default value
-REFERENCE_GROUP="example"
+REFERENCE_GROUP="MyGroup"
 
 #Translation table
 TABLE="1"

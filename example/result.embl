@@ -18,7 +18,7 @@ OC   cellular organisms; Eukaryota; Opisthokonta; Metazoa; Eumetazoa; Bilateria;
 XX
 RN   [1]
 RP   1-1351857
-RG   example
+RG   MyGroup
 RT   ;
 RL   Submitted (15-MAR-2017) to the INSDC.
 XX
@@ -173,7 +173,6 @@ FT                   /note="ID:FBtr0089178"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="ci-RA"
 FT                   /gene="ci"
-FT                   /codon_start=1
 FT   CDS             complement(join(<68623..71088,71142..71306,71371..71883,7
 FT                   1940..72580,72643..73010,76457..76494))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus10"
@@ -212,7 +211,7 @@ FT                   /standard_name="RpS3A-RF"
 FT                   /gene="RpS3A"
 FT   CDS             complement(join(<86902..87364,87466..87806))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus12"
-FT                   /codon_start=1
+FT                   /codon_start=2
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-32"
 FT                   /transl_table=1
@@ -254,7 +253,7 @@ FT                   /standard_name="RpS3A-RA"
 FT                   /gene="RpS3A"
 FT   CDS             complement(join(<86902..87364,87466..87806))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus14"
-FT                   /codon_start=1
+FT                   /codon_start=2
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-34"
 FT                   /transl_table=1
@@ -281,7 +280,6 @@ FT                   /note="ID:FBtr0089157"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="pan-RG"
 FT                   /gene="pan"
-FT                   /codon_start=1
 FT   CDS             join(93056..93220,93443..93488,95694..95791,103264..10337
 FT                   2,106338..106425,106479..106559,107643..107792,115049..1152
 FT                   41,115463..115628,120032..120101,128029..>129116)
@@ -325,7 +323,6 @@ FT                   /note="ID:FBtr0308615"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="pan-RQ"
 FT                   /gene="pan"
-FT                   /codon_start=1
 FT   CDS             join(93056..93220,93443..93488,95694..95791,103264..10337
 FT                   2,106338..106425,106479..106559,107643..107792,115049..1152
 FT                   41,118448..118601,120032..120101,124709..>125037)
@@ -498,12 +495,11 @@ FT                   /note="ID:FBtr0089171"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="Ank-RC"
 FT                   /gene="Ank"
-FT                   /codon_start=1
 FT   CDS             complement(join(<137498..139127,139181..139405,139464..13
 FT                   9557,140514..140838,141484..142425,142479..142582,142935..1
 FT                   44048,144411..144518,149948..150052))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
-FT                   /codon_start=1
+FT                   /codon_start=2
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-173"
 FT                   /transl_table=1
@@ -537,7 +533,6 @@ FT                   /note="ID:FBtr0089445"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="CG32000-RE"
 FT                   /gene="CG32000"
-FT                   /codon_start=1
 FT   CDS             join(155344..155590,157505..157793,157849..157958,158017.
 FT                   .158378,158433..158936,159000..159200,160448..>160520)
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus22"
@@ -620,7 +615,6 @@ FT                   /note="ID:FBtr0089448"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="CG32000-RB"
 FT                   /gene="CG32000"
-FT                   /codon_start=1
 FT   CDS             join(157379..157403,157505..157793,157849..157958,158017.
 FT                   .158378,158433..158936,159000..159200,160896..162753,162826
 FT                   ..>163419)
@@ -689,7 +683,7 @@ FT                   /gene="CG31997"
 FT   CDS             complement(join(<175408..175591,175653..175773,176391..17
 FT                   6529))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus27"
-FT                   /codon_start=1
+FT                   /codon_start=2
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-261"
 FT                   /transl_table=1
@@ -753,7 +747,7 @@ FT                   /gene="CG33978"
 FT   CDS             complement(join(<187725..194362,194737..194790,195411..19
 FT                   5585))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-289"
 FT                   /transl_table=1
@@ -782,7 +776,6 @@ FT                   /note="ID:FBtr0308248"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="CG2219-RB"
 FT                   /gene="CG2219"
-FT                   /codon_start=1
 FT   CDS             complement(join(<198070..198618,199404..199506,199563..19
 FT                   9660,199718..199837,199887..199955))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus30"
@@ -812,12 +805,11 @@ FT                   /note="ID:FBtr0308247"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="CG2316-RH"
 FT                   /gene="CG2316"
-FT                   /codon_start=1
 FT   CDS             complement(join(<205144..205240,205296..205421,206453..20
 FT                   6542,206604..207466,208623..208795,208856..208995,209051..2
 FT                   09149,209204..209805))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus31"
-FT                   /codon_start=1
+FT                   /codon_start=2
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-306"
 FT                   /transl_table=1
@@ -849,7 +841,7 @@ FT                   /gene="CG31998"
 FT   CDS             complement(join(<218507..222009,222067..222284,224606..22
 FT                   4973))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-370"
 FT                   /transl_table=1
@@ -885,7 +877,7 @@ FT                   /gene="CG31998"
 FT   CDS             complement(join(<218507..222009,222067..222284,224606..22
 FT                   5200,225266..225326))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus33"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-373"
 FT                   /transl_table=1
@@ -914,7 +906,6 @@ FT                   /note="ID:FBtr0304871"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="Crk-RD"
 FT                   /gene="Crk"
-FT                   /codon_start=1
 FT   CDS             join(231081..231112,231184..231306,232216..232420,232480.
 FT                   .232608,232741..>232804)
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus34"
@@ -958,7 +949,7 @@ FT                   8120,238874..239006,239072..239516,240517..240654,240770..2
 FT                   41063,243167..243224,243280..243362,243417..243638,244183..
 FT                   244512,244571..245065,246388..246460))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus35"
-FT                   /codon_start=1
+FT                   /codon_start=2
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-406"
 FT                   /transl_table=1
@@ -1044,7 +1035,6 @@ FT                   /note="ID:FBtr0300800"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="CG1674-RJ"
 FT                   /gene="CG1674"
-FT                   /codon_start=1
 FT   CDS             join(252580..252603,254891..254971,257021..257101,257895.
 FT                   .258185,260940..261024,261271..261459,263087..263305,263796
 FT                   ..264211,264260..264374,265806..>266387)
@@ -1109,7 +1099,6 @@ FT                   /note="ID:FBtr0308692"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="dpr7-RE"
 FT                   /gene="dpr7"
-FT                   /codon_start=1
 FT   CDS             complement(join(<270724..270762,270816..270869,271990..27
 FT                   2151,272681..272796,273450..273579))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus40"
@@ -1151,7 +1140,6 @@ FT                   /note="ID:FBtr0299722"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="RhoGAP102A-RC"
 FT                   /gene="RhoGAP102A"
-FT                   /codon_start=1
 FT   CDS             join(276143..278030,278938..279092,279154..279298,279904.
 FT                   .279996,280073..280230,281856..282137,282200..282350,282403
 FT                   ..>282753)
@@ -1182,7 +1170,7 @@ FT   CDS             complement(join(<291079..291125,291186..291381,291695..29
 FT                   2473,292541..292798,292852..293034,293741..294338,294387..2
 FT                   94542,296206..296286))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus42"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-570"
 FT                   /transl_table=1
@@ -1212,7 +1200,6 @@ FT                   /note="ID:FBtr0114475"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="Syt7-RH"
 FT                   /gene="Syt7"
-FT                   /codon_start=1
 FT   CDS             complement(join(<301055..301057,301123..301163,302350..30
 FT                   2518,302574..302654,303062..303364,322868..322949,323012..3
 FT                   23152,325642..325802))
@@ -1283,7 +1270,6 @@ FT                   /note="ID:FBtr0089121"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="Rad23-RB"
 FT                   /gene="Rad23"
-FT                   /codon_start=1
 FT   CDS             join(329204..329705,330165..330259,330320..330643,330705.
 FT                   .>330813)
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus45"
@@ -1316,10 +1302,9 @@ FT                   /note="ID:FBtr0089133"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="CG2177-RB"
 FT                   /gene="CG2177"
-FT                   /codon_start=1
 FT   CDS             complement(join(<333419..333924,333983..334079))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-669"
 FT                   /transl_table=1
@@ -1419,7 +1404,6 @@ FT                   /note="ID:FBtr0304047"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="PMCA-RP"
 FT                   /gene="PMCA"
-FT                   /codon_start=1
 FT   CDS             complement(join(<349836..350054,350897..350965,363548..36
 FT                   3686,369621..369772,369839..370050,370107..370305,370356..3
 FT                   70669,371229..371316,371391..371835,372212..372453,372510..
@@ -1643,7 +1627,6 @@ FT                   /note="ID:FBtr0307379"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="Hcf-RE"
 FT                   /gene="Hcf"
-FT                   /codon_start=1
 FT   CDS             join(381317..381632,382930..383239,383297..383508,383572.
 FT                   .383760,384120..384271,384494..385567,386300..386431,386486
 FT                   ..387388,390133..390370,390436..390590,391717..391983,39243
@@ -1679,7 +1662,6 @@ FT                   /note="ID:FBtr0307044"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="Lin29-RD"
 FT                   /gene="Lin29"
-FT                   /codon_start=1
 FT   CDS             complement(join(<396592..397257,397720..398295,398384..39
 FT                   8451,398511..398828,399022..399187,399342..399526,402749..4
 FT                   03034,407533..407610,408455..408484))
@@ -1852,7 +1834,7 @@ FT   CDS             complement(join(<480650..480767,480829..481282,481340..48
 FT                   1673,482131..482954,483014..483127,483681..485366,485423..4
 FT                   85941,487127..487295))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus62"
-FT                   /codon_start=1
+FT                   /codon_start=2
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-1021"
 FT                   /transl_table=1
@@ -1872,7 +1854,6 @@ FT   mRNA            join(488123..488319,488377..489319)
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus63"
 FT                   /note="source:ncRNA"
 FT                   /note="ID:FBtr0091952"
-FT                   /codon_start=1
 FT   gene            complement(490035..506659)
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus64"
 FT                   /note="source:protein_coding"
@@ -1893,7 +1874,7 @@ FT                   4345,495079..495394,495586..495730,497589..497728,497918..4
 FT                   98709,499164..499364,499426..499494,500661..500864,500928..
 FT                   501317,501402..501767,501835..502330,505836..505858))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus64"
-FT                   /codon_start=1
+FT                   /codon_start=2
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-1029"
 FT                   /transl_table=1
@@ -1920,13 +1901,12 @@ FT                   /note="ID:FBtr0300342"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="Asator-RD"
 FT                   /gene="Asator"
-FT                   /codon_start=1
 FT   CDS             complement(join(<492918..493146,493204..493303,493773..49
 FT                   4345,495079..495394,495586..495730,497589..497728,497918..4
 FT                   98709,499164..499364,499426..499494,500661..500864,500928..
 FT                   501317,501402..501767,501835..502330,502437..502462))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus65"
-FT                   /codon_start=1
+FT                   /codon_start=2
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-1043"
 FT                   /transl_table=1
@@ -1953,13 +1933,12 @@ FT                   /note="ID:FBtr0332908"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="Asator-RK"
 FT                   /gene="Asator"
-FT                   /codon_start=1
 FT   CDS             complement(join(<493705..494345,495079..495394,495586..49
 FT                   5730,497589..497728,497918..498709,499164..499364,499426..4
 FT                   99494,500661..500864,500928..501317,501402..501767,501835..
 FT                   501888))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus66"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-1100"
 FT                   /transl_table=1
@@ -1990,7 +1969,6 @@ FT                   /note="ID:FBtr0089070"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="zfh2-RA"
 FT                   /gene="zfh2"
-FT                   /codon_start=1
 FT   CDS             join(542130..543730,544957..545138,545530..547146,550319.
 FT                   .551719,551782..552005,552062..552409,553409..553552,553609
 FT                   ..556506,557801..558386,559164..>559178)
@@ -2177,7 +2155,6 @@ FT                   /note="ID:FBtr0089993"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="Pur-alpha-RD"
 FT                   /gene="Pur-alpha"
-FT                   /codon_start=1
 FT   CDS             join(580906..580926,580998..581037,581097..581209,581344.
 FT                   .581446,584987..585105,585167..585288,586033..586141,586227
 FT                   ..>586380)
@@ -2273,7 +2250,6 @@ FT                   /note="ID:FBtr0089075"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="Ephrin-RA"
 FT                   /gene="Ephrin"
-FT                   /codon_start=1
 FT   CDS             join(594375..595054,595961..596271,596328..596951,597605.
 FT                   .>597946)
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus76"
@@ -2408,7 +2384,6 @@ FT                   /note="ID:FBtr0089084"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="Eph-RC"
 FT                   /gene="Eph"
-FT                   /codon_start=1
 FT   CDS             join(632029..632281,632353..632432,634241..634421,634563.
 FT                   .635048,635662..636549,636631..636807,637930..637977,638974
 FT                   ..639102,639162..639257,639319..639689,640263..640409,64047
@@ -2525,13 +2500,12 @@ FT                   /note="ID:FBtr0110907"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="CG9935-RC"
 FT                   /gene="CG9935"
-FT                   /codon_start=1
 FT   CDS             complement(join(<656937..657093,657178..657244,659641..65
 FT                   9829,659959..660160,660219..660674,660733..660837,660899..6
 FT                   61102,661159..661362,662902..663054,663118..663354,664615..
 FT                   664781,666575..666808,666859..667020,667071..667146))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus85"
-FT                   /codon_start=1
+FT                   /codon_start=2
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-1387"
 FT                   /transl_table=1
@@ -2591,7 +2565,6 @@ FT                   /note="ID:FBtr0089096"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="gw-RB"
 FT                   /gene="gw"
-FT                   /codon_start=1
 FT   CDS             complement(join(<670886..671656,672931..673210,673272..67
 FT                   3468,673527..673677,674496..674674,675131..675424,675687..6
 FT                   76061,676842..678310,678528..678963))
@@ -2739,7 +2712,6 @@ FT                   /note="ID:FBtr0089093"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="myo-RB"
 FT                   /gene="myo"
-FT                   /codon_start=1
 FT   CDS             complement(join(<712620..712985,713051..713469,714007..71
 FT                   5015))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus92"
@@ -2986,7 +2958,7 @@ FT                   /gene="MED26"
 FT   CDS             complement(join(<799456..802295,803800..803871,803928..80
 FT                   4563,806818..807652,807707..807772))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus98"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-1649"
 FT                   /transl_table=1
@@ -3161,7 +3133,6 @@ FT                   /note="ID:FBtr0300884"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="CG11148-RF"
 FT                   /gene="CG11148"
-FT                   /codon_start=1
 FT   CDS             complement(join(<876139..876261,876312..876466,880933..88
 FT                   1007,881066..882013,882419..885037,885974..886268,886328..8
 FT                   86477,886557..886892))
@@ -3294,7 +3265,6 @@ FT                   /note="ID:FBtr0089245"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="unc-13-RA"
 FT                   /gene="unc-13"
-FT                   /codon_start=1
 FT   CDS             complement(join(<892122..892280,892346..892472,892538..89
 FT                   2700,892753..892851,893840..894197,894261..894552,894620..8
 FT                   94786,894872..895093,895829..896110,896169..896336,896740..
@@ -3347,7 +3317,7 @@ FT                   6685,936747..936893,937493..937716,937901..938369,938950..9
 FT                   39107,939162..939402,939529..941825,945709..945764,946201..
 FT                   946312,946394..946574,946637..947287,950448..950525))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus110"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-1841"
 FT                   /transl_table=1
@@ -3381,7 +3351,6 @@ FT                   /note="ID:FBtr0332858"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="mGluRA-RB"
 FT                   /gene="mGluRA"
-FT                   /codon_start=1
 FT   CDS             join(959056..959743,960800..961343,963393..963646,963729.
 FT                   .963835,964174..964299,964360..964879,964932..965227,966851
 FT                   ..>967244)
@@ -3420,7 +3389,7 @@ FT   CDS             complement(join(<972468..972703,972764..973087,974139..97
 FT                   4525,974646..974852,975115..975489,975547..975676,977171..9
 FT                   78515,978632..978657))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus112"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-1875"
 FT                   /transl_table=1
@@ -3450,12 +3419,11 @@ FT                   /note="ID:FBtr0089229"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="CG32016-RB"
 FT                   /gene="CG32016"
-FT                   /codon_start=1
 FT   CDS             complement(join(<972468..972703,972764..973087,974139..97
 FT                   4525,974646..974852,975115..975489,975547..975676,977171..9
 FT                   78515,978632..978657))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus113"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-1883"
 FT                   /transl_table=1
@@ -3511,7 +3479,6 @@ FT   mRNA            join(995794..996188,997392..997932)
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus115"
 FT                   /note="source:ncRNA"
 FT                   /note="ID:FBtr0111044"
-FT                   /codon_start=1
 FT   gene            1010351..1028548
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus116"
 FT                   /note="source:protein_coding"
@@ -3596,7 +3563,6 @@ FT                   /note="ID:FBtr0089226"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="plexA-RD"
 FT                   /gene="plexA"
-FT                   /codon_start=1
 FT   CDS             complement(join(<1034988..1035152,1035209..1035354,103540
 FT                   4..1035534,1035592..1035978,1036051..1036246,1037002..10393
 FT                   35,1039396..1040641,1042868..1044097))
@@ -3702,7 +3668,6 @@ FT                   /note="ID:FBtr0089221"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="CG11076-RA"
 FT                   /gene="CG11076"
-FT                   /codon_start=1
 FT   CDS             complement(<1050600..1051436)
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus121"
 FT                   /codon_start=1
@@ -3790,14 +3755,13 @@ FT                   /note="ID:FBtr0100146"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="CaMKII-RD"
 FT                   /gene="CaMKII"
-FT                   /codon_start=1
 FT   CDS             complement(join(<1057907..1058048,1058102..1058216,105827
 FT                   2..1058366,1058985..1059060,1060639..1060704,1064094..10641
 FT                   50,1065782..1065874,1067890..1068016,1068079..1068201,10682
 FT                   61..1068355,1068449..1068774,1069130..1069184,1069813..1069
 FT                   872,1070924..1071018,1071081..1071145))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus124"
-FT                   /codon_start=1
+FT                   /codon_start=2
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-2037"
 FT                   /transl_table=1
@@ -3835,7 +3799,7 @@ FT                   16,1068079..1068201,1068261..1068355,1068449..1068774,10691
 FT                   30..1069184,1069813..1069872,1070924..1071018,1071081..1071
 FT                   145))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus125"
-FT                   /codon_start=1
+FT                   /codon_start=2
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-2122"
 FT                   /transl_table=1
@@ -3865,11 +3829,10 @@ FT                   /note="ID:FBtr0309883"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="Zyx-RI"
 FT                   /gene="Zyx"
-FT                   /codon_start=1
 FT   CDS             complement(join(<1078622..1078665,1078836..1079130,107972
 FT                   7..1079914,1080045..1080462,1081039..1081230))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus126"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-2199"
 FT                   /transl_table=1
@@ -3979,7 +3942,6 @@ FT                   /note="ID:FBtr0089327"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="sv-RA"
 FT                   /gene="sv"
-FT                   /codon_start=1
 FT   CDS             join(1112912..1113254,1116202..1116342,1116420..1116458,1
 FT                   122560..1122725,1124161..1124358,1126778..1127223,1128325..
 FT                   1128416,1128724..1128970,1129100..1129198,1129735..1130226,
@@ -4051,7 +4013,7 @@ FT                   2..1137082,1137141..1137224,1137286..1137840,1138477..11385
 FT                   31,1138594..1139643,1140563..1140673,1140732..1141232,11412
 FT                   85..1141427,1142085..1142199))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus131"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-2315"
 FT                   /transl_table=1
@@ -4087,7 +4049,7 @@ FT                   2..1137082,1137141..1137224,1137286..1137840,1138477..11385
 FT                   31,1138594..1139643,1140563..1140673,1140732..1141232,11412
 FT                   85..1141427,1142085..1142199))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus132"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-2326"
 FT                   /transl_table=1
@@ -4147,7 +4109,6 @@ FT                   /note="ID:FBtr0333701"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="CG11155-RD"
 FT                   /gene="CG11155"
-FT                   /codon_start=1
 FT   CDS             join(1147376..1147378,1147435..1147567,1147628..1148041,1
 FT                   149115..1149281,1150061..1150114,1150192..1150356,1150651..
 FT                   1150809,1151009..1151212,1151819..1152022,1152115..1152219,
@@ -4254,7 +4215,7 @@ FT   CDS             complement(join(<1193512..1193656,1193710..1193829,119443
 FT                   2..1194723,1194785..1195554,1195608..1195749,1201674..12017
 FT                   64))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus137"
-FT                   /codon_start=1
+FT                   /codon_start=2
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-2421"
 FT                   /transl_table=1
@@ -4476,7 +4437,6 @@ FT                   /note="ID:FBtr0307329"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="Mitf-RD"
 FT                   /gene="Mitf"
-FT                   /codon_start=1
 FT   CDS             join(1219641..1219801,1223420..1223750,1223802..1223921,1
 FT                   224043..1224414,1225217..1225376,1225434..1225675,1225732..
 FT                   1225890,1225948..>1226515)
@@ -4540,7 +4500,7 @@ FT                   /gene="Dyrk3"
 FT   CDS             complement(join(<1229887..1230170,1230231..1230572,123062
 FT                   5..1231225,1232379..1233241,1233306..1233699))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus145"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-2538"
 FT                   /transl_table=1
@@ -4577,7 +4537,7 @@ FT                   /gene="Dyrk3"
 FT   CDS             complement(join(<1229887..1230170,1230231..1230572,123062
 FT                   5..1231225,1232379..1233241,1233306..1233699))
 FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus146"
-FT                   /codon_start=1
+FT                   /codon_start=3
 FT                   /note="source:protein_coding"
 FT                   /note="ID:cds-2543"
 FT                   /transl_table=1
@@ -4658,7 +4618,6 @@ FT                   /note="ID:FBtr0091630"
 FT                   /note="source:protein_coding"
 FT                   /standard_name="Caps-RA"
 FT                   /gene="Caps"
-FT                   /codon_start=1
 FT   CDS             join(1236896..1237236,1238405..1238525,1245456..1245623,1
 FT                   247203..1247378,1247445..1247676,1247740..1247990,1248827..
 FT                   1249057,1249105..1249249,1249303..1249409,1249478..1249653,
