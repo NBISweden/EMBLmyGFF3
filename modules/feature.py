@@ -53,7 +53,7 @@ class Feature(object):
     DEFAULT_QUALIFIER_TRANSLATION_FILE=["translation_gff_attribute_to_embl_qualifier.json", "translation_gff_other_to_embl_qualifier.json"]
     PREVIOUS_ERRORS = []
     
-    def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False, feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", format_data = True):
+    def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False, feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", format_data = True, level = 0):
         """
         Initializes a Feature, loads json files for feature and 
         qualifiers, and starts parsing the data.
@@ -75,13 +75,37 @@ class Feature(object):
         self.seq = seq
         self.transl_table = transl_table
         self.translate = translate
-        
+        self.level = level
+
         self._load_definition("%s/%s.json" % (feature_definition_dir, self.type))
         self._load_data(feature, accessions)
+
+        if level == 1:      
+            # Parse through subfeatures level2
+            featureObj_level2 = None
+            for feature_l2 in feature.sub_features:
+                featureObj_level2 = Feature(feature_l2, self.seq, accessions, self.transl_table, self.translation_files, self.translate, 
+                                                  self.feature_definition_dir, self.qualifier_definition_dir, format_data = True, level=2)
+                self.sub_features += [featureObj_level2]
+
+                # Parse through subfeatures level3
+                featureObj_level3 = None
+                for feature_l3 in feature_l2.sub_features:
+                    if feature_l3.type in [sf.type for sf in featureObj_level2.sub_features]:
+                        old_feature = [sf for sf in featureObj_level2.sub_features if sf.type == feature_l3.type][0]
+                        old_feature.combine(feature_l3)
+                    else:
+                        featureObj_level3 = Feature(feature_l3, self.seq, accessions, self.transl_table, self.translation_files, self.translate, 
+                                                      self.feature_definition_dir, self.qualifier_definition_dir, format_data = False, level=3)
+                        featureObj_level2.sub_features += [featureObj_level3]
+
+
         if format_data:
-            self._format_data(feature)
+            self._format_data(self)
+
         if self.type == "CDS":
             self.qualifiers['transl_table'].set_value(self.transl_table)
+
     
     def __repr__(self):
         """
@@ -138,17 +162,7 @@ class Feature(object):
 
         if 'locus_tag' in self.qualifiers:          
             self.qualifiers['locus_tag'].set_value( accessions )
-
-        # Parse through subfeatures
-        sub_feature_types = []
-        for sub_feature in feature.sub_features:
-            if sub_feature.type in [sf.type for sf in self.sub_features]:
-                old_feature = [sf for sf in self.sub_features if sf.type == sub_feature.type][0]
-                old_feature.combine(sub_feature)
-            else:
-                self.sub_features += [Feature(sub_feature, self.seq, accessions, self.transl_table, self.translation_files, self.translate, 
-                                              self.feature_definition_dir, self.qualifier_definition_dir, format_data = False)]
-    
+        
     def _format_data(self, feature):
         """
         Reformats the data somewhat to better map to the expected EMBL

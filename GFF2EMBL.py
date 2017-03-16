@@ -306,10 +306,6 @@ class EMBL( object ):
         """
         Adds a reference for the data in the file to the header.
         """
-        if not authors and not group:
-            sys.stderr.write("It is mandatory to provide a Reference Group (RG) that produced the record\nPlease enter the RG: ")
-            group = [raw_input()]
-
         self.refs += [{'title':title,
                        'positions':positions if positions != 'all' else [(1,len(self.record.seq))],
                        'location':location if location else "Submitted (%s) to the INSDC." % (time.strftime("%d-%b-%Y").upper()),
@@ -620,8 +616,8 @@ class EMBL( object ):
                         locus_tag = "%s" % "_".join(feature.qualifiers[qualifier])
                 # create locus tag from locus_tag and accessions      
                 output_accession = "%s_%s" % (accession, locus_tag)
-
-            f = Feature(feature, self.record.seq, output_accession, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR)
+            #sys.stderr.write("xx %s, \n" % feature)
+            f = Feature(feature, self.record.seq, output_accession, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1)
             output += str(f)
         
         return output + self.spacer
@@ -983,6 +979,10 @@ if __name__ == '__main__':
     if not args.shame:
         sys.stderr.write(shameless_plug)
     
+    if not args.ra and not args.rg:
+            sys.stderr.write("It is mandatory to provide a Reference Group (RG) that produced the record\nPlease enter the RG: ")
+            args.rg = raw_input()
+
     for record in GFF.parse(infile, base_dict=seq_dict):
         
         writer = EMBL( record, True )
