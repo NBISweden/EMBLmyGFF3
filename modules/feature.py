@@ -91,8 +91,8 @@ class Feature(object):
                 # Parse through subfeatures level3
                 featureObj_level3 = None
                 for feature_l3 in feature_l2.sub_features:
-                    if feature_l3.type in [sf.type for sf in featureObj_level2.sub_features]:
-                        old_feature = [sf for sf in featureObj_level2.sub_features if sf.type == feature_l3.type][0]
+                    if self._from_gff_feature(feature_l3.type) in [sf.type for sf in featureObj_level2.sub_features]:
+                        old_feature = [sf for sf in featureObj_level2.sub_features if sf.type == self._from_gff_feature(feature_l3.type)][0]
                         old_feature.combine(feature_l3)
                     else:
                         featureObj_level3 = Feature(feature_l3, self.seq, accessions, self.transl_table, self.translation_files, self.translate, 
@@ -183,7 +183,7 @@ class Feature(object):
         and removes the exon sub-features.
         """
         
-        if self.type == "mRNA":
+        if self.level == 2: # level 2 means e.g: mRNA, tRNA, etc.
             for i, sf in enumerate(self.sub_features):
                 if sf.type != 'exon':
                     continue

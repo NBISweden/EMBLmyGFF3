@@ -596,8 +596,6 @@ class EMBL( object ):
         in the document "The DDBJ/ENA/GenBank Feature Table:  Definition". 
         URL: ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.txt
         """
-
-
         
         output = ""
         cpt_locus=0
@@ -618,6 +616,37 @@ class EMBL( object ):
                 output_accession = "%s_%s" % (accession, locus_tag)
             #sys.stderr.write("xx %s, \n" % feature)
             f = Feature(feature, self.record.seq, output_accession, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1)
+            
+            #Deal with identical CDS between different isoforms:
+            if len(f.sub_features) >= 2: # More than two L2 features, lets check them
+
+                dictionaryType = {}
+                for feature_l2_obj in f.sub_features:
+                    
+                    # Parse through subfeatures level3
+                    rearrange=None
+                    ListIndexToRemove = []
+                    for i, feature_l3_obj in enumerate(feature_l2_obj.sub_features):
+                        # test will be None if no location match one location already saved in the dictionary
+                        test = next((elem for elem in dictionaryType if str(elem) == feature_l3_obj.type+str(feature_l3_obj.location)), None)
+
+                        if test:
+                            #logging.error("remove %s" % feature_l3_obj.type)
+                            rearrange=True
+                            ListIndexToRemove.append(i)
+                            
+                        else: #it is New
+                            #logging.error("Add this location %s" % str(feature_l3_obj.type+feature_l3_obj.location))
+                            dictionaryType[feature_l3_obj.type+str(feature_l3_obj.location)]=1
+                            
+                    #Now remove duplicated features
+                    if rearrange:
+                        cpt = 0
+                        for index in ListIndexToRemove:               
+                            del feature_l2_obj.sub_features[index-cpt]
+                            cpt+=1
+
+            #Print
             output += str(f)
         
         return output + self.spacer
