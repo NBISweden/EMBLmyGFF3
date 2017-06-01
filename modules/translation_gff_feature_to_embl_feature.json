@@ -5,5 +5,8 @@
  },
  "three_prime_UTR": {
    "target": "3'UTR"
+ },
+ "exon": {
+   "remove": true
  }
 }

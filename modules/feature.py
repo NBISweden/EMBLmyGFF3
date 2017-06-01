@@ -68,6 +68,7 @@ class Feature(object):
         self.qualifier_suffix = {}
         self.legal_qualifiers = []
         self.sub_features = []
+        self.remove = []
         self.translation_files = translation_files
         self._load_qualifier_translations(Feature.DEFAULT_QUALIFIER_TRANSLATION_FILE + translation_files)
         self._load_feature_translations([Feature.DEFAULT_FEATURE_TRANSLATION_FILE])
@@ -105,9 +106,22 @@ class Feature(object):
 
         if self.type == "CDS":
             self.qualifiers['transl_table'].set_value(self.transl_table)
-
     
     def __repr__(self):
+        """
+        Formats the feature as EMBL, limited to 80 character lines,
+        including sub features.
+        """
+        output = self._feature_as_EMBL() if self.type not in self.remove else ""
+        
+        # Sub-features.
+        for sub_feature in self.sub_features:
+            if sub_feature.type not in self.remove:
+                output += str(sub_feature)
+        
+        return output
+    
+    def _feature_as_EMBL(self):
         """
         Formats the feature as EMBL, limited to 80 character lines.
         """
@@ -119,6 +133,7 @@ class Feature(object):
                 self.qualifiers["translation"].set_value(self.translation())
             Feature.CDS_COUNTER += 1
         
+        # Print the feature line (type and location)
         output = ""
         line = "\nFT   %s %s" % ("{:15}".format(self.type), EMBLLocation(self.location))
         if len(line) <= 79:
@@ -129,40 +144,14 @@ class Feature(object):
             while line:
                 output += "\nFT                   %s" % line[:59]
                 line = line[59:]
-            
+        
+        # Print qualifiers for the feature
         for qualifier in self.qualifiers.values():
             if qualifier.value:
                 output += str(qualifier)
-        for sub_feature in self.sub_features:
-            output += str(sub_feature)
+        
         return output
     
-    def _from_gff_feature(self, feature):
-        """
-        Returns the EMBL feature name from the translation list based
-        on the GFF feature name.
-        """
-        return self.feature_translation_list[feature] if feature in self.feature_translation_list else feature
-    
-    def _from_gff_qualifier(self, qualifier):
-        """
-        Returns the EMBL qualifier name from the translation list based
-        on the GFF qualifier name.
-        """
-        return self.qualifier_translation_list[qualifier] if qualifier in self.qualifier_translation_list else qualifier
-    
-    def _load_data(self, feature, accessions):
-        """
-        Parses a GFF feature and stores the data in the current Feature
-        """
-        for qualifier, value in feature.qualifiers.iteritems():
-            logging.debug("Reading qualifier: %s (%s), translating to %s" % (qualifier, value, self._from_gff_qualifier(qualifier)))
-            self.add_qualifier( qualifier, value )
-        
-
-        if 'locus_tag' in self.qualifiers:          
-            self.qualifiers['locus_tag'].set_value( accessions )
-        
     def _format_data(self, feature):
         """
         Reformats the data somewhat to better map to the expected EMBL
@@ -177,23 +166,19 @@ class Feature(object):
         # errors later.
         self._infer_ORFs(feature)
     
-    def _reformat_exons(self):
+    def _from_gff_feature(self, feature):
         """
-        Reformats mRNA features to have the location of its exon sub-features,
-        and removes the exon sub-features.
+        Returns the EMBL feature name from the translation list based
+        on the GFF feature name.
         """
-        
-        if self.level == 2: # level 2 means e.g: mRNA, tRNA, etc.
-            for i, sf in enumerate(self.sub_features):
-                if sf.type != 'exon':
-                    continue
-                # replace mRNA location with exon location(s)
-                self.location = sf.location
-                del self.sub_features[i]
-                break
-        
-        for sf in self.sub_features:
-            sf._reformat_exons()
+        return self.feature_translation_list[feature] if feature in self.feature_translation_list else feature
+    
+    def _from_gff_qualifier(self, qualifier):
+        """
+        Returns the EMBL qualifier name from the translation list based
+        on the GFF qualifier name.
+        """
+        return self.qualifier_translation_list[qualifier] if qualifier in self.qualifier_translation_list else qualifier
     
     def _infer_ORFs(self, feature):
         """
@@ -220,6 +205,91 @@ class Feature(object):
             
         for sub_feature in self.sub_features:
             sub_feature._infer_ORFs(feature)
+    
+    def _load_data(self, feature, accessions):
+        """
+        Parses a GFF feature and stores the data in the current Feature
+        """
+        for qualifier, value in feature.qualifiers.iteritems():
+            logging.debug("Reading qualifier: %s (%s), translating to %s" % (qualifier, value, self._from_gff_qualifier(qualifier)))
+            self.add_qualifier( qualifier, value )
+        
+
+        if 'locus_tag' in self.qualifiers:          
+            self.qualifiers['locus_tag'].set_value( accessions )
+    
+    def _load_definition(self, filename):
+        """
+        Loads a Feature definition json file.
+        """
+        try:
+            with open(filename) as data:
+                raw = json.load( data )
+                for key, value in raw.iteritems():
+                    if "qualifier" in key:
+                        for item, definition in value.iteritems():
+                            self.legal_qualifiers += [key]
+                            mandatory = "mandatory" in key
+                            self.qualifiers[item] = Qualifier(item, mandatory = mandatory, qualifier_definition_dir=self.qualifier_definition_dir)
+                    else:
+                        # this is not super important, as it just adds comments and 
+                        # description from the documentation to the features. I used 
+                        # it to have a bit of debugging information.
+                        setattr(self, key, value)
+        except IOError as e:
+            logging.error(e)
+    
+    def _load_feature_translations(self, filenames):
+        """
+        Load translation json files. Files are loaded in order that they are given, 
+        thus newer rules can be loaded to replace default rules.
+        """
+        module_dir = os.path.dirname(os.path.abspath(sys.modules[Feature.__module__].__file__))
+        
+        for filename in filenames:
+            logging.debug("Loading feature translation file: %s/%s" % (module_dir, filename))
+            data = json.load( open("%s/%s" % (module_dir, filename)) )
+            for gff_feature, info in data.iteritems():
+                if Feature.FIRST:
+                    logging.error("Feature: %s, info: %s", gff_feature, info)
+                if info.get("remove", False):
+                    self.remove += [gff_feature]
+                if "target" in info:
+                    self.feature_translation_list[gff_feature] = info["target"]
+    
+    def _load_qualifier_translations(self, filenames):
+        """
+        Load translation json files. Files are loaded in order that they are given, 
+        thus newer rules can be loaded to replace default rules.
+        """
+        module_dir = os.path.dirname(os.path.abspath(sys.modules[Feature.__module__].__file__))
+        
+        for filename in filenames:
+            logging.debug("Loading qualifier translation file: %s/%s" % (module_dir, filename))
+            data = json.load( open("%s/%s" % (module_dir, filename)) )
+            for gff_feature, info in data.iteritems():
+                if "target" in info:
+                    self.qualifier_translation_list[gff_feature] = info["target"]
+                if "prefix" in info:
+                    self.qualifier_prefix[gff_feature] = info["prefix"]
+                if "suffix" in info:
+                    self.qualifier_suffix[gff_feature] = info["suffix"]
+    
+    def _reformat_exons(self):
+        """
+        Reformats mRNA features to have the location of its exon sub-features,
+        and removes the exon sub-features.
+        """
+        
+        if self.level == 2: # level 2 means e.g: mRNA, tRNA, etc.
+            for i, sf in enumerate(self.sub_features):
+                if sf.type != 'exon':
+                    continue
+                # replace mRNA location with exon location(s)
+                self.location = sf.location
+        
+        for sf in self.sub_features:
+            sf._reformat_exons()
     
     def _set_before(self, location):
         """
@@ -256,59 +326,6 @@ class Feature(object):
             else:
                 location = FeatureLocation( BeforePosition(location.start), location.end, strand = location.strand)
         return location
-    
-    def _load_definition(self, filename):
-        """
-        Loads a Feature definition json file.
-        """
-        try:
-            with open(filename) as data:
-                raw = json.load( data )
-                for key, value in raw.iteritems():
-                    if "qualifier" in key:
-                        for item, definition in value.iteritems():
-                            self.legal_qualifiers += [key]
-                            mandatory = "mandatory" in key
-                            self.qualifiers[item] = Qualifier(item, mandatory = mandatory, qualifier_definition_dir=self.qualifier_definition_dir)
-                    else:
-                        # this is not super important, as it just adds comments and 
-                        # description from the documentation to the features. I used 
-                        # it to have a bit of debugging information.
-                        setattr(self, key, value)
-        except IOError as e:
-            logging.error(e)
-    
-    def _load_feature_translations(self, filenames):
-        """
-        Load translation json files. Files are loaded in order that they are given, 
-        thus newer rules can be loaded to replace default rules.
-        """
-        module_dir = os.path.dirname(os.path.abspath(sys.modules[Feature.__module__].__file__))
-        
-        for filename in filenames:
-            logging.debug("Loading feature translation file: %s/%s" % (module_dir, filename))
-            data = json.load( open("%s/%s" % (module_dir, filename)) )
-            for gff_feature, info in data.iteritems():
-                if "target" in info:
-                    self.feature_translation_list[gff_feature] = info["target"]
-    
-    def _load_qualifier_translations(self, filenames):
-        """
-        Load translation json files. Files are loaded in order that they are given, 
-        thus newer rules can be loaded to replace default rules.
-        """
-        module_dir = os.path.dirname(os.path.abspath(sys.modules[Feature.__module__].__file__))
-        
-        for filename in filenames:
-            logging.debug("Loading qualifier translation file: %s/%s" % (module_dir, filename))
-            data = json.load( open("%s/%s" % (module_dir, filename)) )
-            for gff_feature, info in data.iteritems():
-                if "target" in info:
-                    self.qualifier_translation_list[gff_feature] = info["target"]
-                if "prefix" in info:
-                    self.qualifier_prefix[gff_feature] = info["prefix"]
-                if "suffix" in info:
-                    self.qualifier_suffix[gff_feature] = info["suffix"]
     
     def add_qualifier(self, gff_qualifier, value):
         """
