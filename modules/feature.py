@@ -115,8 +115,33 @@ class Feature(object):
         output = self._feature_as_EMBL() if self.type not in self.remove else ""
         
         # Sub-features.
-        for sub_feature in self.sub_features:
-            if sub_feature.type not in self.remove:
+        #
+        # These need some special formatting - generally features are interleaved, 
+        # but for genes they should be printed with sub-features grouped by type
+    
+        if self.type == "gene":
+            temp = self._subfeature_dict()
+            print_order = ["mRNA", "CDS", "UTR"]
+        
+            # basic ordered things
+            for t in print_order:
+                if t not in temp:
+                    continue
+                if t in self.remove:
+                    continue
+                for s in temp[t]:
+                    output += s._feature_as_EMBL()
+        
+            # unordered things
+            for t, l in temp.iteritems():
+                if t in print_order:
+                    continue
+                if t in self.remove:
+                    continue
+                for s in l:
+                    output += s._feature_as_EMBL()
+        else:
+            for sub_feature in self.sub_features:
                 output += str(sub_feature)
         
         return output
@@ -324,6 +349,20 @@ class Feature(object):
             else:
                 location = FeatureLocation( BeforePosition(location.start), location.end, strand = location.strand)
         return location
+    
+    def _subfeature_dict(self):
+        out_dict = {}
+        for sub_feature in self.sub_features:
+            if sub_feature.type not in out_dict:
+                out_dict[sub_feature.type] = []
+            
+            out_dict[sub_feature.type] += [sub_feature]
+            for t,s in sub_feature._subfeature_dict().iteritems():
+                if t not in out_dict:
+                    out_dict[t] = []
+                out_dict[t] += s
+        
+        return out_dict
     
     def add_qualifier(self, gff_qualifier, value):
         """
