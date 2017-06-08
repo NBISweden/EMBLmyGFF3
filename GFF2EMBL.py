@@ -615,7 +615,7 @@ class EMBL( object ):
                 # create locus tag from locus_tag and accessions      
                 output_accession = "%s_%s" % (accession, locus_tag)
             #sys.stderr.write("xx %s, \n" % feature)
-            f = Feature(feature, self.record.seq, output_accession, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1)
+            f = Feature(feature, self.record.seq, output_accession, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1, reorder_gene_features = self.interleave_genes)
             
             #Deal with identical CDS between different isoforms:
             if len(f.sub_features) >= 2: # More than two L2 features, lets check them
@@ -788,6 +788,12 @@ class EMBL( object ):
         
         if self.verify:
             self.molecule_type = self._verify( self.molecule_type, "molecule_type")
+    
+    def set_interleave_genes(self, interleave = True):
+        """
+        Sets wheather to interleave mRNA and CDS subfeatures in gene features
+        """
+        self.interleave_genes = interleave
     
     def set_organelle(self, organelle = None):
         """
@@ -973,6 +979,8 @@ if __name__ == '__main__':
     parser.add_argument("--rt", default=";", help="Reference Title.")
     parser.add_argument("--rl", default=None, help="Reference publishing location.")
     
+    parser.add_argument("--interleave_genes", action="store_false", help="print gene features with interleaved mRNA and CDS features.")
+    
     parser.add_argument("--shame", action="store_true", help="suppress the shameless plug")
     parser.add_argument("--translate", action="store_true", help="include translation in CDS features.")
     
@@ -1028,6 +1036,7 @@ if __name__ == '__main__':
         writer.set_topology( args.topology )
         writer.set_transl_table( args.table )
         writer.set_version( args.version )
+        writer.set_interleave_genes( args.interleave_genes )
         writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)
         writer.set_translation(args.translate)
     

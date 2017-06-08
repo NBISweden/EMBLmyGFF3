@@ -53,7 +53,7 @@ class Feature(object):
     DEFAULT_QUALIFIER_TRANSLATION_FILE=["translation_gff_attribute_to_embl_qualifier.json", "translation_gff_other_to_embl_qualifier.json"]
     PREVIOUS_ERRORS = []
     
-    def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False, feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", format_data = True, level = 0):
+    def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False, feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", format_data = True, level = 0, reorder_gene_features = True):
         """
         Initializes a Feature, loads json files for feature and 
         qualifiers, and starts parsing the data.
@@ -77,6 +77,7 @@ class Feature(object):
         self.transl_table = transl_table
         self.translate = translate
         self.level = level
+        self.reorder_gene_features = reorder_gene_features
 
         self._load_definition("%s/%s.json" % (feature_definition_dir, self.type))
         self._load_data(feature, accessions)
@@ -119,7 +120,7 @@ class Feature(object):
         # These need some special formatting - generally features are interleaved, 
         # but for genes they should be printed with sub-features grouped by type
     
-        if self.type == "gene":
+        if self.type == "gene" and self.reorder_gene_features:
             temp = self._subfeature_dict()
             print_order = ["mRNA", "CDS", "UTR"]
         
