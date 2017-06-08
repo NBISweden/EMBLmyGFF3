@@ -250,8 +250,6 @@ class Feature(object):
             logging.debug("Loading feature translation file: %s/%s" % (module_dir, filename))
             data = json.load( open("%s/%s" % (module_dir, filename)) )
             for gff_feature, info in data.iteritems():
-                if Feature.FIRST:
-                    logging.error("Feature: %s, info: %s", gff_feature, info)
                 if info.get("remove", False):
                     self.remove += [gff_feature]
                 if "target" in info:
