@@ -47,7 +47,7 @@ In order to install biopython and bcbio-gff please use the following steps:
  >pip install biopython==1.67
 
  Install bcbio-gff using pip:
- >pip install bcbio-gff=0.6.4
+ >pip install bcbio-gff==0.6.4
 
 ## Check the installation
 
