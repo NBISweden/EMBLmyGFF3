@@ -107,8 +107,8 @@ Some parameters are mandatory and some others are not. Here is a list of all par
 You can also find a comprehensive help about the different parameters using the software help command.
 
 positional arguments:
-  gff_file              input gff-file
-  fasta                 input fasta sequence
+  gff_file              Input gff-file.
+  fasta                 Input fasta sequence.
   
 **Mandatory Arguments related to the EMBL format to check carrefully:**
 
@@ -124,11 +124,11 @@ positional arguments:
   
 **Optional arguments related to the software:**
 
-  - -h, --help            Show this help message and exit
-  - -v, --verbose         increase verbosity
-  - -q, --quiet           decrease verbosity
-  - --shame               Suppress the shameless plug
-  - -z, --gzip            Gzip output file
+  - -h, --help            Show this help message and exit.
+  - -v, --verbose         Increase verbosity.
+  - -q, --quiet           Decrease verbosity.
+  - --shame               Suppress the shameless plug.
+  - -z, --gzip            Gzip output file.
   - -o , --output         Output filename.
 
 **Optional arguments related to the EMBL format:**
@@ -136,14 +136,16 @@ positional arguments:
   - -c , --created        Creation time of the original entry. The default value is the **date of the day**.
   - -g , --organelle      Sample organelle. No default value.
   - -k , --keyword        Keywords for the entry. No default value.
-  - -l , --classification Organism classification. The default value is **Life** 
+  - -l , --classification Organism classification. The default value is **Life**.
   - --rc                  Reference Comment. No default value.
   - --rx                  Reference cross-reference. No default value.
   - --ra , --author       Author for the reference. No default value.
   - --rt                  Reference Title. No default value.
   - --rl                  Reference publishing location. No default value.
   - --translate           Include translation in CDS features. Not activated by default.
-  - --version             Sequence version number. The default value is **1** 
+  - --version             Sequence version number. The default value is **1**.
+  - --keep_duplicates       Do not remove duplicate features during the process.
+  - --interleave_genes    Print gene features with interleaved mRNA and CDS features.
 
 ## MAPPING
 
@@ -206,5 +208,4 @@ Wihtin the embl file, instead to get **note="Prokka"**, here we will get **note=
 There's a bug between bcbio-gff 0.6.4 and biopython 1.68 though,so use biopython 1.67.
 
 **Duplicated Features**</br>
-Features that have the same key (feature type) and location as another feature are considered as duplicates and aren't allowed by the EMBL database.</br>
-How to fix => Consider removing the isoforms and keep only the longest prediction per locus.
+Features that have the same key (feature type) and location as another feature are considered as duplicates and aren't allowed by the EMBL database. So they are remove during the process. If you don't plan to submit the file to ENA and you wish to keep these features, use the *--keep_duplicates* option. 
