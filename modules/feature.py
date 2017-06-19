@@ -121,26 +121,21 @@ class Feature(object):
         # but for genes they should be printed with sub-features grouped by type
     
         if self.type == "gene" and self.reorder_gene_features:
-            temp = self._subfeature_dict()
-            print_order = ["mRNA", "CDS", "UTR"]
-        
-            # basic ordered things
-            for t in print_order:
-                if t not in temp:
-                    continue
-                if t in self.remove:
-                    continue
-                for s in temp[t]:
-                    output += s._feature_as_EMBL()
-        
-            # unordered things
-            for t, l in temp.iteritems():
-                if t in print_order:
-                    continue
-                if t in self.remove:
-                    continue
-                for s in l:
-                    output += s._feature_as_EMBL()
+            
+            #print level2
+            list_type_l3 = []
+            for feature_l2 in self.sub_features:
+                output += feature_l2._feature_as_EMBL()
+                for feature_l3 in feature_l2.sub_features:
+                    if not feature_l3.type in list_type_l3:
+                        list_type_l3.append(feature_l3.type)
+            #print level3
+            for f_type in list_type_l3: 
+                for feature_l2 in self.sub_features:
+                    for feature_l3 in feature_l2.sub_features:
+                        if f_type == feature_l3.type:
+                            output += feature_l3._feature_as_EMBL()
+
         else:
             for sub_feature in self.sub_features:
                 output += str(sub_feature)
@@ -350,20 +345,6 @@ class Feature(object):
             else:
                 location = FeatureLocation( BeforePosition(location.start), location.end, strand = location.strand)
         return location
-    
-    def _subfeature_dict(self):
-        out_dict = {}
-        for sub_feature in self.sub_features:
-            if sub_feature.type not in out_dict:
-                out_dict[sub_feature.type] = []
-            
-            out_dict[sub_feature.type] += [sub_feature]
-            for t,s in sub_feature._subfeature_dict().iteritems():
-                if t not in out_dict:
-                    out_dict[t] = []
-                out_dict[t] += s
-        
-        return out_dict
     
     def add_qualifier(self, gff_qualifier, value):
         """
