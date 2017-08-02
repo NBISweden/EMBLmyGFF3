@@ -64,6 +64,7 @@ class Feature(object):
         self.qualifiers = {}
         self.qualifier_translation_list = {}
         self.feature_translation_list = {}
+        self.singleton_types = ["exon"]
         self.qualifier_prefix = {}
         self.qualifier_suffix = {}
         self.legal_qualifiers = []
@@ -93,7 +94,9 @@ class Feature(object):
                 # Parse through subfeatures level3
                 featureObj_level3 = None
                 for feature_l3 in feature_l2.sub_features:
-                    if self._from_gff_feature(feature_l3.type) in [sf.type for sf in featureObj_level2.sub_features]:
+                    l3_type = self._from_gff_feature(feature_l3.type)
+                    l2_sub_features = [sf.type for sf in featureObj_level2.sub_features]
+                    if l3_type in l2_sub_features and l3_type not in self.singleton_types:
                         old_feature = [sf for sf in featureObj_level2.sub_features if sf.type == self._from_gff_feature(feature_l3.type)][0]
                         old_feature.combine(feature_l3)
                     else:
@@ -240,8 +243,7 @@ class Feature(object):
             logging.debug("Reading qualifier: %s (%s), translating to %s" % (qualifier, value, self._from_gff_qualifier(qualifier)))
             self.add_qualifier( qualifier, value )
         
-
-        if 'locus_tag' in self.qualifiers:          
+        if 'locus_tag' in self.qualifiers:
             self.qualifiers['locus_tag'].set_value( accessions )
     
     def _load_definition(self, filename):
@@ -306,11 +308,16 @@ class Feature(object):
         """
         
         if self.level == 2: # level 2 means e.g: mRNA, tRNA, etc.
+            first = True
             for i, sf in enumerate(self.sub_features):
                 if sf.type != 'exon':
                     continue
                 # replace mRNA location with exon location(s)
-                self.location = sf.location
+                if first:
+                    self.location = sf.location
+                    first = False
+                else:
+                    self.location += sf.location
         
         for sf in self.sub_features:
             sf._reformat_exons()
