@@ -617,34 +617,35 @@ class EMBL( object ):
             #sys.stderr.write("xx %s, \n" % feature)
             f = Feature(feature, self.record.seq, output_accession, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1, reorder_gene_features = self.interleave_genes)
             
-            #Deal with identical CDS between different isoforms:
-            if len(f.sub_features) >= 2: # More than two L2 features, lets check them
+            if not self.keep_duplicates:
+                #Deal with identical CDS/UTR/etc between different isoforms:
+                if len(f.sub_features) >= 2: # More than two L2 features, lets check them
 
-                dictionaryType = {}
-                for feature_l2_obj in f.sub_features:
-                    
-                    # Parse through subfeatures level3
-                    rearrange=None
-                    ListIndexToRemove = []
-                    for i, feature_l3_obj in enumerate(feature_l2_obj.sub_features):
-                        # test will be None if no location match one location already saved in the dictionary
-                        test = next((elem for elem in dictionaryType if str(elem) == feature_l3_obj.type+str(feature_l3_obj.location)), None)
+                    dictionaryType = {}
+                    for feature_l2_obj in f.sub_features:
+                        
+                        # Parse through subfeatures level3
+                        rearrange=None
+                        ListIndexToRemove = []
+                        for i, feature_l3_obj in enumerate(feature_l2_obj.sub_features):
+                            # test will be None if no location match one location already saved in the dictionary
+                            test = next((elem for elem in dictionaryType if str(elem) == feature_l3_obj.type+str(feature_l3_obj.location)), None)
 
-                        if test:
-                            #logging.error("remove %s" % feature_l3_obj.type)
-                            rearrange=True
-                            ListIndexToRemove.append(i)
-                            
-                        else: #it is New
-                            #logging.error("Add this location %s" % str(feature_l3_obj.type+feature_l3_obj.location))
-                            dictionaryType[feature_l3_obj.type+str(feature_l3_obj.location)]=1
-                            
-                    #Now remove duplicated features
-                    if rearrange:
-                        cpt = 0
-                        for index in ListIndexToRemove:               
-                            del feature_l2_obj.sub_features[index-cpt]
-                            cpt+=1
+                            if test:
+                                #logging.error("remove %s" % feature_l3_obj.type)
+                                rearrange=True
+                                ListIndexToRemove.append(i)
+                                
+                            else: #it is New
+                                #logging.error("Add this location %s" % str(feature_l3_obj.type+feature_l3_obj.location))
+                                dictionaryType[feature_l3_obj.type+str(feature_l3_obj.location)]=1
+                                
+                        #Now remove duplicated features
+                        if rearrange:
+                            cpt = 0
+                            for index in ListIndexToRemove:               
+                                del feature_l2_obj.sub_features[index-cpt]
+                                cpt+=1
 
             #Print
             output += str(f)
@@ -795,6 +796,12 @@ class EMBL( object ):
         """
         self.interleave_genes = interleave
     
+    def set_keep_duplicates(self, duplicate = False):
+        """
+        Sets wheather to keep duplicate features during the processing
+        """
+        self.keep_duplicates = duplicate
+
     def set_organelle(self, organelle = None):
         """
         Sets the sample organelle, or parses it from the current record.
@@ -954,17 +961,17 @@ if __name__ == '__main__':
     
     parser = argparse.ArgumentParser( description = __doc__ )
     
-    parser.add_argument("gff_file", help="input gff-file")
-    parser.add_argument("fasta", help="input fasta sequence")
-    parser.add_argument("-a", "--accession", default=[], nargs="+", help="Accession number(s) for the entry")
-    parser.add_argument("-c", "--created", default=None, help="Creation time of the original entry")
+    parser.add_argument("gff_file", help="Input gff-file.")
+    parser.add_argument("fasta", help="Input fasta sequence.")
+    parser.add_argument("-a", "--accession", default=[], nargs="+", help="Accession number(s) for the entry.")
+    parser.add_argument("-c", "--created", default=None, help="Creation time of the original entry.")
     parser.add_argument("-d", "--data_class", default=None, help="Data class of the sample.", choices=["CON", "PAT", "EST", "GSS", "HTC", "HTG", "MGA", "WGS", "TSA", "STS", "STD"])
     parser.add_argument("-g", "--organelle", default=None, help="Sample organelle.")
     
-    parser.add_argument("-k", "--keyword", default=[], nargs="+", help="Keywords for the entry")
-    parser.add_argument("-l", "--classification", default=["Life"], nargs="+", help="Organism classification")
+    parser.add_argument("-k", "--keyword", default=[], nargs="+", help="Keywords for the entry.")
+    parser.add_argument("-l", "--classification", default=["Life"], nargs="+", help="Organism classification.")
     parser.add_argument("-m", "--molecule_type", default=None, help="Molecule type of the sample.", choices=["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"])
-    parser.add_argument("-o", "--output", default=None, help="output filename.")
+    parser.add_argument("-o", "--output", default=None, help="Output filename.")
     parser.add_argument("-p", "--project_id", default=None, help="Project ID.")
     parser.add_argument("-r", "--table", type=int, default=None, help="Translation table.", choices=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
     parser.add_argument("-s", "--species", default=None, help="Sample Species, formatted as 'Genus species (english name)'.")
@@ -975,20 +982,21 @@ if __name__ == '__main__':
     parser.add_argument("--rc", default=None, help="Reference Comment.")
     parser.add_argument("--rx", default=None, help="Reference cross-reference.")
     parser.add_argument("--rg", default=None, help="Reference Group, the working groups/consortia that produced the record.")
-    parser.add_argument("--ra", "--author", nargs="+", default="", help="Author for the reference")
+    parser.add_argument("--ra", "--author", nargs="+", default="", help="Author for the reference.")
     parser.add_argument("--rt", default=";", help="Reference Title.")
     parser.add_argument("--rl", default=None, help="Reference publishing location.")
     
-    parser.add_argument("--interleave_genes", action="store_false", help="print gene features with interleaved mRNA and CDS features.")
+    parser.add_argument("--keep_duplicates", action="store_true", help="Do not remove duplicate features during the process.")
+    parser.add_argument("--interleave_genes", action="store_false", help="Print gene features with interleaved mRNA and CDS features.")
     
-    parser.add_argument("--shame", action="store_true", help="suppress the shameless plug")
-    parser.add_argument("--translate", action="store_true", help="include translation in CDS features.")
+    parser.add_argument("--shame", action="store_true", help="Suppress the shameless plug.")
+    parser.add_argument("--translate", action="store_true", help="Include translation in CDS features.")
     
-    parser.add_argument("--version", default=1, type=int, help="Sequence version number")
+    parser.add_argument("--version", default=1, type=int, help="Sequence version number.")
     parser.add_argument("-x", "--taxonomy", default=None, help="Source taxonomy.", choices=["PHG", "ENV", "FUN", "HUM", "INV", "MAM", "VRT", "MUS", "PLN", "PRO", "ROD", "SYN", "TGN", "UNC", "VRL"])
     
-    parser.add_argument("-v", "--verbose", action="count", default=2, help="increase verbosity")
-    parser.add_argument("-q", "--quiet", action="count", default=0, help="decrease verbosity")
+    parser.add_argument("-v", "--verbose", action="count", default=2, help="Increase verbosity.")
+    parser.add_argument("-q", "--quiet", action="count", default=0, help="Decrease verbosity.")
     
     args = parser.parse_args()
     
@@ -1036,6 +1044,7 @@ if __name__ == '__main__':
         writer.set_topology( args.topology )
         writer.set_transl_table( args.table )
         writer.set_version( args.version )
+        writer.set_keep_duplicates( args.keep_duplicates )
         writer.set_interleave_genes( args.interleave_genes )
         writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)
         writer.set_translation(args.translate)
