@@ -209,12 +209,12 @@ This will map the **source** from the 2nd columm of the gff3 file to the **note*
 
 **/!\\** Please notice the *prefix* allows to add information dowstream the source value wihtin the qualifier (Upstream information is also possible using *suffix*).</br>
 e.g: The source value is "Prokka":</br> 
-Wihtin the embl file, instead to get **note="Prokka"**, here we will get **note="source:Prokka"**
+Within the embl file, instead to get **note="Prokka"**, here we will get **note="source:Prokka"**
 
 ## KNOWN ISSUES
 
 **biopython version**
-There's a bug between bcbio-gff 0.6.4 and biopython 1.68 though,so use biopython 1.67.
+There's a bug between bcbio-gff 0.6.4 and biopython 1.68 though, so use biopython 1.67.
 
 **Duplicated Features**</br>
 Features that have the same key (feature type) and location as another feature are considered as duplicates and aren't allowed by the EMBL database. So they are remove during the process. If you don't plan to submit the file to ENA and you wish to keep these features, use the *--keep_duplicates* option. 
