@@ -165,7 +165,7 @@ The file handling the proper mapping is ***translation_gff_feature_to_embl_featu
   &nbsp;&nbsp;"target": "3'UTR"</br>
   }
  
-This will map the **three_prime_UTR** featury type from the 3th column of the gff3 file to the **3'UTR** embl feature type.
+This will map the **three_prime_UTR** feature type from the 3th column of the gff3 file to the **3'UTR** embl feature type.
 **When the feature type from the gff3 is identical to the embl feature no need to specify any target.** If a target is needed and you didn't specified it, the tool will throw a warning message during the process.
  
 You can decide which features will be reported in the ouput using the **remove** parameter:
