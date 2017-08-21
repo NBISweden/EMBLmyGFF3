@@ -1051,4 +1051,4 @@ if __name__ == '__main__':
     
         writer.write_all( outfile )
      
-    sys.stderr.write( """Well done\n""")
+    sys.stderr.write( """Conversion done\n""")
