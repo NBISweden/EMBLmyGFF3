@@ -216,5 +216,8 @@ Within the embl file, instead to get **note="Prokka"**, here we will get **note=
 **biopython version**
 There's a bug between bcbio-gff 0.6.4 and biopython 1.68 though, so use biopython 1.67.
 
+If you have several version of biopython or bcbio-gff on your computer it is possible that an incompatible version is used by default which will lead to an execution error. To check the real version used during the execution you can use this command:
+python -c "import Bio; from BCBio import GFF; print 'biopython version: '+Bio.__version__; print 'bcbio-gff version: '+GFF.__version__"
+
 **Duplicated Features**</br>
 Features that have the same key (feature type) and location as another feature are considered as duplicates and aren't allowed by the EMBL database. So they are remove during the process. If you don't plan to submit the file to ENA and you wish to keep these features, use the *--keep_duplicates* option. 
