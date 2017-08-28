@@ -24,8 +24,8 @@ The output can be validated using the ENA flat file validator distributed by EMB
 &nbsp;&nbsp;&nbsp;[Feature type](#feature-type)</br>
 &nbsp;&nbsp;&nbsp;[Attribute to qualifier](#attribute-to-qualifier)</br>
 &nbsp;&nbsp;&nbsp;[Other](#other)</br>
-[Known issues](#known-issues)
-
+[Known issues](#known-issues)</br>
+[Citation](#citation)
 ## VERSION
 
 **GFF3_to_EMBL.1.0.0**
@@ -221,3 +221,6 @@ python -c "import Bio; from BCBio import GFF; print 'biopython version: '+Bio.__
 
 **Duplicated Features**</br>
 Features that have the same key (feature type) and location as another feature are considered as duplicates and aren't allowed by the EMBL database. So they are remove during the process. If you don't plan to submit the file to ENA and you wish to keep these features, use the *--keep_duplicates* option. 
+
+**Citation**</br>
+[![DOI](https://zenodo.org/badge/64933149.svg)](https://zenodo.org/badge/latestdoi/64933149)
