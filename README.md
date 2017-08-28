@@ -28,9 +28,9 @@ The output can be validated using the ENA flat file validator distributed by EMB
 
 ## VERSION
 
-**GFF3_to_EMBL.X.0.0**
+**GFF3_to_EMBL.1.0.0**
 
-This is the first version released (X March 2017). 
+This is the first version released (August 2017). 
 
 ## PREREQUISITE
 
