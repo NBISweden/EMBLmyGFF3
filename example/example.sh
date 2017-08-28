@@ -38,6 +38,6 @@ CLASS="STD"
 MOLECULE="genomic DNA"
 
 # Converter script location
-GFF2EMBL="../GFF2EMBL.py"
+GFF3_to_EMBL="../GFF3_to_EMBL.py"
 
-$GFF2EMBL --rg $REFERENCE_GROUP -a $ACCESSION -p $PROJECT -l "$CLASSIFICATION" -m "$MOLECULE" -d $CLASS -r $TABLE -t linear -s "$SPECIES" -x $TAXONOMY $ANNOTATION $GENOME $@ > result.embl
+$GFF3_to_EMBL --rg $REFERENCE_GROUP -a $ACCESSION -p $PROJECT -l "$CLASSIFICATION" -m "$MOLECULE" -d $CLASS -r $TABLE -t linear -s "$SPECIES" -x $TAXONOMY $ANNOTATION $GENOME $@ > result.embl
