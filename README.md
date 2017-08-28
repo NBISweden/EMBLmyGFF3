@@ -1,4 +1,4 @@
-GFF3 to EMBL conversion script
+GFF3 to EMBL conversion tool
 ==============================
 **GFF3+FASTA => EMBL format**
 
