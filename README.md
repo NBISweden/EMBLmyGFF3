@@ -106,21 +106,22 @@ In order to use it move in the example folder, then launch the script:
 Some parameters are mandatory and some others are not. Here is a list of all parameters available. 
 You can also find a comprehensive help about the different parameters using the software help command.
 
-positional arguments:
-  gff_file              Input gff-file.
-  fasta                 Input fasta sequence.
+**positional arguments:**
+
+  gff_file              &nbsp;&nbsp;&nbsp;&nbsp;Input gff-file.</br>
+  fasta                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Input fasta sequence.
   
 **Mandatory Arguments related to the EMBL format to check carrefully:**
 
-  - -p , --project_id     Project ID. The defalut value is **Unknown** *(This option is used to set up the PR line.)*
-  - -r , --table          Translation table. No default value. *(This option is used to set up the translation table qualifier transl_table of the CDS features.)* Please visit this [NCBI genetic code] (https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.
-  - -s , --species        Sample Species, formatted as 'Genus species (english name)'. No default value. This option is used to set up the OS line.
-  - -t , --topology       Sequence topology. No default value. *(This option is used to set up the Topology that is the 3th token of the ID line.)*
-  - -d , --data_class     Data class of the sample. No default value. *(This option is used to set up the 5th token of the ID line.)*
-  - -m , --molecule_type  Molecule type of the sample. No default value.
-  - -a , --accession      Accession number(s) for the entry. Default value: **UNKNOWN** . This option is used to set up the accession number of the AC line and the first token of the ID line as well as the prefix of the locus_tag qualifier.    
-  - -x , --taxonomy       Source taxonomy. No default value. This option is used to set the taxonomic division within ID line (6th token).
-  - --rg                  Reference Group, the working groups/consortia that produced the record. No default value.
+  - -p , --project_id     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project ID. The defalut value is **Unknown** *(This option is used to set up the PR line.)*
+  - -r , --table          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Translation table. No default value. *(This option is used to set up the translation table qualifier transl_table of the CDS features.)* Please visit this [NCBI genetic code](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.
+  - -s , --species        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sample Species, formatted as 'Genus species (english name)'. No default value. This option is used to set up the OS line.
+  - -t , --topology       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sequence topology. No default value. *(This option is used to set up the Topology that is the 3th token of the ID line.)*
+  - -d , --data_class     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data class of the sample. No default value. *(This option is used to set up the 5th token of the ID line.)*
+  - -m , --molecule_type  &nbsp;&nbsp;Molecule type of the sample. No default value.
+  - -a , --accession      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accession number(s) for the entry. Default value: **UNKNOWN** . This option is used to set up the accession number of the AC line and the first token of the ID line as well as the prefix of the locus_tag qualifier.    
+  - -x , --taxonomy       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Source taxonomy. No default value. This option is used to set the taxonomic division within ID line (6th token).
+  - --rg                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reference Group, the working groups/consortia that produced the record. No default value.
   
 **Optional arguments related to the software:**
 
