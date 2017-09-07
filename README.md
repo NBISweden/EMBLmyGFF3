@@ -26,6 +26,7 @@ The output can be validated using the ENA flat file validator distributed by EMB
 &nbsp;&nbsp;&nbsp;[Other](#other)</br>
 [Known issues](#known-issues)</br>
 [Citation](#citation)
+[Author](#author)
 ## VERSION
 
 **GFF3_to_EMBL.1.0.0**
@@ -235,3 +236,11 @@ Features that have the same key (feature type) and location as another feature a
 ## CITATION
 
 [![DOI](https://zenodo.org/badge/64933149.svg)](https://zenodo.org/badge/latestdoi/64933149)
+
+## AUTHOR
+
+Martin Norling<sup>1,2</sup>, Niclas Jareborg<sup>1,3</sup>, Jacques Dainat<sup>1,2</sup>
+
+<sup>1</sup>National Bioinformatics Infrastructure Sweden (NBIS), SciLifeLab, Uppsala Biomedicinska Centrum (BMC), Husargatan 3, S-751 23 Uppsala, SWEDEN.</br>
+<sup>2</sup>IMBIM - Department of Medical Biochemistry and Microbiology, Box 582, S-751 23 Uppsala, SWEDEN.</br>
+<sup>3</sup>Department of Biochemisty and Biophys-ics, Stockholm University / SciLifeLab, Box 1031, S-171 21 Solna, SWEDEN.
