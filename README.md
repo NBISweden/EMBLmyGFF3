@@ -29,7 +29,7 @@ The output can be validated using the ENA flat file validator distributed by EMB
 [Author](#author)
 ## VERSION
 
-**GFF3_to_EMBL.1.0.0**
+**EMBLmyGFF3.1.0.0**
 
 This is the first version released (August 2017). 
 
@@ -53,11 +53,11 @@ In order to install biopython and bcbio-gff please use the following steps:
 ## Check the installation
 
  Executing:
- >./GFF3_to_EMBL.py
+ >./EMBLmyGFF3.py
  
  or
  
- >./GFF3_to_EMBL.py -h
+ >./EMBLmyGFF3.py -h
  
 will display some help.
 
@@ -74,26 +74,26 @@ Test data from the Drosophila melanogaster species are located in the example fo
 
 ### Simple case 
 
- >./GFF3_to_EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa
+ >./EMBLmyGFF3.py example/dmel_chr4.gff3 example/dmel_chr4.fa
  
 Will prompt you to fill one by one the mandatory information needed to produce a proper EMBL file.
 Once the software has all the information it needs, it will process the input files and will print the result to STDOUT.
  
 In order to write the result in the desired file use the **-o** option:
  
- >./GFF3_to_EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa -o result.embl
+ >./EMBLmyGFF3.py example/dmel_chr4.gff3 example/dmel_chr4.fa -o result.embl
 
 ### Complete case 
 
 Minimum requirement to launch the software and avoid any prompt.
 
- >./GFF3_to_EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type 'genomic DNA' --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP -o result.embl
+ >./EMBLmyGFF3.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type 'genomic DNA' --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP -o result.embl
 
 ### Advanced case 
 
 When you want add more information than those mandatory: e.g publication.
 
- >./GFF3_to_EMBL.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
+ >./EMBLmyGFF3.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
 
 ### Use through a bash script
 

@@ -446,13 +446,13 @@ def help(string):
       """
 
    elif(string == "o" or string == "output"):
-      return """GFF3_to_EMBL tool specific
+      return """EMBLmyGFF3 tool specific
       This option allows to set the file name where the output will be written.
       By default the output is written to STDOUT, which means it will be displayed within the shell you are executing the script, 
       except if you are using the "> afile" to redirect it to the file <afile>.
       """
    elif(string == "shame"):
-      return """GFF3_to_EMBL tool specific
+      return """EMBLmyGFF3 tool specific
       Suppress the shameless plug. A “shameless plug” is a term often used to refer when someone has included (or “plugged”) 
       some information that helps advance their own selfish interests.
 
@@ -466,7 +466,7 @@ def help(string):
       Yes being silent is useful when you do piping and so on.
       """
    elif(string == "v" or string == "verbose"):
-      return """GFF3_to_EMBL tool specific
+      return """EMBLmyGFF3 tool specific
       This option allows to increase the verbosity level. V stands for verbose.
 
       There is 5 verbosity level:  Critical > Error > Warning > Info > Debug
@@ -475,7 +475,7 @@ def help(string):
       -vv will increase the level to the Debug level
       """
    elif(string == "q" or string == "quiet"):
-      return """GFF3_to_EMBL tool specific
+      return """EMBLmyGFF3 tool specific
       This option allows to decrease the verbosity level. Q stands for quiet
 
       There is 5 verbosity level:  Critical > Error > Warning > Info > Debug
@@ -484,7 +484,7 @@ def help(string):
       -qq will decrease the level to the Critical level
       """
    elif(string == "z" or string == "gzip"):
-      return """GFF3_to_EMBL tool specific
+      return """EMBLmyGFF3 tool specific
       This option allows to compress the output file in gzip format. This option does not expect any value.
       """
    else:
