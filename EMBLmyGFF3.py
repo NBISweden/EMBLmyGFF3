@@ -825,7 +825,7 @@ class EMBL( object ):
         elif hasattr(self.record, "project_id"):
             self.project_id = self.record.project_id
         elif not hasattr(self, "project_id"):
-            self.project_id = "Unknown"
+            self.project_id = "UNKNOWN"
     
     def set_record(self, record):
         """
