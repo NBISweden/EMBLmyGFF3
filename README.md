@@ -61,7 +61,7 @@ will display some help.
 
 ### FOREWORD
 
-A correct **gff3 file** and the **genome in fasta format** that has been used to produce the gff file are the mandatory input files.
+A correct **GFF3 file** and the **genome in FASTA format** that has been used to produce the GFF3 file are the mandatory input files.
 Then, in order to get a valid EMBL flat file suitable for submission you have to fill carefully all mandatory metadata.
 
 **/!\ Please be aware that a *project ID* and an *accession number* are mandatory for a submission to [ENA](http://www.ebi.ac.uk/ena). You don't need this information if you don't plan to submit the data (In case you just want an EMBL-like flat file for other purposes). If you don't have yet those information you can add them later by replacing the corresponding fields. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to obtain a *project ID* and an *accession number*.**
@@ -155,13 +155,13 @@ You can also find a comprehensive help about the different parameters using the 
 
 ## MAPPING
 
-The challenge for a correct conversion is the correct mapping between the feature types described in the 3th column as well as the different attribute’s tags of the 9th column of the gff3 file and the corresponding EMBL features and qualifiers.
+The challenge for a correct conversion is the correct mapping between the feature types described in the 3th column as well as the different attribute’s tags of the 9th column of the GFF3 file and the corresponding EMBL features and qualifiers.
 If a feature type or an attribute's tag is not yet handle by the software it will inform you during the conversion process. You can then add the information needed in the corresponding mapping file.
 If you figure out that a feature type or an attribute's tag is no mapped to the corresponding EMBL features or qualifiers you would like, you will have to modify the corresponding information in the mapping files.
 
 ### Feature type
 
-The embl format accepts 52 different feature types whereas the gff3 is constrained to be a Sequence Ontology term or accession number (3th column of the gff3), but nevertheless this constitutes 2278 terms in version 2.5.3 of the Sequence Ontology.
+The EMBL format accepts 52 different feature types whereas the GFF3 is constrained to be a Sequence Ontology term or accession number (3th column of the GFF3), but nevertheless this constitutes 2278 terms in version 2.5.3 of the Sequence Ontology.
 
 The file handling the proper mapping is ***translation_gff_feature_to_embl_feature.json***
 
@@ -171,8 +171,8 @@ The file handling the proper mapping is ***translation_gff_feature_to_embl_featu
   &nbsp;&nbsp;"target": "3'UTR"</br>
   }
  
-This will map the **three_prime_UTR** feature type from the 3th column of the gff3 file to the **3'UTR** embl feature type.
-**When the feature type from the gff3 is identical to the embl feature no need to specify any target.** If a target is needed and you didn't specified it, the tool will throw a warning message during the process.
+This will map the **three_prime_UTR** feature type from the 3th column of the GFF3 file to the **3'UTR** EMBL feature type.
+**When the feature type from the GFF3 is identical to the EMBL feature no need to specify any target.** If a target is needed and you didn't specified it, the tool will throw a warning message during the process.
  
 You can decide which features will be reported in the ouput using the **remove** parameter:
 
@@ -184,7 +184,7 @@ Like that no exon feature will be display in the output.
  
 ### Attribute to qualifier
 
-The embl format accepts 98 different qualifiers where the corresponding attribute tag types in the 9th column of the gff3 are unlimited.
+The embl format accepts 98 different qualifiers where the corresponding attribute tag types in the 9th column of the GFF3 are unlimited.
 The file handling the proper mapping is ***translation_gff_attribute_to_embl_qualifier.json***
 
 **example:**
@@ -195,11 +195,11 @@ The file handling the proper mapping is ***translation_gff_attribute_to_embl_qua
   &nbsp;&nbsp;"dev comment": ""</br>
   },
  
-This will map the **Dbxref** attribute's tag from the 9th columm of the gff3 file to the **db_xref** embl qualifier.
+This will map the **Dbxref** attribute's tag from the 9th columm of the GFF3 file to the **db_xref** embl qualifier.
 
 ### Other
 
-The **source** (2nd column) as well as the **score** (6th column) from the gff3 file can also be handled through the ***translation_gff_other_to_embl_qualifier.json*** mapping file.
+The **source** (2nd column) as well as the **score** (6th column) from the GFF3 file can also be handled through the ***translation_gff_other_to_embl_qualifier.json*** mapping file.
 
   >"source": {</br>&nbsp;&nbsp;
   "source description": "The source is a free text qualifier intended to describe the algorithm or operating procedure that generated this
@@ -211,7 +211,7 @@ The **source** (2nd column) as well as the **score** (6th column) from the gff3 
   &nbsp;&nbsp;"dev comment": "EMBL qualifiers tend to be more specific than this, so very hard to create a good mapping."</br>
   },
  
-This will map the **source** from the 2nd columm of the gff3 file to the **note** embl qualifier. 
+This will map the **source** from the 2nd columm of the GFF3 file to the **note** embl qualifier. 
 
 **/!\\** Please notice the *prefix* allows to add information dowstream the source value wihtin the qualifier (Upstream information is also possible using *suffix*).</br>
 e.g: The source value is "Prokka":</br> 
