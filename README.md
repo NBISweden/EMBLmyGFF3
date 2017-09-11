@@ -1,6 +1,6 @@
 GFF3 to EMBL conversion tool
 ==============================
-**GFF3+FASTA => EMBL format**
+**GFF3+FASTA ===EMBLmyGFF3===> EMBL format**
 
 Software to convert GFF3 and fasta to legal EMBL format suitable for [ENA](http://www.ebi.ac.uk/ena) submission.
 
@@ -28,10 +28,6 @@ The output can be validated using the ENA flat file validator distributed by EMB
 [Citation](#citation)
 [Author](#author)
 ## VERSION
-
-**EMBLmyGFF3.1.0.0**
-
-This is the first version released (August 2017). 
 
 ## PREREQUISITE
 
