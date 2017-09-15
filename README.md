@@ -11,7 +11,6 @@ The output can be validated using the ENA flat file validator distributed by EMB
 
 ## INDEX
 
-[Version](#version)</br>
 [Prerequisite](#prerequisite)</br>
 [Usage](#usage)</br>
 &nbsp;&nbsp;&nbsp;[Foreword](#foreword)</br>
@@ -27,7 +26,6 @@ The output can be validated using the ENA flat file validator distributed by EMB
 [Known issues](#known-issues)</br>
 [Citation](#citation)
 [Author](#author)
-## VERSION
 
 ## PREREQUISITE
 
@@ -114,7 +112,7 @@ You can also find a comprehensive help about the different parameters using the 
 
 | Parameter | Description |
 | --- | --- |
-|  -p , --project_id     |Project ID. The defalut value is **Unknown** *(This option is used to set up the PR line.)*|
+|  -p , --project_id     |Project ID. The defalut value is **UNKNOWN** *(This option is used to set up the PR line.)*|
 |  -r , --table          |Translation table. No default value. *(This option is used to set up the translation table qualifier| transl_table of the CDS features.)* Please visit this [NCBI genetic code](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.|
 |  -s , --species        |Sample Species, formatted as 'Genus species (english name)'. No default value. This option is used to set up the OS line.|
 |  -t , --topology       |Sequence topology. No default value. *(This option is used to set up the Topology that is the 3th token of the ID line.)*|
