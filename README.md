@@ -1,6 +1,7 @@
 GFF3 to EMBL conversion tool
 ==============================
-**GFF3+FASTA ===EMBLmyGFF3===> EMBL format**
+
+<img src="EMBLmyGFF3.png" width="500" height="150" />
 
 Software to convert GFF3 and fasta to legal EMBL format suitable for [ENA](http://www.ebi.ac.uk/ena) submission.
 
