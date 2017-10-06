@@ -111,7 +111,9 @@ class EMBL( object ):
                     'transl_table':[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
                     }
     
-    release_dates = {130:time.strptime("2016-11-13", "%Y-%m-%d"),
+    release_dates = {132:time.strptime("2017-05-27", "%Y-%m-%d"),
+                     131:time.strptime("2017-04-03", "%Y-%m-%d"),
+                     130:time.strptime("2016-11-13", "%Y-%m-%d"),
                      125:time.strptime("2015-09-23", "%Y-%m-%d"),
                      124:time.strptime("2015-07-01", "%Y-%m-%d"), 
                      123:time.strptime("2015-03-23", "%Y-%m-%d"),
@@ -218,32 +220,140 @@ class EMBL( object ):
         If data is a list, the entries are listed with "sep" as separator, if data is
         a string, it's quoted over as many lines as needed.
         """
-        
+       
+        output=""
+
         #particular case when RT come empty. We must print ; wihtout quotes
         if(prefix == "RT" and data == ";"):
             output = "%s%s" % (prefix, " "*indent)
             output += str(data)
             return "\n" + output + suffix
         
-        output = "%s%s" % (prefix, " "*indent)
+
+        # List Case
+        previousChunck=""
         if type(data) == type([]):
-            for item in data:
-                if len(output) - output.rfind("\n") + len(item) > 80:
-                    output += "\n%s%s" % (prefix, " "*indent)
-                output += item + "%s " % sep
+            #logging.error("!!!!!!!!!!!!!!!LIST case!!!!!!!!!")
+            for i, item in enumerate(data):
+                if item:
+                    currentChunck = item + previousChunck
+                    # If item of the list is too long we have to split it as well
+                    if len(currentChunck) > 75:
+                        output,lastLine=self._splitStringMultiline(output, currentChunck, quoted)
+                        previousChunck="\n"+lastLine
+
+                    else:
+                        previousChunck=currentChunck
+
+                    #Now add separator between chuncks
+                    if len(previousChunck) >= 75 : # >= Because when previousChunck is last line and is 75 char length, adding the \n will give string longer than 75
+                        output+=previousChunck+"\n"
+                        previousChunck="%s " % sep
+                    else:
+                        previousChunck+="%s " % sep
+
+            output+=previousChunck
+
+        # String case
         else:
-            string = " ".join(data.split("\n"))
-            output += "\"" if quoted else ""
-            while string:
-                line = string[:80-(len(output) - output.rfind("\n"))]
-                output += line
-                string = string[len(line):]
-                if string or (len(line)+indent+2) == 80:
-                    output += "\n%s%s" % (prefix, " "*indent)
-            output += "\"" if quoted else ""
+            #logging.error("!!!!!!!!!!!!!!!String case!!!!!!!!!")
+            output,lastLine=self._splitStringMultiline(output, data, quoted)
+            if len(lastLine) == 75:
+                output+=lastLine+"\n"+sep
+            else:    
+                output+=lastLine+sep
         
-        return "\n" + output.strip().strip(sep) + suffix
+        #Last step: add prefix at each line
+        cleanOutput=""
+        if output:
+            listLine= output.split("\n")
+            for i, line in enumerate(listLine):
+                if i == 0:
+                    cleanOutput += "%s%s" % (prefix, " "*indent) + line
+                else:
+                    cleanOutput += "\n%s%s" % (prefix, " "*indent) + line
+        else:
+            cleanOutput += "%s%s" % (prefix, " "*indent) #the "+sep" is a trick to keep the final cleaning within the return working properly
+
+        return "\n" + cleanOutput.strip().strip(sep) + suffix
     
+    # This method allow to wrap a sting at a size of 75 taking care of quote
+    # It return back the result in different part: the last line and everything before if exists.
+    def _splitStringMultiline(self, output, data, quoted):
+        lastLine=""
+        string = " ".join(data.split("\n"))
+        output += "\"" if quoted else ""
+
+        roundl=0
+        while string:
+            roundl+=1
+            if roundl == 1: #Within the round 1 the indentation already exists
+                if quoted: 
+                    if len(string) + 2 <= 75: #peculiar case quotes plus string exactly 75
+                        lastLine += "\"" 
+                        lastLine = string
+                        string = string[len(string):] 
+                    else:# len(string) + 1 > 75: # + 1 quote
+                        splitLoc = self._splitWordsMax(string,75)
+                        line = string[:splitLoc]
+                        string = string[len(line):]
+                        string=string.strip() # remove white space
+                        output += "\"" 
+                        output +=line
+                else:
+                    if len(string) <= 75:
+                        lastLine = string
+                        string = string[len(string):] 
+                    else: # len(string) > 75:
+                        splitLoc = self._splitWordsMax(string,75)
+                        line = string[:splitLoc]
+                        string = string[len(line):]
+                        string=string.strip() # remove white space
+                        output +=line
+
+            else: #Not the first round
+                if quoted: 
+                    if len(string)+1 > 75:
+                        splitLoc = self._splitWordsMax(string,75) 
+                        line = string[:splitLoc]
+                        string = string[len(line):]
+                        string=string.strip() # remove white space
+                        output +="\n"+line
+                    else: #it the last round
+                        lastLine += string
+                        string = string[len(string):]
+                else:
+                    if len(string) > 75:
+                        splitLoc = self._splitWordsMax(string,75)
+                        line = string[:splitLoc]
+                        string = string[len(line):]
+                        string=string.strip() # remove white space
+                        output +="\n"+line
+                    else: #it the last round
+                        lastLine +=string
+                        string = string[len(string):]
+
+        lastLine += "\"" if quoted else ""
+
+        return output,lastLine
+
+    def _splitWordsMax(self, string, valueMax):
+        position=0
+        positionBefore=0
+
+        words = string.split()
+        newString=words.pop(0)
+        position = len(newString)
+        if position >= 75:
+            return 75
+
+        while position <= 75 :
+            positionBefore=position
+            newString += " "+words.pop(0)
+            position = len(newString)
+
+        return positionBefore
+
     def _set_all(self):
         """
         Sets all header information to default values

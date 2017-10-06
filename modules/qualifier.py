@@ -52,12 +52,14 @@ class Qualifier( object ):
             if getattr(self, "value_type", None) == "none":
                 output += "\nFT                   /%s\n"
                 continue
+            
             line = "\nFT                   /%s=%s" % (self.name, val)
-            if len(line) <= 79:
+            if len(line) <= 81: #81 because we have to count the \n character
                 output += line
             else:
-                output += line[:79]
-                line = line[79:]
+                logging.error("line over %i %s", len(line), line)
+                output += line[:81]
+                line = line[81:]
                 while line:
                     output += "\nFT                   %s" % line[:59]
                     line = line[59:]
