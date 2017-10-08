@@ -57,7 +57,6 @@ class Qualifier( object ):
             if len(line) <= 81: #81 because we have to count the \n character
                 output += line
             else:
-                logging.error("line over %i %s", len(line), line)
                 output += line[:81]
                 line = line[81:]
                 while line:
@@ -164,7 +163,7 @@ class Qualifier( object ):
         logging.debug("%s - Changing value: '%s' to '%s'" % (self.name, value, new_values))
         self.value += new_values
         logging.debug("%s - Current value: '%s'" % (self.name, self.value))
-    
+
     def set_value(self, value):
         value = value if type(value) == type([]) else [value]
         self.value = [self._by_value_format(v) for v in value]

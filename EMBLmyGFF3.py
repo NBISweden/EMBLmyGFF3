@@ -220,7 +220,6 @@ class EMBL( object ):
         If data is a list, the entries are listed with "sep" as separator, if data is
         a string, it's quoted over as many lines as needed.
         """
-       
         output=""
 
         #particular case when RT come empty. We must print ; wihtout quotes
@@ -263,6 +262,11 @@ class EMBL( object ):
             else:    
                 output+=lastLine+sep
         
+        #Check if we have output. If not we have to avoid the strip at the end
+        doNotStrip=False
+        if not output: 
+            doNotStrip = True
+
         #Last step: add prefix at each line
         cleanOutput=""
         if output:
@@ -275,7 +279,10 @@ class EMBL( object ):
         else:
             cleanOutput += "%s%s" % (prefix, " "*indent) #the "+sep" is a trick to keep the final cleaning within the return working properly
 
-        return "\n" + cleanOutput.strip().strip(sep) + suffix
+        if doNotStrip: # Because is only i.e >KW    <
+            return "\n" + cleanOutput + suffix
+        else:
+            return "\n" + cleanOutput.strip().strip(sep) + suffix
     
     # This method allow to wrap a sting at a size of 75 taking care of quote
     # It return back the result in different part: the last line and everything before if exists.
@@ -725,7 +732,7 @@ class EMBL( object ):
                 # create locus tag from locus_tag and accessions      
                 output_accession = "%s_%s" % (accession, locus_tag)
             #sys.stderr.write("xx %s, \n" % feature)
-            f = Feature(feature, self.record.seq, output_accession, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1, reorder_gene_features = self.interleave_genes)
+            f = Feature(feature, self.record.seq, output_accession, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1, reorder_gene_features = self.interleave_genes, force_unknown_features = self.force_unknown_features, force_uncomplete_features = self.force_uncomplete_features)
             
             if not self.keep_duplicates:
                 #Deal with identical CDS/UTR/etc between different isoforms:
@@ -911,6 +918,18 @@ class EMBL( object ):
         Sets wheather to keep duplicate features during the processing
         """
         self.keep_duplicates = duplicate
+
+    def set_force_unknown_features(self, force_unknown_features = False):
+        """
+        Sets wheather to keep feature types not accepted by EMBL in the output
+        """
+        self.force_unknown_features = force_unknown_features
+
+    def set_force_uncomplete_features(self, force_uncomplete_features = False):
+        """
+        Sets wheather to keep features that do not have all the mandatory qualifiers
+        """
+        self.force_uncomplete_features = force_uncomplete_features
 
     def set_organelle(self, organelle = None):
         """
@@ -1098,7 +1117,9 @@ if __name__ == '__main__':
     
     parser.add_argument("--keep_duplicates", action="store_true", help="Do not remove duplicate features during the process.")
     parser.add_argument("--interleave_genes", action="store_false", help="Print gene features with interleaved mRNA and CDS features.")
-    
+    parser.add_argument("--force_unknown_features", action="store_true", help="Force to keep feature types not accepted by EMBL. /!\ Option not suitable for submission purpose.")
+    parser.add_argument("--force_uncomplete_features", action="store_true", help="Force to keep features whithout all the mandatory qualifiers. /!\ Option not suitable for submission purpose.")
+
     parser.add_argument("--shame", action="store_true", help="Suppress the shameless plug.")
     parser.add_argument("--translate", action="store_true", help="Include translation in CDS features.")
     
@@ -1156,6 +1177,8 @@ if __name__ == '__main__':
         writer.set_version( args.version )
         writer.set_keep_duplicates( args.keep_duplicates )
         writer.set_interleave_genes( args.interleave_genes )
+        writer.set_force_unknown_features( args.force_unknown_features )
+        writer.set_force_uncomplete_features( args.force_uncomplete_features )
         writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)
         writer.set_translation(args.translate)
     

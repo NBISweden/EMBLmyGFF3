@@ -3,5 +3,5 @@
  "definition": "protein identifier, issued by International collaborators. this qualifier consists of a stable ID portion (3+5 format with 3 position letters and 5 numbers) plus a version number after the decimal point.", 
  "example": "/protein_id=\"AAA12345.1\"", 
  "qualifier": "protein_id", 
- "value_format": "<identifier>"
+ "value_format": "regex:[a-zA-Z]{3}[0-9]{5}\\.[0-9]+"
 }

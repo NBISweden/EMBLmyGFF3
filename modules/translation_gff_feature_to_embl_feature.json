@@ -8,5 +8,8 @@
  },
  "exon": {
 
+ },
+ "transcript": {
+ 	"target": "mRNA"
  }
 }

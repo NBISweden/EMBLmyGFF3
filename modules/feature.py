@@ -53,7 +53,9 @@ class Feature(object):
     DEFAULT_QUALIFIER_TRANSLATION_FILE=["translation_gff_attribute_to_embl_qualifier.json", "translation_gff_other_to_embl_qualifier.json"]
     PREVIOUS_ERRORS = []
     
-    def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False, feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", format_data = True, level = 0, reorder_gene_features = True):
+    def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False,
+                feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", format_data = True, 
+                level = 0, reorder_gene_features = True, skip_feature = False, force_unknown_features = False, force_uncomplete_features = False):
         """
         Initializes a Feature, loads json files for feature and 
         qualifiers, and starts parsing the data.
@@ -79,16 +81,20 @@ class Feature(object):
         self.translate = translate
         self.level = level
         self.reorder_gene_features = reorder_gene_features
+        self.skip_feature = skip_feature
+        self.force_unknown_features = force_unknown_features
+        self.force_uncomplete_features = force_uncomplete_features
 
         self._load_definition("%s/%s.json" % (feature_definition_dir, self.type))
         self._load_data(feature, accessions)
+        self._check_qualifier(feature)
 
         if level == 1:      
             # Parse through subfeatures level2
             featureObj_level2 = None
             for feature_l2 in feature.sub_features:
                 featureObj_level2 = Feature(feature_l2, self.seq, accessions, self.transl_table, self.translation_files, self.translate, 
-                                                  self.feature_definition_dir, self.qualifier_definition_dir, format_data = True, level=2)
+                                                      self.feature_definition_dir, self.qualifier_definition_dir, format_data = True, level=2)
                 self.sub_features += [featureObj_level2]
 
                 # Parse through subfeatures level3
@@ -101,7 +107,7 @@ class Feature(object):
                         old_feature.combine(feature_l3)
                     else:
                         featureObj_level3 = Feature(feature_l3, self.seq, accessions, self.transl_table, self.translation_files, self.translate, 
-                                                      self.feature_definition_dir, self.qualifier_definition_dir, format_data = False, level=3)
+                                                          self.feature_definition_dir, self.qualifier_definition_dir, format_data = False, level=3)
                         featureObj_level2.sub_features += [featureObj_level3]
 
 
@@ -116,7 +122,10 @@ class Feature(object):
         Formats the feature as EMBL, limited to 80 character lines,
         including sub features.
         """
-        output = self._feature_as_EMBL() if self.type not in self.remove else ""
+        output=""
+
+        if self.skip_feature is False or self.force_unknown_features or self.force_uncomplete_features:
+            output = self._feature_as_EMBL() if self.type not in self.remove else ""
         
         # Sub-features.
         #
@@ -124,24 +133,35 @@ class Feature(object):
         # but for genes they should be printed with sub-features grouped by type
     
         if self.type == "gene" and self.reorder_gene_features:
-            
+
             #print level2
             list_type_l3 = []
             for feature_l2 in self.sub_features:
-                output += feature_l2._feature_as_EMBL()
+                
                 for feature_l3 in feature_l2.sub_features:
                     if not feature_l3.type in list_type_l3:
                         list_type_l3.append(feature_l3.type)
+                
+                if feature_l2.skip_feature is False or self.force_unknown_features or self.force_uncomplete_features:
+                    output += feature_l2._feature_as_EMBL()
+                #else: 
+                    #check if CDS exist in subfeature. It could be helpful to create a mRNA feature instead to skip stupidly the L2 feature ! But it's not the philosophy of the tool. It should be done by using the json mapping file.
+                #    if "CDS" in list_type_l3:
+                #        feature_l2.type = "mRNA"
+                #        output += feature_l2._feature_as_EMBL()
+
             #print level3
             for f_type in list_type_l3: 
                 for feature_l2 in self.sub_features:
                     for feature_l3 in feature_l2.sub_features:
                         if f_type == feature_l3.type:
-                            output += feature_l3._feature_as_EMBL()
+                            if feature_l3.skip_feature is False or self.force_unknown_features or self.force_uncomplete_features:
+                                output += feature_l3._feature_as_EMBL()
 
         else:
             for sub_feature in self.sub_features:
-                output += str(sub_feature)
+                if sub_feature.skip_feature is False or self.force_unknown_features or self.force_uncomplete_features:
+                    output += str(sub_feature)
         
         return output
     
@@ -230,6 +250,15 @@ class Feature(object):
         for sub_feature in self.sub_features:
             sub_feature._infer_ORFs(feature)
     
+    def _check_qualifier(self, feature):
+        for qualifier, value in self.qualifiers.iteritems():
+
+            # Check presence of mandatory qualifier
+            if self.qualifiers[qualifier].mandatory:# Check if the qualifier is mandatory
+                if not self.qualifiers[qualifier].value: # No value for this mandatory qualifier
+                    logging.warning("The qualifier >%s< is mandatory for the feature >%s<. We will not report the feature.", qualifier, self.type)
+                    self.skip_feature = True
+
     def _load_data(self, feature, accessions):
         """
         Parses a GFF feature and stores the data in the current Feature
@@ -249,8 +278,10 @@ class Feature(object):
             with open(filename) as data:
                 raw = json.load( data )
                 for key, value in raw.iteritems():
+                    #logging.error("key:%s value:%s",key,value)
                     if "qualifier" in key:
                         for item, definition in value.iteritems():
+                            #logging.error("item:%s definition:%s",item,definition)
                             self.legal_qualifiers += [key]
                             mandatory = "mandatory" in key
                             self.qualifiers[item] = Qualifier(item, mandatory = mandatory, qualifier_definition_dir=self.qualifier_definition_dir)
@@ -260,7 +291,11 @@ class Feature(object):
                         # it to have a bit of debugging information.
                         setattr(self, key, value)
         except IOError as e:
-            logging.error(e)
+            msg = "%s" % e
+            if msg not in Feature.PREVIOUS_ERRORS:
+                logging.error(">>%s<< is not a valid EMBL feature type. You can ignore this message if you don't need it.\nOtherwise tell me which EMBL feature it corresponds to by adding the information within the json mapping file.",self.type)
+                Feature.PREVIOUS_ERRORS += [msg] 
+            self.skip_feature=True 
     
     def _load_feature_translations(self, filenames):
         """
@@ -368,7 +403,7 @@ class Feature(object):
             try:
                 os.stat( "%s/%s.json" % (self.qualifier_definition_dir, qualifier) )
             except Exception as e:
-                msg = "Unknown qualifier '%s'" % qualifier
+                msg = "Unknown qualifier '%s' - skipped" % qualifier
                 if msg not in Feature.PREVIOUS_ERRORS:
                     logging.warn(msg)
                     Feature.PREVIOUS_ERRORS += [msg]
@@ -377,6 +412,31 @@ class Feature(object):
                 
             return
         
+        # Check if qualifier follow rules (i.e regex)
+        if self.qualifiers[qualifier].value_format.startswith("regex:"):
+            error_regex=False
+            regex= self.qualifiers[qualifier].value_format[6:]
+            pattern = re.compile(regex)      
+
+            newListValue=[]
+            if type(value) == type([]):
+                for val in value:
+                    if pattern.search(val):
+                        newListValue+=value
+
+                if not newListValue:                 
+                    error_regex = True
+                else:
+                    value = newListValue
+
+            elif not pattern.search(value):
+                error_regex = True
+
+            if error_regex:
+                logging.warning("The value(s) %s is(are) invalid for the qualifier %s of the feature %s. We will not report the qualifier. (Here is the regex expected: %s)", value, qualifier, self.type, regex)
+                return
+
+
         logging.debug("Adding value '%s' to qualifier '%s'" % (value, qualifier))
         
         if self.qualifier_prefix.get(gff_qualifier, None):
