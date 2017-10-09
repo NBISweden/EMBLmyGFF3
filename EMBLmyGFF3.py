@@ -8,11 +8,11 @@ GFF convertion is based on specifications from https://github.com/The-Sequence-O
 """
 
 shameless_plug="""
-    #######################################################################
-    # NBIS 2016 - Sweden                                                  #
-    # Authors: Martin Norling, Niclas Jareborg, Jacques Dainat            #
-    # Please cite NBIS (www.nbis.se) when using this tool.                #
-    #######################################################################
+    ############################################################################
+    # NBIS 2016 - Sweden                                                       #
+    # Authors: Martin Norling, Niclas Jareborg, Jacques Dainat                 #
+    # Please visit https://github.com/NBISweden/EMBLmyGFF3 for more infomation #
+    ############################################################################
 \n"""
 
 TODO="""
@@ -26,14 +26,17 @@ TODO: add way to handle mandatory features and feature qualifiers (especially co
 import os
 import sys
 import gzip
+import pprint
 import time
 import logging
 import argparse
+import re
 import curses.ascii
 from Bio import SeqIO
 from BCBio import GFF
 from Bio.SeqFeature import SeqFeature, FeatureLocation, ExactPosition
 from modules.feature import Feature
+from modules.help import Help
 
 SCRIPT_DIR=os.path.dirname(os.path.abspath(sys.argv[0]))
 FEATURE_DIR=SCRIPT_DIR + "/modules/features"
@@ -1087,7 +1090,20 @@ class EMBL( object ):
 ##########################
 
 if __name__ == '__main__':
-    
+
+    # Deal with the advanced help
+    if len(sys.argv) > 1 and (sys.argv[1] == "--ah" or sys.argv[1] == "--advanced_help"):
+        if len(sys.argv) == 3:
+            param = sys.argv[2]
+            pattern = re.compile("^--")
+            if pattern.search(param):
+                param = param[2:]
+            sys.stderr.write("advanced help for option "+Help(param))
+        elif len(sys.argv) == 2:
+            sys.stderr.write("No option specified for the advanced_help, we will display everything:\n")
+            sys.stderr.write(Help("all"))
+        sys.exit()
+
     parser = argparse.ArgumentParser( description = __doc__ )
     
     parser.add_argument("gff_file", help="Input gff-file.")
@@ -1129,12 +1145,14 @@ if __name__ == '__main__':
     parser.add_argument("-v", "--verbose", action="count", default=2, help="Increase verbosity.")
     parser.add_argument("-q", "--quiet", action="count", default=0, help="Decrease verbosity.")
     
+    parser.add_argument("--ah", "--advanced_help", choices=["One of the parameters above"], help="It display advanced information of the parameter specified. If you don't specify any parameter it will display advanced information of all of them.")
+
     args = parser.parse_args()
     
     logging.basicConfig(format='%(asctime)s %(levelname)s %(module)s: %(message)s', 
                         level = (5-args.verbose+args.quiet)*10, 
                         datefmt="%H:%M:%S")
-    
+
     if args.output:
         outfile = args.output
         if args.gzip:
