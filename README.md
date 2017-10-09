@@ -69,33 +69,33 @@ Test data from the Drosophila melanogaster species are located in the example fo
 
 ### Simple case 
 
- >./EMBLmyGFF3.py example/dmel_chr4.gff3 example/dmel_chr4.fa
+ >./EMBLmyGFF3.py example/maker.gff3 example/maker.fa
  
 Will prompt you to fill one by one the mandatory information needed to produce a proper EMBL file.
 Once the software has all the information it needs, it will process the input files and will print the result to STDOUT.
  
 In order to write the result in the desired file use the **-o** option:
  
- >./EMBLmyGFF3.py example/dmel_chr4.gff3 example/dmel_chr4.fa -o result.embl
+ >./EMBLmyGFF3.py example/maker.gff3 example/maker.fa -o result.embl
 
 ### Complete case 
 
 Minimum requirement to launch the software and avoid any prompt.
 
- >./EMBLmyGFF3.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type 'genomic DNA' --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP -o result.embl
+ >./EMBLmyGFF3.py example/maker.gff3 example/maker.fa --data_class STD --topology linear --molecule_type 'genomic DNA' --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP -o result.embl
 
 ### Advanced case 
 
 When you want add more information than those mandatory: e.g publication.
 
- >./EMBLmyGFF3.py example/dmel_chr4.gff3 example/dmel_chr4.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
+ >./EMBLmyGFF3.py example/maker.gff3 example/maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
 
 ### Use through a bash script
 
-You may prefer to launch the software through a bash script especially when you want to fill many information, so we provide an example of such script here **example/script.sh**.
+You may prefer to launch the software through a bash script especially when you want to fill many information, so we provide examples of such script here **example/maker_example.sh**.
 
 In order to use it move in the example folder, then launch the script:
->./script.sh
+>./maker_example.sh
 
 ## PARAMETER
 
