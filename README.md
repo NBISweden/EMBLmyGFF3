@@ -8,7 +8,8 @@ Software to convert GFF3 and fasta to legal EMBL format suitable for [ENA](http:
 Based on documentation from http://www.insdc.org/files/feature_table.html, http://www.ebi.ac.uk/ena/WebFeat/ and
 ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
 
-The output can be validated using the ENA flat file validator distributed by EMBL. Please visit http://www.ebi.ac.uk/ena/software/flat-file-validator and/or https://github.com/enasequence/sequencetools for more information.
+__You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Tips](http://ena-docs.readthedocs.io/en/latest/)__
+
 
 ## INDEX
 
@@ -25,6 +26,7 @@ The output can be validated using the ENA flat file validator distributed by EMB
 &nbsp;&nbsp;&nbsp;[Feature type](#feature-type)</br>
 &nbsp;&nbsp;&nbsp;[GFF3 Attribute to EMBL qualifier](#gff3-attribute-to-embl-qualifier)</br>
 &nbsp;&nbsp;&nbsp;[Other](#other)</br>
+[Validate your embl flat file](#validate-your-embl-flat-file)</br>
 [Known issues](#known-issues)</br>
 [Citation](#citation)
 [Author](#author)
@@ -73,7 +75,7 @@ Then, in order to get a valid EMBL flat file suitable for submission you have to
 
 **/!\ Please be aware that a *project ID* and an *accession number* are mandatory for a submission to [ENA](http://www.ebi.ac.uk/ena). You don't need this information if you don't plan to submit the data (In case you just want an EMBL-like flat file for other purposes). If you don't have yet those information you can add them later by replacing the corresponding fields. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to obtain a *project ID* and an *accession number*.**
 
-Test data from the Drosophila melanogaster species are located in the example folder.
+Test data are located in the example folder.
 
 ### Simple case 
 
@@ -224,6 +226,10 @@ This will map the **source** from the 2nd columm of the GFF3 file to the **note*
 **/!\\** Please notice the *prefix* allows to add information dowstream the source value wihtin the qualifier (Upstream information is also possible using *suffix*).</br>
 e.g: The source value is "Prokka":</br> 
 Within the embl file, instead to get **note="Prokka"**, here we will get **note="source:Prokka"**
+
+## VALIDATE YOUR EMBL FLAT FILE
+
+The output can be validated using the ENA flat file validator distributed by EMBL. Please visit http://www.ebi.ac.uk/ena/software/flat-file-validator and/or https://github.com/enasequence/sequencetools for more information.
 
 ## KNOWN ISSUES
 
