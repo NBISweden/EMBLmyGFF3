@@ -469,6 +469,10 @@ class EMBL( object ):
         The AC (ACcession number) line lists the accession numbers associated with 
         the entry. Each accession number, or range of accession numbers, is terminated by a
         semicolon. Where necessary, more than one AC line is used.
+
+        The submission case:
+        The entry name is extracted from the AC * line . The entry name must be prefixed with a '_' when using the flat file format. No spaces or pipe character ('|') are allowed in the name.
+        Example: AC * _contig1
         """
         
         output = "AC   "
@@ -476,12 +480,21 @@ class EMBL( object ):
         if len(self.accessions) == 0 and self.verify:
             sys.stderr.write("At least one accession number is needed: ")
             self.accessions += [raw_input()]
-        
+
         for accession in self.accessions:
             if len(output) + len(accession) > 80:
                 output += "\nAC   "
             output += accession + "; "
-            
+        
+        #add the AC * _contig1 line
+        output += "\nXX"
+        description=""
+        if hasattr(self.record, "description"):
+            description = self.record.description
+        else:
+            logging.error("The first row is missing within the gff3 file.")
+        output += "\nAC * _"+description
+
         return "\n" + output.strip() + self.spacer
     
     def PR(self):
@@ -876,14 +889,12 @@ class EMBL( object ):
     def set_description(self, description = None):
 
         """
-        Sets the sample description, or parses it from the current record.
+        Sets the sample description.
         """
         if description:
             self.description = description
-        elif hasattr(self.record, "description"):
-            self.description = self.record.description
-        elif not hasattr(self, "description"):
-            self.description = ""
+        else:
+            self.description = "XXX"   
     
     def set_keywords(self, keywords = []):
         """
@@ -1108,7 +1119,7 @@ if __name__ == '__main__':
     
     parser.add_argument("gff_file", help="Input gff-file.")
     parser.add_argument("fasta", help="Input fasta sequence.")
-    parser.add_argument("-a", "--accession", default=[], nargs="+", help="Accession number(s) for the entry.")
+    parser.add_argument("-a", "--accession", default=["XXX"], nargs="+", help="Accession number(s) for the entry.")
     parser.add_argument("-c", "--created", default=None, help="Creation time of the original entry.")
     parser.add_argument("-d", "--data_class", default=None, help="Data class of the sample.", choices=["CON", "PAT", "EST", "GSS", "HTC", "HTG", "MGA", "WGS", "TSA", "STS", "STD"])
     parser.add_argument("-g", "--organelle", default=None, help="Sample organelle.")
