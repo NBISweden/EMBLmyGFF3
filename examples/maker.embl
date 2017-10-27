@@ -1,13 +1,15 @@
 ID   MY_SAMPLE_ACCESSION; SV 1; linear; genomic DNA; STD; INV; 1351857 BP.
 XX
-AC   MY_SAMPLE_ACCESSION;
+AC   MY_SAMPLE_ACCESSION; 
+XX
+AC * _4
 XX
 PR   Project:17285;
 XX
-DT   07-Oct-2017 (Rel. 133, Created)
-DT   07-Oct-2017 (Rel. 133, Last updated, Version 1)
+DT   27-Oct-2017 (Rel. 133, Created)
+DT   27-Oct-2017 (Rel. 133, Last updated, Version 1)
 XX
-DE   4
+DE   XXX
 XX
 KW   .
 XX
@@ -25,7 +27,7 @@ RN   [1]
 RP   1-1351857
 RG   MyGroup
 RT   ;
-RL   Submitted (07-OCT-2017) to the INSDC.
+RL   Submitted (27-OCT-2017) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
