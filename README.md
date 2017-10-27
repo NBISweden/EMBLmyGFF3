@@ -13,6 +13,7 @@ The output can be validated using the ENA flat file validator distributed by EMB
 ## INDEX
 
 [Prerequisite](#prerequisite)</br>
+[Installation](#installation)</br>
 [Usage](#usage)</br>
 &nbsp;&nbsp;&nbsp;[Foreword](#foreword)</br>
 &nbsp;&nbsp;&nbsp;[Simple case](#simple-case)</br>
@@ -22,7 +23,7 @@ The output can be validated using the ENA flat file validator distributed by EMB
 [Parameter](#parameter)</br>
 [Mapping](#mapping)</br>
 &nbsp;&nbsp;&nbsp;[Feature type](#feature-type)</br>
-&nbsp;&nbsp;&nbsp;[Attribute to qualifier](#attribute-to-qualifier)</br>
+&nbsp;&nbsp;&nbsp;[GFF3 Attribute to EMBL qualifier](#gff3-attribute-to-embl-qualifier)</br>
 &nbsp;&nbsp;&nbsp;[Other](#other)</br>
 [Known issues](#known-issues)</br>
 [Citation](#citation)
@@ -45,8 +46,15 @@ In order to install biopython and bcbio-gff please use the following steps:
  Install bcbio-gff using pip:
  >pip install bcbio-gff==0.6.4
 
-## Check the installation
+## Installation
 
+Clone the repository:
+
+ >git clone https://github.com/NBISweden/EMBLmyGFF3.git
+ 
+Move into the folder:
+ >cd EMBLmyGFF3/
+ 
  Executing:
  >./EMBLmyGFF3.py
  
@@ -154,9 +162,10 @@ You can also find a comprehensive help about the different parameters using the 
 
 ## MAPPING
 
-The challenge for a correct conversion is the correct mapping between the feature types described in the 3th column as well as the different attribute’s tags of the 9th column of the GFF3 file and the corresponding EMBL features and qualifiers.
-If a feature type or an attribute's tag is not yet handle by the software it will inform you during the conversion process. You can then add the information needed in the corresponding mapping file.
-If you figure out that a feature type or an attribute's tag is no mapped to the corresponding EMBL features or qualifiers you would like, you will have to modify the corresponding information in the mapping files.
+The challenge for a correct conversion is the correct mapping between the feature types described in the 3th column as well as the different attribute’s tags of the 9th column of the GFF3 file and the corresponding EMBL features and qualifiers.</br>
+If you figure out that a feature type or an attribute's tag is not mapped to the corresponding EMBL features or qualifiers you would like, you will have to modify the corresponding information in the mapping files.</br>
+The software will skip the unknown feature types (Non EMBL feature types that are not mapped against an EMBL feature type) and the unknown qualifiers (Non EMBL qualifiers that are not mapped against an EMBL qualifier) and will inform you during the conversion process. If you want to include them within the output, you can add the information needed in the corresponding mapping file.
+
 
 ### Feature type
 
@@ -181,7 +190,7 @@ You can decide which features will be printed in the output using the **remove**
 
 Like that no exon feature will be display in the output.
  
-### Attribute to qualifier
+### GFF3 Attribute to EMBL qualifier
 
 The embl format accepts 98 different qualifiers where the corresponding attribute tag types in the 9th column of the GFF3 are unlimited.
 The file handling the proper mapping is ***translation_gff_attribute_to_embl_qualifier.json***

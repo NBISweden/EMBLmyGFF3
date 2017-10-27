@@ -77,7 +77,12 @@
  },
  "description": {
    "source description": "No description",
-   "target": "note",
+   "target": "product",
+   "dev comment": "Hard to march more directly than to note sadly."
+ },
+"_Description": {
+   "source description": "No description",
+   "target": "product",
    "dev comment": "Hard to march more directly than to note sadly."
  }
 }
