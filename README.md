@@ -3,7 +3,7 @@ GFF3 to EMBL conversion tool
 
 <img src="EMBLmyGFF3.png" width="500" height="150" />
 
-Software to convert GFF3 and fasta to legal EMBL format suitable for [ENA](http://www.ebi.ac.uk/ena) submission.
+Software to convert GFF3 and fasta to legal [EMBL format](https://www.ebi.ac.uk/ena/submit/flat-file) suitable for [ENA](http://www.ebi.ac.uk/ena) submission.
 
 Based on documentation from http://www.insdc.org/files/feature_table.html, http://www.ebi.ac.uk/ena/WebFeat/ and
 ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
