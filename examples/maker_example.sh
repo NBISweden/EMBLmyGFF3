@@ -13,8 +13,8 @@ ANNOTATION="maker.gff3"
 #PROJECT name registered on EMBL
 PROJECT="17285"
 
-#Sample accession registered on EMBL
-ACCESSION="MY_SAMPLE_ACCESSION"
+#Locus tag registered on EMBL
+LOCUS_TAG="MY_LOCUS_TAG"
 
 # species name
 SPECIES="Drosophila melanogaster"
@@ -22,17 +22,11 @@ SPECIES="Drosophila melanogaster"
 # Taxonomy
 TAXONOMY="INV"
 
-# The Organism Classification (can be retrieved here http://www.ncbi.nlm.nih.gov/Taxonomy/)
-CLASSIFICATION="cellular organisms; Eukaryota; Opisthokonta; Metazoa; Eumetazoa; Bilateria; Protostomia; Ecdysozoa; Panarthropoda; Arthropoda; Mandibulata; Pancrustacea; Hexapoda; Insecta; Dicondylia; Pterygota; Neoptera; Endopterygota; Diptera; Brachycera; Muscomorpha; Eremoneura; Cyclorrhapha; Schizophora; Acalyptratae; Ephydroidea; Drosophilidae; Drosophilinae; Drosophilini; Drosophila; Sophophora; melanogaster group; melanogaster subgroup"
-
 #The working groups/consortia that produced the record. No default value
 REFERENCE_GROUP="MyGroup"
 
 #Translation table
 TABLE="1"
-
-#Data class of the sample.
-CLASS="STD"
 
 #Molecule type of the sample.
 MOLECULE="genomic DNA"
@@ -40,6 +34,8 @@ MOLECULE="genomic DNA"
 # Converter script location
 EMBLmyGFF3="../EMBLmyGFF3.py"
 
-echo -e "Running the following command:\n$EMBLmyGFF3 --rg $REFERENCE_GROUP -a $ACCESSION -p $PROJECT -l \"$CLASSIFICATION\" -m \"$MOLECULE\" -d $CLASS -r $TABLE -t linear -s \"$SPECIES\" -x $TAXONOMY $ANNOTATION $GENOME $@ > maker.embl"
+myCommand="$EMBLmyGFF3 --rg $REFERENCE_GROUP -i $LOCUS_TAG -p $PROJECT -m \"$MOLECULE\" -r $TABLE -t linear -s \"$SPECIES\" -x $TAXONOMY $ANNOTATION $GENOME $@ > maker.embl"
+echo -e "Running the following command:\n$myCommand"
 
-$EMBLmyGFF3 --rg $REFERENCE_GROUP -a $ACCESSION -p $PROJECT -l "$CLASSIFICATION" -m "$MOLECULE" -d $CLASS -r $TABLE -t linear -s "$SPECIES" -x $TAXONOMY $ANNOTATION $GENOME $@ > maker.embl
+#execute the command
+eval $myCommand

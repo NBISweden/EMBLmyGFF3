@@ -13,8 +13,8 @@ ANNOTATION="prokka.gff3"
 #PROJECT name registered on EMBL
 PROJECT="17285"
 
-#Sample accession registered on EMBL
-ACCESSION="MY_SAMPLE_ACCESSION"
+#Locus tag registered on EMBL
+LOCUS_TAG="MY_LOCUS_TAG"
 
 # species name
 SPECIES="escherichia coli"
@@ -22,17 +22,11 @@ SPECIES="escherichia coli"
 # Taxonomy
 TAXONOMY="PRO"
 
-# The Organism Classification (can be retrieved here http://www.ncbi.nlm.nih.gov/Taxonomy/)
-CLASSIFICATION=""
-
 #The working groups/consortia that produced the record. No default value
 REFERENCE_GROUP="MyGroup"
 
 #Translation table
 TABLE="11"
-
-#Data class of the sample.
-CLASS="STD"
 
 #Topology.
 TOPOLOGY="circular"
@@ -43,6 +37,8 @@ MOLECULE="genomic DNA"
 # Converter script location
 EMBLmyGFF3="../EMBLmyGFF3.py"
 
-echo -e "Running the following command:\n$EMBLmyGFF3 --rg $REFERENCE_GROUP -a $ACCESSION -p $PROJECT -t $TOPOLOGY -l \"$CLASSIFICATION\" -m \"$MOLECULE\" -d $CLASS -r $TABLE -t linear -s \"$SPECIES\" -q -x $TAXONOMY $ANNOTATION $GENOME $@ > prokka.embl"
+myCommand="$EMBLmyGFF3 --rg $REFERENCE_GROUP -i $LOCUS_TAG -p $PROJECT -t $TOPOLOGY -m \"$MOLECULE\" -r $TABLE -t linear -s \"$SPECIES\" -q -x $TAXONOMY $ANNOTATION $GENOME $@ > prokka.embl"
+echo -e "Running the following command:\n$myCommand"
 
-$EMBLmyGFF3 --rg $REFERENCE_GROUP -a $ACCESSION -p $PROJECT -t $TOPOLOGY -l "$CLASSIFICATION" -m "$MOLECULE" -d $CLASS -r $TABLE -t linear -s "$SPECIES" -q -x $TAXONOMY $ANNOTATION $GENOME $@ > prokka.embl
+#execute the command
+eval $myCommand

@@ -1,13 +1,14 @@
-ID   MY_SAMPLE_ACCESSION; SV 1; linear; genomic DNA; STD; INV; 1351857 BP.
+ID   XXX; XXX; linear; genomic DNA; XXX; INV; 1351857 BP.
 XX
-AC   MY_SAMPLE_ACCESSION;
+AC   XXX; 
+XX
+AC * _4
 XX
 PR   Project:17285;
 XX
-DT   07-Oct-2017 (Rel. 133, Created)
-DT   07-Oct-2017 (Rel. 133, Last updated, Version 1)
+DT   01-Nov-2017 (Rel. 133, Created)
 XX
-DE   4
+DE   XXX
 XX
 KW   .
 XX
@@ -16,7 +17,7 @@ XX
 OC   cellular organisms; Eukaryota; Opisthokonta; Metazoa; Eumetazoa; Bilateria;
 OC   Protostomia; Ecdysozoa; Panarthropoda; Arthropoda; Mandibulata;
 OC   Pancrustacea; Hexapoda; Insecta; Dicondylia; Pterygota; Neoptera;
-OC   Endopterygota; Diptera; Brachycera; Muscomorpha; Eremoneura; Cyclorrhapha;
+OC   Holometabola; Diptera; Brachycera; Muscomorpha; Eremoneura; Cyclorrhapha;
 OC   Schizophora; Acalyptratae; Ephydroidea; Drosophilidae; Drosophilinae;
 OC   Drosophilini; Drosophila; Sophophora; melanogaster group; melanogaster
 OC   subgroup;
@@ -25,7 +26,7 @@ RN   [1]
 RP   1-1351857
 RG   MyGroup
 RT   ;
-RL   Submitted (07-OCT-2017) to the INSDC.
+RL   Submitted (01-NOV-2017) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -33,653 +34,653 @@ FT   source          1..1351857
 FT                   /mol_type="genomic DNA"
 FT                   /organism="Drosophila melanogaster"
 FT   gene            386..13142
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus1"
+FT                   /locus_tag="MY_LOCUS_TAG_locus1"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g1"
 FT   mRNA            join(386..594,913..1014,3018..3070,3124..3482,8166..8720,
 FT                   9026..10377,10460..11032,11141..11851,11973..12258,12369..1
 FT                   3142)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus1"
+FT                   /locus_tag="MY_LOCUS_TAG_locus1"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g1.t1"
 FT   exon            386..594
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus1"
+FT                   /locus_tag="MY_LOCUS_TAG_locus1"
 FT                   /note="source:AUGUSTUS"
 FT   exon            913..1014
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus1"
+FT                   /locus_tag="MY_LOCUS_TAG_locus1"
 FT                   /note="source:AUGUSTUS"
 FT   exon            3018..3070
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus1"
+FT                   /locus_tag="MY_LOCUS_TAG_locus1"
 FT                   /note="source:AUGUSTUS"
 FT   exon            3124..3482
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus1"
+FT                   /locus_tag="MY_LOCUS_TAG_locus1"
 FT                   /note="source:AUGUSTUS"
 FT   exon            8166..8720
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus1"
+FT                   /locus_tag="MY_LOCUS_TAG_locus1"
 FT                   /note="source:AUGUSTUS"
 FT   exon            9026..10377
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus1"
+FT                   /locus_tag="MY_LOCUS_TAG_locus1"
 FT                   /note="source:AUGUSTUS"
 FT   exon            10460..11032
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus1"
+FT                   /locus_tag="MY_LOCUS_TAG_locus1"
 FT                   /note="source:AUGUSTUS"
 FT   exon            11141..11851
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus1"
+FT                   /locus_tag="MY_LOCUS_TAG_locus1"
 FT                   /note="source:AUGUSTUS"
 FT   exon            11973..12258
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus1"
+FT                   /locus_tag="MY_LOCUS_TAG_locus1"
 FT                   /note="source:AUGUSTUS"
 FT   exon            12369..13142
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus1"
+FT                   /locus_tag="MY_LOCUS_TAG_locus1"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(1015..3017,3071..3123,3483..8165,8721..9025,10378..1
 FT                   0459,11033..11140,11852..11972,12259..12368)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus1"
+FT                   /locus_tag="MY_LOCUS_TAG_locus1"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(914..1014,3018..3070,3124..3482,8166..8720,9026..103
 FT                   77,10460..11032,11141..11851,11973..12258,12369..12911)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus1"
+FT                   /locus_tag="MY_LOCUS_TAG_locus1"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g1.t1.cds"
 FT                   /transl_table=1
 FT   gene            16086..38972
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus2"
+FT                   /locus_tag="MY_LOCUS_TAG_locus2"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g2"
 FT   mRNA            join(16086..16131,16441..16574,17106..17459,18311..19342,
 FT                   19567..20525,21529..23043,23731..23860,23936..24477,35682..
 FT                   35905,37326..38972)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus2"
+FT                   /locus_tag="MY_LOCUS_TAG_locus2"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g2.t1"
 FT   exon            16086..16131
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus2"
+FT                   /locus_tag="MY_LOCUS_TAG_locus2"
 FT                   /note="source:AUGUSTUS"
 FT   exon            16441..16574
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus2"
+FT                   /locus_tag="MY_LOCUS_TAG_locus2"
 FT                   /note="source:AUGUSTUS"
 FT   exon            17106..17459
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus2"
+FT                   /locus_tag="MY_LOCUS_TAG_locus2"
 FT                   /note="source:AUGUSTUS"
 FT   exon            18311..19342
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus2"
+FT                   /locus_tag="MY_LOCUS_TAG_locus2"
 FT                   /note="source:AUGUSTUS"
 FT   exon            19567..20525
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus2"
+FT                   /locus_tag="MY_LOCUS_TAG_locus2"
 FT                   /note="source:AUGUSTUS"
 FT   exon            21529..23043
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus2"
+FT                   /locus_tag="MY_LOCUS_TAG_locus2"
 FT                   /note="source:AUGUSTUS"
 FT   exon            23731..23860
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus2"
+FT                   /locus_tag="MY_LOCUS_TAG_locus2"
 FT                   /note="source:AUGUSTUS"
 FT   exon            23936..24477
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus2"
+FT                   /locus_tag="MY_LOCUS_TAG_locus2"
 FT                   /note="source:AUGUSTUS"
 FT   exon            35682..35905
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus2"
+FT                   /locus_tag="MY_LOCUS_TAG_locus2"
 FT                   /note="source:AUGUSTUS"
 FT   exon            37326..38972
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus2"
+FT                   /locus_tag="MY_LOCUS_TAG_locus2"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(23044..23730,23861..23935,24478..35681,35906..37325)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus2"
+FT                   /locus_tag="MY_LOCUS_TAG_locus2"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(22703..23043,23731..23860,23936..24477,35682..35905,
 FT                   37326..37381)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus2"
+FT                   /locus_tag="MY_LOCUS_TAG_locus2"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g2.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(40422..71175)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus3"
+FT                   /locus_tag="MY_LOCUS_TAG_locus3"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g3"
 FT   mRNA            complement(join(40422..42122,42238..42586,49533..50059,50
 FT                   175..50523,56500..57026,57142..57753,61300..61911,63540..63
 FT                   969,70654..71098,71142..71175))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus3"
+FT                   /locus_tag="MY_LOCUS_TAG_locus3"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g3.t1"
 FT   exon            complement(40422..42122)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus3"
+FT                   /locus_tag="MY_LOCUS_TAG_locus3"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(42238..42586)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus3"
+FT                   /locus_tag="MY_LOCUS_TAG_locus3"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(49533..50059)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus3"
+FT                   /locus_tag="MY_LOCUS_TAG_locus3"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(50175..50523)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus3"
+FT                   /locus_tag="MY_LOCUS_TAG_locus3"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(56500..57026)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus3"
+FT                   /locus_tag="MY_LOCUS_TAG_locus3"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(57142..57753)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus3"
+FT                   /locus_tag="MY_LOCUS_TAG_locus3"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(61300..61911)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus3"
+FT                   /locus_tag="MY_LOCUS_TAG_locus3"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(63540..63969)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus3"
+FT                   /locus_tag="MY_LOCUS_TAG_locus3"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(70654..71098)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus3"
+FT                   /locus_tag="MY_LOCUS_TAG_locus3"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(71142..71175)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus3"
+FT                   /locus_tag="MY_LOCUS_TAG_locus3"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(42123..42237,42587..49532,50060..50174,50
 FT                   524..56499,57027..57141,57754..61299,61912..63539,63970..70
 FT                   653))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus3"
+FT                   /locus_tag="MY_LOCUS_TAG_locus3"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(41581..42122,42238..42586,49533..50059,50
 FT                   175..50523,56500..57026,57142..57753,61300..61911,63540..63
 FT                   969,70654..70857))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus3"
+FT                   /locus_tag="MY_LOCUS_TAG_locus3"
 FT                   /codon_start=3
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g3.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(80617..87875)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus4"
+FT                   /locus_tag="MY_LOCUS_TAG_locus4"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g4"
 FT   mRNA            complement(join(80617..81770,85857..86147,86626..87364,87
 FT                   466..87875))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus4"
+FT                   /locus_tag="MY_LOCUS_TAG_locus4"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g4.t1"
 FT   exon            complement(80617..81770)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus4"
+FT                   /locus_tag="MY_LOCUS_TAG_locus4"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(85857..86147)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus4"
+FT                   /locus_tag="MY_LOCUS_TAG_locus4"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(86626..87364)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus4"
+FT                   /locus_tag="MY_LOCUS_TAG_locus4"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(87466..87875)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus4"
+FT                   /locus_tag="MY_LOCUS_TAG_locus4"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(87365..87465)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus4"
+FT                   /locus_tag="MY_LOCUS_TAG_locus4"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(86899..87364,87466..87806))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus4"
+FT                   /locus_tag="MY_LOCUS_TAG_locus4"
 FT                   /codon_start=2
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g4.t1.cds"
 FT                   /transl_table=1
 FT   gene            114336..119322
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus5"
+FT                   /locus_tag="MY_LOCUS_TAG_locus5"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g5"
 FT   mRNA            join(114336..114543,114901..114926,115049..115241,118448.
 FT                   .119322)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus5"
+FT                   /locus_tag="MY_LOCUS_TAG_locus5"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g5.t1"
 FT   exon            114336..114543
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus5"
+FT                   /locus_tag="MY_LOCUS_TAG_locus5"
 FT                   /note="source:AUGUSTUS"
 FT   exon            114901..114926
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus5"
+FT                   /locus_tag="MY_LOCUS_TAG_locus5"
 FT                   /note="source:AUGUSTUS"
 FT   exon            115049..115241
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus5"
+FT                   /locus_tag="MY_LOCUS_TAG_locus5"
 FT                   /note="source:AUGUSTUS"
 FT   exon            118448..119322
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus5"
+FT                   /locus_tag="MY_LOCUS_TAG_locus5"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(114927..115048,115242..118447)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus5"
+FT                   /locus_tag="MY_LOCUS_TAG_locus5"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(114910..114926,115049..115241,118448..118606)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus5"
+FT                   /locus_tag="MY_LOCUS_TAG_locus5"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g5.t1.cds"
 FT                   /transl_table=1
 FT   gene            121686..130976
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus6"
+FT                   /locus_tag="MY_LOCUS_TAG_locus6"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g6"
 FT   mRNA            join(121686..122199,127336..127382,128029..128998,129053.
 FT                   .130976)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus6"
+FT                   /locus_tag="MY_LOCUS_TAG_locus6"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g6.t1"
 FT   exon            121686..122199
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus6"
+FT                   /locus_tag="MY_LOCUS_TAG_locus6"
 FT                   /note="source:AUGUSTUS"
 FT   exon            127336..127382
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus6"
+FT                   /locus_tag="MY_LOCUS_TAG_locus6"
 FT                   /note="source:AUGUSTUS"
 FT   exon            128029..128998
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus6"
+FT                   /locus_tag="MY_LOCUS_TAG_locus6"
 FT                   /note="source:AUGUSTUS"
 FT   exon            129053..130976
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus6"
+FT                   /locus_tag="MY_LOCUS_TAG_locus6"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(127383..128028,128999..129052)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus6"
+FT                   /locus_tag="MY_LOCUS_TAG_locus6"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(127345..127382,128029..128998,129053..129118)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus6"
+FT                   /locus_tag="MY_LOCUS_TAG_locus6"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g6.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(132660..143325)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus7"
+FT                   /locus_tag="MY_LOCUS_TAG_locus7"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g7"
 FT   mRNA            complement(join(132660..133834,134789..135736,137446..139
 FT                   127,139181..139405,139464..139557,140514..140838,143235..14
 FT                   3325))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus7"
+FT                   /locus_tag="MY_LOCUS_TAG_locus7"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g7.t1"
 FT   exon            complement(132660..133834)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus7"
+FT                   /locus_tag="MY_LOCUS_TAG_locus7"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(134789..135736)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus7"
+FT                   /locus_tag="MY_LOCUS_TAG_locus7"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(137446..139127)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus7"
+FT                   /locus_tag="MY_LOCUS_TAG_locus7"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(139181..139405)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus7"
+FT                   /locus_tag="MY_LOCUS_TAG_locus7"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(139464..139557)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus7"
+FT                   /locus_tag="MY_LOCUS_TAG_locus7"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(140514..140838)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus7"
+FT                   /locus_tag="MY_LOCUS_TAG_locus7"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(143235..143325)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus7"
+FT                   /locus_tag="MY_LOCUS_TAG_locus7"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(139128..139180,139406..139463,139558..140
 FT                   513,140839..143234))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus7"
+FT                   /locus_tag="MY_LOCUS_TAG_locus7"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(137495..139127,139181..139405,139464..139
 FT                   557,140514..140838,143235..143267))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus7"
+FT                   /locus_tag="MY_LOCUS_TAG_locus7"
 FT                   /codon_start=2
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g7.t1.cds"
 FT                   /transl_table=1
 FT   gene            145836..164760
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus8"
+FT                   /locus_tag="MY_LOCUS_TAG_locus8"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g8"
 FT   mRNA            join(145836..146037,155153..155590,158341..158378,158433.
 FT                   .158469,158563..158936,159000..159092,160896..161738,162270
 FT                   ..162746,162826..164760)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus8"
+FT                   /locus_tag="MY_LOCUS_TAG_locus8"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g8.t1"
 FT   exon            145836..146037
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus8"
+FT                   /locus_tag="MY_LOCUS_TAG_locus8"
 FT                   /note="source:AUGUSTUS"
 FT   exon            155153..155590
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus8"
+FT                   /locus_tag="MY_LOCUS_TAG_locus8"
 FT                   /note="source:AUGUSTUS"
 FT   exon            158341..158378
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus8"
+FT                   /locus_tag="MY_LOCUS_TAG_locus8"
 FT                   /note="source:AUGUSTUS"
 FT   exon            158433..158469
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus8"
+FT                   /locus_tag="MY_LOCUS_TAG_locus8"
 FT                   /note="source:AUGUSTUS"
 FT   exon            158563..158936
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus8"
+FT                   /locus_tag="MY_LOCUS_TAG_locus8"
 FT                   /note="source:AUGUSTUS"
 FT   exon            159000..159092
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus8"
+FT                   /locus_tag="MY_LOCUS_TAG_locus8"
 FT                   /note="source:AUGUSTUS"
 FT   exon            160896..161738
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus8"
+FT                   /locus_tag="MY_LOCUS_TAG_locus8"
 FT                   /note="source:AUGUSTUS"
 FT   exon            162270..162746
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus8"
+FT                   /locus_tag="MY_LOCUS_TAG_locus8"
 FT                   /note="source:AUGUSTUS"
 FT   exon            162826..164760
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus8"
+FT                   /locus_tag="MY_LOCUS_TAG_locus8"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(155591..158340,158379..158432,158470..158562,158937.
 FT                   .158999,159093..160895,161739..162269,162747..162825)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus8"
+FT                   /locus_tag="MY_LOCUS_TAG_locus8"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(155155..155590,158341..158378,158433..158469,158563.
 FT                   .158936,159000..159092,160896..161738,162270..162746,162826
 FT                   ..162891)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus8"
+FT                   /locus_tag="MY_LOCUS_TAG_locus8"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g8.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(189196..209143)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus9"
+FT                   /locus_tag="MY_LOCUS_TAG_locus9"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g9"
 FT   mRNA            complement(join(189196..189724,189774..190160,191898..192
 FT                   023,192555..193548,206453..206542,206604..207466,209051..20
 FT                   9143))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus9"
+FT                   /locus_tag="MY_LOCUS_TAG_locus9"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g9.t1"
 FT   exon            complement(189196..189724)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus9"
+FT                   /locus_tag="MY_LOCUS_TAG_locus9"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(189774..190160)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus9"
+FT                   /locus_tag="MY_LOCUS_TAG_locus9"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(191898..192023)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus9"
+FT                   /locus_tag="MY_LOCUS_TAG_locus9"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(192555..193548)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus9"
+FT                   /locus_tag="MY_LOCUS_TAG_locus9"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(206453..206542)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus9"
+FT                   /locus_tag="MY_LOCUS_TAG_locus9"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(206604..207466)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus9"
+FT                   /locus_tag="MY_LOCUS_TAG_locus9"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(209051..209143)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus9"
+FT                   /locus_tag="MY_LOCUS_TAG_locus9"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(189725..189773,190161..191897,192024..192
 FT                   554,193549..206452,206543..206603))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus9"
+FT                   /locus_tag="MY_LOCUS_TAG_locus9"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(189512..189724,189774..190160,191898..192
 FT                   023,192555..193548,206453..206542,206604..207460))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus9"
+FT                   /locus_tag="MY_LOCUS_TAG_locus9"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g9.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(216788..225313)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus10"
+FT                   /locus_tag="MY_LOCUS_TAG_locus10"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g10"
 FT   mRNA            complement(join(216788..219808,221312..222009,222067..222
 FT                   284,224606..224815,225266..225313))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus10"
+FT                   /locus_tag="MY_LOCUS_TAG_locus10"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g10.t1"
 FT   exon            complement(216788..219808)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus10"
+FT                   /locus_tag="MY_LOCUS_TAG_locus10"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(221312..222009)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus10"
+FT                   /locus_tag="MY_LOCUS_TAG_locus10"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(222067..222284)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus10"
+FT                   /locus_tag="MY_LOCUS_TAG_locus10"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(224606..224815)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus10"
+FT                   /locus_tag="MY_LOCUS_TAG_locus10"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(225266..225313)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus10"
+FT                   /locus_tag="MY_LOCUS_TAG_locus10"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(219809..221311,222010..222066,222285..224
 FT                   605))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus10"
+FT                   /locus_tag="MY_LOCUS_TAG_locus10"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(218504..219808,221312..222009,222067..222
 FT                   284,224606..224796))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus10"
+FT                   /locus_tag="MY_LOCUS_TAG_locus10"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g10.t1.cds"
 FT                   /transl_table=1
 FT   gene            231004..286591
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g11"
 FT   mRNA            join(231004..231112,231184..231306,249531..250197,252905.
 FT                   .253474,257021..257101,264260..264374,278938..279092,279154
 FT                   ..279298,279360..279996,283288..283966,285401..286591)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g11.t1"
 FT   exon            231004..231112
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /note="source:AUGUSTUS"
 FT   exon            231184..231306
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /note="source:AUGUSTUS"
 FT   exon            249531..250197
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /note="source:AUGUSTUS"
 FT   exon            252905..253474
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /note="source:AUGUSTUS"
 FT   exon            257021..257101
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /note="source:AUGUSTUS"
 FT   exon            264260..264374
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /note="source:AUGUSTUS"
 FT   exon            278938..279092
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /note="source:AUGUSTUS"
 FT   exon            279154..279298
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /note="source:AUGUSTUS"
 FT   exon            279360..279996
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /note="source:AUGUSTUS"
 FT   exon            283288..283966
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /note="source:AUGUSTUS"
 FT   exon            285401..286591
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(231113..231183,231307..249530,250198..252904,253475.
 FT                   .257020,257102..264259,264375..278937,279093..279153,279299
 FT                   ..279359)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(231081..231112,231184..231306,249531..250197,252905.
 FT                   .253474,257021..257101,264260..264374,278938..279092,279154
 FT                   ..279298,279360..279394)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus11"
+FT                   /locus_tag="MY_LOCUS_TAG_locus11"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g11.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(288887..309973)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus12"
+FT                   /locus_tag="MY_LOCUS_TAG_locus12"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g12"
 FT   mRNA            complement(join(288887..290086,291061..291125,291186..291
 FT                   381,307426..307592,307715..308671,309555..309973))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus12"
+FT                   /locus_tag="MY_LOCUS_TAG_locus12"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g12.t1"
 FT   exon            complement(288887..290086)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus12"
+FT                   /locus_tag="MY_LOCUS_TAG_locus12"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(291061..291125)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus12"
+FT                   /locus_tag="MY_LOCUS_TAG_locus12"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(291186..291381)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus12"
+FT                   /locus_tag="MY_LOCUS_TAG_locus12"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(307426..307592)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus12"
+FT                   /locus_tag="MY_LOCUS_TAG_locus12"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(307715..308671)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus12"
+FT                   /locus_tag="MY_LOCUS_TAG_locus12"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(309555..309973)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus12"
+FT                   /locus_tag="MY_LOCUS_TAG_locus12"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(291126..291185,291382..307425,307593..307
 FT                   714))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus12"
+FT                   /locus_tag="MY_LOCUS_TAG_locus12"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(291076..291125,291186..291381,307426..307
 FT                   592,307715..307823))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus12"
+FT                   /locus_tag="MY_LOCUS_TAG_locus12"
 FT                   /codon_start=3
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g12.t1.cds"
 FT                   /transl_table=1
 FT   gene            322224..331471
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus13"
+FT                   /locus_tag="MY_LOCUS_TAG_locus13"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g13"
 FT   mRNA            join(322224..322673,329057..329705,330249..330259,330320.
 FT                   .330643,330705..331471)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus13"
+FT                   /locus_tag="MY_LOCUS_TAG_locus13"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g13.t1"
 FT   exon            322224..322673
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus13"
+FT                   /locus_tag="MY_LOCUS_TAG_locus13"
 FT                   /note="source:AUGUSTUS"
 FT   exon            329057..329705
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus13"
+FT                   /locus_tag="MY_LOCUS_TAG_locus13"
 FT                   /note="source:AUGUSTUS"
 FT   exon            330249..330259
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus13"
+FT                   /locus_tag="MY_LOCUS_TAG_locus13"
 FT                   /note="source:AUGUSTUS"
 FT   exon            330320..330643
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus13"
+FT                   /locus_tag="MY_LOCUS_TAG_locus13"
 FT                   /note="source:AUGUSTUS"
 FT   exon            330705..331471
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus13"
+FT                   /locus_tag="MY_LOCUS_TAG_locus13"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(322674..329056,329706..330248,330260..330319,330644.
 FT                   .330704)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus13"
+FT                   /locus_tag="MY_LOCUS_TAG_locus13"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(322671..322673,329057..329705,330249..330259,330320.
 FT                   .330643,330705..330815)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus13"
+FT                   /locus_tag="MY_LOCUS_TAG_locus13"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g13.t1.cds"
 FT                   /transl_table=1
 FT   gene            331854..348459
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus14"
+FT                   /locus_tag="MY_LOCUS_TAG_locus14"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g14"
 FT   mRNA            join(331854..331886,333532..333596,334061..334117,343490.
 FT                   .343717,343778..344106,346457..348459)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus14"
+FT                   /locus_tag="MY_LOCUS_TAG_locus14"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g14.t1"
 FT   exon            331854..331886
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus14"
+FT                   /locus_tag="MY_LOCUS_TAG_locus14"
 FT                   /note="source:AUGUSTUS"
 FT   exon            333532..333596
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus14"
+FT                   /locus_tag="MY_LOCUS_TAG_locus14"
 FT                   /note="source:AUGUSTUS"
 FT   exon            334061..334117
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus14"
+FT                   /locus_tag="MY_LOCUS_TAG_locus14"
 FT                   /note="source:AUGUSTUS"
 FT   exon            343490..343717
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus14"
+FT                   /locus_tag="MY_LOCUS_TAG_locus14"
 FT                   /note="source:AUGUSTUS"
 FT   exon            343778..344106
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus14"
+FT                   /locus_tag="MY_LOCUS_TAG_locus14"
 FT                   /note="source:AUGUSTUS"
 FT   exon            346457..348459
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus14"
+FT                   /locus_tag="MY_LOCUS_TAG_locus14"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(334118..343489,343718..343777,344107..346456)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus14"
+FT                   /locus_tag="MY_LOCUS_TAG_locus14"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(334063..334117,343490..343717,343778..344106,346457.
 FT                   .346489)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus14"
+FT                   /locus_tag="MY_LOCUS_TAG_locus14"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g14.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(361867..378218)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g15"
 FT   mRNA            complement(join(361867..363686,369621..369772,369839..370
 FT                   050,370107..370247,371229..371316,371391..371835,372212..37
 FT                   2453,372510..372752,372807..373216,374977..375187,375306..3
 FT                   75592,375657..375851,375936..376107,377836..378218))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g15.t1"
 FT   exon            complement(361867..363686)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(369621..369772)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(369839..370050)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(370107..370247)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(371229..371316)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(371391..371835)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(372212..372453)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(372510..372752)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(372807..373216)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(374977..375187)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(375306..375592)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(375657..375851)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(375936..376107)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(377836..378218)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(363687..369620,369773..369838,370051..370
 FT                   106,370248..371228,371317..371390,371836..372211,372454..37
 FT                   2509,372753..372806,373217..374976,375188..375305,375593..3
 FT                   75656,375852..375935))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(363449..363686,369621..369772,369839..370
 FT                   050,370107..370247,371229..371316,371391..371835,372212..37
 FT                   2453,372510..372752,372807..373216,374977..375187,375306..3
 FT                   75592,375657..375851,375936..376092))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus15"
+FT                   /locus_tag="MY_LOCUS_TAG_locus15"
 FT                   /codon_start=2
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g15.t1.cds"
 FT                   /transl_table=1
 FT   gene            380939..395882
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g16"
 FT   mRNA            join(380939..380984,381213..381632,382930..383239,383297.
@@ -687,215 +688,215 @@ FT                   .383508,383572..383760,384120..384271,384494..385567,386300
 FT                   ..386431,386486..386945,387015..387388,390169..390370,39043
 FT                   6..390590,392439..392802,392876..394095,394207..394250,3954
 FT                   54..395882)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g16.t1"
 FT   exon            380939..380984
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            381213..381632
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            382930..383239
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            383297..383508
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            383572..383760
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            384120..384271
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            384494..385567
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            386300..386431
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            386486..386945
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            387015..387388
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            390169..390370
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            390436..390590
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            392439..392802
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            392876..394095
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            394207..394250
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   exon            395454..395882
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(381633..382929,383240..383296,383509..383571,383761.
 FT                   .384119,384272..384493,385568..386299,386432..386485,386946
 FT                   ..387014,387389..390168,390371..390435,390591..392438,39280
 FT                   3..392875)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(381317..381632,382930..383239,383297..383508,383572.
 FT                   .383760,384120..384271,384494..385567,386300..386431,386486
 FT                   ..386945,387015..387388,390169..390370,390436..390590,39243
 FT                   9..392802,392876..393018)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus16"
+FT                   /locus_tag="MY_LOCUS_TAG_locus16"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g16.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(396183..439968)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus17"
+FT                   /locus_tag="MY_LOCUS_TAG_locus17"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g17"
 FT   mRNA            complement(join(396183..396858,397720..398295,398384..398
 FT                   451,398511..398828,399022..399187,399342..399526,402749..40
 FT                   3034,411051..411899,435202..435591,439749..439968))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus17"
+FT                   /locus_tag="MY_LOCUS_TAG_locus17"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g17.t1"
 FT   exon            complement(396183..396858)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus17"
+FT                   /locus_tag="MY_LOCUS_TAG_locus17"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(397720..398295)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus17"
+FT                   /locus_tag="MY_LOCUS_TAG_locus17"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(398384..398451)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus17"
+FT                   /locus_tag="MY_LOCUS_TAG_locus17"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(398511..398828)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus17"
+FT                   /locus_tag="MY_LOCUS_TAG_locus17"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(399022..399187)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus17"
+FT                   /locus_tag="MY_LOCUS_TAG_locus17"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(399342..399526)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus17"
+FT                   /locus_tag="MY_LOCUS_TAG_locus17"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(402749..403034)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus17"
+FT                   /locus_tag="MY_LOCUS_TAG_locus17"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(411051..411899)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus17"
+FT                   /locus_tag="MY_LOCUS_TAG_locus17"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(435202..435591)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus17"
+FT                   /locus_tag="MY_LOCUS_TAG_locus17"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(439749..439968)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus17"
+FT                   /locus_tag="MY_LOCUS_TAG_locus17"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(396859..397719,398296..398383,398452..398
 FT                   510,398829..399021,399188..399341,399527..402748,403035..41
 FT                   1050,411900..435201))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus17"
+FT                   /locus_tag="MY_LOCUS_TAG_locus17"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(396589..396858,397720..398295,398384..398
 FT                   451,398511..398828,399022..399187,399342..399526,402749..40
 FT                   3034,411051..411899,435202..435276))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus17"
+FT                   /locus_tag="MY_LOCUS_TAG_locus17"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g17.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(455098..464178)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus18"
+FT                   /locus_tag="MY_LOCUS_TAG_locus18"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g18"
 FT   mRNA            complement(join(455098..455416,457452..459544,459601..459
 FT                   791,460074..462077,462806..463015,463490..463780,463839..46
 FT                   4178))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus18"
+FT                   /locus_tag="MY_LOCUS_TAG_locus18"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g18.t1"
 FT   exon            complement(455098..455416)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus18"
+FT                   /locus_tag="MY_LOCUS_TAG_locus18"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(457452..459544)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus18"
+FT                   /locus_tag="MY_LOCUS_TAG_locus18"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(459601..459791)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus18"
+FT                   /locus_tag="MY_LOCUS_TAG_locus18"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(460074..462077)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus18"
+FT                   /locus_tag="MY_LOCUS_TAG_locus18"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(462806..463015)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus18"
+FT                   /locus_tag="MY_LOCUS_TAG_locus18"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(463490..463780)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus18"
+FT                   /locus_tag="MY_LOCUS_TAG_locus18"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(463839..464178)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus18"
+FT                   /locus_tag="MY_LOCUS_TAG_locus18"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(459545..459600,459792..460073,462078..462
 FT                   805,463016..463489,463781..463838))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus18"
+FT                   /locus_tag="MY_LOCUS_TAG_locus18"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(458012..459544,459601..459791,460074..462
 FT                   077,462806..463015,463490..463780,463839..464019))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus18"
+FT                   /locus_tag="MY_LOCUS_TAG_locus18"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g18.t1.cds"
 FT                   /transl_table=1
 FT   gene            467429..475390
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus19"
+FT                   /locus_tag="MY_LOCUS_TAG_locus19"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g19"
 FT   mRNA            join(467429..467661,467727..467861,470550..470594,470868.
 FT                   .470942,470997..471135,471816..471964,473429..473516,473598
 FT                   ..475390)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus19"
+FT                   /locus_tag="MY_LOCUS_TAG_locus19"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g19.t1"
 FT   exon            467429..467661
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus19"
+FT                   /locus_tag="MY_LOCUS_TAG_locus19"
 FT                   /note="source:AUGUSTUS"
 FT   exon            467727..467861
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus19"
+FT                   /locus_tag="MY_LOCUS_TAG_locus19"
 FT                   /note="source:AUGUSTUS"
 FT   exon            470550..470594
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus19"
+FT                   /locus_tag="MY_LOCUS_TAG_locus19"
 FT                   /note="source:AUGUSTUS"
 FT   exon            470868..470942
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus19"
+FT                   /locus_tag="MY_LOCUS_TAG_locus19"
 FT                   /note="source:AUGUSTUS"
 FT   exon            470997..471135
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus19"
+FT                   /locus_tag="MY_LOCUS_TAG_locus19"
 FT                   /note="source:AUGUSTUS"
 FT   exon            471816..471964
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus19"
+FT                   /locus_tag="MY_LOCUS_TAG_locus19"
 FT                   /note="source:AUGUSTUS"
 FT   exon            473429..473516
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus19"
+FT                   /locus_tag="MY_LOCUS_TAG_locus19"
 FT                   /note="source:AUGUSTUS"
 FT   exon            473598..475390
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus19"
+FT                   /locus_tag="MY_LOCUS_TAG_locus19"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(467662..467726,467862..470549,470595..470867,470943.
 FT                   .470996,471136..471815,471965..473428,473517..473597)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus19"
+FT                   /locus_tag="MY_LOCUS_TAG_locus19"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(467546..467661,467727..467861,470550..470594,470868.
 FT                   .470942,470997..471135,471816..471964,473429..473516,473598
 FT                   ..473825)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus19"
+FT                   /locus_tag="MY_LOCUS_TAG_locus19"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g19.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(480511..501998)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g20"
 FT   mRNA            complement(join(480511..480767,480829..481282,481340..481
@@ -903,569 +904,569 @@ FT                   673,482131..482954,483014..483127,483681..483806,485423..48
 FT                   5929,487127..487244,493008..493146,493204..493303,495079..4
 FT                   95394,497918..498709,499164..499364,499426..499494,500661..
 FT                   500864,500928..501317,501606..501767,501835..501998))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g20.t1"
 FT   exon            complement(480511..480767)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(480829..481282)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(481340..481673)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(482131..482954)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(483014..483127)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(483681..483806)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(485423..485929)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(487127..487244)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(493008..493146)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(493204..493303)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(495079..495394)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(497918..498709)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(499164..499364)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(499426..499494)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(500661..500864)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(500928..501317)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(501606..501767)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(501835..501998)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(480768..480828,481283..481339,481674..482
 FT                   130,482955..483013,483128..483680,483807..485422,485930..48
 FT                   7126,487245..493007,493147..493203,493304..495078,495395..4
 FT                   97917,498710..499163,499365..499425,499495..500660,500865..
 FT                   500927,501318..501605,501768..501834))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(480647..480767,480829..481282,481340..481
 FT                   673,482131..482954,483014..483127,483681..483806,485423..48
 FT                   5929,487127..487244,493008..493146,493204..493303,495079..4
 FT                   95394,497918..498709,499164..499364,499426..499494,500661..
 FT                   500864,500928..501317,501606..501767,501835..501888))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus20"
+FT                   /locus_tag="MY_LOCUS_TAG_locus20"
 FT                   /codon_start=2
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g20.t1.cds"
 FT                   /transl_table=1
 FT   gene            539434..561570
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g21"
 FT   mRNA            join(539434..539617,539795..539991,542099..543730,544957.
 FT                   .545138,545530..547146,550319..551719,551782..552005,552062
 FT                   ..552409,553409..553552,553609..556506,557801..558386,55844
 FT                   2..559230,559285..559864,560421..561570)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g21.t1"
 FT   exon            539434..539617
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   exon            539795..539991
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   exon            542099..543730
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   exon            544957..545138
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   exon            545530..547146
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   exon            550319..551719
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   exon            551782..552005
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   exon            552062..552409
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   exon            553409..553552
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   exon            553609..556506
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   exon            557801..558386
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   exon            558442..559230
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   exon            559285..559864
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   exon            560421..561570
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(539992..542098,543731..544956,545139..545529,547147.
 FT                   .550318,551720..551781,552006..552061,552410..553408,553553
 FT                   ..553608,556507..557800,558387..558441)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(539798..539991,542099..543730,544957..545138,545530.
 FT                   .547146,550319..551719,551782..552005,552062..552409,553409
 FT                   ..553552,553609..556506,557801..558386,558442..558446)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus21"
+FT                   /locus_tag="MY_LOCUS_TAG_locus21"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g21.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(564436..574863)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus22"
+FT                   /locus_tag="MY_LOCUS_TAG_locus22"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g22"
 FT   mRNA            complement(join(564436..568769,569885..570247,570340..570
 FT                   499,572617..573598,573698..574045,574688..574863))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus22"
+FT                   /locus_tag="MY_LOCUS_TAG_locus22"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g22.t1"
 FT   exon            complement(564436..568769)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus22"
+FT                   /locus_tag="MY_LOCUS_TAG_locus22"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(569885..570247)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus22"
+FT                   /locus_tag="MY_LOCUS_TAG_locus22"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(570340..570499)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus22"
+FT                   /locus_tag="MY_LOCUS_TAG_locus22"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(572617..573598)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus22"
+FT                   /locus_tag="MY_LOCUS_TAG_locus22"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(573698..574045)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus22"
+FT                   /locus_tag="MY_LOCUS_TAG_locus22"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(574688..574863)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus22"
+FT                   /locus_tag="MY_LOCUS_TAG_locus22"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(568770..569884,570248..570339,570500..572
 FT                   616,573599..573697))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus22"
+FT                   /locus_tag="MY_LOCUS_TAG_locus22"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(566289..568769,569885..570247,570340..570
 FT                   499,572617..573598,573698..573992))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus22"
+FT                   /locus_tag="MY_LOCUS_TAG_locus22"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g22.t1.cds"
 FT                   /transl_table=1
 FT   gene            576284..587884
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus23"
+FT                   /locus_tag="MY_LOCUS_TAG_locus23"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g23"
 FT   mRNA            join(576284..576413,580873..580926,580975..581037,581097.
 FT                   .581209,585167..585288,586033..587884)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus23"
+FT                   /locus_tag="MY_LOCUS_TAG_locus23"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g23.t1"
 FT   exon            576284..576413
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus23"
+FT                   /locus_tag="MY_LOCUS_TAG_locus23"
 FT                   /note="source:AUGUSTUS"
 FT   exon            580873..580926
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus23"
+FT                   /locus_tag="MY_LOCUS_TAG_locus23"
 FT                   /note="source:AUGUSTUS"
 FT   exon            580975..581037
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus23"
+FT                   /locus_tag="MY_LOCUS_TAG_locus23"
 FT                   /note="source:AUGUSTUS"
 FT   exon            581097..581209
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus23"
+FT                   /locus_tag="MY_LOCUS_TAG_locus23"
 FT                   /note="source:AUGUSTUS"
 FT   exon            585167..585288
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus23"
+FT                   /locus_tag="MY_LOCUS_TAG_locus23"
 FT                   /note="source:AUGUSTUS"
 FT   exon            586033..587884
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus23"
+FT                   /locus_tag="MY_LOCUS_TAG_locus23"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(580927..580974,581038..581096,581210..585166,585289.
 FT                   .586032)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus23"
+FT                   /locus_tag="MY_LOCUS_TAG_locus23"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(580884..580926,580975..581037,581097..581209,585167.
 FT                   .585288,586033..586147)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus23"
+FT                   /locus_tag="MY_LOCUS_TAG_locus23"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g23.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(587888..591433)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus24"
+FT                   /locus_tag="MY_LOCUS_TAG_locus24"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g24"
 FT   mRNA            complement(join(587888..589682,589740..589927,590601..590
 FT                   802,590860..590969,591035..591433))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus24"
+FT                   /locus_tag="MY_LOCUS_TAG_locus24"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g24.t1"
 FT   exon            complement(587888..589682)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus24"
+FT                   /locus_tag="MY_LOCUS_TAG_locus24"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(589740..589927)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus24"
+FT                   /locus_tag="MY_LOCUS_TAG_locus24"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(590601..590802)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus24"
+FT                   /locus_tag="MY_LOCUS_TAG_locus24"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(590860..590969)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus24"
+FT                   /locus_tag="MY_LOCUS_TAG_locus24"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(591035..591433)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus24"
+FT                   /locus_tag="MY_LOCUS_TAG_locus24"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(589683..589739,589928..590600,590803..590
 FT                   859,590970..591034))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus24"
+FT                   /locus_tag="MY_LOCUS_TAG_locus24"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(588993..589682,589740..589927,590601..590
 FT                   802,590860..590969,591035..591107))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus24"
+FT                   /locus_tag="MY_LOCUS_TAG_locus24"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g24.t1.cds"
 FT                   /transl_table=1
 FT   gene            595334..600739
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus25"
+FT                   /locus_tag="MY_LOCUS_TAG_locus25"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g25"
 FT   mRNA            join(595334..595397,596181..596271,596328..596951,597605.
 FT                   .598870,599871..600739)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus25"
+FT                   /locus_tag="MY_LOCUS_TAG_locus25"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g25.t1"
 FT   exon            595334..595397
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus25"
+FT                   /locus_tag="MY_LOCUS_TAG_locus25"
 FT                   /note="source:AUGUSTUS"
 FT   exon            596181..596271
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus25"
+FT                   /locus_tag="MY_LOCUS_TAG_locus25"
 FT                   /note="source:AUGUSTUS"
 FT   exon            596328..596951
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus25"
+FT                   /locus_tag="MY_LOCUS_TAG_locus25"
 FT                   /note="source:AUGUSTUS"
 FT   exon            597605..598870
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus25"
+FT                   /locus_tag="MY_LOCUS_TAG_locus25"
 FT                   /note="source:AUGUSTUS"
 FT   exon            599871..600739
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus25"
+FT                   /locus_tag="MY_LOCUS_TAG_locus25"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(596272..596327,596952..597604)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus25"
+FT                   /locus_tag="MY_LOCUS_TAG_locus25"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(596187..596271,596328..596951,597605..597948)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus25"
+FT                   /locus_tag="MY_LOCUS_TAG_locus25"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g25.t1.cds"
 FT                   /transl_table=1
 FT   gene            605604..617105
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus26"
+FT                   /locus_tag="MY_LOCUS_TAG_locus26"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g26"
 FT   mRNA            join(605604..605800,606466..606564,607528..607719,608469.
 FT                   .608668,609198..609326,612226..612985,613279..613642,613696
 FT                   ..616329,616728..617105)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus26"
+FT                   /locus_tag="MY_LOCUS_TAG_locus26"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g26.t1"
 FT   exon            605604..605800
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus26"
+FT                   /locus_tag="MY_LOCUS_TAG_locus26"
 FT                   /note="source:AUGUSTUS"
 FT   exon            606466..606564
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus26"
+FT                   /locus_tag="MY_LOCUS_TAG_locus26"
 FT                   /note="source:AUGUSTUS"
 FT   exon            607528..607719
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus26"
+FT                   /locus_tag="MY_LOCUS_TAG_locus26"
 FT                   /note="source:AUGUSTUS"
 FT   exon            608469..608668
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus26"
+FT                   /locus_tag="MY_LOCUS_TAG_locus26"
 FT                   /note="source:AUGUSTUS"
 FT   exon            609198..609326
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus26"
+FT                   /locus_tag="MY_LOCUS_TAG_locus26"
 FT                   /note="source:AUGUSTUS"
 FT   exon            612226..612985
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus26"
+FT                   /locus_tag="MY_LOCUS_TAG_locus26"
 FT                   /note="source:AUGUSTUS"
 FT   exon            613279..613642
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus26"
+FT                   /locus_tag="MY_LOCUS_TAG_locus26"
 FT                   /note="source:AUGUSTUS"
 FT   exon            613696..616329
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus26"
+FT                   /locus_tag="MY_LOCUS_TAG_locus26"
 FT                   /note="source:AUGUSTUS"
 FT   exon            616728..617105
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus26"
+FT                   /locus_tag="MY_LOCUS_TAG_locus26"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(606565..607527,607720..608468,608669..609197,609327.
 FT                   .612225,612986..613278,613643..613695)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus26"
+FT                   /locus_tag="MY_LOCUS_TAG_locus26"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(606529..606564,607528..607719,608469..608668,609198.
 FT                   .609326,612226..612985,613279..613642,613696..616142)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus26"
+FT                   /locus_tag="MY_LOCUS_TAG_locus26"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g26.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(619360..627403)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus27"
+FT                   /locus_tag="MY_LOCUS_TAG_locus27"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g27"
 FT   mRNA            complement(join(619360..620538,621376..622155,622383..622
 FT                   561,623938..624878,625629..627403))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus27"
+FT                   /locus_tag="MY_LOCUS_TAG_locus27"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g27.t1"
 FT   exon            complement(619360..620538)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus27"
+FT                   /locus_tag="MY_LOCUS_TAG_locus27"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(621376..622155)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus27"
+FT                   /locus_tag="MY_LOCUS_TAG_locus27"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(622383..622561)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus27"
+FT                   /locus_tag="MY_LOCUS_TAG_locus27"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(623938..624878)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus27"
+FT                   /locus_tag="MY_LOCUS_TAG_locus27"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(625629..627403)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus27"
+FT                   /locus_tag="MY_LOCUS_TAG_locus27"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(622156..622382,622562..623937,624879..625
 FT                   628))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus27"
+FT                   /locus_tag="MY_LOCUS_TAG_locus27"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(621730..622155,622383..622561,623938..624
 FT                   878,625629..627328))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus27"
+FT                   /locus_tag="MY_LOCUS_TAG_locus27"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g27.t1.cds"
 FT                   /transl_table=1
 FT   gene            634214..658251
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g28"
 FT   mRNA            join(634214..634421,635662..635754,635942..636549,636631.
 FT                   .636807,638974..639102,640240..640409,640474..640803,653955
 FT                   ..654058,654117..654486,654547..654750,654803..654970,65503
 FT                   6..655081,656704..658251)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g28.t1"
 FT   exon            634214..634421
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT   exon            635662..635754
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT   exon            635942..636549
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT   exon            636631..636807
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT   exon            638974..639102
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT   exon            640240..640409
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT   exon            640474..640803
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT   exon            653955..654058
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT   exon            654117..654486
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT   exon            654547..654750
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT   exon            654803..654970
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT   exon            655036..655081
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT   exon            656704..658251
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(635755..635941,636550..636630,636808..638973,639103.
 FT                   .640239,640410..640473,640804..653954,654059..654116,654487
 FT                   ..654546,654751..654802,654971..655035,655082..656703)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(635702..635754,635942..636549,636631..636807,638974.
 FT                   .639102,640240..640409,640474..640803,653955..654058,654117
 FT                   ..654486,654547..654750,654803..654970,655036..655081,65670
 FT                   4..656765)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus28"
+FT                   /locus_tag="MY_LOCUS_TAG_locus28"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g28.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(658440..678923)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g29"
 FT   mRNA            complement(join(658440..659196,660733..661362,662902..663
 FT                   054,663118..663354,672931..673210,673272..673468,673527..67
 FT                   3677,674496..674674,675131..675424,675687..676061,676842..6
 FT                   78310,678528..678923))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g29.t1"
 FT   exon            complement(658440..659196)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(660733..661362)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(662902..663054)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(663118..663354)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(672931..673210)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(673272..673468)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(673527..673677)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(674496..674674)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(675131..675424)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(675687..676061)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(676842..678310)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(678528..678923)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(661363..662901,663055..663117,663355..672
 FT                   930,673211..673271,673469..673526,673678..674495,674675..67
 FT                   5130,675425..675686,676062..676841,678311..678527))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(661138..661362,662902..663054,663118..663
 FT                   354,672931..673210,673272..673468,673527..673677,674496..67
 FT                   4674,675131..675424,675687..676061,676842..678310,678528..6
 FT                   78846))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus29"
+FT                   /locus_tag="MY_LOCUS_TAG_locus29"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g29.t1.cds"
 FT                   /transl_table=1
 FT   gene            684268..690512
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus30"
+FT                   /locus_tag="MY_LOCUS_TAG_locus30"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g30"
 FT   mRNA            join(684268..684368,684481..684966,685614..685931,686577.
 FT                   .687558,689046..689200,689756..690512)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus30"
+FT                   /locus_tag="MY_LOCUS_TAG_locus30"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g30.t1"
 FT   exon            684268..684368
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus30"
+FT                   /locus_tag="MY_LOCUS_TAG_locus30"
 FT                   /note="source:AUGUSTUS"
 FT   exon            684481..684966
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus30"
+FT                   /locus_tag="MY_LOCUS_TAG_locus30"
 FT                   /note="source:AUGUSTUS"
 FT   exon            685614..685931
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus30"
+FT                   /locus_tag="MY_LOCUS_TAG_locus30"
 FT                   /note="source:AUGUSTUS"
 FT   exon            686577..687558
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus30"
+FT                   /locus_tag="MY_LOCUS_TAG_locus30"
 FT                   /note="source:AUGUSTUS"
 FT   exon            689046..689200
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus30"
+FT                   /locus_tag="MY_LOCUS_TAG_locus30"
 FT                   /note="source:AUGUSTUS"
 FT   exon            689756..690512
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus30"
+FT                   /locus_tag="MY_LOCUS_TAG_locus30"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(684369..684480,684967..685613,685932..686576,687559.
 FT                   .689045,689201..689755)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus30"
+FT                   /locus_tag="MY_LOCUS_TAG_locus30"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(684327..684368,684481..684966,685614..685931,686577.
 FT                   .687558,689046..689200,689756..690076)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus30"
+FT                   /locus_tag="MY_LOCUS_TAG_locus30"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g30.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(691408..699917)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus31"
+FT                   /locus_tag="MY_LOCUS_TAG_locus31"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g31"
 FT   mRNA            complement(join(691408..693363,698034..698187,698272..698
 FT                   917,699258..699917))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus31"
+FT                   /locus_tag="MY_LOCUS_TAG_locus31"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g31.t1"
 FT   exon            complement(691408..693363)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus31"
+FT                   /locus_tag="MY_LOCUS_TAG_locus31"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(698034..698187)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus31"
+FT                   /locus_tag="MY_LOCUS_TAG_locus31"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(698272..698917)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus31"
+FT                   /locus_tag="MY_LOCUS_TAG_locus31"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(699258..699917)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus31"
+FT                   /locus_tag="MY_LOCUS_TAG_locus31"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(693364..698033,698188..698271))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus31"
+FT                   /locus_tag="MY_LOCUS_TAG_locus31"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(692666..693363,698034..698187,698272..698
 FT                   790))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus31"
+FT                   /locus_tag="MY_LOCUS_TAG_locus31"
 FT                   /codon_start=3
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g31.t1.cds"
 FT                   /transl_table=1
 FT   gene            700158..796697
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g32"
 FT   mRNA            join(700158..700352,701347..701761,705207..705883,725701.
@@ -1481,158 +1482,158 @@ FT                   ,771196..772095,772803..773566,773651..773786,773964..77485
 FT                   4,774913..777585,778147..778428,778491..778790,778846..7883
 FT                   16,788388..789366,789430..789771,791179..792221,794643..794
 FT                   743,794811..794937,795003..795305,795541..796697)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g32.t1"
 FT   exon            700158..700352
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            701347..701761
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            705207..705883
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            725701..725767
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            725825..725899
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            728118..728297
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            731543..731708
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            733119..733299
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            734484..734828
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            734877..735138
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            737753..737926
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            738280..738555
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            739900..740254
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            740948..741538
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            748087..748249
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            748730..748871
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            749236..749440
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            749628..749828
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            749900..750171
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            751403..751626
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            751689..752091
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            752186..752859
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            754905..755027
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            755104..755163
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            755340..755438
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            756141..756449
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            756531..756656
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            757445..757672
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            758362..758535
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            763029..763176
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            763414..763787
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            765792..765917
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            765998..766697
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            767102..767455
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            767933..769645
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            771196..772095
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            772803..773566
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            773651..773786
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            773964..774854
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            774913..777585
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            778147..778428
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            778491..778790
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            778846..788316
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            788388..789366
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            789430..789771
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            791179..792221
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            794643..794743
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            794811..794937
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            795003..795305
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   exon            795541..796697
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(701762..705206,705884..725700,725768..725824,725900.
 FT                   .728117,728298..731542,731709..733118,733300..734483,734829
@@ -1647,7 +1648,7 @@ FT                   ,773567..773650,773787..773963,774855..774912,777586..77814
 FT                   6,778429..778490,778791..778845,788317..788387,789367..7894
 FT                   29,789772..791178,792222..794642,794744..794810,794938..795
 FT                   002,795306..795540)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(701422..701761,705207..705883,725701..725767,725825.
 FT                   .725899,728118..728297,731543..731708,733119..733299,734484
@@ -1662,103 +1663,103 @@ FT                   ,772803..773566,773651..773786,773964..774854,774913..77758
 FT                   5,778147..778428,778491..778790,778846..788316,788388..7893
 FT                   66,789430..789771,791179..792221,794643..794743,794811..794
 FT                   937,795003..795305,795541..796175)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus32"
+FT                   /locus_tag="MY_LOCUS_TAG_locus32"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g32.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(799083..819997)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus33"
+FT                   /locus_tag="MY_LOCUS_TAG_locus33"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g33"
 FT   mRNA            complement(join(799083..802295,806911..807652,807707..807
 FT                   727,813407..815004,815279..816919,819625..819997))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus33"
+FT                   /locus_tag="MY_LOCUS_TAG_locus33"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g33.t1"
 FT   exon            complement(799083..802295)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus33"
+FT                   /locus_tag="MY_LOCUS_TAG_locus33"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(806911..807652)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus33"
+FT                   /locus_tag="MY_LOCUS_TAG_locus33"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(807707..807727)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus33"
+FT                   /locus_tag="MY_LOCUS_TAG_locus33"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(813407..815004)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus33"
+FT                   /locus_tag="MY_LOCUS_TAG_locus33"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(815279..816919)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus33"
+FT                   /locus_tag="MY_LOCUS_TAG_locus33"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(819625..819997)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus33"
+FT                   /locus_tag="MY_LOCUS_TAG_locus33"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(802296..806910,807653..807706,807728..813
 FT                   406,815005..815278))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus33"
+FT                   /locus_tag="MY_LOCUS_TAG_locus33"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(799453..802295,806911..807652,807707..807
 FT                   727,813407..815004,815279..816326))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus33"
+FT                   /locus_tag="MY_LOCUS_TAG_locus33"
 FT                   /codon_start=3
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g33.t1.cds"
 FT                   /transl_table=1
 FT   gene            820118..821466
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus34"
+FT                   /locus_tag="MY_LOCUS_TAG_locus34"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g34"
 FT   mRNA            820118..821466
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus34"
+FT                   /locus_tag="MY_LOCUS_TAG_locus34"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g34.t1"
 FT   exon            820118..821466
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus34"
+FT                   /locus_tag="MY_LOCUS_TAG_locus34"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             820197..820553
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus34"
+FT                   /locus_tag="MY_LOCUS_TAG_locus34"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g34.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(821568..836617)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus35"
+FT                   /locus_tag="MY_LOCUS_TAG_locus35"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g35"
 FT   mRNA            complement(join(821568..822565,823024..823244,823458..823
 FT                   953,829664..829674,836343..836617))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus35"
+FT                   /locus_tag="MY_LOCUS_TAG_locus35"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g35.t1"
 FT   exon            complement(821568..822565)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus35"
+FT                   /locus_tag="MY_LOCUS_TAG_locus35"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(823024..823244)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus35"
+FT                   /locus_tag="MY_LOCUS_TAG_locus35"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(823458..823953)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus35"
+FT                   /locus_tag="MY_LOCUS_TAG_locus35"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(829664..829674)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus35"
+FT                   /locus_tag="MY_LOCUS_TAG_locus35"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(836343..836617)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus35"
+FT                   /locus_tag="MY_LOCUS_TAG_locus35"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(822566..823023,823245..823457,823954..829
 FT                   663))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus35"
+FT                   /locus_tag="MY_LOCUS_TAG_locus35"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(821909..822565,823024..823244,823458..823
 FT                   953,829664..829669))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus35"
+FT                   /locus_tag="MY_LOCUS_TAG_locus35"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g35.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(857613..979672)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g36"
 FT   mRNA            complement(join(857613..859604,876312..876466,880933..881
@@ -1774,149 +1775,149 @@ FT                   463..936685,936747..936893,937493..937716,938066..938369,93
 FT                   8950..939107,939162..939402,939529..941825,946394..946558,9
 FT                   46633..946726,946793..946999,977171..978515,978632..978749,
 FT                   979616..979672))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g36.t1"
 FT   exon            complement(857613..859604)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(876312..876466)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(880933..881007)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(881066..882013)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(882419..882752)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(883329..885037)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(885974..886268)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(886328..886498)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(886557..886843)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(892127..892280)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(892346..892472)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(894340..894552)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(894620..894786)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(894872..895093)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(895829..896110)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(896169..896336)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(896740..896865)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(896922..897080)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(897496..897820)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(899477..899618)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(903243..903349)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(903587..903707)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(903769..903988)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(904193..904267)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(906386..906517)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(907591..911300)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(911871..912398)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(912453..913404)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(919019..920461)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(920528..922860)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(922933..923809)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(926654..926742)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(933013..933393)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(936282..936344)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(936463..936685)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(936747..936893)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(937493..937716)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(938066..938369)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(938950..939107)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(939162..939402)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(939529..941825)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(946394..946558)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(946633..946726)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(946793..946999)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(977171..978515)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(978632..978749)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(979616..979672)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(859605..876311,876467..880932,881008..881
 FT                   065,882014..882418,882753..883328,885038..885973,886269..88
@@ -1930,7 +1931,7 @@ FT                   10..926653,926743..933012,933394..936281,936345..936462,936
 FT                   686..936746,936894..937492,937717..938065,938370..938949,93
 FT                   9108..939161,939403..939528,941826..946393,946559..946632,9
 FT                   46727..946792,947000..977170,978516..978631))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(857835..859604,876312..876466,880933..881
 FT                   007,881066..882013,882419..882752,883329..885037,885974..88
@@ -1945,732 +1946,732 @@ FT                   463..936685,936747..936893,937493..937716,938066..938369,93
 FT                   8950..939107,939162..939402,939529..941825,946394..946558,9
 FT                   46633..946726,946793..946999,977171..978515,978632..978657)
 FT                   )
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus36"
+FT                   /locus_tag="MY_LOCUS_TAG_locus36"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g36.t1.cds"
 FT                   /transl_table=1
 FT   gene            994053..1028531
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus37"
+FT                   /locus_tag="MY_LOCUS_TAG_locus37"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g37"
 FT   mRNA            join(994053..994138,994226..994292,997392..997467,997525.
 FT                   .997844,1020111..1020161,1020223..1020399,1024784..1025038,
 FT                   1025096..1025244,1026433..1026635,1026692..1028531)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus37"
+FT                   /locus_tag="MY_LOCUS_TAG_locus37"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g37.t1"
 FT   exon            994053..994138
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus37"
+FT                   /locus_tag="MY_LOCUS_TAG_locus37"
 FT                   /note="source:AUGUSTUS"
 FT   exon            994226..994292
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus37"
+FT                   /locus_tag="MY_LOCUS_TAG_locus37"
 FT                   /note="source:AUGUSTUS"
 FT   exon            997392..997467
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus37"
+FT                   /locus_tag="MY_LOCUS_TAG_locus37"
 FT                   /note="source:AUGUSTUS"
 FT   exon            997525..997844
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus37"
+FT                   /locus_tag="MY_LOCUS_TAG_locus37"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1020111..1020161
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus37"
+FT                   /locus_tag="MY_LOCUS_TAG_locus37"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1020223..1020399
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus37"
+FT                   /locus_tag="MY_LOCUS_TAG_locus37"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1024784..1025038
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus37"
+FT                   /locus_tag="MY_LOCUS_TAG_locus37"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1025096..1025244
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus37"
+FT                   /locus_tag="MY_LOCUS_TAG_locus37"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1026433..1026635
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus37"
+FT                   /locus_tag="MY_LOCUS_TAG_locus37"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1026692..1028531
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus37"
+FT                   /locus_tag="MY_LOCUS_TAG_locus37"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(994293..997391,997468..997524,997845..1020110,102016
 FT                   2..1020222,1020400..1024783,1025039..1025095,1025245..10264
 FT                   32,1026636..1026691)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus37"
+FT                   /locus_tag="MY_LOCUS_TAG_locus37"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(994227..994292,997392..997467,997525..997844,1020111
 FT                   ..1020161,1020223..1020399,1024784..1025038,1025096..102524
 FT                   4,1026433..1026635,1026692..1026786)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus37"
+FT                   /locus_tag="MY_LOCUS_TAG_locus37"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g37.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(1032259..1039000)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus38"
+FT                   /locus_tag="MY_LOCUS_TAG_locus38"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g38"
 FT   mRNA            complement(join(1032259..1033355,1034293..1034394,1034944
 FT                   ..1035152,1035209..1035354,1035404..1035534,1035592..103597
 FT                   8,1036051..1036246,1037821..1039000))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus38"
+FT                   /locus_tag="MY_LOCUS_TAG_locus38"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g38.t1"
 FT   exon            complement(1032259..1033355)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus38"
+FT                   /locus_tag="MY_LOCUS_TAG_locus38"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1034293..1034394)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus38"
+FT                   /locus_tag="MY_LOCUS_TAG_locus38"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1034944..1035152)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus38"
+FT                   /locus_tag="MY_LOCUS_TAG_locus38"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1035209..1035354)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus38"
+FT                   /locus_tag="MY_LOCUS_TAG_locus38"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1035404..1035534)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus38"
+FT                   /locus_tag="MY_LOCUS_TAG_locus38"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1035592..1035978)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus38"
+FT                   /locus_tag="MY_LOCUS_TAG_locus38"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1036051..1036246)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus38"
+FT                   /locus_tag="MY_LOCUS_TAG_locus38"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1037821..1039000)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus38"
+FT                   /locus_tag="MY_LOCUS_TAG_locus38"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(1035153..1035208,1035355..1035403,1035535
 FT                   ..1035591,1035979..1036050,1036247..1037820))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus38"
+FT                   /locus_tag="MY_LOCUS_TAG_locus38"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1034985..1035152,1035209..1035354,1035404
 FT                   ..1035534,1035592..1035978,1036051..1036246,1037821..103895
 FT                   8))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus38"
+FT                   /locus_tag="MY_LOCUS_TAG_locus38"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g38.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(1041681..1051600)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus39"
+FT                   /locus_tag="MY_LOCUS_TAG_locus39"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g39"
 FT   mRNA            complement(join(1041681..1042839,1049348..1049782,1050609
 FT                   ..1051600))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus39"
+FT                   /locus_tag="MY_LOCUS_TAG_locus39"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g39.t1"
 FT   exon            complement(1041681..1042839)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus39"
+FT                   /locus_tag="MY_LOCUS_TAG_locus39"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1049348..1049782)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus39"
+FT                   /locus_tag="MY_LOCUS_TAG_locus39"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1050609..1051600)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus39"
+FT                   /locus_tag="MY_LOCUS_TAG_locus39"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(1049783..1050608)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus39"
+FT                   /locus_tag="MY_LOCUS_TAG_locus39"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1049369..1049782,1050609..1051436))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus39"
+FT                   /locus_tag="MY_LOCUS_TAG_locus39"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g39.t1.cds"
 FT                   /transl_table=1
 FT   gene            1052361..1055175
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus40"
+FT                   /locus_tag="MY_LOCUS_TAG_locus40"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g40"
 FT   mRNA            join(1052361..1052579,1053533..1053844,1053898..1055175)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus40"
+FT                   /locus_tag="MY_LOCUS_TAG_locus40"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g40.t1"
 FT   exon            1052361..1052579
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus40"
+FT                   /locus_tag="MY_LOCUS_TAG_locus40"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1053533..1053844
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus40"
+FT                   /locus_tag="MY_LOCUS_TAG_locus40"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1053898..1055175
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus40"
+FT                   /locus_tag="MY_LOCUS_TAG_locus40"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(1052580..1053532,1053845..1053897)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus40"
+FT                   /locus_tag="MY_LOCUS_TAG_locus40"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1052516..1052579,1053533..1053844,1053898..1055039)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus40"
+FT                   /locus_tag="MY_LOCUS_TAG_locus40"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g40.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(1055959..1072950)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus41"
+FT                   /locus_tag="MY_LOCUS_TAG_locus41"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g41"
 FT   mRNA            complement(join(1055959..1058048,1058102..1058216,1058272
 FT                   ..1058366,1067886..1068016,1068079..1068188,1068449..106881
 FT                   7,1070924..1071018,1071081..1071235,1072566..1072950))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus41"
+FT                   /locus_tag="MY_LOCUS_TAG_locus41"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g41.t1"
 FT   exon            complement(1055959..1058048)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus41"
+FT                   /locus_tag="MY_LOCUS_TAG_locus41"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1058102..1058216)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus41"
+FT                   /locus_tag="MY_LOCUS_TAG_locus41"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1058272..1058366)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus41"
+FT                   /locus_tag="MY_LOCUS_TAG_locus41"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1067886..1068016)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus41"
+FT                   /locus_tag="MY_LOCUS_TAG_locus41"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1068079..1068188)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus41"
+FT                   /locus_tag="MY_LOCUS_TAG_locus41"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1068449..1068817)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus41"
+FT                   /locus_tag="MY_LOCUS_TAG_locus41"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1070924..1071018)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus41"
+FT                   /locus_tag="MY_LOCUS_TAG_locus41"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1071081..1071235)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus41"
+FT                   /locus_tag="MY_LOCUS_TAG_locus41"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1072566..1072950)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus41"
+FT                   /locus_tag="MY_LOCUS_TAG_locus41"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(1058049..1058101,1058217..1058271,1058367
 FT                   ..1067885,1068017..1068078,1068189..1068448,1068818..107092
 FT                   3,1071019..1071080))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus41"
+FT                   /locus_tag="MY_LOCUS_TAG_locus41"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1057904..1058048,1058102..1058216,1058272
 FT                   ..1058366,1067886..1068016,1068079..1068188,1068449..106881
 FT                   7,1070924..1071018,1071081..1071145))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus41"
+FT                   /locus_tag="MY_LOCUS_TAG_locus41"
 FT                   /codon_start=2
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g41.t1.cds"
 FT                   /transl_table=1
 FT   gene            1083441..1096833
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus42"
+FT                   /locus_tag="MY_LOCUS_TAG_locus42"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g42"
 FT   mRNA            join(1083441..1083545,1085710..1085809,1086482..1086511,1
 FT                   086566..1093731,1093787..1094007,1094065..1096183,1096242..
 FT                   1096362,1096418..1096833)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus42"
+FT                   /locus_tag="MY_LOCUS_TAG_locus42"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g42.t1"
 FT   exon            1083441..1083545
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus42"
+FT                   /locus_tag="MY_LOCUS_TAG_locus42"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1085710..1085809
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus42"
+FT                   /locus_tag="MY_LOCUS_TAG_locus42"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1086482..1086511
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus42"
+FT                   /locus_tag="MY_LOCUS_TAG_locus42"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1086566..1093731
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus42"
+FT                   /locus_tag="MY_LOCUS_TAG_locus42"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1093787..1094007
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus42"
+FT                   /locus_tag="MY_LOCUS_TAG_locus42"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1094065..1096183
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus42"
+FT                   /locus_tag="MY_LOCUS_TAG_locus42"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1096242..1096362
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus42"
+FT                   /locus_tag="MY_LOCUS_TAG_locus42"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1096418..1096833
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus42"
+FT                   /locus_tag="MY_LOCUS_TAG_locus42"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(1085810..1086481,1086512..1086565,1093732..1093786,1
 FT                   094008..1094064,1096184..1096241,1096363..1096417)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus42"
+FT                   /locus_tag="MY_LOCUS_TAG_locus42"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1085734..1085809,1086482..1086511,1086566..1093731,1
 FT                   093787..1094007,1094065..1096183,1096242..1096362,1096418..
 FT                   1096740)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus42"
+FT                   /locus_tag="MY_LOCUS_TAG_locus42"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g42.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(1097972..1104670)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus43"
+FT                   /locus_tag="MY_LOCUS_TAG_locus43"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g43"
 FT   mRNA            complement(join(1097972..1098455,1099911..1100197,1100883
 FT                   ..1101063,1101114..1101158,1104654..1104670))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus43"
+FT                   /locus_tag="MY_LOCUS_TAG_locus43"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g43.t1"
 FT   exon            complement(1097972..1098455)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus43"
+FT                   /locus_tag="MY_LOCUS_TAG_locus43"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1099911..1100197)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus43"
+FT                   /locus_tag="MY_LOCUS_TAG_locus43"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1100883..1101063)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus43"
+FT                   /locus_tag="MY_LOCUS_TAG_locus43"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1101114..1101158)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus43"
+FT                   /locus_tag="MY_LOCUS_TAG_locus43"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1104654..1104670)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus43"
+FT                   /locus_tag="MY_LOCUS_TAG_locus43"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(1100198..1100882,1101064..1101113))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus43"
+FT                   /locus_tag="MY_LOCUS_TAG_locus43"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1100175..1100197,1100883..1101063,1101114
 FT                   ..1101116))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus43"
+FT                   /locus_tag="MY_LOCUS_TAG_locus43"
 FT                   /codon_start=3
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g43.t1.cds"
 FT                   /transl_table=1
 FT   gene            1109601..1117459
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus44"
+FT                   /locus_tag="MY_LOCUS_TAG_locus44"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g44"
 FT   mRNA            join(1109601..1109688,1112885..1113035,1113098..1113254,1
 FT                   116202..1116342,1116420..1116458,1116841..1117459)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus44"
+FT                   /locus_tag="MY_LOCUS_TAG_locus44"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g44.t1"
 FT   exon            1109601..1109688
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus44"
+FT                   /locus_tag="MY_LOCUS_TAG_locus44"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1112885..1113035
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus44"
+FT                   /locus_tag="MY_LOCUS_TAG_locus44"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1113098..1113254
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus44"
+FT                   /locus_tag="MY_LOCUS_TAG_locus44"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1116202..1116342
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus44"
+FT                   /locus_tag="MY_LOCUS_TAG_locus44"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1116420..1116458
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus44"
+FT                   /locus_tag="MY_LOCUS_TAG_locus44"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1116841..1117459
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus44"
+FT                   /locus_tag="MY_LOCUS_TAG_locus44"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(1113036..1113097,1113255..1116201,1116343..1116419,1
 FT                   116459..1116840)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus44"
+FT                   /locus_tag="MY_LOCUS_TAG_locus44"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1112967..1113035,1113098..1113254,1116202..1116342,1
 FT                   116420..1116458,1116841..1116971)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus44"
+FT                   /locus_tag="MY_LOCUS_TAG_locus44"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g44.t1.cds"
 FT                   /transl_table=1
 FT   gene            1121561..1133305
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus45"
+FT                   /locus_tag="MY_LOCUS_TAG_locus45"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g45"
 FT   mRNA            join(1121561..1121710,1124161..1124358,1126778..1127223,1
 FT                   128724..1128970,1129735..1130171,1131407..1133305)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus45"
+FT                   /locus_tag="MY_LOCUS_TAG_locus45"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g45.t1"
 FT   exon            1121561..1121710
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus45"
+FT                   /locus_tag="MY_LOCUS_TAG_locus45"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1124161..1124358
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus45"
+FT                   /locus_tag="MY_LOCUS_TAG_locus45"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1126778..1127223
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus45"
+FT                   /locus_tag="MY_LOCUS_TAG_locus45"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1128724..1128970
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus45"
+FT                   /locus_tag="MY_LOCUS_TAG_locus45"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1129735..1130171
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus45"
+FT                   /locus_tag="MY_LOCUS_TAG_locus45"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1131407..1133305
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus45"
+FT                   /locus_tag="MY_LOCUS_TAG_locus45"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(1127224..1128723,1128971..1129734,1130172..1131406)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus45"
+FT                   /locus_tag="MY_LOCUS_TAG_locus45"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1127221..1127223,1128724..1128970,1129735..1130171,1
 FT                   131407..1131511)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus45"
+FT                   /locus_tag="MY_LOCUS_TAG_locus45"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g45.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(1135942..1141820)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
+FT                   /locus_tag="MY_LOCUS_TAG_locus46"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g46"
 FT   mRNA            complement(join(1135942..1136523,1136582..1136705,1137217
 FT                   ..1137224,1137286..1137372,1138477..1138531,1138594..113964
 FT                   3,1140563..1140673,1140732..1141232,1141285..1141427,114154
 FT                   1..1141820))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
+FT                   /locus_tag="MY_LOCUS_TAG_locus46"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g46.t1"
 FT   exon            complement(1135942..1136523)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
+FT                   /locus_tag="MY_LOCUS_TAG_locus46"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1136582..1136705)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
+FT                   /locus_tag="MY_LOCUS_TAG_locus46"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1137217..1137224)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
+FT                   /locus_tag="MY_LOCUS_TAG_locus46"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1137286..1137372)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
+FT                   /locus_tag="MY_LOCUS_TAG_locus46"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1138477..1138531)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
+FT                   /locus_tag="MY_LOCUS_TAG_locus46"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1138594..1139643)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
+FT                   /locus_tag="MY_LOCUS_TAG_locus46"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1140563..1140673)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
+FT                   /locus_tag="MY_LOCUS_TAG_locus46"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1140732..1141232)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
+FT                   /locus_tag="MY_LOCUS_TAG_locus46"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1141285..1141427)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
+FT                   /locus_tag="MY_LOCUS_TAG_locus46"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1141541..1141820)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
+FT                   /locus_tag="MY_LOCUS_TAG_locus46"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(1136524..1136581,1136706..1137216,1137225
 FT                   ..1137285,1137373..1138476,1138532..1138593,1139644..114056
 FT                   2,1140674..1140731,1141233..1141284,1141428..1141540))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
+FT                   /locus_tag="MY_LOCUS_TAG_locus46"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1136453..1136523,1136582..1136705,1137217
 FT                   ..1137224,1137286..1137372,1138477..1138531,1138594..113964
 FT                   3,1140563..1140673,1140732..1141232,1141285..1141427,114154
 FT                   1..1141571))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus46"
+FT                   /locus_tag="MY_LOCUS_TAG_locus46"
 FT                   /codon_start=3
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g46.t1.cds"
 FT                   /transl_table=1
 FT   gene            1144861..1152047
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus47"
+FT                   /locus_tag="MY_LOCUS_TAG_locus47"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g47"
 FT   mRNA            join(1144861..1144957,1145062..1145324,1145394..1145519,1
 FT                   147435..1147567,1147628..1147788,1150061..1150114,1150192..
 FT                   1150356,1150651..1150809,1151009..1151212,1151275..1152047)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus47"
+FT                   /locus_tag="MY_LOCUS_TAG_locus47"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g47.t1"
 FT   exon            1144861..1144957
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus47"
+FT                   /locus_tag="MY_LOCUS_TAG_locus47"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1145062..1145324
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus47"
+FT                   /locus_tag="MY_LOCUS_TAG_locus47"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1145394..1145519
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus47"
+FT                   /locus_tag="MY_LOCUS_TAG_locus47"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1147435..1147567
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus47"
+FT                   /locus_tag="MY_LOCUS_TAG_locus47"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1147628..1147788
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus47"
+FT                   /locus_tag="MY_LOCUS_TAG_locus47"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1150061..1150114
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus47"
+FT                   /locus_tag="MY_LOCUS_TAG_locus47"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1150192..1150356
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus47"
+FT                   /locus_tag="MY_LOCUS_TAG_locus47"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1150651..1150809
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus47"
+FT                   /locus_tag="MY_LOCUS_TAG_locus47"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1151009..1151212
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus47"
+FT                   /locus_tag="MY_LOCUS_TAG_locus47"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1151275..1152047
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus47"
+FT                   /locus_tag="MY_LOCUS_TAG_locus47"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(1144958..1145061,1145325..1145393,1145520..1147434,1
 FT                   147568..1147627,1147789..1150060,1150115..1150191,1150357..
 FT                   1150650,1150810..1151008,1151213..1151274)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus47"
+FT                   /locus_tag="MY_LOCUS_TAG_locus47"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1144891..1144957,1145062..1145324,1145394..1145519,1
 FT                   147435..1147567,1147628..1147788,1150061..1150114,1150192..
 FT                   1150356,1150651..1150809,1151009..1151212,1151275..1151283)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus47"
+FT                   /locus_tag="MY_LOCUS_TAG_locus47"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g47.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(1158542..1163030)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus48"
+FT                   /locus_tag="MY_LOCUS_TAG_locus48"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g48"
 FT   mRNA            complement(join(1158542..1160445,1161113..1161527,1161586
 FT                   ..1161993,1162886..1163030))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus48"
+FT                   /locus_tag="MY_LOCUS_TAG_locus48"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g48.t1"
 FT   exon            complement(1158542..1160445)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus48"
+FT                   /locus_tag="MY_LOCUS_TAG_locus48"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1161113..1161527)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus48"
+FT                   /locus_tag="MY_LOCUS_TAG_locus48"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1161586..1161993)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus48"
+FT                   /locus_tag="MY_LOCUS_TAG_locus48"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1162886..1163030)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus48"
+FT                   /locus_tag="MY_LOCUS_TAG_locus48"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(1160446..1161112,1161528..1161585))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus48"
+FT                   /locus_tag="MY_LOCUS_TAG_locus48"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1160359..1160445,1161113..1161527,1161586
 FT                   ..1161986))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus48"
+FT                   /locus_tag="MY_LOCUS_TAG_locus48"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g48.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(1165513..1176300)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus49"
+FT                   /locus_tag="MY_LOCUS_TAG_locus49"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g49"
 FT   mRNA            complement(join(1165513..1167436,1174368..1174466,1174523
 FT                   ..1174766,1175250..1176300))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus49"
+FT                   /locus_tag="MY_LOCUS_TAG_locus49"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g49.t1"
 FT   exon            complement(1165513..1167436)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus49"
+FT                   /locus_tag="MY_LOCUS_TAG_locus49"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1174368..1174466)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus49"
+FT                   /locus_tag="MY_LOCUS_TAG_locus49"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1174523..1174766)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus49"
+FT                   /locus_tag="MY_LOCUS_TAG_locus49"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1175250..1176300)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus49"
+FT                   /locus_tag="MY_LOCUS_TAG_locus49"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(1167437..1174367,1174467..1174522,1174767
 FT                   ..1175249))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus49"
+FT                   /locus_tag="MY_LOCUS_TAG_locus49"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1167432..1167436,1174368..1174466,1174523
 FT                   ..1174766,1175250..1175837))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus49"
+FT                   /locus_tag="MY_LOCUS_TAG_locus49"
 FT                   /codon_start=3
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g49.t1.cds"
 FT                   /transl_table=1
 FT   gene            1200561..1212936
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus50"
+FT                   /locus_tag="MY_LOCUS_TAG_locus50"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g50"
 FT   mRNA            join(1200561..1200908,1201411..1201465,1209680..1210021,1
 FT                   210169..1210315,1210507..1210634,1210693..1211175,1211474..
 FT                   1211607,1212075..1212936)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus50"
+FT                   /locus_tag="MY_LOCUS_TAG_locus50"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g50.t1"
 FT   exon            1200561..1200908
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus50"
+FT                   /locus_tag="MY_LOCUS_TAG_locus50"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1201411..1201465
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus50"
+FT                   /locus_tag="MY_LOCUS_TAG_locus50"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1209680..1210021
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus50"
+FT                   /locus_tag="MY_LOCUS_TAG_locus50"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1210169..1210315
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus50"
+FT                   /locus_tag="MY_LOCUS_TAG_locus50"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1210507..1210634
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus50"
+FT                   /locus_tag="MY_LOCUS_TAG_locus50"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1210693..1211175
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus50"
+FT                   /locus_tag="MY_LOCUS_TAG_locus50"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1211474..1211607
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus50"
+FT                   /locus_tag="MY_LOCUS_TAG_locus50"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1212075..1212936
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus50"
+FT                   /locus_tag="MY_LOCUS_TAG_locus50"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(1201466..1209679,1210022..1210168,1210316..1210506,1
 FT                   210635..1210692,1211176..1211473)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus50"
+FT                   /locus_tag="MY_LOCUS_TAG_locus50"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1201462..1201465,1209680..1210021,1210169..1210315,1
 FT                   210507..1210634,1210693..1211175,1211474..1211557)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus50"
+FT                   /locus_tag="MY_LOCUS_TAG_locus50"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g50.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(1213147..1218070)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus51"
+FT                   /locus_tag="MY_LOCUS_TAG_locus51"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g51"
 FT   mRNA            complement(join(1213147..1214485,1216054..1216222,1216286
 FT                   ..1216416,1216468..1216717,1217697..1218070))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus51"
+FT                   /locus_tag="MY_LOCUS_TAG_locus51"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g51.t1"
 FT   exon            complement(1213147..1214485)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus51"
+FT                   /locus_tag="MY_LOCUS_TAG_locus51"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1216054..1216222)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus51"
+FT                   /locus_tag="MY_LOCUS_TAG_locus51"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1216286..1216416)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus51"
+FT                   /locus_tag="MY_LOCUS_TAG_locus51"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1216468..1216717)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus51"
+FT                   /locus_tag="MY_LOCUS_TAG_locus51"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1217697..1218070)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus51"
+FT                   /locus_tag="MY_LOCUS_TAG_locus51"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(1214486..1216053,1216223..1216285,1216417
 FT                   ..1216467))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus51"
+FT                   /locus_tag="MY_LOCUS_TAG_locus51"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1214330..1214485,1216054..1216222,1216286
 FT                   ..1216416,1216468..1216710))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus51"
+FT                   /locus_tag="MY_LOCUS_TAG_locus51"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g51.t1.cds"
 FT                   /transl_table=1
 FT   gene            1222710..1229233
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus52"
+FT                   /locus_tag="MY_LOCUS_TAG_locus52"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g52"
 FT   mRNA            join(1222710..1223321,1223420..1223750,1223802..1223921,1
 FT                   223986..1224096,1225217..1225376,1225434..1225597,1225732..
 FT                   1225890,1225948..1227003,1228610..1229233)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus52"
+FT                   /locus_tag="MY_LOCUS_TAG_locus52"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g52.t1"
 FT   exon            1222710..1223321
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus52"
+FT                   /locus_tag="MY_LOCUS_TAG_locus52"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1223420..1223750
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus52"
+FT                   /locus_tag="MY_LOCUS_TAG_locus52"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1223802..1223921
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus52"
+FT                   /locus_tag="MY_LOCUS_TAG_locus52"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1223986..1224096
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus52"
+FT                   /locus_tag="MY_LOCUS_TAG_locus52"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1225217..1225376
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus52"
+FT                   /locus_tag="MY_LOCUS_TAG_locus52"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1225434..1225597
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus52"
+FT                   /locus_tag="MY_LOCUS_TAG_locus52"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1225732..1225890
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus52"
+FT                   /locus_tag="MY_LOCUS_TAG_locus52"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1225948..1227003
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus52"
+FT                   /locus_tag="MY_LOCUS_TAG_locus52"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1228610..1229233
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus52"
+FT                   /locus_tag="MY_LOCUS_TAG_locus52"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(1223322..1223419,1223751..1223801,1223922..1223985,1
 FT                   224097..1225216,1225377..1225433,1225598..1225731,1225891..
 FT                   1225947)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus52"
+FT                   /locus_tag="MY_LOCUS_TAG_locus52"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1222819..1223321,1223420..1223750,1223802..1223921,1
 FT                   223986..1224096,1225217..1225376,1225434..1225597,1225732..
 FT                   1225890,1225948..1226517)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus52"
+FT                   /locus_tag="MY_LOCUS_TAG_locus52"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g52.t1.cds"
 FT                   /transl_table=1
 FT   gene            1244860..1275452
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g53"
 FT   mRNA            join(1244860..1244867,1245456..1245483,1245552..1245623,1
 FT                   247203..1247378,1247445..1247676,1247740..1247990,1248063..
 FT                   1248077,1249105..1249249,1268557..1268691,1268755..1268881,
 FT                   1274471..1274594,1274651..1275452)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g53.t1"
 FT   exon            1244860..1244867
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1245456..1245483
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1245552..1245623
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1247203..1247378
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1247445..1247676
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1247740..1247990
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1248063..1248077
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1249105..1249249
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1268557..1268691
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1268755..1268881
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1274471..1274594
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1274651..1275452
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(1245484..1245551,1245624..1247202,1247379..1247444,1
 FT                   247677..1247739,1247991..1248062,1248078..1249104,1249250..
 FT                   1268556,1268692..1268754,1268882..1274470,1274595..1274650)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1245463..1245483,1245552..1245623,1247203..1247378,1
 FT                   247445..1247676,1247740..1247990,1248063..1248077,1249105..
 FT                   1249249,1268557..1268691,1268755..1268881,1274471..1274594,
 FT                   1274651..1274855)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus53"
+FT                   /locus_tag="MY_LOCUS_TAG_locus53"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g53.t1.cds"
 FT                   /transl_table=1
 FT   gene            1276540..1287550
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g54"
 FT   mRNA            join(1276540..1276621,1280907..1280965,1281644..1281702,1
@@ -2679,262 +2680,262 @@ FT                   1284396,1284487..1284582,1285536..1285594,1286066..1286092,
 FT                   1286158..1286184,1286385..1286401,1286590..1286648,1286964.
 FT                   .1287111,1287169..1287195,1287263..1287278,1287343..1287369
 FT                   ,1287425..1287550)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g54.t1"
 FT   exon            1276540..1276621
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1280907..1280965
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1281644..1281702
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1282736..1282794
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1283351..1283406
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1283884..1284150
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1284220..1284396
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1284487..1284582
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1285536..1285594
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1286066..1286092
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1286158..1286184
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1286385..1286401
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1286590..1286648
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1286964..1287111
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1287169..1287195
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1287263..1287278
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1287343..1287369
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1287425..1287550
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(1286402..1286589,1286649..1286963,1287112..1287168,1
 FT                   287196..1287262,1287279..1287342)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1286397..1286401,1286590..1286648,1286964..1287111,1
 FT                   287169..1287195,1287263..1287278,1287343..1287351)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus54"
+FT                   /locus_tag="MY_LOCUS_TAG_locus54"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g54.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(1288365..1291939)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus55"
+FT                   /locus_tag="MY_LOCUS_TAG_locus55"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g55"
 FT   mRNA            complement(join(1288365..1290694,1291564..1291939))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus55"
+FT                   /locus_tag="MY_LOCUS_TAG_locus55"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g55.t1"
 FT   exon            complement(1288365..1290694)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus55"
+FT                   /locus_tag="MY_LOCUS_TAG_locus55"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1291564..1291939)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus55"
+FT                   /locus_tag="MY_LOCUS_TAG_locus55"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(1288834..1290585)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus55"
+FT                   /locus_tag="MY_LOCUS_TAG_locus55"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g55.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(1293651..1296859)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus56"
+FT                   /locus_tag="MY_LOCUS_TAG_locus56"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g56"
 FT   mRNA            complement(1293651..1296859)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus56"
+FT                   /locus_tag="MY_LOCUS_TAG_locus56"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g56.t1"
 FT   exon            complement(1293651..1296859)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus56"
+FT                   /locus_tag="MY_LOCUS_TAG_locus56"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(1295011..1296762)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus56"
+FT                   /locus_tag="MY_LOCUS_TAG_locus56"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g56.t1.cds"
 FT                   /transl_table=1
 FT   gene            1298860..1302040
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus57"
+FT                   /locus_tag="MY_LOCUS_TAG_locus57"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g57"
 FT   mRNA            join(1298860..1298877,1299076..1299549,1299691..1299746,1
 FT                   299802..1299824,1299886..1299897,1301056..1301215,1301746..
 FT                   1301772,1301840..1301860,1301915..1302040)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus57"
+FT                   /locus_tag="MY_LOCUS_TAG_locus57"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g57.t1"
 FT   exon            1298860..1298877
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus57"
+FT                   /locus_tag="MY_LOCUS_TAG_locus57"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1299076..1299549
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus57"
+FT                   /locus_tag="MY_LOCUS_TAG_locus57"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1299691..1299746
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus57"
+FT                   /locus_tag="MY_LOCUS_TAG_locus57"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1299802..1299824
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus57"
+FT                   /locus_tag="MY_LOCUS_TAG_locus57"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1299886..1299897
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus57"
+FT                   /locus_tag="MY_LOCUS_TAG_locus57"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1301056..1301215
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus57"
+FT                   /locus_tag="MY_LOCUS_TAG_locus57"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1301746..1301772
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus57"
+FT                   /locus_tag="MY_LOCUS_TAG_locus57"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1301840..1301860
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus57"
+FT                   /locus_tag="MY_LOCUS_TAG_locus57"
 FT                   /note="source:AUGUSTUS"
 FT   exon            1301915..1302040
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus57"
+FT                   /locus_tag="MY_LOCUS_TAG_locus57"
 FT                   /note="source:AUGUSTUS"
 FT   intron          join(1299825..1299885,1299898..1301055,1301216..1301745,1
 FT                   301773..1301839)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus57"
+FT                   /locus_tag="MY_LOCUS_TAG_locus57"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1299811..1299824,1299886..1299897,1301056..1301215,1
 FT                   301746..1301772,1301840..1301848)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus57"
+FT                   /locus_tag="MY_LOCUS_TAG_locus57"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g57.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(1302899..1304979)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus58"
+FT                   /locus_tag="MY_LOCUS_TAG_locus58"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g58"
 FT   mRNA            complement(1302899..1304979)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus58"
+FT                   /locus_tag="MY_LOCUS_TAG_locus58"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g58.t1"
 FT   exon            complement(1302899..1304979)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus58"
+FT                   /locus_tag="MY_LOCUS_TAG_locus58"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(1303088..1304842)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus58"
+FT                   /locus_tag="MY_LOCUS_TAG_locus58"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g58.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(1313675..1337369)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus59"
+FT                   /locus_tag="MY_LOCUS_TAG_locus59"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g59"
 FT   mRNA            complement(join(1313675..1316152,1321520..1322007,1325676
 FT                   ..1326659,1326776..1327889,1328105..1328895,1329314..132961
 FT                   9,1330094..1330962,1334239..1335260,1337267..1337369))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus59"
+FT                   /locus_tag="MY_LOCUS_TAG_locus59"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g59.t1"
 FT   exon            complement(1313675..1316152)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus59"
+FT                   /locus_tag="MY_LOCUS_TAG_locus59"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1321520..1322007)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus59"
+FT                   /locus_tag="MY_LOCUS_TAG_locus59"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1325676..1326659)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus59"
+FT                   /locus_tag="MY_LOCUS_TAG_locus59"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1326776..1327889)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus59"
+FT                   /locus_tag="MY_LOCUS_TAG_locus59"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1328105..1328895)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus59"
+FT                   /locus_tag="MY_LOCUS_TAG_locus59"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1329314..1329619)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus59"
+FT                   /locus_tag="MY_LOCUS_TAG_locus59"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1330094..1330962)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus59"
+FT                   /locus_tag="MY_LOCUS_TAG_locus59"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1334239..1335260)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus59"
+FT                   /locus_tag="MY_LOCUS_TAG_locus59"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1337267..1337369)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus59"
+FT                   /locus_tag="MY_LOCUS_TAG_locus59"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(join(1316153..1321519,1322008..1325675))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus59"
+FT                   /locus_tag="MY_LOCUS_TAG_locus59"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1314266..1316152,1321520..1322007,1325676
 FT                   ..1325829))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus59"
+FT                   /locus_tag="MY_LOCUS_TAG_locus59"
 FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g59.t1.cds"
 FT                   /transl_table=1
 FT   gene            complement(1337898..1348519)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus60"
+FT                   /locus_tag="MY_LOCUS_TAG_locus60"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g60"
 FT   mRNA            complement(join(1337898..1338084,1338658..1339641,1339758
 FT                   ..1340871,1341087..1341877,1342296..1342601,1343076..134394
 FT                   4,1347221..1348242,1348414..1348519))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus60"
+FT                   /locus_tag="MY_LOCUS_TAG_locus60"
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g60.t1"
 FT   exon            complement(1337898..1338084)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus60"
+FT                   /locus_tag="MY_LOCUS_TAG_locus60"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1338658..1339641)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus60"
+FT                   /locus_tag="MY_LOCUS_TAG_locus60"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1339758..1340871)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus60"
+FT                   /locus_tag="MY_LOCUS_TAG_locus60"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1341087..1341877)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus60"
+FT                   /locus_tag="MY_LOCUS_TAG_locus60"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1342296..1342601)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus60"
+FT                   /locus_tag="MY_LOCUS_TAG_locus60"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1343076..1343944)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus60"
+FT                   /locus_tag="MY_LOCUS_TAG_locus60"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1347221..1348242)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus60"
+FT                   /locus_tag="MY_LOCUS_TAG_locus60"
 FT                   /note="source:AUGUSTUS"
 FT   exon            complement(1348414..1348519)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus60"
+FT                   /locus_tag="MY_LOCUS_TAG_locus60"
 FT                   /note="source:AUGUSTUS"
 FT   intron          complement(1338085..1338657)
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus60"
+FT                   /locus_tag="MY_LOCUS_TAG_locus60"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1337996..1338084,1338658..1338811))
-FT                   /locus_tag="MY_SAMPLE_ACCESSION_locus60"
+FT                   /locus_tag="MY_LOCUS_TAG_locus60"
 FT                   /codon_start=3
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g60.t1.cds"
