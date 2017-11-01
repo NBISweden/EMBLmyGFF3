@@ -78,7 +78,7 @@ Then, in order to get a valid EMBL flat file suitable for submission you have to
 To learn how to obtain a *project ID* [click here](http://ena-docs.readthedocs.io/en/latest/mod_02.html.).</br>
 To learn how to obtain a *locus tag* [click here](https://www.ebi.ac.uk/ena/submit/locus-tags).**
 
-Test data are located in the example folder.
+Test data are located in the *examples* folder.
 
 ### Simple case 
 
