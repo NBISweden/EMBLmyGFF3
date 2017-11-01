@@ -90,17 +90,23 @@ In order to write the result in the desired file use the **-o** option:
  
  >./EMBLmyGFF3.py example/maker.gff3 example/maker.fa -o result.embl
 
-### Complete case 
+### Complete case (no prompt) 
 
 Minimum requirement to launch the software and avoid any prompt.
 
- >./EMBLmyGFF3.py example/maker.gff3 example/maker.fa --data_class STD --topology linear --molecule_type 'genomic DNA' --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP -o result.embl
+ >./EMBLmyGFF3.py examples/maker.gff3 examples/maker.fa --topology linear --molecule_type 'genomic DNA' --transl_table 1  --species 'Drosophila melanogaster' --locus_tag MY_LOCUS_TAG --project_id PRJXXXXXXX -o result.embl
 
-### Advanced case 
+### Advanced case 1 
 
-When you want add more information than those mandatory: e.g publication.
+When you want add more information than those mandatory: Fill the ID line except the accession and the RG line.
 
- >./EMBLmyGFF3.py example/maker.gff3 example/maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --table 1  --species 'Drosophila melanogaster (fly)' --taxonomy INV --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
+ >./EMBLmyGFF3.py examples/maker.gff3 examples/maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --project_id PRJXXXXXXX --rg MYGROUP -o result.embl
+
+### Advanced case 2
+
+When you want add more information than those mandatory: Fill the ID line + publication and authors information.
+
+ >./EMBLmyGFF3.py examples/maker.gff3 examples/maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
 
 ### Use through a bash script
 
@@ -125,9 +131,10 @@ You can also find a comprehensive help about the different parameters using the 
 
 | Parameter | Description |
 | --- | --- |
+|  -i , --locus_tag     | Locus tag prefix registered at ENA. More information [here](https://www.ebi.ac.uk/ena/submit/locus-tags)|
 |  -p , --project_id     |Project ID. The defalut value is **XXX** *(This option is used to set up the PR line.)*|
-|  -r , --table          |Translation table. No default value. *(This option is used to set up the translation table qualifier| transl_table of the CDS features.)* Please visit this [NCBI genetic code](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.|
-|  -s , --species        |Sample Species, formatted as 'Genus species (english name)'. No default value. This option is used to set up the OS line.|
+|  -r , --transl_table   |Translation table. No default value. *(This option is used to set up the translation table qualifier| transl_table of the CDS features.)* Please visit this [NCBI genetic code](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.|
+|  -s , --species        |Sample Species, formatted as 'Genus species' or taxid. No default value. This option is used to set up the OS line.|
 |  -t , --topology       |Sequence topology. No default value. *(This option is used to set up the Topology that is the 3th token of the ID line.)*|
 |  -d , --data_class     |Data class of the sample. No default value. *(This option is used to set up the 5th token of the ID line.)*
 |  -m , --molecule_type  |Molecule type of the sample. No default value.| 
@@ -149,7 +156,7 @@ You can also find a comprehensive help about the different parameters using the 
 
 | Parameter | Description |
 | --- | --- |
-|  -a , --accession      |Accession number(s) for the entry. Default value: **XXX** . This option is used to set up the accession number of the AC line and the first token of the ID line as well as the prefix of the locus_tag qualifier. The unique accession number is assigned by the database. Please visit [this page](https://www.ebi.ac.uk/ena/submit/accession-number-formats) and [this one](https://www.ebi.ac.uk/ena/submit/sequence-submission) to learn more about it.|   
+|  -a , --accession      |Accession number(s) for the entry. Default value: **XXX** . This option is used to set up the accession number of the AC line and the first token of the ID line as well. The unique accession number is assigned by the database. Please visit [this page](https://www.ebi.ac.uk/ena/submit/accession-number-formats) and [this one](https://www.ebi.ac.uk/ena/submit/sequence-submission) to learn more about it.|   
 |  -c , --created|        Creation time of the original entry. The default value is the **date of the day**.|
 |  -g , --organelle|      Sample organelle. No default value.|
 |  -k , --keyword|        Keywords for the entry. No default value.|
