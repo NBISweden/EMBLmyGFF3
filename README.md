@@ -3,12 +3,13 @@ GFF3 to EMBL conversion tool
 
 <img src="EMBLmyGFF3.png" width="500" height="150" />
 
-Software to convert GFF3 and fasta to legal EMBL format suitable for [ENA](http://www.ebi.ac.uk/ena) submission.
+Software to convert GFF3 and fasta to legal [EMBL format](https://www.ebi.ac.uk/ena/submit/flat-file) suitable for [ENA](http://www.ebi.ac.uk/ena) submission.
 
 Based on documentation from http://www.insdc.org/files/feature_table.html, http://www.ebi.ac.uk/ena/WebFeat/ and
 ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
 
-The output can be validated using the ENA flat file validator distributed by EMBL. Please visit http://www.ebi.ac.uk/ena/software/flat-file-validator and/or https://github.com/enasequence/sequencetools for more information.
+__You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Tips](http://ena-docs.readthedocs.io/en/latest/)__
+
 
 ## INDEX
 
@@ -25,6 +26,7 @@ The output can be validated using the ENA flat file validator distributed by EMB
 &nbsp;&nbsp;&nbsp;[Feature type](#feature-type)</br>
 &nbsp;&nbsp;&nbsp;[GFF3 Attribute to EMBL qualifier](#gff3-attribute-to-embl-qualifier)</br>
 &nbsp;&nbsp;&nbsp;[Other](#other)</br>
+[Validate your embl flat file](#validate-your-embl-flat-file)</br>
 [Known issues](#known-issues)</br>
 [Citation](#citation)
 [Author](#author)
@@ -71,9 +73,11 @@ will display some help.
 A correct **GFF3 file** and the **genome in FASTA format** that has been used to produce the GFF3 file are the mandatory input files.
 Then, in order to get a valid EMBL flat file suitable for submission you have to fill carefully all mandatory metadata.
 
-**/!\ Please be aware that a *project ID* and an *accession number* are mandatory for a submission to [ENA](http://www.ebi.ac.uk/ena). You don't need this information if you don't plan to submit the data (In case you just want an EMBL-like flat file for other purposes). If you don't have yet those information you can add them later by replacing the corresponding fields. Please visit the [EMBL web site](http://www.ebi.ac.uk/ena/support/genome-submission-faq) to learn how to obtain a *project ID* and an *accession number*.**
+**/!\ Please be aware that a *project ID* and an *locus tag* are mandatory for a submission to [ENA](http://www.ebi.ac.uk/ena). You don't need this information if you don't plan to submit the data (In case you just want an EMBL-like flat file for other purposes). If you don't have yet those information you can add them later by replacing the corresponding fields.</br> 
+To learn how to obtain a *project ID* [click here](http://ena-docs.readthedocs.io/en/latest/mod_02.html.).</br>
+To learn how to obtain a *locus tag* [click here](https://www.ebi.ac.uk/ena/submit/locus-tags).**
 
-Test data from the Drosophila melanogaster species are located in the example folder.
+Test data are located in the example folder.
 
 ### Simple case 
 
@@ -121,13 +125,12 @@ You can also find a comprehensive help about the different parameters using the 
 
 | Parameter | Description |
 | --- | --- |
-|  -p , --project_id     |Project ID. The defalut value is **UNKNOWN** *(This option is used to set up the PR line.)*|
+|  -p , --project_id     |Project ID. The defalut value is **XXX** *(This option is used to set up the PR line.)*|
 |  -r , --table          |Translation table. No default value. *(This option is used to set up the translation table qualifier| transl_table of the CDS features.)* Please visit this [NCBI genetic code](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.|
 |  -s , --species        |Sample Species, formatted as 'Genus species (english name)'. No default value. This option is used to set up the OS line.|
 |  -t , --topology       |Sequence topology. No default value. *(This option is used to set up the Topology that is the 3th token of the ID line.)*|
 |  -d , --data_class     |Data class of the sample. No default value. *(This option is used to set up the 5th token of the ID line.)*
-|  -m , --molecule_type  |Molecule type of the sample. No default value.|
-|  -a , --accession      |Accession number(s) for the entry. Default value: **UNKNOWN** . This option is used to set up the accession number of the AC line and the first token of the ID line as well as the prefix of the locus_tag qualifier.|    
+|  -m , --molecule_type  |Molecule type of the sample. No default value.| 
 |  -x , --taxonomy       |Source taxonomy. No default value. This option is used to set the taxonomic division within ID line (6th token).|
 |  --rg                  |Reference Group, the working groups/consortia that produced the record. No default value.|
   
@@ -146,6 +149,7 @@ You can also find a comprehensive help about the different parameters using the 
 
 | Parameter | Description |
 | --- | --- |
+|  -a , --accession      |Accession number(s) for the entry. Default value: **XXX** . This option is used to set up the accession number of the AC line and the first token of the ID line as well as the prefix of the locus_tag qualifier. The unique accession number is assigned by the database. Please visit [this page](https://www.ebi.ac.uk/ena/submit/accession-number-formats) and [this one](https://www.ebi.ac.uk/ena/submit/sequence-submission) to learn more about it.|   
 |  -c , --created|        Creation time of the original entry. The default value is the **date of the day**.|
 |  -g , --organelle|      Sample organelle. No default value.|
 |  -k , --keyword|        Keywords for the entry. No default value.|
@@ -224,6 +228,10 @@ This will map the **source** from the 2nd columm of the GFF3 file to the **note*
 **/!\\** Please notice the *prefix* allows to add information dowstream the source value wihtin the qualifier (Upstream information is also possible using *suffix*).</br>
 e.g: The source value is "Prokka":</br> 
 Within the embl file, instead to get **note="Prokka"**, here we will get **note="source:Prokka"**
+
+## VALIDATE YOUR EMBL FLAT FILE
+
+The output can be validated using the ENA flat file validator distributed by EMBL. Please visit http://www.ebi.ac.uk/ena/software/flat-file-validator and/or https://github.com/enasequence/sequencetools for more information.
 
 ## KNOWN ISSUES
 
