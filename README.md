@@ -132,26 +132,12 @@ You can also find a comprehensive help about the different parameters using the 
 
 | Parameter | Description |
 | --- | --- |
-|  -i , --locus_tag     | Locus tag prefix registered at ENA. More information [here](https://www.ebi.ac.uk/ena/submit/locus-tags)|
-|  -p , --project_id     |Project ID. The defalut value is **XXX** *(This option is used to set up the PR line.)*|
+|  -i , --locus_tag     | Locus tag prefix registered at ENA. More information [here](https://www.ebi.ac.uk/ena/submit/locus-tags). No default value.|
+|  -p , --project_id     |Project ID. The defalut value is 'XXX' *(This option is used to set up the PR line.)*|
 |  -r , --transl_table   |Translation table. No default value. *(This option is used to set up the translation table qualifier| transl_table of the CDS features.)* Please visit this [NCBI genetic code](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.|
 |  -s , --species        |Sample Species, formatted as 'Genus species' or taxid. No default value. This option is used to set up the OS line.|
 |  -t , --topology       |Sequence topology. No default value. *(This option is used to set up the Topology that is the 3th token of the ID line.)*|
-|  -d , --data_class     |Data class of the sample. No default value. *(This option is used to set up the 5th token of the ID line.)*
 |  -m , --molecule_type  |Molecule type of the sample. No default value.| 
-|  -x , --taxonomy       |Source taxonomy. No default value. This option is used to set the taxonomic division within ID line (6th token).|
-|  --rg                  |Reference Group, the working groups/consortia that produced the record. No default value.|
-  
-**Optional arguments related to the software:**
-
-| Parameter | Description |
-| --- | --- |
-|  -h, --help            |Show this help message and exit.|
-|  -v, --verbose         |Increase verbosity.|
-|  -q, --quiet           |Decrease verbosity.|
-|  --shame               |Suppress the shameless plug.|
-|  -z, --gzip            |Gzip output file.|
-|  -o , --output         |Output filename.|
 
 **Optional arguments related to the EMBL format:**
 
@@ -159,18 +145,36 @@ You can also find a comprehensive help about the different parameters using the 
 | --- | --- |
 |  -a , --accession      |Accession number(s) for the entry. Default value: **XXX** . This option is used to set up the accession number of the AC line and the first token of the ID line as well. The unique accession number is assigned by the database. Please visit [this page](https://www.ebi.ac.uk/ena/submit/accession-number-formats) and [this one](https://www.ebi.ac.uk/ena/submit/sequence-submission) to learn more about it.|   
 |  -c , --created|        Creation time of the original entry. The default value is the **date of the day**.|
+|  -d , --data_class     |Data class of the sample. Default value 'XXX'. *(This option is used to set up the 5th token of the ID line.)*
 |  -g , --organelle|      Sample organelle. No default value.|
 |  -k , --keyword|        Keywords for the entry. No default value.|
-|  -l , --classification| Organism classification. The default value is **Life**.|
+|  -l , --classification| Organism classification. The default value is the classification found in the NCBI taxonomy DB from the species/taxid given as --species parameter. If none is found, 'Life' will be the default value.|
+|  -x , --taxonomy       |Source taxonomy. Default value 'XXX'. This option is used to set the taxonomic division within ID line (6th token).|
 |  --rc|                  Reference Comment. No default value.|
-|  --rx|                  Reference cross-reference. No default value.|
 |  --ra , --author|       Author for the reference. No default value.|
-|  --rt|                  Reference Title. No default value.|
+|  --rg                  |Reference Group, the working groups/consortia that produced the record. Default value 'XXX'.|
 |  --rl|                  Reference publishing location. No default value.|
+|  --rt|                  Reference Title. No default value.|
+|  --rx|                  Reference cross-reference. No default value.|
+|  --email|               Email used to fetch information from NCBI taxonomy database. Default value 'EMBLmyGFF3@tool.org'.|
+|  --interleave_genes|    Print gene features with interleaved mRNA and CDS features.|
+|  --keep_duplicates|       Do not remove duplicate features during the process. /!\ Option not suitable for submission purpose.|
+|  --force_unknown_features| Force to keep feature types not accepted by EMBL. /!\ Option not suitable for submission purpose.|
+|  --force_uncomplete_features| Force to keep features whithout all the mandatory qualifiers. /!\ Option not suitable for submission purpose.|
 |  --translate|           Include translation in CDS features. Not activated by default.|
 |  --version|             Sequence version number. The default value is **1**.|
-|  --keep_duplicates|       Do not remove duplicate features during the process.|
-|  --interleave_genes|    Print gene features with interleaved mRNA and CDS features.|
+
+**Optional arguments related to the software:**
+
+| Parameter | Description |
+| --- | --- |
+|  -a, --advanced_help   |Display advanced information of the parameter specified or of all parameters if none specified.|
+|  -h, --help            |Show this help message and exit.|
+|  -v, --verbose         |Increase verbosity.|
+|  -q, --quiet           |Decrease verbosity.|
+|  --shame               |Suppress the shameless plug.|
+|  -z, --gzip            |Gzip output file.|
+|  -o , --output         |Output filename.|
 
 ## MAPPING
 
