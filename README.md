@@ -19,7 +19,8 @@ __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Ti
 &nbsp;&nbsp;&nbsp;[Foreword](#foreword)</br>
 &nbsp;&nbsp;&nbsp;[Simple case](#simple-case)</br>
 &nbsp;&nbsp;&nbsp;[Complete case](#complete-case)</br>
-&nbsp;&nbsp;&nbsp;[Advanced case](#advanced-case)</br>
+&nbsp;&nbsp;&nbsp;[Advanced case 1](#advanced-case-1)</br>
+&nbsp;&nbsp;&nbsp;[Advanced case 2](#advanced-case-2)</br>
 &nbsp;&nbsp;&nbsp;[Use through a bash script](#use-through-a-bash-script)</br>
 [Parameter](#parameter)</br>
 [Mapping](#mapping)</br>
@@ -90,7 +91,7 @@ In order to write the result in the desired file use the **-o** option:
  
  >./EMBLmyGFF3.py example/maker.gff3 example/maker.fa -o result.embl
 
-### Complete case (no prompt) 
+### Complete case
 
 Minimum requirement to launch the software and avoid any prompt.
 
