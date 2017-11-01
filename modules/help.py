@@ -177,7 +177,7 @@ Full details of INSDC Project are available at
 http://www.ebi.ac.uk/ena/about/page.php?page=project_guidelines.
 Example:  PR   Project:17285;
 """
-  if(string == "r" or string == "table" or string == "all"):
+  if(string == "r" or string == "transl_table" or string == "all"):
     output += string+""":
 EMBL specific
 This option is used to set up the translation table qualifier transl_table of the CDS features.
@@ -408,7 +408,7 @@ Default value = 1
     output += string+""":
 EMBL specific
 This parameter is used to add the translation of the CDS sequence into the <translation> qualifier of the CDS feature.
-Default value = 1
+The option doesn't expect any value, use --translate to activate the translation.
 """
   if(string == "x" or string == "taxonomy" or string == "all"):   
     output += string+""":
