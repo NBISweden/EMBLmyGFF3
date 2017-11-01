@@ -32,7 +32,7 @@ import logging
 import argparse
 import re
 import curses.ascii
-from Bio import SeqIO
+from Bio import SeqIO, Entrez
 from BCBio import GFF
 from Bio.SeqFeature import SeqFeature, FeatureLocation, ExactPosition
 from modules.feature import Feature
@@ -41,6 +41,8 @@ from modules.help import Help
 SCRIPT_DIR=os.path.dirname(os.path.abspath(sys.argv[0]))
 FEATURE_DIR=SCRIPT_DIR + "/modules/features"
 QUALIFIER_DIR=SCRIPT_DIR + "/modules/qualifiers"
+CPT_LOCUS_GLB=0
+EMAIL_GLB="EMBLmyGFF3@tool.org"
 
 class EMBL( object ):
     """
@@ -364,21 +366,6 @@ class EMBL( object ):
 
         return positionBefore
 
-    def _set_all(self):
-        """
-        Sets all header information to default values
-        """
-        self.set_accession()
-        self.set_classification()
-        self.set_created()
-        self.set_description()
-        self.set_project_id()
-        self.set_version()
-        self.set_topology()
-        self.set_transl_table()
-        self.set_molecule_type()
-        self.set_data_class()
-        self.set_taxonomy()
     
     def _verify(self, key, key_type):
         """
@@ -416,6 +403,41 @@ class EMBL( object ):
             
         return key
     
+    #if species is a taxid we change by the species name
+    def get_species_from_taxid(self, taxid):
+        #if it is an integer (a taxid), try to get the species name
+        species = taxid
+        if taxid.isdigit():
+           global EMAIL_GLB 
+           Entrez.email = EMAIL_GLB
+           # fetch the classification sufing the taxid
+           logging.info("Fecth The Lineage using Entrez.efetch")
+           search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
+           data = Entrez.read(search)
+           species = data[0]['ScientificName']
+
+        return "%s%s" % (species[0].upper(), species[1:].lower())
+
+    #if species is a taxid we change by the species name
+    def get_taxid_from_species(self, species):
+        #if it is a species name try to get the taxid
+        taxid = species
+        if not species.isdigit():
+            global EMAIL_GLB 
+            Entrez.email = EMAIL_GLB
+            #fetch taxid from ncbi taxomomy
+            logging.info("Fecth the taxid from species name using Entrez.esearch")
+            species =  species.replace(" ", "+").strip()
+            search = Entrez.esearch(term=species, db="taxonomy", retmode="xml")
+            record = Entrez.read(search)
+            if not record['IdList']: #no taxid found
+                logging.error("Please verify the species name. <%s> species is unknown into the NCBI taxonomy databse. Impossible to check the taxonomic classification. We will use the default value 'Life' to populate the OC line.",self.species)
+                taxid=None
+            else:
+                taxid = record['IdList'][0]
+
+        return taxid
+
     def add_xref(self, xref):
         """
         adds an external reference to the list.
@@ -458,7 +480,7 @@ class EMBL( object ):
             self.data_class     = self._verify( self.data_class,     "data_class")
             self.taxonomy       = self._verify( self.taxonomy,       "taxonomy")
         
-        return "ID   %s; SV %s; %s; %s; %s; %s; %i BP." % (self.accessions[0], self.version, self.topology, 
+        return "ID   %s; %s; %s; %s; %s; %s; %i BP." % (self.accession, self.version, self.topology, 
                                                            self.molecule_type, self.data_class, self.taxonomy, 
                                                            len(self.record.seq) ) + self.spacer
     
@@ -477,14 +499,9 @@ class EMBL( object ):
         
         output = "AC   "
         
-        if len(self.accessions) == 0 and self.verify:
-            sys.stderr.write("At least one accession number is needed: ")
-            self.accessions += [raw_input()]
-
-        for accession in self.accessions:
-            if len(output) + len(accession) > 80:
-                output += "\nAC   "
-            output += accession + "; "
+        if len(output) + len(self.accession) > 80:
+            output += "\nAC   "
+        output += self.accession + "; "
         
         #add the AC * _contig1 line
         output += "\nXX"
@@ -493,6 +510,7 @@ class EMBL( object ):
             description = self.record.description
         else:
             logging.error("The first row is missing within the gff3 file.")
+            description = "xxx";
         output += "\nAC * _"+description
 
         return "\n" + output.strip() + self.spacer
@@ -524,8 +542,8 @@ class EMBL( object ):
         updated = time.localtime() # this should be the latest update...
         
         output  = "\nDT   %s (Rel. %s, Created)" % (time.strftime("%d-%b-%Y", self.created), self._get_release(self.created))
-        output += "\nDT   %s (Rel. %s, Last updated, Version %i)" % (time.strftime("%d-%b-%Y", updated), 
-                                                                     self._get_release(updated), self.version)
+        #output += "\nDT   %s (Rel. %s, Last updated, Version %i)" % (time.strftime("%d-%b-%Y", updated), 
+        #                                                             self._get_release(updated), self.version)
         return output + self.spacer
     
     def DE(self):
@@ -731,24 +749,26 @@ class EMBL( object ):
         """
         
         output = ""
-        cpt_locus=0
-        accession="|".join(self.accessions if type(self.accessions) == type([]) else [self.accessions])
+        locus_tag_prefix="|".join(self.locus_tag if type(self.locus_tag) == type([]) else [self.locus_tag])
 
         for i, feature in enumerate(self.record.features):
             
             #manage locus_tag
-            output_accession=accession
             locus_tag=None
             if feature.type.lower() != "source" and feature.type.lower() != "gap":
-                cpt_locus+=1
-                locus_tag="locus"+str(cpt_locus)
+                global CPT_LOCUS_GLB
+                CPT_LOCUS_GLB+=1
+                locus_tag_suffix="locus"+str(CPT_LOCUS_GLB)
+                
+                # replace locus_tag_suffix by the value of the locus_tag qualifier if this one exists
                 for qualifier in feature.qualifiers:
                     if 'locus_tag' == qualifier.lower():
-                        locus_tag = "%s" % "_".join(feature.qualifiers[qualifier])
-                # create locus tag from locus_tag and accessions      
-                output_accession = "%s_%s" % (accession, locus_tag)
-            #sys.stderr.write("xx %s, \n" % feature)
-            f = Feature(feature, self.record.seq, output_accession, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1, reorder_gene_features = self.interleave_genes, force_unknown_features = self.force_unknown_features, force_uncomplete_features = self.force_uncomplete_features)
+                        locus_tag_suffix = "%s" % "_".join(feature.qualifiers[qualifier])
+                
+                # create locus tag from locus_tag_suffix and accession      
+                locus_tag = "%s_%s" % (locus_tag_prefix, locus_tag_suffix)
+
+            f = Feature(feature, self.record.seq, locus_tag, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1, reorder_gene_features = self.interleave_genes, force_unknown_features = self.force_unknown_features, force_uncomplete_features = self.force_uncomplete_features)
             
             if not self.keep_duplicates:
                 #Deal with identical CDS/UTR/etc between different isoforms:
@@ -837,29 +857,51 @@ class EMBL( object ):
             seq = seq[60:]
         return output
     
-    def set_accession(self, accessions = []):
+    def set_accession(self, accession = ""):
         """
         Sets the entry accession numbers, or parses it from the current record
         """
-        if not hasattr(self, "accessions"):
-            self.accessions = []
-        if accessions:
-            self.accessions = accessions
-        if hasattr(self.record, "dbxrefs"):
-            self.accessions += self.record.dbxrefs
-        if not getattr(self, "accessions", False):
-            self.accessions = ["UNKNOWN"]
+        if "accession" in EMBL.PREVIOUS_VALUES:
+            self.accession = EMBL.PREVIOUS_VALUES["accession"]
+        else:
+            if accession:
+                self.accession = accession
+                EMBL.PREVIOUS_VALUES["accession"] = accession
+            elif not hasattr(self, "accession"):
+                self.accession = "XXX"
+                EMBL.PREVIOUS_VALUES["accession"] = "XXX"
     
     def set_classification(self, classification = []):
         """
         Sets the entry phylogenetic classification, or parses it from the current record
         """
-        if classification:
-            self.classification = classification
-        elif hasattr(self.record, "classification"):
-            self.classification += self.record.classification
-        if not getattr(self, "classification", False):
-            self.classification = [""]
+        if "classification" in EMBL.PREVIOUS_VALUES:
+            self.classification = EMBL.PREVIOUS_VALUES["classification"]
+        else:
+            if classification:
+                self.classification = classification
+                EMBL.PREVIOUS_VALUES["classification"] = classification
+            #elif hasattr(self.record, "classification"):
+            #    self.classification += self.record.classification
+            if not getattr(self, "classification", False):
+                lineage = "Life" # default value     
+                try:
+                    taxid = self.get_taxid_from_species(self.species)
+                    
+                    if taxid:  
+                        # fetch the classification sufing the taxid
+                        logging.info("Fecth The Lineage using Entrez.efetch")
+                        global EMAIL_GLB 
+                        Entrez.email = EMAIL_GLB
+                        search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
+                        data = Entrez.read(search)
+                        lineage = data[0]['Lineage']
+                except IOError as e:
+                    logging.error(e)
+                    logging.error("<Life> will be used by default to populate the OC line to keep a format suitable for ENA submission")
+
+                self.classification = [lineage]
+                EMBL.PREVIOUS_VALUES["classification"] = [lineage]
     
     def set_created(self, timestamp = None):
         """
@@ -876,51 +918,44 @@ class EMBL( object ):
         """
         Sets the sample data class, or parses it from the current record.
         """
-        if data_class:
-            self.data_class = data_class
-        elif hasattr(self.record, "data_class"):
-            self.data_class = self.record.data_class
-        elif not hasattr(self, "data_class"):
-            self.data_class = ""
-        
-        if self.verify:
-            self.data_class = self._verify( self.data_class, "data_class")
+        if "data_class" in EMBL.PREVIOUS_VALUES:
+            self.data_class = EMBL.PREVIOUS_VALUES["data_class"]
+        else:
+            if data_class:
+                self.data_class = data_class
+                if self.verify:
+                    self.data_class = self._verify( self.data_class, "data_class")
+            #elif hasattr(self.record, "data_class"):
+            #    self.data_class = self.record.data_class
+            elif not hasattr(self, "data_class"):
+                self.data_class = "XXX"
+                EMBL.PREVIOUS_VALUES["data_class"] = "XXX"
     
     def set_description(self, description = None):
-
         """
         Sets the sample description.
         """
         if description:
             self.description = description
-        else:
-            self.description = "XXX"   
-    
-    def set_keywords(self, keywords = []):
+        #elif hasattr(self.record, "description"):
+        #    self.description = self.record.description
+        #elif not hasattr(self, "description"):
+        #    self.description = ""
+        elif not hasattr(self, "description"):
+            self.description = "XXX"
+
+    def set_force_uncomplete_features(self, force_uncomplete_features = False):
         """
-        Sets the entry keywords, and parses those of the current record
+        Sets wheather to keep features that do not have all the mandatory qualifiers
         """
-        if keywords:
-            self.keywords = keywords
-        if hasattr(self.record, "keywords"):
-            self.keywords += self.record.keywords
-        if not getattr(self, "keywords", False):
-            self.keywords = [""]
-    
-    def set_molecule_type(self, molecule_type = None):
+        self.force_uncomplete_features = force_uncomplete_features
+
+    def set_force_unknown_features(self, force_unknown_features = False):
         """
-        Sets the sample molecule type, or parses it from the current record.
+        Sets wheather to keep feature types not accepted by EMBL in the output
         """
-        if molecule_type:
-            self.molecule_type = molecule_type
-        elif hasattr(self.record, "molecule_type"):
-            self.molecule_type = self.record.molecule_type
-        elif not hasattr(self, "molecule_type"):
-            self.molecule_type = ""
-        
-        if self.verify:
-            self.molecule_type = self._verify( self.molecule_type, "molecule_type")
-    
+        self.force_unknown_features = force_unknown_features
+
     def set_interleave_genes(self, interleave = True):
         """
         Sets wheather to interleave mRNA and CDS subfeatures in gene features
@@ -933,17 +968,52 @@ class EMBL( object ):
         """
         self.keep_duplicates = duplicate
 
-    def set_force_unknown_features(self, force_unknown_features = False):
+    def set_keywords(self, keywords = []):
         """
-        Sets wheather to keep feature types not accepted by EMBL in the output
+        Sets the entry keywords, and parses those of the current record
         """
-        self.force_unknown_features = force_unknown_features
+        if keywords:
+            self.keywords = keywords
+        if hasattr(self.record, "keywords"):
+            self.keywords += self.record.keywords
+        if not getattr(self, "keywords", False):
+            self.keywords = [""]
+    
+    def set_locus_tag(self, locus_tag = ""):
+        """
+        Sets the entry locus_tag numbers, or parses it from the current record
+        """
+        if "locus_tag" in EMBL.PREVIOUS_VALUES:
+            self.locus_tag = EMBL.PREVIOUS_VALUES["locus_tag"]
+        else:
+            if locus_tag:
+                self.locus_tag = locus_tag
+                EMBL.PREVIOUS_VALUES["locus_tag"] = locus_tag
+            elif not hasattr(self, "locus_tag"):
+                
+                sys.stderr.write("No value provided as locus_tag.\nPlease provide a locus_tag:")
+                locus_tag = raw_input()
+                if not locus_tag:
+                    locus_tag="XXX"
 
-    def set_force_uncomplete_features(self, force_uncomplete_features = False):
+                self.locus_tag = locus_tag
+                EMBL.PREVIOUS_VALUES["locus_tag"] = locus_tag
+
+    def set_molecule_type(self, molecule_type = None):
         """
-        Sets wheather to keep features that do not have all the mandatory qualifiers
+        Sets the sample molecule type, or parses it from the current record.
         """
-        self.force_uncomplete_features = force_uncomplete_features
+        if "molecule_type" in EMBL.PREVIOUS_VALUES:
+            self.molecule_type = EMBL.PREVIOUS_VALUES["molecule_type"]
+        else:
+            if molecule_type:
+                self.molecule_type = molecule_type
+            else:
+                self.molecule_type = ""
+            if self.verify:
+                self.molecule_type = self._verify( self.molecule_type, "molecule_type")
+            #elif hasattr(self.record, "molecule_type"):
+            #    self.molecule_type = self.record.molecule_type
 
     def set_organelle(self, organelle = None):
         """
@@ -963,49 +1033,65 @@ class EMBL( object ):
         """
         Sets the project id, or parses it from the current record
         """
-        if project_id:
+        if "project_id" in EMBL.PREVIOUS_VALUES:
+            self.project_id = EMBL.PREVIOUS_VALUES["project_id"]
+        else:
+            if not project_id:
+                sys.stderr.write("No project_id provided.\nPlease provide a project ID:")
+                project_id = raw_input()
+                if not project_id:
+                    project_id = "XXX"
+  
             self.project_id = project_id
-        elif hasattr(self.record, "project_id"):
-            self.project_id = self.record.project_id
-        elif not hasattr(self, "project_id"):
-            self.project_id = "UNKNOWN"
+            EMBL.PREVIOUS_VALUES["project_id"] = project_id
+            #elif hasattr(self.record, "project_id"):
+            #    self.project_id = self.record.project_id
     
     def set_record(self, record):
         """
         Sets the project record (the original GFF data that is currently being converted).
         """
         self.record = record
-    
+
     def set_species(self, species = None):
         """
         Sets the species, or parses it from the current record
         """
-        if species:
-            self.species = species
-        elif hasattr(self.record, "species"):
-            self.species = self.record.species
-        if not getattr(self, "species", False):
-            #self.species = "Genus species (name)"
-            
-            while species is None:
-                sys.stderr.write("No value provided for species.\nPlease provide the scientific name of the organism:")
-                species = raw_input()
+        if "species" in EMBL.PREVIOUS_VALUES:
+            self.species = EMBL.PREVIOUS_VALUES["species"]
+        else:
+            if species:
+                species = self.get_species_from_taxid(species)
+                self.species = species
+                EMBL.PREVIOUS_VALUES["species"] = species
+            #elif hasattr(self.record, "species"):
+            #    self.species = self.record.species
+            else:
+                while not species:
+                    sys.stderr.write("No value provided for species.\nPlease provide the scientific name or taxid of the organism:")
+                    species = raw_input()
 
-            self.species = species
+                species = self.get_species_from_taxid(species)
+                self.species = species
+                EMBL.PREVIOUS_VALUES["species"] = species
 
     def set_taxonomy(self, taxonomy = None):
         """
         Sets the sample taxonomy, or parses it from the current record.
         """
-        if taxonomy:
-            self.taxonomy = taxonomy
-        elif hasattr(self.record, "taxonomy"):
-            self.taxonomy = self.record.taxonomy
-        elif not hasattr(self, "taxonomy"):
-            self.taxonomy = ""
-        
-        if self.verify:
-            self.taxonomy = self._verify( self.taxonomy, "taxonomy")
+        if "taxonomy" in EMBL.PREVIOUS_VALUES:
+            self.taxonomy = EMBL.PREVIOUS_VALUES["taxonomy"]
+        else:
+            if taxonomy:
+                self.taxonomy = taxonomy
+                if self.verify:
+                    self.taxonomy = self._verify( self.taxonomy, "taxonomy")
+            #elif hasattr(self.record, "taxonomy"):
+            #    self.taxonomy = self.record.taxonomy
+            elif not hasattr(self, "taxonomy"):
+                self.taxonomy = "XXX"
+                EMBL.PREVIOUS_VALUES["taxonomy"] = "XXX"
+
     
     def set_topology(self, topology = None):
         """
@@ -1013,8 +1099,8 @@ class EMBL( object ):
         """
         if topology:
             self.topology = topology
-        elif hasattr(self.record, "topology"):
-            self.topology = self.record.topology
+        #elif hasattr(self.record, "topology"):
+        #    self.topology = self.record.topology
         elif not hasattr(self, "topology"):
             self.topology = ""
         
@@ -1027,8 +1113,8 @@ class EMBL( object ):
         """
         if transl_table:
             self.transl_table = transl_table
-        elif hasattr(self.record, "transl_table"):
-            self.transl_table = self.record.transl_table
+        #elif hasattr(self.record, "transl_table"):
+        #    self.transl_table = self.record.transl_table
         elif not hasattr(self, "transl_table"):
             self.transl_table = ""
         
@@ -1046,19 +1132,18 @@ class EMBL( object ):
         Sets the release version, or parses it from the current record.
         """
         if version:
-            self.version = version
-        elif hasattr(self.record, "version"):
-            self.version = self.record.version
+            self.version = "SV %i" % version
+        #elif hasattr(self.record, "version"):
+        #    logging.error("If do not have the atttribute ?")
+        #    self.version = self.record.version
         elif not hasattr(self, "version"):
-            self.version = 1
+            self.version = "XXX"
     
     def write_all(self, out = sys.stdout):
         """
         Writes all EMBL information to the given buffer (default stdout).
         """
-        
-        self._set_all()
-        
+           
         if type(out) == type(""):
             out = open(out, 'w')
         
@@ -1119,25 +1204,25 @@ if __name__ == '__main__':
     
     parser.add_argument("gff_file", help="Input gff-file.")
     parser.add_argument("fasta", help="Input fasta sequence.")
-    parser.add_argument("-a", "--accession", default=["XXX"], nargs="+", help="Accession number(s) for the entry.")
+    parser.add_argument("-a", "--accession", default=None, help="Accession number(s) for the entry.")
     parser.add_argument("-c", "--created", default=None, help="Creation time of the original entry.")
     parser.add_argument("-d", "--data_class", default=None, help="Data class of the sample.", choices=["CON", "PAT", "EST", "GSS", "HTC", "HTG", "MGA", "WGS", "TSA", "STS", "STD"])
     parser.add_argument("-g", "--organelle", default=None, help="Sample organelle.")
-    
+    parser.add_argument("-i", "--locus_tag", help="Locus tag prefix used for the features.")
     parser.add_argument("-k", "--keyword", default=[], nargs="+", help="Keywords for the entry.")
-    parser.add_argument("-l", "--classification", default=["Life"], nargs="+", help="Organism classification.")
+    parser.add_argument("-l", "--classification", help="Organism classification e.g \"Eukaryota; Opisthokonta; Metazoa;\". If not set, will be retrieved online on the NCBI taxonomy DB based on the species name or taxid.")
     parser.add_argument("-m", "--molecule_type", default=None, help="Molecule type of the sample.", choices=["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"])
     parser.add_argument("-o", "--output", default=None, help="Output filename.")
-    parser.add_argument("-p", "--project_id", default=None, help="Project ID.")
-    parser.add_argument("-r", "--table", type=int, default=None, help="Translation table.", choices=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
-    parser.add_argument("-s", "--species", default=None, help="Sample Species, formatted as 'Genus species (english name)'.")
+    parser.add_argument("-p", "--project_id", help="Project ID.")
+    parser.add_argument("-r", "--transl_table", type=int, default=None, help="Translation table.", choices=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
+    parser.add_argument("-s", "--species", default=None, help="Species, formatted as 'Genus species' or using a taxid.")
     parser.add_argument("-t", "--topology", default=None, help="Sequence topology.", choices=["linear", "circular"])
     
     parser.add_argument("-z", "--gzip", default=False, action="store_true", help="Gzip output file")
     
     parser.add_argument("--rc", default=None, help="Reference Comment.")
     parser.add_argument("--rx", default=None, help="Reference cross-reference.")
-    parser.add_argument("--rg", default=None, help="Reference Group, the working groups/consortia that produced the record.")
+    parser.add_argument("--rg", default="XXX", help="Reference Group, the working groups/consortia that produced the record.")
     parser.add_argument("--ra", "--author", nargs="+", default="", help="Author for the reference.")
     parser.add_argument("--rt", default=";", help="Reference Title.")
     parser.add_argument("--rl", default=None, help="Reference publishing location.")
@@ -1147,10 +1232,11 @@ if __name__ == '__main__':
     parser.add_argument("--force_unknown_features", action="store_true", help="Force to keep feature types not accepted by EMBL. /!\ Option not suitable for submission purpose.")
     parser.add_argument("--force_uncomplete_features", action="store_true", help="Force to keep features whithout all the mandatory qualifiers. /!\ Option not suitable for submission purpose.")
 
+    parser.add_argument("--email", default=None, help="Email used to fetch information from NCBI taxonomy database.")
     parser.add_argument("--shame", action="store_true", help="Suppress the shameless plug.")
     parser.add_argument("--translate", action="store_true", help="Include translation in CDS features.")
     
-    parser.add_argument("--version", default=1, type=int, help="Sequence version number.")
+    parser.add_argument("--version", default=None, type=int, help="Sequence version number.")
     parser.add_argument("-x", "--taxonomy", default=None, help="Source taxonomy.", choices=["PHG", "ENV", "FUN", "HUM", "INV", "MAM", "VRT", "MUS", "PLN", "PRO", "ROD", "SYN", "TGN", "UNC", "VRL"])
     
     parser.add_argument("-v", "--verbose", action="count", default=2, help="Increase verbosity.")
@@ -1183,26 +1269,23 @@ if __name__ == '__main__':
     
     if not args.shame:
         sys.stderr.write(shameless_plug)
-    
-    if not args.ra and not args.rg:
-            sys.stderr.write("It is mandatory to provide a Reference Group (RG) that produced the record\nPlease enter the RG: ")
-            args.rg = raw_input()
 
     for record in GFF.parse(infile, base_dict=seq_dict):
         
         writer = EMBL( record, True )
         writer.set_accession( args.accession )
+        writer.set_locus_tag( args.locus_tag )
         writer.set_created( args.created )
+        writer.set_species( args.species ) # has to be before set_classification
         writer.set_classification( args.classification )
         writer.set_data_class( args.data_class )
         writer.set_keywords( args.keyword )
         writer.set_molecule_type( args.molecule_type )
         writer.set_organelle( args.organelle )
-        writer.set_project_id( args.project_id )
-        writer.set_species( args.species )
+        writer.set_project_id( args.project_id )  
         writer.set_taxonomy( args.taxonomy )
         writer.set_topology( args.topology )
-        writer.set_transl_table( args.table )
+        writer.set_transl_table( args.transl_table )
         writer.set_version( args.version )
         writer.set_keep_duplicates( args.keep_duplicates )
         writer.set_interleave_genes( args.interleave_genes )
@@ -1210,7 +1293,9 @@ if __name__ == '__main__':
         writer.set_force_uncomplete_features( args.force_uncomplete_features )
         writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)
         writer.set_translation(args.translate)
-    
+        writer.set_description()
+
+
         writer.write_all( outfile )
      
     sys.stderr.write( """Conversion done\n""")
