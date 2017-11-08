@@ -8,11 +8,11 @@ GFF convertion is based on specifications from https://github.com/The-Sequence-O
 """
 
 shameless_plug="""
-    ############################################################################
-    # NBIS 2016 - Sweden                                                       #
-    # Authors: Martin Norling, Niclas Jareborg, Jacques Dainat                 #
-    # Please visit https://github.com/NBISweden/EMBLmyGFF3 for more infomation #
-    ############################################################################
+    #############################################################################
+    # NBIS 2016 - Sweden                                                        #
+    # Authors: Martin Norling, Niclas Jareborg, Jacques Dainat                  #
+    # Please visit https://github.com/NBISweden/EMBLmyGFF3 for more information #
+    #############################################################################
 \n"""
 
 TODO="""

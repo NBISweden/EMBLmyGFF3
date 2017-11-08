@@ -143,7 +143,7 @@ class Feature(object):
                         list_type_l3.append(feature_l3.type)
                 
                 if feature_l2.skip_feature is False or self.force_unknown_features or self.force_uncomplete_features:
-                    output += feature_l2._feature_as_EMBL()
+                    output += feature_l2._feature_as_EMBL() if feature_l2.type not in feature_l2.remove else ""
                 #else: 
                     #check if CDS exist in subfeature. It could be helpful to create a mRNA feature instead to skip stupidly the L2 feature ! But it's not the philosophy of the tool. It should be done by using the json mapping file.
                 #    if "CDS" in list_type_l3:
@@ -156,12 +156,12 @@ class Feature(object):
                     for feature_l3 in feature_l2.sub_features:
                         if f_type == feature_l3.type:
                             if feature_l3.skip_feature is False or self.force_unknown_features or self.force_uncomplete_features:
-                                output += feature_l3._feature_as_EMBL()
+                                output += feature_l3._feature_as_EMBL() if feature_l3.type not in feature_l3.remove else ""
 
         else:
             for sub_feature in self.sub_features:
                 if sub_feature.skip_feature is False or self.force_unknown_features or self.force_uncomplete_features:
-                    output += str(sub_feature)
+                    output += str(sub_feature) if sub_feature.type not in sub_feature.remove else ""
         
         return output
     

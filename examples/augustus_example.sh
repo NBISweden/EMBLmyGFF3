@@ -13,7 +13,7 @@ ANNOTATION="augustus.gff3"
 #PROJECT name registered on EMBL
 PROJECT="17285"
 
-#Sample accession registered on EMBL
+#Locus tag registered on EMBL
 LOCUS_TAG="MY_LOCUS_TAG"
 
 # species name
