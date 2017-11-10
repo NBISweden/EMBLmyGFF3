@@ -421,7 +421,6 @@ class EMBL( object ):
         taxid = species
         if not species.isdigit():
             Entrez.email = EMBL.PREVIOUS_VALUES["email"]
-            logging.error("%s", EMBL.PREVIOUS_VALUES["email"])
             #fetch taxid from ncbi taxomomy
             logging.info("Fecth the taxid from species name using Entrez.esearch")
             species =  species.replace(" ", "+").strip()
