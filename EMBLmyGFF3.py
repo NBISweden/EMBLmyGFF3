@@ -19,7 +19,6 @@ TODO="""
 TODO: find list of previous ENA release dates and numbers
 TODO: find way to retrieve current release date
 TODO: add more reasonable way to add references
-TODO: add helpful way to get classification via tax_id or scientific name
 TODO: add way to handle mandatory features and feature qualifiers (especially contingent dependencies)
 """
 
@@ -42,7 +41,6 @@ SCRIPT_DIR=os.path.dirname(os.path.abspath(sys.argv[0]))
 FEATURE_DIR=SCRIPT_DIR + "/modules/features"
 QUALIFIER_DIR=SCRIPT_DIR + "/modules/qualifiers"
 CPT_LOCUS_GLB=0
-EMAIL_GLB="EMBLmyGFF3@tool.org"
 
 class EMBL( object ):
     """
@@ -408,8 +406,7 @@ class EMBL( object ):
         #if it is an integer (a taxid), try to get the species name
         species = taxid
         if taxid.isdigit():
-           global EMAIL_GLB 
-           Entrez.email = EMAIL_GLB
+           Entrez.email = EMBL.PREVIOUS_VALUES["email"]
            # fetch the classification sufing the taxid
            logging.info("Fecth The Lineage using Entrez.efetch")
            search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
@@ -423,8 +420,8 @@ class EMBL( object ):
         #if it is a species name try to get the taxid
         taxid = species
         if not species.isdigit():
-            global EMAIL_GLB 
-            Entrez.email = EMAIL_GLB
+            Entrez.email = EMBL.PREVIOUS_VALUES["email"]
+            logging.error("%s", EMBL.PREVIOUS_VALUES["email"])
             #fetch taxid from ncbi taxomomy
             logging.info("Fecth the taxid from species name using Entrez.esearch")
             species =  species.replace(" ", "+").strip()
@@ -891,8 +888,7 @@ class EMBL( object ):
                     if taxid:  
                         # fetch the classification sufing the taxid
                         logging.info("Fecth The Lineage using Entrez.efetch")
-                        global EMAIL_GLB 
-                        Entrez.email = EMAIL_GLB
+                        Entrez.email = EMBL.PREVIOUS_VALUES["email"]
                         search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
                         data = Entrez.read(search)
                         lineage = data[0]['Lineage']
@@ -943,6 +939,20 @@ class EMBL( object ):
         #    self.description = ""
         elif not hasattr(self, "description"):
             self.description = "XXX"
+
+    def set_email(self, email = None):
+        """
+        Sets the sample data class, or parses it from the current record.
+        """
+        if "email" in EMBL.PREVIOUS_VALUES:
+            self.email = EMBL.PREVIOUS_VALUES["email"]
+        else:
+            if email:
+                self.email = email
+                EMBL.PREVIOUS_VALUES["email"] = email
+            elif not hasattr(self, "email"):
+                self.email = "EMBLmyGFF3@tool.org"
+                EMBL.PREVIOUS_VALUES["email"] = "EMBLmyGFF3@tool.org"
 
     def set_force_uncomplete_features(self, force_uncomplete_features = False):
         """
@@ -1273,28 +1283,33 @@ if __name__ == '__main__':
     for record in GFF.parse(infile, base_dict=seq_dict):
         
         writer = EMBL( record, True )
+
+        #To set up first
+        writer.set_email(args.email) # has to be before set_species
+        writer.set_species( args.species ) # has to be before set_classification   
+
+        #Set up the rest
         writer.set_accession( args.accession )
-        writer.set_locus_tag( args.locus_tag )
-        writer.set_created( args.created )
-        writer.set_species( args.species ) # has to be before set_classification
         writer.set_classification( args.classification )
+        writer.set_created( args.created )
         writer.set_data_class( args.data_class )
+        writer.set_description()  
+        writer.set_force_uncomplete_features( args.force_uncomplete_features )
+        writer.set_force_unknown_features( args.force_unknown_features )
+        writer.set_interleave_genes( args.interleave_genes )
+        writer.set_keep_duplicates( args.keep_duplicates )
         writer.set_keywords( args.keyword )
+        writer.set_locus_tag( args.locus_tag )
         writer.set_molecule_type( args.molecule_type )
         writer.set_organelle( args.organelle )
         writer.set_project_id( args.project_id )  
         writer.set_taxonomy( args.taxonomy )
         writer.set_topology( args.topology )
         writer.set_transl_table( args.transl_table )
-        writer.set_version( args.version )
-        writer.set_keep_duplicates( args.keep_duplicates )
-        writer.set_interleave_genes( args.interleave_genes )
-        writer.set_force_unknown_features( args.force_unknown_features )
-        writer.set_force_uncomplete_features( args.force_uncomplete_features )
-        writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)
         writer.set_translation(args.translate)
-        writer.set_description()
+        writer.set_version( args.version )     
 
+        writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)
 
         writer.write_all( outfile )
      
