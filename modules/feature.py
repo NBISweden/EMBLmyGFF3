@@ -7,6 +7,7 @@ import json
 import logging
 from Bio.Seq import Seq
 from Bio.Data import CodonTable
+from Bio.Alphabet.IUPAC import *
 from location import EMBLLocation
 from Bio.SeqFeature import SeqFeature, FeatureLocation, BeforePosition, AfterPosition
 from qualifier import *
@@ -525,12 +526,24 @@ class Feature(object):
     def translation(self):
         """
         Returns the amino acid sequence of self
+        B = "Asx";  Aspartic acid (R) or Asparagine (N)
+        X = "Xxx";  Unknown or 'other' amino acid
+        Z = "Glx";  Glutamic acid (E) or Glutamine (Q)
+        J = "Xle";  Leucine (L) or Isoleucine (I), used in mass-spec (NMR)
+        U = "Sec";  Selenocysteine
+        O = "Pyl";  Pyrrolysine
         """
-        codon_table = CodonTable.unambiguous_dna_by_id[self.transl_table]
-        seq = self.sequence()
-        
-        output = "%s" % seq.translate(codon_table)
-        return output
+        codon_table = CodonTable.ambiguous_dna_by_id[self.transl_table]  
+        seq = Seq(str(self.sequence()),IUPACAmbiguousDNA())
+        translated_seq = seq.translate(codon_table).tostring().replace('B','X').replace('Z','X').replace('J','X')
+        if '*' in translated_seq[:-1]: # check if premature stop codon in the translation
+            logging.error('Stop codon found within the CDS. It will rise an error submiting the data to ENA. Please fix your gff file.')
+
+        # remove the stop character. It's not accepted by embl
+        if translated_seq[-1:] == "*":
+            translated_seq = translated_seq[:-1]
+
+        return translated_seq
 
 if __name__ == '__main__':
 
