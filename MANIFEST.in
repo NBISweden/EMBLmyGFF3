@@ -1,0 +1,3 @@
+include EMBLmyGFF3/modules/*.json
+include EMBLmyGFF3/modules/features/*
+include EMBLmyGFF3/modules/qualifiers/*
