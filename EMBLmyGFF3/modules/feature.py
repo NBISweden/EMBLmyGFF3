@@ -2,6 +2,7 @@
 
 from __future__ import division
 
+import os
 import sys
 import json
 import logging
@@ -52,9 +53,12 @@ class Feature(object):
     DEFAULT_FEATURE_TRANSLATION_FILE="translation_gff_feature_to_embl_feature.json"
     DEFAULT_QUALIFIER_TRANSLATION_FILE=["translation_gff_attribute_to_embl_qualifier.json", "translation_gff_other_to_embl_qualifier.json"]
     PREVIOUS_ERRORS = []
+    SCRIPT_DIR = os.path.dirname(__file__)
+    DEFAULT_FEATURE_DIR = os.path.join(SCRIPT_DIR, "modules/features")
+    DEFAULT_QUALIFIER_DIR = os.path.join(SCRIPT_DIR, "modules/qualifiers/")
 
     def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False,
-                feature_definition_dir = "modules/features", qualifier_definition_dir = "modules/qualifiers", format_data = True,
+                feature_definition_dir = DEFAULT_FEATURE_DIR, qualifier_definition_dir = DEFAULT_QUALIFIER_DIR, format_data = True,
                 level = 0, reorder_gene_features = True, skip_feature = False, force_unknown_features = False, force_uncomplete_features = False):
         """
         Initializes a Feature, loads json files for feature and
@@ -84,7 +88,6 @@ class Feature(object):
         self.skip_feature = skip_feature
         self.force_unknown_features = force_unknown_features
         self.force_uncomplete_features = force_uncomplete_features
-
         self._load_definition("%s/%s.json" % (feature_definition_dir, self.type))
         self._load_data(feature, accessions)
         self._check_qualifier(feature)

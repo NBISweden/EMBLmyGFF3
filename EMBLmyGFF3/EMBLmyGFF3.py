@@ -37,7 +37,7 @@ from Bio.SeqFeature import SeqFeature, FeatureLocation, ExactPosition
 from modules.feature import Feature
 from modules.help import Help
 
-SCRIPT_DIR=os.path.dirname(os.path.abspath(sys.argv[0]))
+SCRIPT_DIR=os.path.dirname(__file__)
 FEATURE_DIR=SCRIPT_DIR + "/modules/features"
 QUALIFIER_DIR=SCRIPT_DIR + "/modules/qualifiers"
 CPT_LOCUS_GLB=0
