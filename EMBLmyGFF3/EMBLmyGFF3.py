@@ -1,7 +1,7 @@
 #!/usr/bin/env python2.7
 """
-EMBL writer for ENA data submission. Note that this implementation is basically 
-just the documentation at ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt 
+EMBL writer for ENA data submission. Note that this implementation is basically
+just the documentation at ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt
 in python form - the implementation could be a lot more efficient!
 
 GFF convertion is based on specifications from https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md
@@ -37,7 +37,7 @@ from Bio.SeqFeature import SeqFeature, FeatureLocation, ExactPosition
 from modules.feature import Feature
 from modules.help import Help
 
-SCRIPT_DIR=os.path.dirname(os.path.abspath(sys.argv[0]))
+SCRIPT_DIR=os.path.dirname(__file__)
 FEATURE_DIR=SCRIPT_DIR + "/modules/features"
 QUALIFIER_DIR=SCRIPT_DIR + "/modules/qualifiers"
 CPT_LOCUS_GLB=0
@@ -45,7 +45,7 @@ CPT_LOCUS_GLB=0
 class EMBL( object ):
     """
     The basic structure of an EMBL file is like this:
-    
+
     ID - identification             (begins each entry; 1 per entry)
     AC - accession number           (>=1 per entry)
     PR - project identifier         (0 or 1 per entry)
@@ -65,18 +65,18 @@ class EMBL( object ):
     RL - reference location         (>=1 per entry)
     DR - database cross-reference   (>=0 per entry)
     CC - comments or notes          (>=0 per entry)
-    AH - assembly header            (0 or 1 per entry)   
+    AH - assembly header            (0 or 1 per entry)
     AS - assembly information       (0 or >=1 per entry)
     FH - feature table header       (2 per entry)
-    FT - feature table data         (>=2 per entry)    
+    FT - feature table data         (>=2 per entry)
     XX - spacer line                (many per entry)
     SQ - sequence header            (1 per entry)
-    CO - contig/construct line      (0 or >=1 per entry) 
+    CO - contig/construct line      (0 or >=1 per entry)
     bb - (blanks) sequence data     (>=1 per entry)
     // - termination line           (ends each entry; 1 per entry)
-    
+
     """
-    
+
     legal_values = {'data_class':{"CON":"Entry constructed from segment entry sequences; if unannotated, annotation may be drawn from segment entries",
                                   "PAT":"Patent",
                                   "EST":"Expressed Sequence Tag",
@@ -96,7 +96,7 @@ class EMBL( object ):
                                 "INV":"Invertebrate",
                                 "MAM":"Other Mammal",
                                 "VRT":"Other Vertebrate",
-                                "MUS":"Mus musculus", 
+                                "MUS":"Mus musculus",
                                 "PLN":"Plant",
                                 "PRO":"Prokaryote",
                                 "ROD":"Other Rodent",
@@ -106,19 +106,19 @@ class EMBL( object ):
                                 "VRL":"Viral",
                                },
                     'topology':['linear', 'circular'],
-                    'molecule_type':["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", 
+                    'molecule_type':["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA",
                                       "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"],
-                    'organelle':["chromatophore", "hydrogenosome", "mitochondrion", "nucleomorph", "plastid", 
-                                 "mitochondrion:kinetoplast", "plastid:chloroplast", "plastid:apicoplast", 
+                    'organelle':["chromatophore", "hydrogenosome", "mitochondrion", "nucleomorph", "plastid",
+                                 "mitochondrion:kinetoplast", "plastid:chloroplast", "plastid:apicoplast",
                                  "plastid:chromoplast", "plastid:cyanelle", "plastid:leucoplast", "plastid:proplastid"],
                     'transl_table':[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
                     }
-    
+
     release_dates = {132:time.strptime("2017-05-27", "%Y-%m-%d"),
                      131:time.strptime("2017-04-03", "%Y-%m-%d"),
                      130:time.strptime("2016-11-13", "%Y-%m-%d"),
                      125:time.strptime("2015-09-23", "%Y-%m-%d"),
-                     124:time.strptime("2015-07-01", "%Y-%m-%d"), 
+                     124:time.strptime("2015-07-01", "%Y-%m-%d"),
                      123:time.strptime("2015-03-23", "%Y-%m-%d"),
                      122:time.strptime("2014-12-09", "%Y-%m-%d"),
                      121:time.strptime("2014-09-24", "%Y-%m-%d"),
@@ -129,12 +129,12 @@ class EMBL( object ):
                      116:time.strptime("2013-06-27", "%Y-%m-%d"),
                      114:time.strptime("2012-12-21", "%Y-%m-%d"),
                      }
-    
+
     PREVIOUS_VALUES = {}
-    
+
     spacer = "\nXX"
     termination = "\n//\n"
-    
+
     def __init__(self, record = None, verify = False, guess = True):
         """
         Only sets some basic variables.
@@ -149,11 +149,11 @@ class EMBL( object ):
         self.construct_information = []
         self.comment = ""
         self.translate = False
-    
+
     def _add_mandatory(self):
         """
         Adds mandatory qualifiers that are not always part of the GFF.
-        
+
         Right now, these are specifically a "source" feature, and that
         all spans of n-characters in the sequence has a "gap" feature
         associated.
@@ -167,7 +167,7 @@ class EMBL( object ):
             source_feature.qualifiers["organism"] = self.species
             source_feature.type = "source"
             self.record.features[0:0] = [source_feature]
-        
+
         # Make sure that there's a gap feature for every span of n's
         start = None
         for i, c in enumerate(self.record.seq):
@@ -187,25 +187,25 @@ class EMBL( object ):
                         gap_feature.qualifiers["estimated_length"] = i-start
                         gap_feature.type = "gap"
                         self.record.features += [gap_feature]
-                    
+
                 start = None
-    
+
     def _get_release(self, date):
         """
         Tries to find the correct release number for a given date.
-        
+
         This currently only uses a hard list of release numbers though,
-        so a way of getting all releases directly from ENA would really 
+        so a way of getting all releases directly from ENA would really
         help!
-        
-        There is a file called Release_[num] in 
+
+        There is a file called Release_[num] in
         ftp://ftp.ebi.ac.uk/pub/databases/ena/sequence/release/doc/
         which could help with this, but it's not certain to be
         persistent.
-        
+
         TODO: find way to get latest release number and date!
         """
-        
+
         previous = None
         for release in sorted(self.release_dates):
             if not previous:
@@ -213,13 +213,13 @@ class EMBL( object ):
                 continue
             if date > previous and date < self.release_dates[release]:
                 return release
-        
+
         return max(self.release_dates.keys())+1
-    
+
     def _multiline(self, prefix, data, sep=";", suffix="", indent = 3, quoted = False):
         """
         Creates a multiline entry.
-        
+
         If data is a list, the entries are listed with "sep" as separator, if data is
         a string, it's quoted over as many lines as needed.
         """
@@ -230,7 +230,7 @@ class EMBL( object ):
             output = "%s%s" % (prefix, " "*indent)
             output += str(data)
             return "\n" + output + suffix
-        
+
 
         # List Case
         previousChunck=""
@@ -262,12 +262,12 @@ class EMBL( object ):
             output,lastLine=self._splitStringMultiline(output, data, quoted)
             if len(lastLine) == 75:
                 output+=lastLine+"\n"+sep
-            else:    
+            else:
                 output+=lastLine+sep
-        
+
         #Check if we have output. If not we have to avoid the strip at the end
         doNotStrip=False
-        if not output: 
+        if not output:
             doNotStrip = True
 
         #Last step: add prefix at each line
@@ -286,7 +286,7 @@ class EMBL( object ):
             return "\n" + cleanOutput + suffix
         else:
             return "\n" + cleanOutput.strip().strip(sep) + suffix
-    
+
     # This method allow to wrap a sting at a size of 75 taking care of quote
     # It return back the result in different part: the last line and everything before if exists.
     def _splitStringMultiline(self, output, data, quoted):
@@ -298,22 +298,22 @@ class EMBL( object ):
         while string:
             roundl+=1
             if roundl == 1: #Within the round 1 the indentation already exists
-                if quoted: 
+                if quoted:
                     if len(string) + 2 <= 75: #peculiar case quotes plus string exactly 75
-                        lastLine += "\"" 
+                        lastLine += "\""
                         lastLine = string
-                        string = string[len(string):] 
+                        string = string[len(string):]
                     else:# len(string) + 1 > 75: # + 1 quote
                         splitLoc = self._splitWordsMax(string,75)
                         line = string[:splitLoc]
                         string = string[len(line):]
                         string=string.strip() # remove white space
-                        output += "\"" 
+                        output += "\""
                         output +=line
                 else:
                     if len(string) <= 75:
                         lastLine = string
-                        string = string[len(string):] 
+                        string = string[len(string):]
                     else: # len(string) > 75:
                         splitLoc = self._splitWordsMax(string,75)
                         line = string[:splitLoc]
@@ -322,9 +322,9 @@ class EMBL( object ):
                         output +=line
 
             else: #Not the first round
-                if quoted: 
+                if quoted:
                     if len(string)+1 > 75:
-                        splitLoc = self._splitWordsMax(string,75) 
+                        splitLoc = self._splitWordsMax(string,75)
                         line = string[:splitLoc]
                         string = string[len(line):]
                         string=string.strip() # remove white space
@@ -364,16 +364,16 @@ class EMBL( object ):
 
         return positionBefore
 
-    
+
     def _verify(self, key, key_type):
         """
         Looks through the dictionary of legal values to try to validate header values.
-        if an illegal value is found, the user is asked to add a new value, which is 
+        if an illegal value is found, the user is asked to add a new value, which is
         the assumed for all other instances of the same key (for multi-record GFFs).
         """
         if key_type in EMBL.PREVIOUS_VALUES:
             return EMBL.PREVIOUS_VALUES[key_type]
-        
+
         if key_type not in self.legal_values:
             sys.stderr.write("Can't verify value for %s, legal values unknown." % key_type)
             return key
@@ -395,12 +395,12 @@ class EMBL( object ):
             else:
                 sys.stderr.write("Please enter new value: ")
             key = raw_input()
-            if key.isdigit(): key = int(key) 
+            if key.isdigit(): key = int(key)
             if key in self.legal_values[key_type]:
                 EMBL.PREVIOUS_VALUES[key_type] = key
-            
+
         return key
-    
+
     #if species is a taxid we change by the species name
     def get_species_from_taxid(self, taxid):
         #if it is an integer (a taxid), try to get the species name
@@ -439,7 +439,7 @@ class EMBL( object ):
         adds an external reference to the list.
         """
         self.dbxref += [xref]
-    
+
     def add_reference(self, title, positions = "all", location = "", comment = "", xrefs = [], group = [], authors = []):
         """
         Adds a reference for the data in the file to the header.
@@ -451,11 +451,11 @@ class EMBL( object ):
                        'xrefs':xrefs,
                        'group':group,
                        'authors':authors}]
-    
+
     def ID(self):
         """
         from ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt:
-        
+
         The ID (IDentification) line is always the first line of an entry. The
         format of the ID line is:
         ID   <1>; SV <2>; <3>; <4>; <5>; <6>; <7> BP.
@@ -467,24 +467,24 @@ class EMBL( object ):
            5. Data class (see section 3.1)
            6. Taxonomic division (see section 3.2)
            7. Sequence length (see note 2 below)
-        
+
         """
-        
+
         if self.verify:
             self.topology       = self._verify( self.topology,       "topology")
             self.molecule_type = self._verify( self.molecule_type, "molecule_type")
             self.data_class     = self._verify( self.data_class,     "data_class")
             self.taxonomy       = self._verify( self.taxonomy,       "taxonomy")
-        
-        return "ID   %s; %s; %s; %s; %s; %s; %i BP." % (self.accession, self.version, self.topology, 
-                                                           self.molecule_type, self.data_class, self.taxonomy, 
+
+        return "ID   %s; %s; %s; %s; %s; %s; %i BP." % (self.accession, self.version, self.topology,
+                                                           self.molecule_type, self.data_class, self.taxonomy,
                                                            len(self.record.seq) ) + self.spacer
-    
+
     def AC(self):
         """
         from ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt:
-        
-        The AC (ACcession number) line lists the accession numbers associated with 
+
+        The AC (ACcession number) line lists the accession numbers associated with
         the entry. Each accession number, or range of accession numbers, is terminated by a
         semicolon. Where necessary, more than one AC line is used.
 
@@ -492,13 +492,13 @@ class EMBL( object ):
         The entry name is extracted from the AC * line . The entry name must be prefixed with a '_' when using the flat file format. No spaces or pipe character ('|') are allowed in the name.
         Example: AC * _contig1
         """
-        
+
         output = "AC   "
-        
+
         if len(output) + len(self.accession) > 80:
             output += "\nAC   "
         output += self.accession + "; "
-        
+
         #add the AC * _contig1 line
         output += "\nXX"
         description=""
@@ -510,7 +510,7 @@ class EMBL( object ):
         output += "\nAC * _"+description
 
         return "\n" + output.strip() + self.spacer
-    
+
     def PR(self):
         """
         The PR (PRoject) line shows the International Nucleotide Sequence Database
@@ -519,7 +519,7 @@ class EMBL( object ):
         http://www.ebi.ac.uk/ena/about/page.php?page=project_guidelines.
         """
         return "\nPR   Project:%s;" % self.project_id + self.spacer
-    
+
     def DT(self):
         """
         The DT (DaTe) line shows when an entry first appeared in the database and
@@ -527,21 +527,21 @@ class EMBL( object ):
         as follows:
         DT   DD-MON-YYYY (Rel. #, Created)
         DT   DD-MON-YYYY (Rel. #, Last updated, Version #)
-        
-        the Release number (Rel.) indicates the first quarterly release made *after* 
+
+        the Release number (Rel.) indicates the first quarterly release made *after*
         the entry was created or last updated.
-        
+
         The Release number is in places like the header of ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt
-        but I have no idea where to get it most easily... 
+        but I have no idea where to get it most easily...
         """
-        
+
         updated = time.localtime() # this should be the latest update...
-        
+
         output  = "\nDT   %s (Rel. %s, Created)" % (time.strftime("%d-%b-%Y", self.created), self._get_release(self.created))
-        #output += "\nDT   %s (Rel. %s, Last updated, Version %i)" % (time.strftime("%d-%b-%Y", updated), 
+        #output += "\nDT   %s (Rel. %s, Last updated, Version %i)" % (time.strftime("%d-%b-%Y", updated),
         #                                                             self._get_release(updated), self.version)
         return output + self.spacer
-    
+
     def DE(self):
         """
         The DE (Description) lines contain general descriptive information about the
@@ -555,91 +555,91 @@ class EMBL( object ):
             output += "\nDE   %s" % temp[:75]
             temp = temp[75:]
         return output + self.spacer
-    
+
     def KW(self):
         """
         The KW (KeyWord) lines provide information which can be used to generate
         cross-reference indexes of the sequence entries based on functional,
         structural, or other categories deemed important.
         """
-        
+
         output = "KW   "
-        
+
         if len(self.keywords) == 0 and self.verify:
             sys.stderr.write("At least one keyword is needed: ")
             self.keywords += [raw_input()]
-        
+
         return self._multiline("KW", self.keywords, suffix=".") + self.spacer
-    
+
     def OS(self):
         """
         The OS (Organism Species) line specifies the preferred scientific name of
-        the organism which was the source of the stored sequence. In most 
-        cases this is done by giving the Latin genus and species designations, 
+        the organism which was the source of the stored sequence. In most
+        cases this is done by giving the Latin genus and species designations,
         followed (in parentheses) by the preferred common name in English where
         known. The preferred format is:
              OS   Genus species (name)
         """
         return "\nOS   %s" % self.species + self.spacer
-    
+
     def OC(self):
         """
         The OC (Organism Classification) lines contain the taxonomic classification
-        of the source organism as described in Section 2.2 of 
+        of the source organism as described in Section 2.2 of
         ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt
         """
-        
+
         output = "OC   "
-        
+
         if len(self.classification) == 0 and self.verify:
             sys.stderr.write("At least one classification level is needed: ")
             self.classification += [raw_input()]
-        
+
         return self._multiline("OC", self.classification, suffix=";") + self.spacer
-    
+
     def OG(self):
         """
         The OG (OrGanelle) linetype indicates the sub-cellular location of non-nuclear
         sequences.  It is only present in entries containing non-nuclear sequences
         and appears after the last OC line in such entries.
-        
+
         The OG line contains
         a) one data item (title cased) from the controlled list detailed under the
         /organelle qualifier definition in the Feature Table Definition document
         that accompanies this release or
         b) a plasmid name.
         Examples include "Mitochondrion", "Plastid:Chloroplast" and "Plasmid pBR322".
-        
+
         legal values from http://www.insdc.org/controlled-vocabulary-organelle-qualifier
         """
-        
+
         if self.organelle:
             return ("OG   %s" % (self.organelle,)).strip() + "\n" + self.spacer
         return ""
-    
+
     def RF(self):
         """
         The Reference (RN, RC, RP, RX, RG, RA, RT, RL) Lines
         These lines comprise the literature citations within the database.
-        The citations provide access to the papers from which the data has been 
+        The citations provide access to the papers from which the data has been
         abstracted. The reference lines for a given citation occur in a block, and
-        are always in the order RN, RC, RP, RX, RG, RA, RT, RL. 
-        
+        are always in the order RN, RC, RP, RX, RG, RA, RT, RL.
+
         >>>> Within each such reference block <<<<<
 
         the RN line occurs once, the RC, RP and RX lines occur zero
-        or more times, and the RA, RT, RL lines each occur one or more times. 
+        or more times, and the RA, RT, RL lines each occur one or more times.
         If several references are given, there will be a reference block for each.
         """
-        
+
         output = ""
-        
+
         for i, ref in enumerate(self.refs):
             output += "\nRN   [%i]" % (i+1)                         # RN - reference number           (>=1 per entry)
             if ref['comment']:                                      # RC - reference comment          (>=0 per entry)
                 output += self._multiline("RC", ref['comment'])
                                                                     # RP - reference positions        (>=1 per entry)
-            output += self._multiline("RP", ["%i-%i" % pos for pos in ref['positions']])   
+            output += self._multiline("RP", ["%i-%i" % pos for pos in ref['positions']])
             if ref['xrefs']:
                 for xref in ref['xrefs']:                               # RX - reference cross-reference  (>=0 per entry)
                     output += self._multiline("RX", xref, suffix=".")
@@ -647,7 +647,7 @@ class EMBL( object ):
                 output += self._multiline("RG", ref['group'])
             if ref['authors']:                                      # RA - reference author(s)        (>=0 per entry)
                 output += self._multiline("RA", ref['authors'], sep=", ", suffix=";")
-             
+
             if ref['title'] == ";":                                 # RT - reference title            (>=1 per entry)
                 output += self._multiline("RT", ref['title'], quoted=False)
             else:
@@ -655,12 +655,12 @@ class EMBL( object ):
             # TODO: There are lots of recommended formatting for the references,
             #       but I won't bother implementing them right now.
             output += self._multiline("RL", ref['location'])        # RL - reference location         (>=1 per entry)
-        
+
         if output:
             return output + self.spacer
-        
+
         return ""
-    
+
     def DR(self):
         """
         The DR (Database Cross-reference) line cross-references other databases which
@@ -674,15 +674,15 @@ class EMBL( object ):
                 output += self._multiline("DR", xref, suffix=".")
             return output + self.spacer
         return ""
-    
+
     def CC(self):
         """
-        CC lines are free text comments about the entry, and may be used to convey 
+        CC lines are free text comments about the entry, and may be used to convey
         any sort of information thought to be useful that is unsuitable for
         inclusion in other line types.
         """
         return self._multiline("CC", self.comment, quoted=True) + self.spacer if self.comment else ""
-    
+
     def AH(self):
         """
         Third Party Annotation (TPA) and Transcriptome Shotgun Assembly (TSA) records
@@ -692,21 +692,21 @@ class EMBL( object ):
         The lines contain no data and may be ignored by computer programs.
         """
         return "AH   LOCAL_SPAN     PRIMARY_IDENTIFIER     PRIMARY_SPAN     COMP"
-    
+
     def AS(self):
         """
-        The AS (ASsembly Information) lines provide information on the composition of 
+        The AS (ASsembly Information) lines provide information on the composition of
         a TPA or TSA sequence. These lines include information on local sequence spans
         (those spans seen in the sequence of the entry showing the AS lines) plus
         identifiers and base spans of contributing primary sequences (for ENA
         primary entries only).
-    
-        a) LOCAL_SPAN               base span on local sequence shown in entry  
+
+        a) LOCAL_SPAN               base span on local sequence shown in entry
         b) PRIMARY_IDENTIFIER       acc.version of contributing ENA sequence(s)
                                     or trace identifier for ENA read(s)
         c) PRIMARY_SPAN             base span on contributing ENA primary
                                     sequence or not_available for ENA read(s)
-                                   
+
         d) COMP                     'c' is used to indicate that contributing sequence
                                     originates from complementary strand in primary
                                     entry
@@ -718,61 +718,61 @@ class EMBL( object ):
                                          "{:18}".format(assembly['primary_span']),
                                          assembly['complementary'])
         return output
-    
+
     def FH(self):
         """
         The FH (Feature Header) lines are present only to improve readability of
-        an entry when it is printed or displayed on a terminal screen. The lines 
+        an entry when it is printed or displayed on a terminal screen. The lines
         contain no data and may be ignored by computer programs. The format of these
         lines is always the same.
         """
         return "\nFH   Key             Location/Qualifiers\nFH"
-    
+
     def FT(self):
         """
         The FT (Feature Table) lines provide a mechanism for the annotation of the
         sequence data. Regions or sites in the sequence which are of interest are
         listed in the table. In general, the features in the feature table represent
         signals or other characteristics reported in the cited references. In some
-        cases, ambiguities or features noted in the course of data preparation have 
+        cases, ambiguities or features noted in the course of data preparation have
         been included.  The feature table is subject to expansion or change as more
         becomes known about a given sequence.
-        
+
         Feature Table Definition Document:
-        A complete and definitive description of the feature table is given 
-        in the document "The DDBJ/ENA/GenBank Feature Table:  Definition". 
+        A complete and definitive description of the feature table is given
+        in the document "The DDBJ/ENA/GenBank Feature Table:  Definition".
         URL: ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.txt
         """
-        
+
         output = ""
         locus_tag_prefix="|".join(self.locus_tag if type(self.locus_tag) == type([]) else [self.locus_tag])
 
         for i, feature in enumerate(self.record.features):
-            
+
             #manage locus_tag
             locus_tag=None
             if feature.type.lower() != "source" and feature.type.lower() != "gap":
                 global CPT_LOCUS_GLB
                 CPT_LOCUS_GLB+=1
                 locus_tag_suffix="locus"+str(CPT_LOCUS_GLB)
-                
+
                 # replace locus_tag_suffix by the value of the locus_tag qualifier if this one exists
                 for qualifier in feature.qualifiers:
                     if 'locus_tag' == qualifier.lower():
                         locus_tag_suffix = "%s" % "_".join(feature.qualifiers[qualifier])
-                
-                # create locus tag from locus_tag_suffix and accession      
+
+                # create locus tag from locus_tag_suffix and accession
                 locus_tag = "%s_%s" % (locus_tag_prefix, locus_tag_suffix)
 
             f = Feature(feature, self.record.seq, locus_tag, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1, reorder_gene_features = self.interleave_genes, force_unknown_features = self.force_unknown_features, force_uncomplete_features = self.force_uncomplete_features)
-            
+
             if not self.keep_duplicates:
                 #Deal with identical CDS/UTR/etc between different isoforms:
                 if len(f.sub_features) >= 2: # More than two L2 features, lets check them
 
                     dictionaryType = {}
                     for feature_l2_obj in f.sub_features:
-                        
+
                         # Parse through subfeatures level3
                         rearrange=None
                         ListIndexToRemove = []
@@ -784,23 +784,23 @@ class EMBL( object ):
                                 #logging.error("remove %s" % feature_l3_obj.type)
                                 rearrange=True
                                 ListIndexToRemove.append(i)
-                                
+
                             else: #it is New
                                 #logging.error("Add this location %s" % str(feature_l3_obj.type+feature_l3_obj.location))
                                 dictionaryType[feature_l3_obj.type+str(feature_l3_obj.location)]=1
-                                
+
                         #Now remove duplicated features
                         if rearrange:
                             cpt = 0
-                            for index in ListIndexToRemove:               
+                            for index in ListIndexToRemove:
                                 del feature_l2_obj.sub_features[index-cpt]
                                 cpt+=1
 
             #Print
             output += str(f)
-        
+
         return output + self.spacer
-    
+
     def CO(self):
         """
         Con(structed) sequences in the CON data classes represent complete
@@ -810,21 +810,21 @@ class EMBL( object ):
         to building the constructed sequence. The assembly information is represented in
         the CO lines.
         """
-        
+
         logging.error("CO lines are not currently implemented.")
-    
+
     def SQ(self, out = None):
         """
-        The SQ (SeQuence header) line marks the beginning of the sequence data and 
+        The SQ (SeQuence header) line marks the beginning of the sequence data and
         Gives a summary of its content.
-        
-        This is followed by sequence data lines, which have a line code consisting 
-        of two blanks. The sequence is written 60 bases per line, in groups of 10 
-        bases separated by a blank character, beginning at position 6 of the line. 
-        The direction listed is always 5' to 3', and wherever possible the 
+
+        This is followed by sequence data lines, which have a line code consisting
+        of two blanks. The sequence is written 60 bases per line, in groups of 10
+        bases separated by a blank character, beginning at position 6 of the line.
+        The direction listed is always 5' to 3', and wherever possible the
         non-coding strand (homologous to the message) has been stored.
-        
-        This function can be passed a streamhandler to write directly to, instead of 
+
+        This function can be passed a streamhandler to write directly to, instead of
         buffering the entire sequence.
         """
         seq = str(self.record.seq) if self.record else ""
@@ -833,26 +833,26 @@ class EMBL( object ):
         num_g = seq.count("g")+seq.count("G")
         num_t = seq.count("t")+seq.count("T")
         num_o = len(seq) - (num_a + num_c + num_g + num_t)
-        
+
         output = "\nSQ   Sequence %i BP; %i A; %i C; %i G; %i T; %i other;" % (len(seq), num_a, num_c, num_g, num_t, num_o)
-        
+
         if out:
             out.write(output)
             output = ""
-        
+
         seq_len = 0
         while seq:
             current_line = " ".join([seq[i*10:(i+1)*10] for i in range(0, 6)])
             seq_len += min(60, len(seq))
             formatted_line = "\n     %s %s" % ("{:65}".format(current_line), "{:>9}".format(str(seq_len)))
-            
+
             if out:
                 out.write(formatted_line)
             else:
                 output += formatted_line
             seq = seq[60:]
         return output
-    
+
     def set_accession(self, accession = ""):
         """
         Sets the entry accession numbers, or parses it from the current record
@@ -866,7 +866,7 @@ class EMBL( object ):
             elif not hasattr(self, "accession"):
                 self.accession = "XXX"
                 EMBL.PREVIOUS_VALUES["accession"] = "XXX"
-    
+
     def set_classification(self, classification = []):
         """
         Sets the entry phylogenetic classification, or parses it from the current record
@@ -880,11 +880,11 @@ class EMBL( object ):
             #elif hasattr(self.record, "classification"):
             #    self.classification += self.record.classification
             if not getattr(self, "classification", False):
-                lineage = "Life" # default value     
+                lineage = "Life" # default value
                 try:
                     taxid = self.get_taxid_from_species(self.species)
-                    
-                    if taxid:  
+
+                    if taxid:
                         # fetch the classification sufing the taxid
                         logging.info("Fecth The Lineage using Entrez.efetch")
                         Entrez.email = EMBL.PREVIOUS_VALUES["email"]
@@ -897,7 +897,7 @@ class EMBL( object ):
 
                 self.classification = [lineage]
                 EMBL.PREVIOUS_VALUES["classification"] = [lineage]
-    
+
     def set_created(self, timestamp = None):
         """
         Sets the creation time of the original entry.
@@ -908,7 +908,7 @@ class EMBL( object ):
             self.created = self.record.created
         elif not hasattr(self, "created"):
             self.created = time.localtime()
-    
+
     def set_data_class(self, data_class = None):
         """
         Sets the sample data class, or parses it from the current record.
@@ -925,7 +925,7 @@ class EMBL( object ):
             elif not hasattr(self, "data_class"):
                 self.data_class = "XXX"
                 EMBL.PREVIOUS_VALUES["data_class"] = "XXX"
-    
+
     def set_description(self, description = None):
         """
         Sets the sample description.
@@ -970,7 +970,7 @@ class EMBL( object ):
         Sets wheather to interleave mRNA and CDS subfeatures in gene features
         """
         self.interleave_genes = interleave
-    
+
     def set_keep_duplicates(self, duplicate = False):
         """
         Sets wheather to keep duplicate features during the processing
@@ -987,7 +987,7 @@ class EMBL( object ):
             self.keywords += self.record.keywords
         if not getattr(self, "keywords", False):
             self.keywords = [""]
-    
+
     def set_locus_tag(self, locus_tag = ""):
         """
         Sets the entry locus_tag numbers, or parses it from the current record
@@ -999,7 +999,7 @@ class EMBL( object ):
                 self.locus_tag = locus_tag
                 EMBL.PREVIOUS_VALUES["locus_tag"] = locus_tag
             elif not hasattr(self, "locus_tag"):
-                
+
                 sys.stderr.write("No value provided as locus_tag.\nPlease provide a locus_tag:")
                 locus_tag = raw_input()
                 if not locus_tag:
@@ -1034,10 +1034,10 @@ class EMBL( object ):
             self.organelle = self.record.organelle
         elif not hasattr(self, "organelle"):
             self.organelle = ""
-        
+
         if self.verify and self.organelle:
             self.organelle = self._verify( self.organelle, "organelle")
-    
+
     def set_project_id(self, project_id = None):
         """
         Sets the project id, or parses it from the current record
@@ -1050,12 +1050,12 @@ class EMBL( object ):
                 project_id = raw_input()
                 if not project_id:
                     project_id = "XXX"
-  
+
             self.project_id = project_id
             EMBL.PREVIOUS_VALUES["project_id"] = project_id
             #elif hasattr(self.record, "project_id"):
             #    self.project_id = self.record.project_id
-    
+
     def set_record(self, record):
         """
         Sets the project record (the original GFF data that is currently being converted).
@@ -1101,7 +1101,7 @@ class EMBL( object ):
                 self.taxonomy = "XXX"
                 EMBL.PREVIOUS_VALUES["taxonomy"] = "XXX"
 
-    
+
     def set_topology(self, topology = None):
         """
         Sets the sample topology, or parses it from the current record.
@@ -1112,7 +1112,7 @@ class EMBL( object ):
         #    self.topology = self.record.topology
         elif not hasattr(self, "topology"):
             self.topology = ""
-        
+
         if self.verify:
             self.topology = self._verify( self.topology,       "topology")
 
@@ -1126,16 +1126,16 @@ class EMBL( object ):
         #    self.transl_table = self.record.transl_table
         elif not hasattr(self, "transl_table"):
             self.transl_table = ""
-        
+
         if self.verify:
             self.transl_table = self._verify( self.transl_table,       "transl_table")
-    
+
     def set_translation(self, translate = False):
         """
         Sets flag whether to translate CDS features.
         """
         self.translate = translate
-    
+
     def set_version(self, version = None):
         """
         Sets the release version, or parses it from the current record.
@@ -1147,18 +1147,18 @@ class EMBL( object ):
         #    self.version = self.record.version
         elif not hasattr(self, "version"):
             self.version = "XXX"
-    
+
     def write_all(self, out = sys.stdout):
         """
         Writes all EMBL information to the given buffer (default stdout).
         """
-           
+
         if type(out) == type(""):
             out = open(out, 'w')
-        
+
         # Add missing mandatory features:
         self._add_mandatory()
-        
+
         out.write( self.ID() ) # ID - identification             (begins each entry; 1 per entry)
         out.write( self.AC() ) # AC - accession number           (>=1 per entry)
         out.write( self.PR() ) # PR - project identifier         (0 or 1 per entry)
@@ -1174,27 +1174,27 @@ class EMBL( object ):
         if self.assembly_information:
             out.write( self.AH() ) # AH - assembly header            (0 or 1 per entry)
             out.write( self.AS() ) # AS - assembly information       (0 or >=1 per entry)
-        
+
         if self.record and self.record.features:
             out.write( self.FH() ) # FH - feature table header       (2 per entry)
         out.write( self.FT() ) # FT - feature table data         (>=2 per entry)
         if self.construct_information:
             out.write( self.CO() )
-        
+
         self.SQ( out )         # SQ - sequence header            (1 per entry)
                                # + sequence...
-        
+
         out.write( self.termination ) # // - termination line    (ends each entry; 1 per entry)
-        
+
         logging.info("Wrote %i CDS features, where %i is sound" % (Feature.CDS_COUNTER, Feature.OK_COUNTER))
-        
-        # CO - contig/construct line      (0 or >=1 per entry) 
-    
+
+        # CO - contig/construct line      (0 or >=1 per entry)
+
 ##########################
 #        MAIN            #
 ##########################
 
-if __name__ == '__main__':
+def main():
 
     # Deal with the advanced help
     if len(sys.argv) > 1 and (sys.argv[1] == "--ah" or sys.argv[1] == "--advanced_help"):
@@ -1210,7 +1210,7 @@ if __name__ == '__main__':
         sys.exit()
 
     parser = argparse.ArgumentParser( description = __doc__ )
-    
+
     parser.add_argument("gff_file", help="Input gff-file.")
     parser.add_argument("fasta", help="Input fasta sequence.")
     parser.add_argument("-a", "--accession", default=None, help="Accession number(s) for the entry.")
@@ -1226,16 +1226,16 @@ if __name__ == '__main__':
     parser.add_argument("-r", "--transl_table", type=int, default=None, help="Translation table.", choices=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
     parser.add_argument("-s", "--species", default=None, help="Species, formatted as 'Genus species' or using a taxid.")
     parser.add_argument("-t", "--topology", default=None, help="Sequence topology.", choices=["linear", "circular"])
-    
+
     parser.add_argument("-z", "--gzip", default=False, action="store_true", help="Gzip output file")
-    
+
     parser.add_argument("--rc", default=None, help="Reference Comment.")
     parser.add_argument("--rx", default=None, help="Reference cross-reference.")
     parser.add_argument("--rg", default="XXX", help="Reference Group, the working groups/consortia that produced the record.")
     parser.add_argument("--ra", "--author", nargs="+", default="", help="Author for the reference.")
     parser.add_argument("--rt", default=";", help="Reference Title.")
     parser.add_argument("--rl", default=None, help="Reference publishing location.")
-    
+
     parser.add_argument("--keep_duplicates", action="store_true", help="Do not remove duplicate features during the process.")
     parser.add_argument("--interleave_genes", action="store_false", help="Print gene features with interleaved mRNA and CDS features.")
     parser.add_argument("--force_unknown_features", action="store_true", help="Force to keep feature types not accepted by EMBL. /!\ Option not suitable for submission purpose.")
@@ -1244,19 +1244,19 @@ if __name__ == '__main__':
     parser.add_argument("--email", default=None, help="Email used to fetch information from NCBI taxonomy database.")
     parser.add_argument("--shame", action="store_true", help="Suppress the shameless plug.")
     parser.add_argument("--translate", action="store_true", help="Include translation in CDS features.")
-    
+
     parser.add_argument("--version", default=None, type=int, help="Sequence version number.")
     parser.add_argument("-x", "--taxonomy", default=None, help="Source taxonomy.", choices=["PHG", "ENV", "FUN", "HUM", "INV", "MAM", "VRT", "MUS", "PLN", "PRO", "ROD", "SYN", "TGN", "UNC", "VRL"])
-    
+
     parser.add_argument("-v", "--verbose", action="count", default=2, help="Increase verbosity.")
     parser.add_argument("-q", "--quiet", action="count", default=0, help="Decrease verbosity.")
-    
+
     parser.add_argument("--ah", "--advanced_help", choices=["One of the parameters above"], help="It display advanced information of the parameter specified. If you don't specify any parameter it will display advanced information of all of them.")
 
     args = parser.parse_args()
-    
-    logging.basicConfig(format='%(asctime)s %(levelname)s %(module)s: %(message)s', 
-                        level = (5-args.verbose+args.quiet)*10, 
+
+    logging.basicConfig(format='%(asctime)s %(levelname)s %(module)s: %(message)s',
+                        level = (5-args.verbose+args.quiet)*10,
                         datefmt="%H:%M:%S")
 
     if args.output:
@@ -1271,28 +1271,28 @@ if __name__ == '__main__':
             outfile = open(outfile, "wb")
     else:
         outfile = sys.stdout
-    
+
     infile = gzip.open(args.gff_file) if args.gff_file.endswith(".gz") else open(args.gff_file)
     infasta = gzip.open(args.fasta) if args.fasta.endswith(".gz") else open(args.fasta)
     seq_dict = SeqIO.to_dict( SeqIO.parse(infasta, "fasta") )
-    
+
     if not args.shame:
         sys.stderr.write(shameless_plug)
 
     for record in GFF.parse(infile, base_dict=seq_dict):
-        
+
         writer = EMBL( record, True )
 
         #To set up first
         writer.set_email(args.email) # has to be before set_species
-        writer.set_species( args.species ) # has to be before set_classification   
+        writer.set_species( args.species ) # has to be before set_classification
 
         #Set up the rest
         writer.set_accession( args.accession )
         writer.set_classification( args.classification )
         writer.set_created( args.created )
         writer.set_data_class( args.data_class )
-        writer.set_description()  
+        writer.set_description()
         writer.set_force_uncomplete_features( args.force_uncomplete_features )
         writer.set_force_unknown_features( args.force_unknown_features )
         writer.set_interleave_genes( args.interleave_genes )
@@ -1301,15 +1301,15 @@ if __name__ == '__main__':
         writer.set_locus_tag( args.locus_tag )
         writer.set_molecule_type( args.molecule_type )
         writer.set_organelle( args.organelle )
-        writer.set_project_id( args.project_id )  
+        writer.set_project_id( args.project_id )
         writer.set_taxonomy( args.taxonomy )
         writer.set_topology( args.topology )
         writer.set_transl_table( args.transl_table )
         writer.set_translation(args.translate)
-        writer.set_version( args.version )     
+        writer.set_version( args.version )
 
         writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)
 
         writer.write_all( outfile )
-     
+
     sys.stderr.write( """Conversion done\n""")
