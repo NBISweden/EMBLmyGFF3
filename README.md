@@ -15,6 +15,12 @@ __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Ti
 
 [Prerequisite](#prerequisite)</br>
 [Installation](#installation)</br>
+&nbsp;&nbsp;&nbsp;[With pip](#with-pip)</br>
+&nbsp;&nbsp;&nbsp;[Alternatively](#alternatively)</br>
+&nbsp;&nbsp;&nbsp;[Check installation](#check-installation)</br>
+[Update](#update)</br>
+&nbsp;&nbsp;&nbsp;[With pip](#with-pip)</br>
+&nbsp;&nbsp;&nbsp;[Alternatively](#alternatively)</br>
 [Usage](#usage)</br>
 &nbsp;&nbsp;&nbsp;[Foreword](#foreword)</br>
 &nbsp;&nbsp;&nbsp;[Simple case](#simple-case)</br>
@@ -47,14 +53,15 @@ In order to install pip please use the following steps:
 
 ## Installation
 
-With pip:
+#### With pip:
 >pip install git+https://github.com/NBISweden/EMBLmyGFF3.git
 
 or if you do not have administartive rights on your machine
 
 >pip install --user git+https://github.com/NBISweden/EMBLmyGFF3.git
 
-Alternatively:
+
+#### Alternatively:
 
 Clone the repository:
 
@@ -62,8 +69,10 @@ Clone the repository:
 
 Move into the folder and install:
  >cd EMBLmyGFF3/
- > python setup.py install
+ >python setup.py install
 
+ #### Check installation
+ 
  Executing:
  >EMBLmyGFF3
 
@@ -72,6 +81,22 @@ Move into the folder and install:
  >EMBLmyGFF3 -h
 
 will display some help.
+
+## Update
+
+#### With pip:
+ 
+ >pip install git+https://github.com/NBISweden/EMBLmyGFF3.git --upgrade
+
+or if you do not have administartive rights on your machine
+
+ >pip install --user git+https://github.com/NBISweden/EMBLmyGFF3.git --upgrade
+
+#### Alternatively:
+
+Move into the repository folder and execute:
+
+ >git pull
 
 ## USAGE
 
