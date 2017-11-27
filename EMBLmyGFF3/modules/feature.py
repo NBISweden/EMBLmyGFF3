@@ -6,6 +6,7 @@ import os
 import sys
 import json
 import logging
+from operator import attrgetter
 from Bio.Seq import Seq
 from Bio.Data import CodonTable
 from Bio.Alphabet.IUPAC import *
@@ -100,6 +101,10 @@ class Feature(object):
                 featureObj_level2 = Feature(feature_l2, self.seq, accessions, self.transl_table, self.translation_files, self.translate,
                                                       self.feature_definition_dir, self.qualifier_definition_dir, format_data = True, level=2)
                 self.sub_features += [featureObj_level2]
+
+                
+                # Sort the sub-features in case they were not ordered into the gff3 file (issue 1)
+                feature_l2.sub_features.sort(key=lambda x: x.location.start)
 
                 # Parse through subfeatures level3
                 featureObj_level3 = None
