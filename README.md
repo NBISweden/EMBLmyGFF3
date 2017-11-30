@@ -112,9 +112,9 @@ To learn how to obtain a *locus tag* [click here](https://www.ebi.ac.uk/ena/subm
 
 ### Get example data
 
-Test data (maker.gff3 maker.fa and others) are located in the *examples* folder.
+Test data (maker.gff3 maker.fa and others) are located in the ***examples*** folder.
 If you installed EMBLmyGFF3 using git those exmple files are located where you have cloned the repository in EMBLmyGFF3/examples/.
-If you installed EMBLmyGFF3 using pip, only the tool has been installed, you must download the test files separatly. [Here is a link to download the examples folder.](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/NBISweden/EMBLmyGFF3/tree/master/examples)
+If you installed EMBLmyGFF3 using pip, only the tool has been installed, you must download the test files separatly. [Here is a link to download the ***examples*** folder.](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/NBISweden/EMBLmyGFF3/tree/master/examples)
 
 ### Simple case
 
