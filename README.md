@@ -23,6 +23,7 @@ __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Ti
 &nbsp;&nbsp;&nbsp;[Update with git](#update-with-git)</br>
 [Usage](#usage)</br>
 &nbsp;&nbsp;&nbsp;[Foreword](#foreword)</br>
+&nbsp;&nbsp;&nbsp;[Get example data](#get-example-data)</br>
 &nbsp;&nbsp;&nbsp;[Simple case](#simple-case)</br>
 &nbsp;&nbsp;&nbsp;[Complete case](#complete-case)</br>
 &nbsp;&nbsp;&nbsp;[Advanced case 1](#advanced-case-1)</br>
@@ -109,9 +110,11 @@ Then, in order to get a valid EMBL flat file suitable for submission you have to
 To learn how to obtain a *project ID* [click here](http://ena-docs.readthedocs.io/en/latest/mod_02.html.).</br>
 To learn how to obtain a *locus tag* [click here](https://www.ebi.ac.uk/ena/submit/locus-tags).**
 
+### Get example data
+
 Test data (maker.gff3 maker.fa and others) are located in the *examples* folder.
 If you installed EMBLmyGFF3 using git those exmple files are located where you have cloned the repository in EMBLmyGFF3/examples/.
-If you installed EMBLmyGFF3 using pip, only the tool has been installed, you must download the test files separatly.
+If you installed EMBLmyGFF3 using pip, only the tool has been installed, you must download the test files separatly. [Here is a link to download the examples folder.](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/NBISweden/EMBLmyGFF3/tree/master/examples)
 
 ### Simple case
 
