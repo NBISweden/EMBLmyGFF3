@@ -21,6 +21,7 @@ __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Ti
 [Update](#update)</br>
 &nbsp;&nbsp;&nbsp;[Update with pip](#update-with-pip)</br>
 &nbsp;&nbsp;&nbsp;[Update with git](#update-with-git)</br>
+[Uninstall](#uninstall)</br>
 [Usage](#usage)</br>
 &nbsp;&nbsp;&nbsp;[Foreword](#foreword)</br>
 &nbsp;&nbsp;&nbsp;[Get example data](#get-example-data)</br>
@@ -98,6 +99,10 @@ or if you do not have administartive rights on your machine
 Move into the repository folder and execute:
 
  >git pull
+
+## Uninstall
+
+ >pip uninstall EMBLmyGFF3
 
 ## USAGE
 
@@ -210,6 +215,7 @@ You can also find a comprehensive help about the different parameters using the 
 |  -q, --quiet           |Decrease verbosity.|
 |  --shame               |Suppress the shameless plug.|
 |  -z, --gzip            |Gzip output file.|
+|  --uncompressed_log    |Some logs are compressed to ease the reading. With this option they will not be.|
 |  -o , --output         |Output filename.|
 
 ## MAPPING
