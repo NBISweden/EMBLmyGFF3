@@ -34,10 +34,7 @@ TOPOLOGY="circular"
 #Molecule type of the sample.
 MOLECULE="genomic DNA"
 
-# Converter script location
-EMBLmyGFF3="../EMBLmyGFF3.py"
-
-myCommand="$EMBLmyGFF3 --rg $REFERENCE_GROUP -i $LOCUS_TAG -p $PROJECT -t $TOPOLOGY -m \"$MOLECULE\" -r $TABLE -t linear -s \"$SPECIES\" -q -x $TAXONOMY $ANNOTATION $GENOME $@ > prokka.embl"
+myCommand="EMBLmyGFF3 --rg $REFERENCE_GROUP -i $LOCUS_TAG -p $PROJECT -t $TOPOLOGY -m \"$MOLECULE\" -r $TABLE -t linear -s \"$SPECIES\" -q -x $TAXONOMY -o EMBLmyGFF3-prokka-test.embl $ANNOTATION $GENOME"
 echo -e "Running the following command:\n$myCommand"
 
 #execute the command

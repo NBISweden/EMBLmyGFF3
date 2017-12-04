@@ -130,7 +130,7 @@ class EMBL( object ):
                      114:time.strptime("2012-12-21", "%Y-%m-%d"),
                      }
 
-    PREVIOUS_VALUES = {}
+    PREVIOUS_VALUES = {} # values that will be stored and shared between between the features of all the sequences handled
 
     spacer = "\nXX"
     termination = "\n//\n"
@@ -149,6 +149,9 @@ class EMBL( object ):
         self.construct_information = []
         self.comment = ""
         self.translate = False
+
+#================== def methods =======================
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 
     def _add_mandatory(self):
         """
@@ -235,7 +238,6 @@ class EMBL( object ):
         # List Case
         previousChunck=""
         if type(data) == type([]):
-            #logging.error("!!!!!!!!!!!!!!!LIST case!!!!!!!!!")
             for i, item in enumerate(data):
                 if item:
                     currentChunck = item + previousChunck
@@ -258,7 +260,6 @@ class EMBL( object ):
 
         # String case
         else:
-            #logging.error("!!!!!!!!!!!!!!!String case!!!!!!!!!")
             output,lastLine=self._splitStringMultiline(output, data, quoted)
             if len(lastLine) == 75:
                 output+=lastLine+"\n"+sep
@@ -408,7 +409,7 @@ class EMBL( object ):
         if taxid.isdigit():
            Entrez.email = EMBL.PREVIOUS_VALUES["email"]
            # fetch the classification sufing the taxid
-           logging.info("Fecth The Lineage using Entrez.efetch")
+           logging.debug("Fecth The Lineage using Entrez.efetch")
            search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
            data = Entrez.read(search)
            species = data[0]['ScientificName']
@@ -422,7 +423,7 @@ class EMBL( object ):
         if not species.isdigit():
             Entrez.email = EMBL.PREVIOUS_VALUES["email"]
             #fetch taxid from ncbi taxomomy
-            logging.info("Fecth the taxid from species name using Entrez.esearch")
+            logging.debug("Fecth the taxid from species name using Entrez.esearch")
             species =  species.replace(" ", "+").strip()
             search = Entrez.esearch(term=species, db="taxonomy", retmode="xml")
             record = Entrez.read(search)
@@ -451,6 +452,9 @@ class EMBL( object ):
                        'xrefs':xrefs,
                        'group':group,
                        'authors':authors}]
+
+#================== def EMBL line =======================
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 
     def ID(self):
         """
@@ -764,7 +768,10 @@ class EMBL( object ):
                 # create locus tag from locus_tag_suffix and accession
                 locus_tag = "%s_%s" % (locus_tag_prefix, locus_tag_suffix)
 
-            f = Feature(feature, self.record.seq, locus_tag, self.transl_table, translate=self.translate, feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1, reorder_gene_features = self.interleave_genes, force_unknown_features = self.force_unknown_features, force_uncomplete_features = self.force_uncomplete_features)
+            f = Feature(feature, self.record.seq, locus_tag, self.transl_table, translate=self.translate, 
+                feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1, 
+                reorder_gene_features = self.interleave_genes, force_unknown_features = self.force_unknown_features,
+                 force_uncomplete_features = self.force_uncomplete_features, uncompressed_log = self.uncompressed_log)
 
             if not self.keep_duplicates:
                 #Deal with identical CDS/UTR/etc between different isoforms:
@@ -781,12 +788,10 @@ class EMBL( object ):
                             test = next((elem for elem in dictionaryType if str(elem) == feature_l3_obj.type+str(feature_l3_obj.location)), None)
 
                             if test:
-                                #logging.error("remove %s" % feature_l3_obj.type)
                                 rearrange=True
                                 ListIndexToRemove.append(i)
 
                             else: #it is New
-                                #logging.error("Add this location %s" % str(feature_l3_obj.type+feature_l3_obj.location))
                                 dictionaryType[feature_l3_obj.type+str(feature_l3_obj.location)]=1
 
                         #Now remove duplicated features
@@ -853,6 +858,10 @@ class EMBL( object ):
             seq = seq[60:]
         return output
 
+
+#======================= SET ============================
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+
     def set_accession(self, accession = ""):
         """
         Sets the entry accession numbers, or parses it from the current record
@@ -886,7 +895,7 @@ class EMBL( object ):
 
                     if taxid:
                         # fetch the classification sufing the taxid
-                        logging.info("Fecth The Lineage using Entrez.efetch")
+                        logging.debug("Fecth The Lineage using Entrez.efetch")
                         Entrez.email = EMBL.PREVIOUS_VALUES["email"]
                         search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
                         data = Entrez.read(search)
@@ -1136,6 +1145,16 @@ class EMBL( object ):
         """
         self.translate = translate
 
+    def set_uncompressed_log(self, uncompressed_log = False):
+        """
+        Sets flag whether to write into a log file.
+        """
+        if "uncompressed_log" not in EMBL.PREVIOUS_VALUES:
+            EMBL.PREVIOUS_VALUES["uncompressed_log"] = uncompressed_log
+            self.uncompressed_log = uncompressed_log
+        else:
+            self.uncompressed_log = EMBL.PREVIOUS_VALUES["uncompressed_log"]
+
     def set_version(self, version = None):
         """
         Sets the release version, or parses it from the current record.
@@ -1250,6 +1269,7 @@ def main():
 
     parser.add_argument("-v", "--verbose", action="count", default=2, help="Increase verbosity.")
     parser.add_argument("-q", "--quiet", action="count", default=0, help="Decrease verbosity.")
+    parser.add_argument("--uncompressed_log", action="store_true", help="Some logs can be compressed for better lisibility, they won't.")
 
     parser.add_argument("--ah", "--advanced_help", choices=["One of the parameters above"], help="It display advanced information of the parameter specified. If you don't specify any parameter it will display advanced information of all of them.")
 
@@ -1306,6 +1326,7 @@ def main():
         writer.set_topology( args.topology )
         writer.set_transl_table( args.transl_table )
         writer.set_translation(args.translate)
+        writer.set_uncompressed_log(args.uncompressed_log)
         writer.set_version( args.version )
 
         writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)

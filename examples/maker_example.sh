@@ -31,10 +31,7 @@ TABLE="1"
 #Molecule type of the sample.
 MOLECULE="genomic DNA"
 
-# Converter script location
-EMBLmyGFF3="../EMBLmyGFF3.py"
-
-myCommand="$EMBLmyGFF3 --rg $REFERENCE_GROUP -i $LOCUS_TAG -p $PROJECT -m \"$MOLECULE\" -r $TABLE -t linear -s \"$SPECIES\" -x $TAXONOMY $ANNOTATION $GENOME $@ > maker.embl"
+myCommand="EMBLmyGFF3 --rg $REFERENCE_GROUP -i $LOCUS_TAG -p $PROJECT -m \"$MOLECULE\" -r $TABLE -t linear -s \"$SPECIES\" -x $TAXONOMY -o EMBLmyGFF3-maker-test.embl $ANNOTATION $GENOME"
 echo -e "Running the following command:\n$myCommand"
 
 #execute the command

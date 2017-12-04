@@ -54,42 +54,45 @@ class Feature(object):
     OK_COUNTER = 0
     DEFAULT_FEATURE_TRANSLATION_FILE="translation_gff_feature_to_embl_feature.json"
     DEFAULT_QUALIFIER_TRANSLATION_FILE=["translation_gff_attribute_to_embl_qualifier.json", "translation_gff_other_to_embl_qualifier.json"]
-    PREVIOUS_ERRORS = []
+    PREVIOUS_ERRORS = {}
     SCRIPT_DIR = os.path.dirname(__file__)
     DEFAULT_FEATURE_DIR = os.path.join(SCRIPT_DIR, "modules/features")
     DEFAULT_QUALIFIER_DIR = os.path.join(SCRIPT_DIR, "modules/qualifiers/")
 
     def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False,
                 feature_definition_dir = DEFAULT_FEATURE_DIR, qualifier_definition_dir = DEFAULT_QUALIFIER_DIR, format_data = True,
-                level = 0, reorder_gene_features = True, skip_feature = False, force_unknown_features = False, force_uncomplete_features = False):
+                level = 0, reorder_gene_features = True, skip_feature = False, force_unknown_features = False, 
+                force_uncomplete_features = False, uncompressed_log = None):
         """
         Initializes a Feature, loads json files for feature and
         qualifiers, and starts parsing the data.
         """
+        self.legal_qualifiers = []
+        self.level = level
         self.location = feature.location
-        self.feature_definition_dir = feature_definition_dir
         self.qualifier_definition_dir = qualifier_definition_dir
         self.qualifiers = {}
         self.qualifier_translation_list = {}
-        self.feature_translation_list = {}
-        self.singleton_types = ["exon"]
         self.qualifier_prefix = {}
         self.qualifier_suffix = {}
-        self.legal_qualifiers = []
-        self.sub_features = []
+        self.feature_definition_dir = feature_definition_dir
+        self.feature_translation_list = {}
+        self.force_uncomplete_features = force_uncomplete_features
+        self.force_unknown_features = force_unknown_features
+        self.reorder_gene_features = reorder_gene_features
         self.remove = []
+        self.seq = seq
+        self.singleton_types = ["exon"]
+        self.skip_feature = skip_feature
+        self.sub_features = []
+        self.translate = translate
         self.translation_files = translation_files
+        self.transl_table = transl_table
+        self.uncompressed_log = uncompressed_log
+
         self._load_qualifier_translations(Feature.DEFAULT_QUALIFIER_TRANSLATION_FILE + translation_files)
         self._load_feature_translations([Feature.DEFAULT_FEATURE_TRANSLATION_FILE])
         self.type = self._from_gff_feature(feature.type)
-        self.seq = seq
-        self.transl_table = transl_table
-        self.translate = translate
-        self.level = level
-        self.reorder_gene_features = reorder_gene_features
-        self.skip_feature = skip_feature
-        self.force_unknown_features = force_unknown_features
-        self.force_uncomplete_features = force_uncomplete_features
         self._load_definition("%s/%s.json" % (feature_definition_dir, self.type))
         self._load_data(feature, accessions)
         self._check_qualifier(feature)
@@ -265,7 +268,10 @@ class Feature(object):
             # Check presence of mandatory qualifier
             if self.qualifiers[qualifier].mandatory:# Check if the qualifier is mandatory
                 if not self.qualifiers[qualifier].value: # No value for this mandatory qualifier
-                    logging.warning("The qualifier >%s< is mandatory for the feature >%s<. We will not report the feature.", qualifier, self.type)
+                    
+                    msg = "The qualifier >%s< is mandatory for the feature >%s<. We will not report the feature." % (qualifier, self.type)
+                    self.handle_message('warning', msg, msg, None)
+
                     self.skip_feature = True
 
     def _load_data(self, feature, accessions):
@@ -300,10 +306,10 @@ class Feature(object):
                         # it to have a bit of debugging information.
                         setattr(self, key, value)
         except IOError as e:
-            msg = "%s" % e
-            if msg not in Feature.PREVIOUS_ERRORS:
-                logging.error(">>%s<< is not a valid EMBL feature type. You can ignore this message if you don't need it.\nOtherwise tell me which EMBL feature it corresponds to by adding the information within the json mapping file.",self.type)
-                Feature.PREVIOUS_ERRORS += [msg]
+            logging.debug("%s" % e)
+            msg = ">>%s<< is not a valid EMBL feature type. You can ignore this message if you don't need it.\nOtherwise tell me which EMBL feature it corresponds to by adding the information within the json mapping file." % (self.type)
+            self.handle_message("error", msg, msg, 1)
+
             self.skip_feature=True
 
     def _load_feature_translations(self, filenames):
@@ -413,9 +419,7 @@ class Feature(object):
                 os.stat( "%s/%s.json" % (self.qualifier_definition_dir, qualifier) )
             except Exception as e:
                 msg = "Unknown qualifier '%s' - skipped" % qualifier
-                if msg not in Feature.PREVIOUS_ERRORS:
-                    logging.warn(msg)
-                    Feature.PREVIOUS_ERRORS += [msg]
+                self.handle_message('warning', msg, msg, 1)
             else:
                 logging.debug("'%s' is not a legal qualifier for feature type '%s'" % (qualifier, self.type))
 
@@ -442,7 +446,11 @@ class Feature(object):
                 error_regex = True
 
             if error_regex:
-                logging.warning("The value(s) %s is(are) invalid for the qualifier %s of the feature %s. We will not report the qualifier. (Here is the regex expected: %s)", value, qualifier, self.type, regex)
+                
+                msg_type = "The value(s) is(are) invalid for the qualifier %s of the feature %s. We will not report the qualifier. (Here is the regex expected: %s)"  % (qualifier, self.type, regex)
+                msg = "The value(s) %s is(are) invalid for the qualifier %s of the feature %s. We will not report the qualifier. (Here is the regex expected: %s)"  % (value, qualifier, self.type, regex)
+                self.handle_message("warning", msg_type, msg, None)
+
                 return
 
 
@@ -552,6 +560,26 @@ class Feature(object):
             translated_seq = translated_seq[:-1]
 
         return translated_seq
+
+    def handle_message(self, type, msg_type, msg, value):
+    
+        if Feature.PREVIOUS_ERRORS.has_key(msg_type):
+            Feature.PREVIOUS_ERRORS[msg_type] += 1
+        
+        level = eval("logging.%s" % type.upper())
+
+        if self.uncompressed_log:
+            logging.log(level, msg)
+        else:
+            if not value:   # number of line accepted to display (defaut or given to the method)
+                value = 5    
+            if not Feature.PREVIOUS_ERRORS.has_key(msg_type) or Feature.PREVIOUS_ERRORS[msg_type] < value:
+                logging.log(level, msg)
+                Feature.PREVIOUS_ERRORS.setdefault(msg_type,1)
+            elif Feature.PREVIOUS_ERRORS[msg_type] == value:
+                logging.log(level, msg)
+                final_message = 'We will not display anymore this %s. Please use the --uncompressed_log parameter if you wish having all of them.' % type
+                logging.log(level, final_message) 
 
 
 if __name__ == '__main__':

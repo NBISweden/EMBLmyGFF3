@@ -517,8 +517,12 @@ By default the verbosity level is set to Warning (Critical, Error, Warning messa
 EMBLmyGFF3 tool specific
 This option allows to compress the output file in gzip format. This option does not expect any value.
 """
-   
+  if(string == "uncompressed_log" or string == "all"):
+    output += string+""":
+EMBLmyGFF3 tool specific
+Some of the log could be compressed for a better lisibility, using this option they won't.
+""" 
   if not output:
-    output += string+""":Sorry we don't recognize this option: """+string+"\n"
+    output += string+""":Sorry no advanced help for this option: """+string+"\n"
 
   return output
