@@ -20,9 +20,9 @@ setup(
 
     entry_points={
         'console_scripts': ['EMBLmyGFF3 = EMBLmyGFF3:main',  
-        'EMBLmyGFF3-augustus-test = EMBLmyGFF3.examples.augustus_example:main',
-        'EMBLmyGFF3-maker-test = EMBLmyGFF3.examples.maker_example:main',
-        'EMBLmyGFF3-prokka-test = EMBLmyGFF3.examples.prokka_example:main',
+        'EMBLmyGFF3-augustus-example = EMBLmyGFF3.examples.augustus_example:main',
+        'EMBLmyGFF3-maker-example = EMBLmyGFF3.examples.maker_example:main',
+        'EMBLmyGFF3-prokka-example = EMBLmyGFF3.examples.prokka_example:main',
         ],
     }
 )

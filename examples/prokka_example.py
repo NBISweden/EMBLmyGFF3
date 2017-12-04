@@ -45,7 +45,7 @@ def main():
 	MOLECULE="genomic DNA"
 
 	#Create the command
-	command = "EMBLmyGFF3 --rg REFERENCE_GROUP -i "+LOCUS_TAG+" -p "+PROJECT+" -m \""+MOLECULE+"\" -r "+TABLE+" -t "+TOPOLOGY+" -s \""+SPECIES+"\" -x "+TAXONOMY+" -o EMBLmyGFF3-prokka-test.embl "+fill_path(ANNOTATION)+" "+fill_path(GENOME)
+	command = "EMBLmyGFF3 --rg REFERENCE_GROUP -i "+LOCUS_TAG+" -p "+PROJECT+" -m \""+MOLECULE+"\" -r "+TABLE+" -t "+TOPOLOGY+" -s \""+SPECIES+"\" -x "+TAXONOMY+" -o EMBLmyGFF3-prokka-example.embl "+fill_path(ANNOTATION)+" "+fill_path(GENOME)
 	print("Running the following command: "+command)
 
 	#Execute the command
