@@ -15,8 +15,15 @@ __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Ti
 
 [Prerequisite](#prerequisite)</br>
 [Installation](#installation)</br>
+&nbsp;&nbsp;&nbsp;[Installation with pip](#installation-with-pip)</br>
+&nbsp;&nbsp;&nbsp;[Installation with git](#installation-with-git)</br>
+&nbsp;&nbsp;&nbsp;[Check installation](#check-installation)</br>
+[Update](#update)</br>
+&nbsp;&nbsp;&nbsp;[Update with pip](#update-with-pip)</br>
+&nbsp;&nbsp;&nbsp;[Update with git](#update-with-git)</br>
 [Usage](#usage)</br>
 &nbsp;&nbsp;&nbsp;[Foreword](#foreword)</br>
+&nbsp;&nbsp;&nbsp;[Get example data](#get-example-data)</br>
 &nbsp;&nbsp;&nbsp;[Simple case](#simple-case)</br>
 &nbsp;&nbsp;&nbsp;[Complete case](#complete-case)</br>
 &nbsp;&nbsp;&nbsp;[Advanced case 1](#advanced-case-1)</br>
@@ -47,14 +54,15 @@ In order to install pip please use the following steps:
 
 ## Installation
 
-With pip:
+#### Installation with pip:
 >pip install git+https://github.com/NBISweden/EMBLmyGFF3.git
 
 or if you do not have administartive rights on your machine
 
 >pip install --user git+https://github.com/NBISweden/EMBLmyGFF3.git
 
-Alternatively:
+
+#### Installation with git:
 
 Clone the repository:
 
@@ -62,8 +70,10 @@ Clone the repository:
 
 Move into the folder and install:
  >cd EMBLmyGFF3/
- > python setup.py install
+ >python setup.py install
 
+ #### Check installation
+ 
  Executing:
  >EMBLmyGFF3
 
@@ -72,6 +82,22 @@ Move into the folder and install:
  >EMBLmyGFF3 -h
 
 will display some help.
+
+## Update
+
+#### Update with pip:
+ 
+ >pip install git+https://github.com/NBISweden/EMBLmyGFF3.git --upgrade
+
+or if you do not have administartive rights on your machine
+
+ >pip install --user git+https://github.com/NBISweden/EMBLmyGFF3.git --upgrade
+
+#### Update with git:
+
+Move into the repository folder and execute:
+
+ >git pull
 
 ## USAGE
 
@@ -84,36 +110,40 @@ Then, in order to get a valid EMBL flat file suitable for submission you have to
 To learn how to obtain a *project ID* [click here](http://ena-docs.readthedocs.io/en/latest/mod_02.html.).</br>
 To learn how to obtain a *locus tag* [click here](https://www.ebi.ac.uk/ena/submit/locus-tags).**
 
-Test data are located in the *examples* folder.
+### Get example data
+
+Test data (maker.gff3 maker.fa and others) are located in the ***examples*** folder.
+If you installed EMBLmyGFF3 using git those exmple files are located where you have cloned the repository in EMBLmyGFF3/examples/.
+If you installed EMBLmyGFF3 using pip, only the tool has been installed, you must download the test files separatly. [Here is a link to download the ***examples*** folder.](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/NBISweden/EMBLmyGFF3/tree/master/examples)
 
 ### Simple case
 
- >EMBLmyGFF3 example/maker.gff3 example/maker.fa
+ >EMBLmyGFF3 maker.gff3 maker.fa
 
 Will prompt you to fill one by one the mandatory information needed to produce a proper EMBL file.
 Once the software has all the information it needs, it will process the input files and will print the result to STDOUT.
 
 In order to write the result in the desired file use the **-o** option:
 
- >EMBLmyGFF3 example/maker.gff3 example/maker.fa -o result.embl
+ >EMBLmyGFF3 maker.gff3 maker.fa -o result.embl
 
 ### Complete case
 
 Minimum requirement to launch the software and avoid any prompt.
 
- >EMBLmyGFF3 examples/maker.gff3 examples/maker.fa --topology linear --molecule_type 'genomic DNA' --transl_table 1  --species 'Drosophila melanogaster' --locus_tag MY_LOCUS_TAG --project_id PRJXXXXXXX -o result.embl
+ >EMBLmyGFF3 maker.gff3 maker.fa --topology linear --molecule_type 'genomic DNA' --transl_table 1  --species 'Drosophila melanogaster' --locus_tag MY_LOCUS_TAG --project_id PRJXXXXXXX -o result.embl
 
 ### Advanced case 1
 
 When you want add more information than those mandatory: Fill the ID line except the accession and the RG line.
 
- >EMBLmyGFF3 examples/maker.gff3 examples/maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --project_id PRJXXXXXXX --rg MYGROUP -o result.embl
+ >EMBLmyGFF3 maker.gff3 maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --project_id PRJXXXXXXX --rg MYGROUP -o result.embl
 
 ### Advanced case 2
 
 When you want add more information than those mandatory: Fill the ID line + publication and authors information.
 
- >EMBLmyGFF3 examples/maker.gff3 examples/maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
+ >EMBLmyGFF3 maker.gff3 maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
 
 ### Use through a bash script
 
