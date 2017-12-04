@@ -24,12 +24,12 @@ __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Ti
 [Uninstall](#uninstall)</br>
 [Usage](#usage)</br>
 &nbsp;&nbsp;&nbsp;[Foreword](#foreword)</br>
-&nbsp;&nbsp;&nbsp;[Get example data](#get-example-data)</br>
+&nbsp;&nbsp;&nbsp;[Use a provided example](#use-provided-examples)</br>
 &nbsp;&nbsp;&nbsp;[Simple case](#simple-case)</br>
 &nbsp;&nbsp;&nbsp;[Complete case](#complete-case)</br>
 &nbsp;&nbsp;&nbsp;[Advanced case 1](#advanced-case-1)</br>
 &nbsp;&nbsp;&nbsp;[Advanced case 2](#advanced-case-2)</br>
-&nbsp;&nbsp;&nbsp;[Use through a bash script](#use-through-a-bash-script)</br>
+&nbsp;&nbsp;&nbsp;[Use through a script](#use-through-a-bash-script)</br>
 [Parameter](#parameter)</br>
 [Mapping](#mapping)</br>
 &nbsp;&nbsp;&nbsp;[Feature type](#feature-type)</br>
@@ -115,12 +115,23 @@ Then, in order to get a valid EMBL flat file suitable for submission you have to
 To learn how to obtain a *project ID* [click here](http://ena-docs.readthedocs.io/en/latest/mod_02.html.).</br>
 To learn how to obtain a *locus tag* [click here](https://www.ebi.ac.uk/ena/submit/locus-tags).**
 
-### Get example data
+### Use provided examples
 
-Test data (maker.gff3 maker.fa and others) are located in the ***examples*** folder.
-If you installed EMBLmyGFF3 using git those exmple files are located where you have cloned the repository in EMBLmyGFF3/examples/.
-If you installed EMBLmyGFF3 using pip, only the tool has been installed, you must download the test files separatly. [Here is a link to download the ***examples*** folder.](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/NBISweden/EMBLmyGFF3/tree/master/examples)
+Three examples are provided with the tool and are located in the ***examples*** folder.
+You can try one of the 3 examples by calling **EMBLmyGFF3-maker-example** or **EMBLmyGFF3-augustus-example** or **EMBLmyGFF3-prokka-example** accordingly. This way is convenient when you performed the installation using pip.
 
+  >EMBLmyGFF3-maker-example
+
+If you installed EMBLmyGFF3 using git those example files are located where you have cloned the repository in EMBLmyGFF3/examples/.
+You could also access these files by downloading the ***examples*** folder [here.](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/NBISweden/EMBLmyGFF3/tree/master/examples)
+You can then try the examples moving in the examples folder and launching one of the .py or .sh executable like that:
+
+ >python maker_example.py
+ 
+ or
+ 
+ >./maker_example.sh
+ 
 ### Simple case
 
  >EMBLmyGFF3 maker.gff3 maker.fa
@@ -150,12 +161,9 @@ When you want add more information than those mandatory: Fill the ID line + publ
 
  >EMBLmyGFF3 maker.gff3 maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
 
-### Use through a bash script
+### Use through a script
 
-You may prefer to launch the software through a bash script especially when you want to fill many information, so we provide examples of such script here **example/maker_example.sh**.
-
-In order to use it move in the example folder, then launch the script:
->./maker_example.sh
+You may prefer to launch the software through a script especially when you want to fill many information, so we provide examples of such scripts in bash (.sh) or python (.py) in the **examples** folder.
 
 ## PARAMETER
 
