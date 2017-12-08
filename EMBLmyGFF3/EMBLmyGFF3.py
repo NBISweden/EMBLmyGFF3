@@ -40,7 +40,6 @@ from modules.help import Help
 SCRIPT_DIR=os.path.dirname(__file__)
 FEATURE_DIR=SCRIPT_DIR + "/modules/features"
 QUALIFIER_DIR=SCRIPT_DIR + "/modules/qualifiers"
-CPT_LOCUS_GLB=0
 
 class EMBL( object ):
     """
@@ -756,9 +755,10 @@ class EMBL( object ):
             #manage locus_tag
             locus_tag=None
             if feature.type.lower() != "source" and feature.type.lower() != "gap":
-                global CPT_LOCUS_GLB
-                CPT_LOCUS_GLB+=1
-                locus_tag_suffix="locus"+str(CPT_LOCUS_GLB)
+                cpt_locus = self.PREVIOUS_VALUES['locus_numbering_start']
+                locus_tag_suffix="LOCUS"+str(cpt_locus)
+                # now the locus has been used we can increment the locus value
+                self.PREVIOUS_VALUES['locus_numbering_start'] += 1
 
                 # replace locus_tag_suffix by the value of the locus_tag qualifier if this one exists
                 for qualifier in feature.qualifiers:
@@ -999,7 +999,7 @@ class EMBL( object ):
 
     def set_locus_tag(self, locus_tag = ""):
         """
-        Sets the entry locus_tag numbers, or parses it from the current record
+        Sets the entry locus_tag value, or parses it from the current record
         """
         if "locus_tag" in EMBL.PREVIOUS_VALUES:
             self.locus_tag = EMBL.PREVIOUS_VALUES["locus_tag"]
@@ -1016,6 +1016,15 @@ class EMBL( object ):
 
                 self.locus_tag = locus_tag
                 EMBL.PREVIOUS_VALUES["locus_tag"] = locus_tag
+
+    def set_locus_numbering_start (self, locus_numbering_start = 1):
+        """
+        Sets the entry locus_numbering_start numbers
+        """
+        if "locus_numbering_start" in EMBL.PREVIOUS_VALUES:
+            self.set_locus_numbering_start = EMBL.PREVIOUS_VALUES["locus_numbering_start"]
+        else:
+            EMBL.PREVIOUS_VALUES["locus_numbering_start"] = locus_numbering_start
 
     def set_molecule_type(self, molecule_type = None):
         """
@@ -1259,6 +1268,7 @@ def main():
     parser.add_argument("--interleave_genes", action="store_false", help="Print gene features with interleaved mRNA and CDS features.")
     parser.add_argument("--force_unknown_features", action="store_true", help="Force to keep feature types not accepted by EMBL. /!\ Option not suitable for submission purpose.")
     parser.add_argument("--force_uncomplete_features", action="store_true", help="Force to keep features whithout all the mandatory qualifiers. /!\ Option not suitable for submission purpose.")
+    parser.add_argument("--locus_numbering_start", default=1, type=int, help="Start locus numbering with the provided value.")
 
     parser.add_argument("--email", default=None, help="Email used to fetch information from NCBI taxonomy database.")
     parser.add_argument("--shame", action="store_true", help="Suppress the shameless plug.")
@@ -1319,6 +1329,7 @@ def main():
         writer.set_keep_duplicates( args.keep_duplicates )
         writer.set_keywords( args.keyword )
         writer.set_locus_tag( args.locus_tag )
+        writer.set_locus_numbering_start(args.locus_numbering_start)
         writer.set_molecule_type( args.molecule_type )
         writer.set_organelle( args.organelle )
         writer.set_project_id( args.project_id )

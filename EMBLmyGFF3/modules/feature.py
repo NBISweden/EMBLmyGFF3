@@ -297,7 +297,7 @@ class Feature(object):
                     if "qualifier" in key:
                         for item, definition in value.iteritems():
                             #logging.error("item:%s definition:%s",item,definition)
-                            self.legal_qualifiers += [key]
+                            self.legal_qualifiers += [item]
                             mandatory = "mandatory" in key
                             self.qualifiers[item] = Qualifier(item, mandatory = mandatory, qualifier_definition_dir=self.qualifier_definition_dir)
                     else:
@@ -462,7 +462,17 @@ class Feature(object):
         if self.qualifier_suffix.get(gff_qualifier, None):
             value = ["%s%s" % (v, self.qualifier_suffix[gff_qualifier]) for v in value]
 
-        self.qualifiers[qualifier].add_value(value)
+        ###########################################
+        # add the value only if not already present         
+        # List case
+        if isinstance(value, list):
+            for val in value:
+                if val not in self.qualifiers[qualifier].value:
+                    self.qualifiers[qualifier].add_value(val)
+        # Scalar case
+        else:
+            if value not in self.qualifiers[qualifier].value:
+                self.qualifiers[qualifier].add_value(value)
 
     def combine(self, other):
         """
@@ -472,23 +482,24 @@ class Feature(object):
         # add new location
         self.location += other.location
 
-        # combine qualifiers
-        for name, qualifier in self.qualifiers.iteritems():
-            other_qualifier = other.qualifiers.get(name, None)
-            for val in getattr(other_qualifier, "value", []):
-                if val not in qualifier.value:
-                    self.qualifiers[name].add_value(other_value)
-
-        # Sort out phase
-        current_phase = int(self.qualifiers.get("phase", [0])[0])
-        other_phase = int(other.qualifiers.get("phase", [0])[0])
-
-        phase = current_phase if self.location.start < other.location.start else other_phase
-        if "codon_start" in self.legal_qualifiers:
-            if not "codon_start" in self.qualifiers:
-                self.qualifiers["codon_start"] = Qualifier("codon_start", phase, qualifier_definition_dir = self.qualifier_definition_dir)
+        # combine qualifier except codon start
+        for gff_qualifier, list_val_other in other.qualifiers.iteritems():
+            other_qualifier = self._from_gff_qualifier(gff_qualifier) # get the real qualifier name in EMBL format to be able to compare with the one alredy saved
+            if other_qualifier != "codon_start":
+                self.add_qualifier(gff_qualifier, list_val_other)
             else:
-                self.qualifiers["codon_start"].set_value(phase)
+                # as the feature are sorted by increasing order location if + strand the first CDS codon_start qualifier was the good one
+                # Of we are in a minus strand case we have to replace the start_codon, only hte last one will left
+                if self.location.strand < 0:
+                    # get phase of the last CDS
+                    phase = int(other.qualifiers.get("phase", [0])[0])
+
+                    if "codon_start" in self.legal_qualifiers:
+
+                        if not "codon_start" in self.qualifiers:
+                            self.qualifiers["codon_start"] = Qualifier("codon_start", phase, qualifier_definition_dir = self.qualifier_definition_dir)
+                        else:
+                            self.qualifiers["codon_start"].set_value(phase)
 
     def CDS_report(self, out = sys.stdout, parts = False, codon_info = True):
         """
