@@ -247,7 +247,7 @@ class Feature(object):
             stop_codon = seq[-3:]
 
             # load the current codon table
-            codon_table = CodonTable.unambiguous_dna_by_id[self.transl_table]
+            codon_table = CodonTable.ambiguous_dna_by_id[self.transl_table]
 
             # basic info
             strand = self.location.strand
@@ -518,7 +518,7 @@ class Feature(object):
             offset = 0
             aa_offset = 0
             for i, part in enumerate(self.location.parts) if self.location.strand > 0 else enumerate(reversed(self.location.parts)):
-                codon_table = CodonTable.unambiguous_dna_by_id[self.transl_table]
+                codon_table = CodonTable.ambiguous_dna_by_id[self.transl_table]
                 part_seq = SeqFeature(location = part).extract(self.seq)
                 aa_len = (len(part)+offset)//3
                 part_aa  = aa[aa_offset:aa_offset+aa_len]
@@ -533,7 +533,7 @@ class Feature(object):
             out.write("Translation: %s\n" % chunk_format(aa, None, 0, 8, 6, 13))
 
         if codon_info:
-            codon_table = CodonTable.unambiguous_dna_by_id[self.transl_table]
+            codon_table = CodonTable.ambiguous_dna_by_id[self.transl_table]
             out.write("Start codon: %s (%s) \n" % (start_codon, ", ".join(codon_table.start_codons)))
             out.write("Stop codon: %s (%s) \n" % (stop_codon, ", ".join(codon_table.stop_codons)))
 
