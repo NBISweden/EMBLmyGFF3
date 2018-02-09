@@ -151,15 +151,15 @@ Minimum requirement to launch the software and avoid any prompt.
 
 ### Advanced case 1
 
-When you want add more information than those mandatory: Fill the ID line except the accession and the RG line.
+Adding more information than those mandatory (filling the ID).
 
  >EMBLmyGFF3 maker.gff3 maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --project_id PRJXXXXXXX --rg MYGROUP -o result.embl
 
 ### Advanced case 2
 
-When you want add more information than those mandatory: Fill the ID line + publication and authors information.
+Adding more information than those mandatory (filling the ID line + publication and authors information).
 
- >EMBLmyGFF3 maker.gff3 maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --accession ERSXXXXXXX --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
+ >EMBLmyGFF3 maker.gff3 maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
 
 ### Use through a script
 
