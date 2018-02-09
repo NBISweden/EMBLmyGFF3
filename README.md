@@ -192,7 +192,7 @@ You can also find a comprehensive help about the different parameters using the 
 
 | Parameter | Description |
 | --- | --- |
-|  -a , --accession      |Accession number(s) for the entry. Default value: **XXX** . This option is used to set up the accession number of the AC line and the first token of the ID line as well. The unique accession number is assigned by the database. Please visit [this page](https://www.ebi.ac.uk/ena/submit/accession-number-formats) and [this one](https://www.ebi.ac.uk/ena/submit/sequence-submission) to learn more about it.|   
+|  -a , --accession      |Accession number(s) for the entry. Default value: **XXX** . This option is used to set up the accession number of the AC line and the first token of the ID line as well. **The unique accession number is assigned by the database.** Please visit [this page](https://www.ebi.ac.uk/ena/submit/accession-number-formats) and [this one](https://www.ebi.ac.uk/ena/submit/sequence-submission) to learn more about it.|   
 |  -c , --created|        Creation time of the original entry. The default value is the **date of the day**.|
 |  -d , --data_class     |Data class of the sample. Default value 'XXX'. *(This option is used to set up the 5th token of the ID line.)*
 |  -g , --organelle|      Sample organelle. No default value.|
