@@ -6,6 +6,9 @@
  "three_prime_UTR": {
    "target": "3'UTR"
  },
+ "protein_hmm_match": {
+   "target": "standard_name"
+ },
  "exon": {
 
  },

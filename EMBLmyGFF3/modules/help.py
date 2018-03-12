@@ -9,8 +9,9 @@ def Help(string):
   if(string == "a" or string == "accession" or string == "all"):   
     output += string+""":
 EMBL specific
-This option is used to set up the accession number of the AC line (see above) and the first token of the ID line as well as the prefix of the locus_tag qualifier.
-Default value = UNKNOWN
+This option is used to set up the accession number of the AC line (see above) and the first token of the ID line.
+Default value = XXX
+Advise: Let the default value as it is, ENA will automatically replace it during the submission by a unique accession number they will assign.
 
 3.4.2  The AC Line
 The AC (ACcession number) line lists the accession numbers associated with 
@@ -46,6 +47,23 @@ entries.
 An accession number is dropped from the database only when the data to
 which it was assigned have been completely removed from the database.
 """
+  if(string == "i" or string == "locus_tag"):   
+    output += string+""":
+This option is used to set up the prefix of the locus_tag qualifier.
+Mandatory - Default value = XXX
+
+Locus tags are identifiers that are systematically applied to every gene in a genome within the context of sequencing projects. These tags have become surrogate gene names by the biological community. If two submitters of two different genomes use the same systematic names to describe two very different genes in two very different genomes, it can be very confusing. In order to prevent this from happening INSDC has created a registry of locus tag prefixes. Submitters of eukaryotic and prokaryotic genomes should register a locus tag prefix prior to submitting their genome annotation into ENA.
+
+Locus tags can be registered in Webin at the time of project registration. All genome assembly and annotation projects are required to register a sequencing project. If during the submission process the project is said to contain functional annotation, then the user will be prompted to register a locus tag prefix. Users can opt to select their preferred locus tag prefix (subject to availability) or to have ENA assign one automatically from one of the following ranges: BN1-BN9999, BQ1-BQ9999 or CZ1-CZ9999.
+
+The locus tag prefix is to be separated from the tag value by an underscore ‘_’ (e.g. /locus_tag='BN5_00001').
+
+Locus tags should be assigned to all protein coding and non-coding genes such as structural RNAs. /locus_tag should appear on gene, mRNA, CDS, 5'UTR, 3'UTR, intron, exon, tRNA, rRNA, misc_RNA, etc. within a genome project submission. We discourage the use of the /locus_tag qualifier on repeat_region and misc_feature features in the context of complete genome annotation. The same /locus_tag should be used for all components of a single gene. For example, all of the exons, CDS, mRNA and gene features for a particular gene would have the same /locus_tag. There should only be one /locus_tag associated with one /gene, i.e. if a /locus_tag is associated with a /gene symbol in any feature, that gene symbols (and only that /gene symbol) must also be present on every other feature that contains that /locus_tag.
+
+Locus tags are systematically added to genes within a genome. They are generally in sequential order on the genome. If a genome center were to update a genome and provide additional annotation, the new genes could either be assigned the next sequential available /locus_tag or the submitter can leave gaps when initially assigning /locus_tags and fill in new annotation with tag values that are between the gaps.
+For more information please visit: https://www.ebi.ac.uk/ena/submit/locus-tags
+"""
+
   if(string == "c" or string == "created" or string == "all"):   
     output += string+""":
 EMBL specific
@@ -84,13 +102,15 @@ release number) as the "Created" line.
     output += string+""":
 EMBL specific
 This option is used to set up the 5th token of the ID line.
-Default value = STD
+Default value = XXX
 
 3.1  Data Class
 The data class of each entry, representing a methodological approach to the
 generation of the data or a type of data, is indicated on the first (ID) line
 of the entry. Here an example of ID line:
-ID   Unknown; SV 1; linear; genomic DNA; STD; FUN; 3422859 BP. 
+
+ID   XXX; SV 1; linear; genomic DNA; STD; FUN; 3422859 BP.
+
 Each entry belongs to exactly one data class.
   Class    Definition
   -----------    -----------------------------------------------------------
@@ -155,7 +175,7 @@ OC   Fabales; Fabaceae; Papilionoideae; Trifolium.
     output += string+""":
 EMBL specific
 This option is used to set up the Molecule type that is the 4th token of the ID line.
-Default value = genomic DNA
+Mandatory - No default value
 
 Note 1 - Molecule type: this represents the type of molecule as stored and can
 be any value from the list of current values for the mandatory mol_type source
@@ -168,7 +188,7 @@ possible value: ["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RN
     output += string+""":
 EMBL specific
 This option is used to set up the PR line. The value should have been provided to you by EMBL.
-Default value = Unknown
+Mandatory - Default value = XXX
 
 3.4.3  The PR Line
 The PR (PRoject) line shows the International Nucleotide Sequence Database
@@ -181,13 +201,13 @@ Example:  PR   Project:17285;
     output += string+""":
 EMBL specific
 This option is used to set up the translation table qualifier transl_table of the CDS features.
-Default value = 1
+Mandatory and no default
 """
   if(string == "s" or string == "species" or string == "all"):
     output += string+""":
 EMBL specific
 This option is used to set up the OS line.
-Default value = Genus species (name)
+Mandatory - No default value
 
 3.4.7  The OS Line
 The OS (Organism Species) line specifies the preferred scientific name of
@@ -248,7 +268,7 @@ P.S: The organism name which appears on the OS or ORGANISM line will match the v
     output += string+""":
 EMBL specific
 This option is used to set up the Topology that is the 3th token of the ID line.
-Default value = linear
+Mandatory - No default value
 
 The possible choice are 'circular' or 'linear'.
 """
@@ -294,6 +314,8 @@ formulated in the following way are resolved to the correct full text URLs:
   if(string == "rg" or string == "all"):
     output += string+""":
 EMBL specific
+Default value = XXX
+
 3.4.10.5  The RG Line
 The RG (Reference Group) lines list the working groups/consortia that 
 produced the record. RG line is mainly used in submission reference 
@@ -414,7 +436,7 @@ The option doesn't expect any value, use --translate to activate the translation
     output += string+""":
 EMBL specific
 This option is used to set the taxonomic division within ID line (6th token).
-This option is mandatory and do not have any default value.
+Default value = XXX
 
 3.2  Taxonomic Division
 The entries which constitute the database are grouped into taxonomic divisions,
@@ -521,6 +543,36 @@ This option allows to compress the output file in gzip format. This option does 
     output += string+""":
 EMBLmyGFF3 tool specific
 Some of the log could be compressed for a better lisibility, using this option they won't.
+"""
+  if(string == "email"):
+    output += string+""":
+EMBLmyGFF3 tool specific
+Email used to fetch information from NCBI taxonomy database. Default value 'EMBLmyGFF3@tool.org'.
+/!\ This email could be blocked at any time if someone try to access the database too many time in a short period.
+! It is advised to use its own email address.
+""" 
+  if(string == "interleave_genes"):
+    output += string+""":
+EMBLmyGFF3 tool specific
+Print gene features with interleaved mRNA and CDS features.
+""" 
+  if(string == "keep_duplicates"):
+    output += string+""":
+EMBLmyGFF3 tool specific
+Do not remove duplicate features during the process. 
+/!\ Option not suitable for submission purpose. Features that have the same key (feature type) and location as another feature are considered as duplicates and aren't allowed by the EMBL database. So they are remove during the process. If you don't plan to submit the file to ENA and you wish to keep these features, use the --keep_duplicates option.
+""" 
+  if(string == "force_unknown_features"):
+    output += string+""":
+EMBLmyGFF3 tool specific
+Force to keep feature types not accepted by EMBL. 
+/!\ Option not suitable for submission purpose. Indeed, an EMBL file with a feature type not accepted by ENA will not be valid.
+"""
+  if(string == "force_uncomplete_features"):
+    output += string+""":
+EMBLmyGFF3 tool specific
+Force to keep features whithout all the mandatory qualifiers. 
+/!\ Option not suitable for submission purpose. Indeed, an EMBL file with a feature that have a mandatory qualifier missing will not be valid.
 """ 
   if not output:
     output += string+""":Sorry no advanced help for this option: """+string+"\n"
