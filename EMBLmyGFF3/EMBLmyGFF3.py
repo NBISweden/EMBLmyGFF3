@@ -1241,11 +1241,11 @@ def main():
 
     parser.add_argument("gff_file", help="Input gff-file.")
     parser.add_argument("fasta", help="Input fasta sequence.")
-    parser.add_argument("-a", "--accession", default=None, help="Accession number(s) for the entry.")
+    parser.add_argument("-a", "--accession", default=None, help="Accession number(s) for the entry. This value is automatically filled up by ENA during the submission by a unique accession number they will assign.")
     parser.add_argument("-c", "--created", default=None, help="Creation time of the original entry.")
     parser.add_argument("-d", "--data_class", default=None, help="Data class of the sample.", choices=["CON", "PAT", "EST", "GSS", "HTC", "HTG", "MGA", "WGS", "TSA", "STS", "STD"])
     parser.add_argument("-g", "--organelle", default=None, help="Sample organelle.")
-    parser.add_argument("-i", "--locus_tag", help="Locus tag prefix used for the features.")
+    parser.add_argument("-i", "--locus_tag", help="Locus tag prefix used to set up the prefix of the locus_tag qualifier. The locus tag has to be registered at ENA prior any submission")
     parser.add_argument("-k", "--keyword", default=[], nargs="+", help="Keywords for the entry.")
     parser.add_argument("-l", "--classification", help="Organism classification e.g \"Eukaryota; Opisthokonta; Metazoa;\". If not set, will be retrieved online on the NCBI taxonomy DB based on the species name or taxid.")
     parser.add_argument("-m", "--molecule_type", default=None, help="Molecule type of the sample.", choices=["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"])
@@ -1281,7 +1281,7 @@ def main():
     parser.add_argument("-q", "--quiet", action="count", default=0, help="Decrease verbosity.")
     parser.add_argument("--uncompressed_log", action="store_true", help="Some logs can be compressed for better lisibility, they won't.")
 
-    parser.add_argument("--ah", "--advanced_help", choices=["One of the parameters above"], help="It display advanced information of the parameter specified. If you don't specify any parameter it will display advanced information of all of them.")
+    parser.add_argument("--ah", "--advanced_help", choices=["One of the parameters above"], help="It displays advanced information of the parameter specified. If you don't specify any parameter it will display advanced information of all of them.")
 
     args = parser.parse_args()
 
