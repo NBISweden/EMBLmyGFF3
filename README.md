@@ -168,7 +168,7 @@ You may prefer to launch the software through a script especially when you want 
 ## PARAMETER
 
 Some parameters are mandatory and some others are not. Here is a list of all parameters available.
-You can also find a comprehensive help about the different parameters using the software help command.
+You can also find a comprehensive help about the different parameters using the software `-h` or `--help` command and even a more advanced help using `--ah X` or `--advanced_help X` where X is the parameter you would like to learn more about.
 
 **positional arguments:**
 
@@ -217,7 +217,7 @@ You can also find a comprehensive help about the different parameters using the 
 
 | Parameter | Description |
 | --- | --- |
-|  -a, --advanced_help   |Display advanced information of the parameter specified or of all parameters if none specified.|
+|  --ah, --advanced_help   |Display advanced information of the parameter specified or of all parameters if none specified.|
 |  -h, --help            |Show this help message and exit.|
 |  -v, --verbose         |Increase verbosity.|
 |  -q, --quiet           |Decrease verbosity.|
