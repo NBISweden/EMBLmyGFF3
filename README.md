@@ -112,7 +112,7 @@ A correct **GFF3 file** and the **genome in FASTA format** that has been used to
 Then, in order to get a valid EMBL flat file suitable for submission you have to fill carefully all mandatory metadata.
 
 **/!\ Please be aware that a *project ID* and an *locus tag* are mandatory for a submission to [ENA](http://www.ebi.ac.uk/ena). You don't need this information if you don't plan to submit the data (In case you just want an EMBL-like flat file for other purposes). If you don't have yet those information you can add them later by replacing the corresponding fields.</br>
-To learn how to obtain a *project ID* [click here](http://ena-docs.readthedocs.io/en/latest/mod_02.html.).</br>
+To learn how to obtain a *project ID* [click here](http://ena-docs.readthedocs.io/en/latest/mod_02.html).</br>
 To learn how to obtain a *locus tag* [click here](https://www.ebi.ac.uk/ena/submit/locus-tags).**
 
 ### Use provided examples
