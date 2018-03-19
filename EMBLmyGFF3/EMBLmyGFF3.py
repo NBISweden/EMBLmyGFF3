@@ -27,6 +27,7 @@ import sys
 import gzip
 import pprint
 import time
+import curses
 import logging
 import argparse
 import re
@@ -40,6 +41,11 @@ from modules.help import Help
 SCRIPT_DIR=os.path.dirname(__file__)
 FEATURE_DIR=SCRIPT_DIR + "/modules/features"
 QUALIFIER_DIR=SCRIPT_DIR + "/modules/qualifiers"
+
+def print_overwritable(text):
+    sys.stderr.write(text)
+    sys.stderr.flush()
+    sys.stderr.write( ("%c" % curses.ascii.BS) * len(text) ) 
 
 class EMBL( object ):
     """
@@ -130,9 +136,10 @@ class EMBL( object ):
                      }
 
     PREVIOUS_VALUES = {} # values that will be stored and shared between between the features of all the sequences handled
-
     spacer = "\nXX"
     termination = "\n//\n"
+    progress = 0
+    total_features = 0
 
     def __init__(self, record = None, verify = False, guess = True):
         """
@@ -364,7 +371,6 @@ class EMBL( object ):
 
         return positionBefore
 
-
     def _verify(self, key, key_type):
         """
         Looks through the dictionary of legal values to try to validate header values.
@@ -406,12 +412,15 @@ class EMBL( object ):
         #if it is an integer (a taxid), try to get the species name
         species = taxid
         if taxid.isdigit():
-           Entrez.email = EMBL.PREVIOUS_VALUES["email"]
-           # fetch the classification sufing the taxid
-           logging.debug("Fecth The Lineage using Entrez.efetch")
-           search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
-           data = Entrez.read(search)
-           species = data[0]['ScientificName']
+            Entrez.email = EMBL.PREVIOUS_VALUES["email"]
+            # fetch the classification sufing the taxid
+            logging.debug("Fetch The Lineage using Entrez.efetch")
+            try:
+                search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
+                data = Entrez.read(search)
+                species = data[0]['ScientificName']
+            except IOError as e:
+                logging.error("Could not get species from taxid: %s" % e)
 
         return "%s%s" % (species[0].upper(), species[1:].lower())
 
@@ -422,15 +431,18 @@ class EMBL( object ):
         if not species.isdigit():
             Entrez.email = EMBL.PREVIOUS_VALUES["email"]
             #fetch taxid from ncbi taxomomy
-            logging.debug("Fecth the taxid from species name using Entrez.esearch")
+            logging.debug("Fetch the taxid from species name using Entrez.esearch")
             species =  species.replace(" ", "+").strip()
-            search = Entrez.esearch(term=species, db="taxonomy", retmode="xml")
-            record = Entrez.read(search)
-            if not record['IdList']: #no taxid found
-                logging.error("Please verify the species name. <%s> species is unknown into the NCBI taxonomy databse. Impossible to check the taxonomic classification. We will use the default value 'Life' to populate the OC line.",self.species)
-                taxid=None
-            else:
-                taxid = record['IdList'][0]
+            try:
+                search = Entrez.esearch(term=species, db="taxonomy", retmode="xml")
+                record = Entrez.read(search)
+                if not record['IdList']: #no taxid found
+                    logging.error("Please verify the species name. '%s' species is unknown into the NCBI taxonomy databse. Impossible to check the taxonomic classification. We will use the default value 'Life' to populate the OC line.",self.species)
+                    taxid=None
+                else:
+                    taxid = record['IdList'][0]
+            except IOError as e:
+                logging.error("Could not get taxid from species: %s" % e)
 
         return taxid
 
@@ -451,6 +463,9 @@ class EMBL( object ):
                        'xrefs':xrefs,
                        'group':group,
                        'authors':authors}]
+
+    def print_progress(self):
+        print_overwritable("Progess: %i / %i features" % (self.progress, EMBL.total_features))
 
 #================== def EMBL line =======================
 #\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
@@ -803,6 +818,8 @@ class EMBL( object ):
 
             #Print
             output += str(f)
+            EMBL.progress += 1
+            self.print_progress()
 
         return output + self.spacer
 
@@ -1119,7 +1136,6 @@ class EMBL( object ):
                 self.taxonomy = "XXX"
                 EMBL.PREVIOUS_VALUES["taxonomy"] = "XXX"
 
-
     def set_topology(self, topology = None):
         """
         Sets the sample topology, or parses it from the current record.
@@ -1185,6 +1201,7 @@ class EMBL( object ):
             out = open(out, 'w')
 
         # Add missing mandatory features:
+
         self._add_mandatory()
 
         out.write( self.ID() ) # ID - identification             (begins each entry; 1 per entry)
@@ -1206,6 +1223,7 @@ class EMBL( object ):
         if self.record and self.record.features:
             out.write( self.FH() ) # FH - feature table header       (2 per entry)
         out.write( self.FT() ) # FT - feature table data         (>=2 per entry)
+
         if self.construct_information:
             out.write( self.CO() )
 
@@ -1217,6 +1235,7 @@ class EMBL( object ):
         logging.info("Wrote %i CDS features, where %i is sound" % (Feature.CDS_COUNTER, Feature.OK_COUNTER))
 
         # CO - contig/construct line      (0 or >=1 per entry)
+        out.flush()
 
 ##########################
 #        MAIN            #
@@ -1274,6 +1293,7 @@ def main():
     parser.add_argument("--shame", action="store_true", help="Suppress the shameless plug.")
     parser.add_argument("--translate", action="store_true", help="Include translation in CDS features.")
 
+    parser.add_argument("--no_progress", action="store_false", help="Hide conversion progress counter.")
     parser.add_argument("--version", default=None, type=int, help="Sequence version number.")
     parser.add_argument("-x", "--taxonomy", default=None, help="Source taxonomy.", choices=["PHG", "ENV", "FUN", "HUM", "INV", "MAM", "VRT", "MUS", "PLN", "PRO", "ROD", "SYN", "TGN", "UNC", "VRL"])
 
@@ -1302,12 +1322,21 @@ def main():
     else:
         outfile = sys.stdout
 
+    logging.info("Reading sequence file")
     infile = gzip.open(args.gff_file) if args.gff_file.endswith(".gz") else open(args.gff_file)
     infasta = gzip.open(args.fasta) if args.fasta.endswith(".gz") else open(args.fasta)
     seq_dict = SeqIO.to_dict( SeqIO.parse(infasta, "fasta") )
+    logging.info("Finished reading sequence file.")
 
     if not args.shame:
         sys.stderr.write(shameless_plug)
+
+    if args.progress:
+        for record in GFF.parse(infile, base_dict=seq_dict):
+            EMBL.total_features += len(record.features)
+            print_overwritable("Counting features: %i" % EMBL.total_features)
+        logging.info("Total features: %i" % EMBL.total_features)
+        infile.seek(0, 0)
 
     for record in GFF.parse(infile, base_dict=seq_dict):
 
@@ -1342,6 +1371,9 @@ def main():
 
         writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)
 
+        write_start = time.time()
         writer.write_all( outfile )
+
+        writer = None
 
     sys.stderr.write( """Conversion done\n""")
