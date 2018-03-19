@@ -464,8 +464,13 @@ class EMBL( object ):
                        'group':group,
                        'authors':authors}]
 
-    def print_progress(self):
-        print_overwritable("Progess: %i / %i features" % (self.progress, EMBL.total_features))
+    @staticmethod
+    def print_progress(clear = False):
+        msg = "Progress: %i / %i features" % (EMBL.progress, EMBL.total_features)
+        if clear:
+            print_overwritable( " "*len(msg) )
+        else:
+            print_overwritable( msg )
 
 #================== def EMBL line =======================
 #\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
@@ -819,7 +824,8 @@ class EMBL( object ):
             #Print
             output += str(f)
             EMBL.progress += 1
-            self.print_progress()
+            if EMBL.total_features > 0:
+                self.print_progress()
 
         return output + self.spacer
 
@@ -1305,6 +1311,11 @@ def main():
 
     args = parser.parse_args()
 
+    # add a convenience argument. This is because I want the argument to be called
+    # progress in the code, but --no_progress makes more sense as an argument to 
+    # hide the progress bar.
+    args.progress = args.no_progress
+
     logging.basicConfig(format='%(asctime)s %(levelname)s %(module)s: %(message)s',
                         level = (5-args.verbose+args.quiet)*10,
                         datefmt="%H:%M:%S")
@@ -1375,5 +1386,6 @@ def main():
         writer.write_all( outfile )
 
         writer = None
+    EMBL.print_progress(True)
 
     sys.stderr.write( """Conversion done\n""")
