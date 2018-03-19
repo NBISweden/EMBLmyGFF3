@@ -196,6 +196,8 @@ class EMBL( object ):
                         gap_feature.qualifiers["estimated_length"] = i-start
                         gap_feature.type = "gap"
                         self.record.features += [gap_feature]
+                        if EMBL.total_features:
+                            EMBL.total_features += 1
 
                 start = None
 
@@ -1229,7 +1231,6 @@ class EMBL( object ):
         if self.record and self.record.features:
             out.write( self.FH() ) # FH - feature table header       (2 per entry)
         out.write( self.FT() ) # FT - feature table data         (>=2 per entry)
-
         if self.construct_information:
             out.write( self.CO() )
 
@@ -1344,7 +1345,8 @@ def main():
 
     if args.progress:
         for record in GFF.parse(infile, base_dict=seq_dict):
-            EMBL.total_features += len(record.features)
+            # Add one feature for the EMBL source_feature for each record
+            EMBL.total_features += len(record.features) +1
             print_overwritable("Counting features: %i" % EMBL.total_features)
         logging.info("Total features: %i" % EMBL.total_features)
         infile.seek(0, 0)
