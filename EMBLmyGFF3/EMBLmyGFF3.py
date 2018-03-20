@@ -468,11 +468,13 @@ class EMBL( object ):
 
     @staticmethod
     def print_progress(clear = False):
-        msg = "Progress: %i / %i features" % (EMBL.progress, EMBL.total_features)
+        bar = "[" + " "*78 + "]"
+        progress = "[" + "="* int(78 * (float(EMBL.progress)/EMBL.total_features))
         if clear:
-            print_overwritable( " "*len(msg) )
+            print_overwritable( " "*80 )
         else:
-            print_overwritable( msg )
+            print_overwritable( bar )
+            print_overwritable( progress )
 
 #================== def EMBL line =======================
 #\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
