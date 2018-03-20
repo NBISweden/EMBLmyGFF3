@@ -52,7 +52,7 @@ class Feature(object):
 
     CDS_COUNTER = 0
     OK_COUNTER = 0
-    DEFAULT_FEATURE_TRANSLATION_FILE="translation_gff_feature_to_embl_feature.json"
+    DEFAULT_FEATURE_TRANSLATION_FILE=["translation_gff_feature_to_embl_feature.json"]
     DEFAULT_QUALIFIER_TRANSLATION_FILE=["translation_gff_attribute_to_embl_qualifier.json", "translation_gff_other_to_embl_qualifier.json"]
     PREVIOUS_ERRORS = {}
     SCRIPT_DIR = os.path.dirname(__file__)
@@ -91,7 +91,7 @@ class Feature(object):
         self.uncompressed_log = uncompressed_log
 
         self._load_qualifier_translations(Feature.DEFAULT_QUALIFIER_TRANSLATION_FILE + translation_files)
-        self._load_feature_translations([Feature.DEFAULT_FEATURE_TRANSLATION_FILE])
+        self._load_feature_translations(Feature.DEFAULT_FEATURE_TRANSLATION_FILE)
         self.type = self._from_gff_feature(feature.type)
         self._load_definition("%s/%s.json" % (feature_definition_dir, self.type))
         self._load_data(feature, accessions)
@@ -318,10 +318,13 @@ class Feature(object):
         thus newer rules can be loaded to replace default rules.
         """
         module_dir = os.path.dirname(os.path.abspath(sys.modules[Feature.__module__].__file__))
+        local_dir = os.getcwd()
 
         for filename in filenames:
-            logging.debug("Loading feature translation file: %s/%s" % (module_dir, filename))
-            data = json.load( open("%s/%s" % (module_dir, filename)) )
+            try:
+                data = json.load( open("%s/%s" % (local_dir, filename)) )
+            except IOError:
+                data = json.load( open("%s/%s" % (module_dir, filename)) )
             for gff_feature, info in data.iteritems():
                 if info.get("remove", False):
                     self.remove += [gff_feature]
@@ -334,10 +337,13 @@ class Feature(object):
         thus newer rules can be loaded to replace default rules.
         """
         module_dir = os.path.dirname(os.path.abspath(sys.modules[Feature.__module__].__file__))
+        local_dir = os.getcwd()
 
         for filename in filenames:
-            logging.debug("Loading qualifier translation file: %s/%s" % (module_dir, filename))
-            data = json.load( open("%s/%s" % (module_dir, filename)) )
+            try:
+                data = json.load( open("%s/%s" % (local_dir, filename)) )
+            except IOError:
+                data = json.load( open("%s/%s" % (module_dir, filename)) )
             for gff_feature, info in data.iteritems():
                 if "target" in info:
                     self.qualifier_translation_list[gff_feature] = info["target"]

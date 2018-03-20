@@ -28,6 +28,7 @@ import gzip
 import pprint
 import time
 import curses
+import shutil
 import logging
 import argparse
 import re
@@ -1302,6 +1303,7 @@ def main():
     parser.add_argument("--shame", action="store_true", help="Suppress the shameless plug.")
     parser.add_argument("--translate", action="store_true", help="Include translation in CDS features.")
 
+    parser.add_argument("--expose_translations", action="store_true", help="Copy feature and attribute mapping files to the working directory.")
     parser.add_argument("--no_progress", action="store_false", help="Hide conversion progress counter.")
     parser.add_argument("--version", default=None, type=int, help="Sequence version number.")
     parser.add_argument("-x", "--taxonomy", default=None, help="Source taxonomy.", choices=["PHG", "ENV", "FUN", "HUM", "INV", "MAM", "VRT", "MUS", "PLN", "PRO", "ROD", "SYN", "TGN", "UNC", "VRL"])
@@ -1344,6 +1346,12 @@ def main():
 
     if not args.shame:
         sys.stderr.write(shameless_plug)
+
+    if args.expose_translations:
+        module_dir = os.path.dirname(os.path.abspath(sys.modules[Feature.__module__].__file__))
+        for filename in Feature.DEFAULT_FEATURE_TRANSLATION_FILE + list(Feature.DEFAULT_QUALIFIER_TRANSLATION_FILE):
+            logging.info("Copying translation file %s to %s" % (filename, os.getcwd()))
+            shutil.copy( "%s/%s" % (module_dir, filename), filename )
 
     if args.progress:
         for record in GFF.parse(infile, base_dict=seq_dict):
