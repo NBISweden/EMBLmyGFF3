@@ -1349,7 +1349,7 @@ def main():
         for record in GFF.parse(infile, base_dict=seq_dict):
             # Add one feature for the EMBL source_feature for each record
             EMBL.total_features += len(record.features) +1
-            print_overwritable("Counting features: %i" % EMBL.total_features)
+            print_overwritable("Counting top features: %i" % EMBL.total_features)
         logging.info("Total features: %i" % EMBL.total_features)
         infile.seek(0, 0)
 
