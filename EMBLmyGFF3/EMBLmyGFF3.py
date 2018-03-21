@@ -27,12 +27,11 @@ import sys
 import gzip
 import pprint
 import time
-import curses
 import shutil
 import logging
 import argparse
 import re
-import curses.ascii
+from modules.utilities import *
 from Bio import SeqIO, Entrez
 from BCBio import GFF
 from Bio.SeqFeature import SeqFeature, FeatureLocation, ExactPosition
@@ -42,11 +41,6 @@ from modules.help import Help
 SCRIPT_DIR=os.path.dirname(__file__)
 FEATURE_DIR=SCRIPT_DIR + "/modules/features"
 QUALIFIER_DIR=SCRIPT_DIR + "/modules/qualifiers"
-
-def print_overwritable(text):
-    sys.stderr.write(text)
-    sys.stderr.flush()
-    sys.stderr.write( ("%c" % curses.ascii.BS) * len(text) ) 
 
 class EMBL( object ):
     """
@@ -227,152 +221,6 @@ class EMBL( object ):
                 return release
 
         return max(self.release_dates.keys())+1
-
-    def _multiline(self, prefix, data, sep=";", suffix="", indent = 3, quoted = False):
-        """
-        Creates a multiline entry.
-
-        If data is a list, the entries are listed with "sep" as separator, if data is
-        a string, it's quoted over as many lines as needed.
-        """
-        output=""
-
-        #particular case when RT come empty. We must print ; wihtout quotes
-        if(prefix == "RT" and data == ";"):
-            output = "%s%s" % (prefix, " "*indent)
-            output += str(data)
-            return "\n" + output + suffix
-
-
-        # List Case
-        previousChunck=""
-        if type(data) == type([]):
-            for i, item in enumerate(data):
-                if item:
-                    currentChunck = item + previousChunck
-                    # If item of the list is too long we have to split it as well
-                    if len(currentChunck) > 75:
-                        output,lastLine=self._splitStringMultiline(output, currentChunck, quoted)
-                        previousChunck="\n"+lastLine
-
-                    else:
-                        previousChunck=currentChunck
-
-                    #Now add separator between chuncks
-                    if len(previousChunck) >= 75 : # >= Because when previousChunck is last line and is 75 char length, adding the \n will give string longer than 75
-                        output+=previousChunck+"\n"
-                        previousChunck="%s " % sep
-                    else:
-                        previousChunck+="%s " % sep
-
-            output+=previousChunck
-
-        # String case
-        else:
-            output,lastLine=self._splitStringMultiline(output, data, quoted)
-            if len(lastLine) == 75:
-                output+=lastLine+"\n"+sep
-            else:
-                output+=lastLine+sep
-
-        #Check if we have output. If not we have to avoid the strip at the end
-        doNotStrip=False
-        if not output:
-            doNotStrip = True
-
-        #Last step: add prefix at each line
-        cleanOutput=""
-        if output:
-            listLine= output.split("\n")
-            for i, line in enumerate(listLine):
-                if i == 0:
-                    cleanOutput += "%s%s" % (prefix, " "*indent) + line
-                else:
-                    cleanOutput += "\n%s%s" % (prefix, " "*indent) + line
-        else:
-            cleanOutput += "%s%s" % (prefix, " "*indent) #the "+sep" is a trick to keep the final cleaning within the return working properly
-
-        if doNotStrip: # Because is only i.e >KW    <
-            return "\n" + cleanOutput + suffix
-        else:
-            return "\n" + cleanOutput.strip().strip(sep) + suffix
-
-    # This method allow to wrap a sting at a size of 75 taking care of quote
-    # It return back the result in different part: the last line and everything before if exists.
-    def _splitStringMultiline(self, output, data, quoted):
-        lastLine=""
-        string = " ".join(data.split("\n"))
-        output += "\"" if quoted else ""
-
-        roundl=0
-        while string:
-            roundl+=1
-            if roundl == 1: #Within the round 1 the indentation already exists
-                if quoted:
-                    if len(string) + 2 <= 75: #peculiar case quotes plus string exactly 75
-                        lastLine += "\""
-                        lastLine = string
-                        string = string[len(string):]
-                    else:# len(string) + 1 > 75: # + 1 quote
-                        splitLoc = self._splitWordsMax(string,75)
-                        line = string[:splitLoc]
-                        string = string[len(line):]
-                        string=string.strip() # remove white space
-                        output += "\""
-                        output +=line
-                else:
-                    if len(string) <= 75:
-                        lastLine = string
-                        string = string[len(string):]
-                    else: # len(string) > 75:
-                        splitLoc = self._splitWordsMax(string,75)
-                        line = string[:splitLoc]
-                        string = string[len(line):]
-                        string=string.strip() # remove white space
-                        output +=line
-
-            else: #Not the first round
-                if quoted:
-                    if len(string)+1 > 75:
-                        splitLoc = self._splitWordsMax(string,75)
-                        line = string[:splitLoc]
-                        string = string[len(line):]
-                        string=string.strip() # remove white space
-                        output +="\n"+line
-                    else: #it the last round
-                        lastLine += string
-                        string = string[len(string):]
-                else:
-                    if len(string) > 75:
-                        splitLoc = self._splitWordsMax(string,75)
-                        line = string[:splitLoc]
-                        string = string[len(line):]
-                        string=string.strip() # remove white space
-                        output +="\n"+line
-                    else: #it the last round
-                        lastLine +=string
-                        string = string[len(string):]
-
-        lastLine += "\"" if quoted else ""
-
-        return output,lastLine
-
-    def _splitWordsMax(self, string, valueMax):
-        position=0
-        positionBefore=0
-
-        words = string.split()
-        newString=words.pop(0)
-        position = len(newString)
-        if position >= 75:
-            return 75
-
-        while position <= 75 :
-            positionBefore=position
-            newString += " "+words.pop(0)
-            position = len(newString)
-
-        return positionBefore
 
     def _verify(self, key, key_type):
         """
@@ -597,7 +445,7 @@ class EMBL( object ):
             sys.stderr.write("At least one keyword is needed: ")
             self.keywords += [raw_input()]
 
-        return self._multiline("KW", self.keywords, suffix=".") + self.spacer
+        return multiline("KW", self.keywords, suffix=".") + self.spacer
 
     def OS(self):
         """
@@ -623,7 +471,7 @@ class EMBL( object ):
             sys.stderr.write("At least one classification level is needed: ")
             self.classification += [raw_input()]
 
-        return self._multiline("OC", self.classification, suffix=";") + self.spacer
+        return multiline("OC", self.classification, suffix=";") + self.spacer
 
     def OG(self):
         """
@@ -665,24 +513,24 @@ class EMBL( object ):
         for i, ref in enumerate(self.refs):
             output += "\nRN   [%i]" % (i+1)                         # RN - reference number           (>=1 per entry)
             if ref['comment']:                                      # RC - reference comment          (>=0 per entry)
-                output += self._multiline("RC", ref['comment'])
+                output += multiline("RC", ref['comment'])
                                                                     # RP - reference positions        (>=1 per entry)
-            output += self._multiline("RP", ["%i-%i" % pos for pos in ref['positions']])
+            output += multiline("RP", ["%i-%i" % pos for pos in ref['positions']])
             if ref['xrefs']:
                 for xref in ref['xrefs']:                               # RX - reference cross-reference  (>=0 per entry)
-                    output += self._multiline("RX", xref, suffix=".")
+                    output += multiline("RX", xref, suffix=".")
             if ref['group']:                                        # RG - reference group            (>=0 per entry)
-                output += self._multiline("RG", ref['group'])
+                output += multiline("RG", ref['group'])
             if ref['authors']:                                      # RA - reference author(s)        (>=0 per entry)
-                output += self._multiline("RA", ref['authors'], sep=", ", suffix=";")
+                output += multiline("RA", ref['authors'], sep=", ", suffix=";")
 
             if ref['title'] == ";":                                 # RT - reference title            (>=1 per entry)
-                output += self._multiline("RT", ref['title'], quoted=False)
+                output += multiline("RT", ref['title'], quoted=False)
             else:
-                output += self._multiline("RT", ref['title'], quoted=True)
+                output += multiline("RT", ref['title'], quoted=True)
             # TODO: There are lots of recommended formatting for the references,
             #       but I won't bother implementing them right now.
-            output += self._multiline("RL", ref['location'])        # RL - reference location         (>=1 per entry)
+            output += multiline("RL", ref['location'])        # RL - reference location         (>=1 per entry)
 
         if output:
             return output + self.spacer
@@ -699,7 +547,7 @@ class EMBL( object ):
         if self.dbxref:
             output = ""
             for xref in self.dbxref:
-                output += self._multiline("DR", xref, suffix=".")
+                output += multiline("DR", xref, suffix=".")
             return output + self.spacer
         return ""
 
@@ -709,7 +557,7 @@ class EMBL( object ):
         any sort of information thought to be useful that is unsuitable for
         inclusion in other line types.
         """
-        return self._multiline("CC", self.comment, quoted=True) + self.spacer if self.comment else ""
+        return multiline("CC", self.comment, quoted=True) + self.spacer if self.comment else ""
 
     def AH(self):
         """

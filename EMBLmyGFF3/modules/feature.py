@@ -6,6 +6,7 @@ import os
 import sys
 import json
 import logging
+from utilities import *
 from operator import attrgetter
 from Bio.Seq import Seq
 from Bio.Data import CodonTable
@@ -190,21 +191,15 @@ class Feature(object):
             Feature.CDS_COUNTER += 1
 
         # Print the feature line (type and location)
-        output = ""
-        line = "\nFT   %s %s" % ("{:15}".format(self.type), EMBLLocation(self.location))
-        if len(line) <= 79:
-                output += line
-        else: # we have to cut the line (between words)
-            output += line[:79]
-            line = line[79:]
-            while line:
-                output += "\nFT                   %s" % line[:59]
-                line = line[59:]
+        #string = "%s %s" % ("{:15}".format(self.type), EMBLLocation(self.location))
+        string = "%s" % (EMBLLocation(self.location))
+        logging.error("print string: %s" % string)
+        output = multiline("FT", string, featureType=self.type, wrap=59) + "\n"
 
         # Print qualifiers for the feature
-        for qualifier in self.qualifiers.values():
-            if qualifier.value:
-                output += str(qualifier)
+        #for qualifier in self.qualifiers.values():
+        #    if qualifier.value:
+        #        output += str(qualifier)
 
         return output
 
