@@ -7,6 +7,7 @@ import os
 import re
 import json
 import logging
+from utilities import *
 
 LEGAL_DBXREF_FILE="legal_dbxref.json"
 
@@ -53,15 +54,9 @@ class Qualifier( object ):
                 output += "\nFT                   /%s\n"
                 continue
             
-            line = "\nFT                   /%s=%s" % (self.name, val)
-            if len(line) <= 81: #81 because we have to count the \n character
-                output += line
-            else:
-                output += line[:81]
-                line = line[81:]
-                while line:
-                    output += "\nFT                   %s" % line[:59]
-                    line = line[59:]
+            string = "/%s=%s" % (self.name, val)
+            output += multiline("FT", string, wrap=59)
+            
             # break if only one value is legal
             if self.name in self.SINGLE_VALUE_QUALIFIERS:
                 break

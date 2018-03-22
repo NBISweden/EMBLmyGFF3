@@ -191,15 +191,13 @@ class Feature(object):
             Feature.CDS_COUNTER += 1
 
         # Print the feature line (type and location)
-        #string = "%s %s" % ("{:15}".format(self.type), EMBLLocation(self.location))
         string = "%s" % (EMBLLocation(self.location))
-        logging.error("print string: %s" % string)
-        output = multiline("FT", string, featureType=self.type, wrap=59) + "\n"
+        output = multiline("FT", string, featureType=self.type, wrap=59, split_char=",")
 
         # Print qualifiers for the feature
-        #for qualifier in self.qualifiers.values():
-        #    if qualifier.value:
-        #        output += str(qualifier)
+        for qualifier in self.qualifiers.values():
+            if qualifier.value:
+                output += str(qualifier)
 
         return output
 

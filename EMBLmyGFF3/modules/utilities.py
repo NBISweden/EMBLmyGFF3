@@ -4,9 +4,9 @@
 
 """
 
-
 import logging
 import sys
+import re
 import curses.ascii
 
 def print_overwritable(text):
@@ -14,13 +14,21 @@ def print_overwritable(text):
     sys.stderr.flush()
     sys.stderr.write( ("%c" % curses.ascii.BS) * len(text) ) 
 
-def multiline(prefix, data, sep=";", suffix="", indentprefix = 3, quoted = False, featureType="", wrap=75):
+#Wrap is 75 for all line (OC   =5 characters + 75 = 80) except FT
+#For FT the wrap is 59 (FT   =5 + 16 characters (feature type + blanc) + 59 characters = 80)
+# splitL to allow split lines
+# splitW to allow split Word
+# split_char character to use for split instead of split by word. 
+def multiline(prefix, data, sep=";", suffix="", indentprefix = 3, featureType="", wrap=75 ,splitL="yes", splitW="", split_char=""):
     """
     Creates a multiline entry.
 
-    If data is a list, the entries are listed with "sep" as separator, if data is
-    a string, it's quoted over as many lines as needed.
+    If data is a list, the entries are listed with "sep" as separator
     """
+    logging.error("type: %s data:%s" % (prefix, data) )
+    
+    if splitL == "no": # equivalent to no wrap when split line deactivated
+        wrap = 1000000
     output=""
 
     #particular case when RT come empty. We must print ; wihtout quotes
@@ -32,43 +40,61 @@ def multiline(prefix, data, sep=";", suffix="", indentprefix = 3, quoted = False
     # List Case
     previousChunck=""
     if type(data) == type([]):
+        logging.error("list case")
         for i, item in enumerate(data):
             if item:
                 currentChunck = item + previousChunck
                 # If item of the list is too long we have to split it as well
                 if len(currentChunck) > wrap:
-                    output,lastLine = _splitStringMultiline(output, currentChunck, quoted, wrap)
+                    output,lastLine = _splitStringMultiline(output, currentChunck, wrap, splitW, split_char)
                     previousChunck="\n"+lastLine
 
                 else:
                     previousChunck=currentChunck
 
                 #Now add separator between chuncks
-                if len(previousChunck) >= wrap : # >= Because when previousChunck is last line and is wrapSize char length, adding the \n will give string longer than wrapSize
-                    output+=previousChunck+"\n"
-                    previousChunck="%s " % sep
-                else:
-                    previousChunck+="%s " % sep
-
-        output+=previousChunck
+                if (i+1) != len(data): # avoid last iter
+                    if len(previousChunck) >= wrap : # >= Because when previousChunck is last line and is wrapSize char length, adding the \n will give string longer than wrapSize
+                        output+=previousChunck+"\n"
+                        previousChunck=" %s" % sep
+                    else:
+                        previousChunck+=" %s" % sep
+                  
+        #In oder to avoid last line longer than expected when adding the suffix
+        if len(previousChunck)+len(suffix) >= wrap:
+            output+=previousChunck+"\n"+suffix
+        else:
+            output+=previousChunck+suffix
 
     # String case
     else:
-        output,lastLine = _splitStringMultiline(output, data, quoted, wrap)
-        if len(lastLine) == wrap:
-            output+=lastLine+"\n"+sep
+        logging.error("string case")
+        output,lastLine = _splitStringMultiline(output, data, wrap, splitW, split_char)
+        
+        #add suffix if needed_
+        if suffix:
+            if len(lastLine)+len(suffix) >= wrap:
+                # Compile output and lasline as it should
+                if not output:
+                    output+=lastLine+"\n"+suffix
+                else:
+                    output+="\n"+lastLine+"\n"+suffix
         else:
-            output+="\n"+lastLine+sep
+            # Compile output and lasline as it should
+            if not output:
+                output+=lastLine+suffix
+            else:
+                output+="\n"+lastLine+suffix
 
     #Check if we have output. If not we have to avoid the strip at the end
-    doNotStrip=False
-    if not output:
-        doNotStrip = True
+    #doNotStrip=False
+    #if not output:
+    #    doNotStrip = True
 
     #Last step: add prefix and middle at each line
     cleanOutput=""
     if output:
-        logging.error("output avant print final: %s" % ( output))
+
         listLine= output.split("\n")
         for i, line in enumerate(listLine):
             if i == 0:
@@ -84,94 +110,74 @@ def multiline(prefix, data, sep=";", suffix="", indentprefix = 3, quoted = False
     else:
         cleanOutput += "%s%s" % (prefix, " "*indentprefix) #the "+sep" is a trick to keep the final cleaning within the return working properly
 
-    if doNotStrip: # Because is only i.e >KW    <
-        return "\n" + cleanOutput + suffix
-    else:
-        return "\n" + cleanOutput.strip().strip(sep) + suffix
+    return "\n" + cleanOutput
+    #if doNotStrip: # Because is only i.e >KW    <
+    #    return "\n" + cleanOutput + suffix
+    #else:
+    #    return "\n" + cleanOutput.strip().strip(sep) + suffix
 
 # This method allow to wrap a string at a size of wrapSize taking care of quote
 # It return back the result in different part: the last line and everything before if exists.
-def _splitStringMultiline(output, data, quoted, wrap):
+def _splitStringMultiline(output, data, wrap, splitW, split_char):
     lastLine=""
     string = " ".join(data.split("\n"))
-    output += "\"" if quoted else ""
 
     roundl=0
     while string:
         roundl+=1
         if roundl == 1: #Within the round 1 the indentation already exists
-            if quoted:
-                if len(string) + 2 <= wrap: #peculiar case quotes plus string exactly wrapSize
-                    lastLine += "\""
-                    lastLine = string
-                    string = string[len(string):]
-                else:# len(string) + 1 > wrap: # + 1 quote
-                    splitLoc = _splitWordsMax(string,wrap)
-                    line = string[:splitLoc]
-                    string = string[len(line):]
-                    string=string.strip() # remove white space
-                    output += "\""
-                    output +=line
-            else:
-                if len(string) <= wrap:
-                    logging.error("round1 if")
-                    lastLine = string
-                    string = string[len(string):]
-                else: # len(string) > wrapSize:
-                    logging.error("round1 else")
-                    splitLoc = _splitWordsMax(string,wrap)
-                    line = string[:splitLoc]
-                    string = string[len(line):]
-                    string=string.strip() # remove white space
-                    output +=line
+            if len(string) <= wrap:
+                lastLine = string
+                string = string[len(string):]
+            else: # len(string) > wrapSize:
+                splitLoc = _splitWordsMax(string,wrap,splitW,split_char)
+                logging.error("split returned1 = %i" % splitLoc)
+                line = string[:splitLoc]
+                string = string[len(line):]
+                string=string.strip() # remove white space
+                output +=line
 
         else: #Not the first round
-            if quoted:
-                if len(string)+1 > wrap:
-                    splitLoc = _splitWordsMax(string,wrap)
-                    line = string[:splitLoc]
-                    string = string[len(line):]
-                    string=string.strip() # remove white space
-                    output +="\n"+line
-                else: #it the last round
-                    lastLine += string
-                    string = string[len(string):] #needed to stop the while
-            else:
-                if len(string) > wrap:
-                    logging.error("roundX if")
-                    splitLoc = _splitWordsMax(string,wrap)
-                    line = string[:splitLoc]
-                    string = string[len(line):]
-                    string=string.strip() # remove white space
-                    output +="\n"+line
-                else: #it the last round
-                    logging.error("roundX else - add %s" % string)
-                    lastLine +=string
-                    string = string[len(string):] #needed to stop the while
-
-    lastLine += "\"" if quoted else ""
+            if len(string) > wrap:
+                splitLoc = _splitWordsMax(string,wrap,splitW,split_char)
+                logging.error("split returned2 = %i" % splitLoc)
+                line = string[:splitLoc]
+                string = string[len(line):]
+                string=string.strip() # remove white space
+                output +="\n"+line
+            else: #it the last round
+                lastLine +=string
+                string = string[len(string):] #needed to stop the while
 
     return output,lastLine
 
-def _splitWordsMax(string, valueMax):
+def _splitWordsMax(string, valueMax, splitW, split_char):
     position=0
     positionBefore=0
+    words=[]
 
-    words = string.split()
-    #If the string was one word longer than the longer value, we have to split the word
-    #if len(words) == 1:
-    #    words = string.split()
+    if split_char:
+        words = _splitkeepsep(string, split_char)
+        logging.error(words)
+    else:
+        words = string.split()
+
     newString=words.pop(0)
     position = len(newString)
-    logging.error("word %s Position %i" % ( newString, position))
+    logging.error("position = %i" % position)
 
     if position >= valueMax:
-        logging.error("return value max %i" % ( valueMax))
         return valueMax
 
     while position <= valueMax :
         positionBefore=position
-        newString += " "+words.pop(0)
+        if split_char:
+            newString += words.pop(0)
+        else:
+            newString += " "+words.pop(0)
         position = len(newString)
 
     return positionBefore
+
+def _splitkeepsep(s, sep):
+    return reduce(lambda acc, elem: acc[:-1] + [acc[-1] + elem] if elem == sep else acc + [elem], re.split("(%s)" % re.escape(sep), s), [])

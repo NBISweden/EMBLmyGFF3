@@ -228,9 +228,6 @@ class EMBL( object ):
         if an illegal value is found, the user is asked to add a new value, which is
         the assumed for all other instances of the same key (for multi-record GFFs).
         """
-        if key_type in EMBL.PREVIOUS_VALUES:
-            return EMBL.PREVIOUS_VALUES[key_type]
-
         if key_type not in self.legal_values:
             sys.stderr.write("Can't verify value for %s, legal values unknown." % key_type)
             return key
@@ -253,8 +250,6 @@ class EMBL( object ):
                 sys.stderr.write("Please enter new value: ")
             key = raw_input()
             if key.isdigit(): key = int(key)
-            if key in self.legal_values[key_type]:
-                EMBL.PREVIOUS_VALUES[key_type] = key
 
         return key
 
@@ -307,6 +302,9 @@ class EMBL( object ):
         """
         Adds a reference for the data in the file to the header.
         """
+        #title = RT line
+        if title != ";":
+            title = "\""+title+"\""
         self.refs += [{'title':title,
                        'positions':positions if positions != 'all' else [(1,len(self.record.seq))],
                        'location':location if location else "Submitted (%s) to the INSDC." % (time.strftime("%d-%b-%Y").upper()),
@@ -345,12 +343,6 @@ class EMBL( object ):
            7. Sequence length (see note 2 below)
 
         """
-
-        if self.verify:
-            self.topology       = self._verify( self.topology,       "topology")
-            self.molecule_type = self._verify( self.molecule_type, "molecule_type")
-            self.data_class     = self._verify( self.data_class,     "data_class")
-            self.taxonomy       = self._verify( self.taxonomy,       "taxonomy")
 
         return "ID   %s; %s; %s; %s; %s; %s; %i BP." % (self.accession, self.version, self.topology,
                                                            self.molecule_type, self.data_class, self.taxonomy,
@@ -425,12 +417,8 @@ class EMBL( object ):
         sequence codes, the region of the genome from which it is derived, or other
         information which helps to identify the sequence.
         """
-        output = ""
-        temp = str(self.description)
-        while temp:
-            output += "\nDE   %s" % temp[:75]
-            temp = temp[75:]
-        return output + self.spacer
+        return multiline("DE", self.description) + self.spacer
+
 
     def KW(self):
         """
@@ -438,14 +426,7 @@ class EMBL( object ):
         cross-reference indexes of the sequence entries based on functional,
         structural, or other categories deemed important.
         """
-
-        output = "KW   "
-
-        if len(self.keywords) == 0 and self.verify:
-            sys.stderr.write("At least one keyword is needed: ")
-            self.keywords += [raw_input()]
-
-        return multiline("KW", self.keywords, suffix=".") + self.spacer
+        return multiline("KW", self.keywords, suffix=".", splitL="no") + self.spacer
 
     def OS(self):
         """
@@ -471,7 +452,7 @@ class EMBL( object ):
             sys.stderr.write("At least one classification level is needed: ")
             self.classification += [raw_input()]
 
-        return multiline("OC", self.classification, suffix=";") + self.spacer
+        return multiline("OC", self.classification, sep=";", suffix=".") + self.spacer
 
     def OG(self):
         """
@@ -522,12 +503,10 @@ class EMBL( object ):
             if ref['group']:                                        # RG - reference group            (>=0 per entry)
                 output += multiline("RG", ref['group'])
             if ref['authors']:                                      # RA - reference author(s)        (>=0 per entry)
-                output += multiline("RA", ref['authors'], sep=", ", suffix=";")
+                output += multiline("RA", ref['authors'], sep=",", suffix=";", splitW="no")
 
-            if ref['title'] == ";":                                 # RT - reference title            (>=1 per entry)
-                output += multiline("RT", ref['title'], quoted=False)
-            else:
-                output += multiline("RT", ref['title'], quoted=True)
+            if ref['title']:                                 # RT - reference title            (>=1 per entry)
+                output += multiline("RT", ref['title'])
             # TODO: There are lots of recommended formatting for the references,
             #       but I won't bother implementing them right now.
             output += multiline("RL", ref['location'])        # RL - reference location         (>=1 per entry)
@@ -557,7 +536,7 @@ class EMBL( object ):
         any sort of information thought to be useful that is unsuitable for
         inclusion in other line types.
         """
-        return multiline("CC", self.comment, quoted=True) + self.spacer if self.comment else ""
+        return multiline("CC", self.comment) + self.spacer if self.comment else ""
 
     def AH(self):
         """
@@ -787,12 +766,14 @@ class EMBL( object ):
         """
         Sets the creation time of the original entry.
         """
-        if timestamp:
+        if "timestamp" in EMBL.PREVIOUS_VALUES:
+            self.created = EMBL.PREVIOUS_VALUES["timestamp"]
+        else:
+            if not timestamp:
+                timestamp = time.localtime()
+
             self.created = timestamp
-        elif hasattr(self.record, "created"):
-            self.created = self.record.created
-        elif not hasattr(self, "created"):
-            self.created = time.localtime()
+            EMBL.PREVIOUS_VALUES["timestamp"] = timestamp
 
     def set_data_class(self, data_class = None):
         """
@@ -802,27 +783,23 @@ class EMBL( object ):
             self.data_class = EMBL.PREVIOUS_VALUES["data_class"]
         else:
             if data_class:
-                self.data_class = data_class
                 if self.verify:
-                    self.data_class = self._verify( self.data_class, "data_class")
-            #elif hasattr(self.record, "data_class"):
-            #    self.data_class = self.record.data_class
-            elif not hasattr(self, "data_class"):
-                self.data_class = "XXX"
-                EMBL.PREVIOUS_VALUES["data_class"] = "XXX"
+                    data_class = self._verify( data_class, "data_class")
+            else:
+                data_class = "XXX"
 
-    def set_description(self, description = None):
+            self.data_class = data_class
+            EMBL.PREVIOUS_VALUES["data_class"] = data_class
+
+    def set_description(self, description):
         """
         Sets the sample description.
         """
+        if "description" in EMBL.PREVIOUS_VALUES:
+            self.description = EMBL.PREVIOUS_VALUES["description"]
         if description:
             self.description = description
-        #elif hasattr(self.record, "description"):
-        #    self.description = self.record.description
-        #elif not hasattr(self, "description"):
-        #    self.description = ""
-        elif not hasattr(self, "description"):
-            self.description = "XXX"
+            EMBL.PREVIOUS_VALUES["description"] = description
 
     def set_email(self, email = None):
         """
@@ -842,36 +819,54 @@ class EMBL( object ):
         """
         Sets wheather to keep features that do not have all the mandatory qualifiers
         """
-        self.force_uncomplete_features = force_uncomplete_features
+        if "force_uncomplete_features" in EMBL.PREVIOUS_VALUES:
+            self.force_uncomplete_features = EMBL.PREVIOUS_VALUES["force_uncomplete_features"]
+        else:
+            EMBL.PREVIOUS_VALUES["force_uncomplete_features"] = force_uncomplete_features
+            self.force_uncomplete_features = force_uncomplete_features
 
     def set_force_unknown_features(self, force_unknown_features = False):
         """
         Sets wheather to keep feature types not accepted by EMBL in the output
         """
-        self.force_unknown_features = force_unknown_features
+        if "force_unknown_features" in EMBL.PREVIOUS_VALUES:
+            self.force_unknown_features = EMBL.PREVIOUS_VALUES["force_unknown_features"]
+        else:
+            EMBL.PREVIOUS_VALUES["force_unknown_features"] = force_unknown_features
+            self.force_unknown_features = force_unknown_features
 
-    def set_interleave_genes(self, interleave = True):
+    def set_interleave_genes(self, interleave_genes = True):
         """
         Sets wheather to interleave mRNA and CDS subfeatures in gene features
         """
-        self.interleave_genes = interleave
+        if "interleave_genes" in EMBL.PREVIOUS_VALUES:
+            self.interleave_genes = EMBL.PREVIOUS_VALUES["interleave_genes"]
+        else:
+            EMBL.PREVIOUS_VALUES["interleave_genes"] = interleave_genes
+            self.interleave_genes = interleave_genes
 
-    def set_keep_duplicates(self, duplicate = False):
+    def set_keep_duplicates(self, keep_duplicates = False):
         """
         Sets wheather to keep duplicate features during the processing
         """
-        self.keep_duplicates = duplicate
+        if "keep_duplicates" in EMBL.PREVIOUS_VALUES:
+            self.keep_duplicates = EMBL.PREVIOUS_VALUES["keep_duplicates"]
+        else:
+            EMBL.PREVIOUS_VALUES["keep_duplicates"] = keep_duplicates
+            self.keep_duplicates = keep_duplicates
 
     def set_keywords(self, keywords = []):
         """
         Sets the entry keywords, and parses those of the current record
         """
-        if keywords:
+        if "keywords" in EMBL.PREVIOUS_VALUES:
+            self.keywords = EMBL.PREVIOUS_VALUES["keywords"]
+        else:
+            if not keywords:
+                keywords = [""]   
+            EMBL.PREVIOUS_VALUES["keywords"] = keywords
             self.keywords = keywords
-        if hasattr(self.record, "keywords"):
-            self.keywords += self.record.keywords
-        if not getattr(self, "keywords", False):
-            self.keywords = [""]
+
 
     def set_locus_tag(self, locus_tag = ""):
         """
@@ -904,37 +899,42 @@ class EMBL( object ):
 
     def set_molecule_type(self, molecule_type = None):
         """
-        Sets the sample molecule type, or parses it from the current record.
+        Sets the sample molecule type
         """
         if "molecule_type" in EMBL.PREVIOUS_VALUES:
             self.molecule_type = EMBL.PREVIOUS_VALUES["molecule_type"]
         else:
-            if molecule_type:
-                self.molecule_type = molecule_type
-            else:
-                self.molecule_type = ""
             if self.verify:
-                self.molecule_type = self._verify( self.molecule_type, "molecule_type")
-            #elif hasattr(self.record, "molecule_type"):
-            #    self.molecule_type = self.record.molecule_type
+                molecule_type = self._verify( molecule_type, "molecule_type")
+
+            self.molecule_type = molecule_type
+            EMBL.PREVIOUS_VALUES["molecule_type"] = molecule_type
+
+    def set_no_wrap_qualifier (self, no_wrap_qualifier):
+        """
+        Sets the entry locus_numbering_start numbers
+        """
+        if "no_wrap_qualifier" in EMBL.PREVIOUS_VALUES:
+            self.no_wrap_qualifier = EMBL.PREVIOUS_VALUES["no_wrap_qualifier"]
+        else:
+            EMBL.PREVIOUS_VALUES["no_wrap_qualifier"] = no_wrap_qualifier
 
     def set_organelle(self, organelle = None):
         """
-        Sets the sample organelle, or parses it from the current record.
+        Sets the sample organelle
         """
-        if organelle:
+        if "organelle" in EMBL.PREVIOUS_VALUES:
+            self.organelle = EMBL.PREVIOUS_VALUES["organelle"]
+        else:
+            if self.verify and organelle:
+                organelle = self._verify( self.organelle, "organelle")
+            
             self.organelle = organelle
-        elif hasattr(self.record, "organelle"):
-            self.organelle = self.record.organelle
-        elif not hasattr(self, "organelle"):
-            self.organelle = ""
-
-        if self.verify and self.organelle:
-            self.organelle = self._verify( self.organelle, "organelle")
+            EMBL.PREVIOUS_VALUES["organelle"] = organelle
 
     def set_project_id(self, project_id = None):
         """
-        Sets the project id, or parses it from the current record
+        Sets the project id
         """
         if "project_id" in EMBL.PREVIOUS_VALUES:
             self.project_id = EMBL.PREVIOUS_VALUES["project_id"]
@@ -947,8 +947,6 @@ class EMBL( object ):
 
             self.project_id = project_id
             EMBL.PREVIOUS_VALUES["project_id"] = project_id
-            #elif hasattr(self.record, "project_id"):
-            #    self.project_id = self.record.project_id
 
     def set_record(self, record):
         """
@@ -980,48 +978,45 @@ class EMBL( object ):
 
     def set_taxonomy(self, taxonomy = None):
         """
-        Sets the sample taxonomy, or parses it from the current record.
+        Sets the sample taxonomy
         """
         if "taxonomy" in EMBL.PREVIOUS_VALUES:
             self.taxonomy = EMBL.PREVIOUS_VALUES["taxonomy"]
         else:
             if taxonomy:
-                self.taxonomy = taxonomy
                 if self.verify:
-                    self.taxonomy = self._verify( self.taxonomy, "taxonomy")
-            #elif hasattr(self.record, "taxonomy"):
-            #    self.taxonomy = self.record.taxonomy
-            elif not hasattr(self, "taxonomy"):
-                self.taxonomy = "XXX"
-                EMBL.PREVIOUS_VALUES["taxonomy"] = "XXX"
+                    taxonomy = self._verify( taxonomy, "taxonomy")
+            else:
+                taxonomy = "XXX"
+            
+            self.taxonomy = taxonomy
+            EMBL.PREVIOUS_VALUES["taxonomy"] = taxonomy
 
     def set_topology(self, topology = None):
         """
-        Sets the sample topology, or parses it from the current record.
+        Sets the sample topology
         """
-        if topology:
-            self.topology = topology
-        #elif hasattr(self.record, "topology"):
-        #    self.topology = self.record.topology
-        elif not hasattr(self, "topology"):
-            self.topology = ""
+        if "topology" in EMBL.PREVIOUS_VALUES:
+            self.topology = EMBL.PREVIOUS_VALUES["topology"]
+        else:
+            if self.verify:
+                topology = self._verify( topology, "topology")      
 
-        if self.verify:
-            self.topology = self._verify( self.topology,       "topology")
+            self.topology = topology
+            EMBL.PREVIOUS_VALUES["topology"] = topology
 
     def set_transl_table(self, transl_table = None):
         """
-        Sets the translation table, or parses it from the current record.
+        Sets the translation table
         """
-        if transl_table:
-            self.transl_table = transl_table
-        #elif hasattr(self.record, "transl_table"):
-        #    self.transl_table = self.record.transl_table
-        elif not hasattr(self, "transl_table"):
-            self.transl_table = ""
+        if "transl_table" in EMBL.PREVIOUS_VALUES:
+            self.transl_table = EMBL.PREVIOUS_VALUES["transl_table"]
+        else:    
+            if self.verify:
+                transl_table = self._verify( transl_table, "transl_table")
 
-        if self.verify:
-            self.transl_table = self._verify( self.transl_table,       "transl_table")
+            self.transl_table = transl_table
+            EMBL.PREVIOUS_VALUES["transl_table"] = transl_table
 
     def set_translation(self, translate = False):
         """
@@ -1134,6 +1129,7 @@ def main():
 
     parser.add_argument("-z", "--gzip", default=False, action="store_true", help="Gzip output file")
 
+    parser.add_argument("--de", default="XXX", help="Description.")
     parser.add_argument("--rc", default=None, help="Reference Comment.")
     parser.add_argument("--rx", default=None, help="Reference cross-reference.")
     parser.add_argument("--rg", default="XXX", help="Reference Group, the working groups/consortia that produced the record.")
@@ -1141,6 +1137,7 @@ def main():
     parser.add_argument("--rt", default=";", help="Reference Title.")
     parser.add_argument("--rl", default=None, help="Reference publishing location.")
 
+    parser.add_argument("--no_wrap_qualifier", default=None, action="store_true", help="To avoid line-wrapping for qualifiers.")
     parser.add_argument("--keep_duplicates", action="store_true", help="Do not remove duplicate features during the process.")
     parser.add_argument("--interleave_genes", action="store_false", help="Print gene features with interleaved mRNA and CDS features.")
     parser.add_argument("--force_unknown_features", action="store_true", help="Force to keep feature types not accepted by EMBL. /!\ Option not suitable for submission purpose.")
@@ -1222,7 +1219,7 @@ def main():
         writer.set_classification( args.classification )
         writer.set_created( args.created )
         writer.set_data_class( args.data_class )
-        writer.set_description()
+        writer.set_description(args.de)
         writer.set_force_uncomplete_features( args.force_uncomplete_features )
         writer.set_force_unknown_features( args.force_unknown_features )
         writer.set_interleave_genes( args.interleave_genes )
@@ -1239,6 +1236,7 @@ def main():
         writer.set_translation(args.translate)
         writer.set_uncompressed_log(args.uncompressed_log)
         writer.set_version( args.version )
+        writer.set_no_wrap_qualifier( args.no_wrap_qualifier)
 
         writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)
 
