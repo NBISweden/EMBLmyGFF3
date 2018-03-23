@@ -55,8 +55,10 @@ def multiline(prefix, data, sep=";", suffix="", indentprefix = 3, featureType=""
                         previousChunck+=" %s" % sep
                   
         #In oder to avoid last line longer than expected when adding the suffix
-        if len(previousChunck)+len(suffix) >= wrap:
+        if len(previousChunck)+len(suffix) > wrap:
             output+=previousChunck+"\n"+suffix
+            #logging.error("previousChunckL: %i suffixL %i wrapL %i" % ( len(previousChunck), len(suffix), wrap ) )
+
         else:
             output+=previousChunck+suffix
 
@@ -64,21 +66,26 @@ def multiline(prefix, data, sep=";", suffix="", indentprefix = 3, featureType=""
     else:
         #logging.error("string case")
         output,lastLine = _splitStringMultiline(output, data, wrap, splitW, split_char)
-        
+
         #add suffix if needed_
         if suffix:
-            if len(lastLine)+len(suffix) >= wrap:
+            if len(lastLine)+len(suffix) > wrap:
                 # Compile output and lasline as it should
                 if not output:
                     output+=lastLine+"\n"+suffix
                 else:
                     output+="\n"+lastLine+"\n"+suffix
+            else:
+                if not output:
+                    output+=lastLine+suffix
+                else:
+                    output+="\n"+lastLine+suffix
         else:
             # Compile output and lasline as it should
             if not output:
-                output+=lastLine+suffix
+                output+=lastLine
             else:
-                output+="\n"+lastLine+suffix
+                output+="\n"+lastLine
 
     #Last step: add prefix and middle at each line
     cleanOutput=""
@@ -116,7 +123,6 @@ def _splitStringMultiline(output, data, wrap, splitW, split_char):
                 string = string[len(string):]
             else: # len(string) > wrapSize:
                 splitLoc = _splitWordsMax(string,wrap,splitW,split_char)
-                #logging.error("split returned1 = %i" % splitLoc)
                 line = string[:splitLoc]
                 string = string[len(line):]
                 string=string.strip() # remove white space
@@ -125,7 +131,6 @@ def _splitStringMultiline(output, data, wrap, splitW, split_char):
         else: #Not the first round
             if len(string) > wrap:
                 splitLoc = _splitWordsMax(string,wrap,splitW,split_char)
-                #logging.error("split returned2 = %i" % splitLoc)
                 line = string[:splitLoc]
                 string = string[len(line):]
                 string=string.strip() # remove white space

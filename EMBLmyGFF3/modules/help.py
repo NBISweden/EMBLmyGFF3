@@ -503,6 +503,7 @@ except if you are using the "> afile" to redirect it to the file <afile>.
   if(string == "shame" or string == "all"):
     output += string+""":
 EMBLmyGFF3 tool specific
+Bolean - Doesnt expect any value
 Suppress the shameless plug. A "shameless plug" is a term often used to refer when someone has included (or "plugged") 
 some information that helps advance their own selfish interests.
 
@@ -518,6 +519,7 @@ Yes being silent is useful when you do piping and so on.
   if(string == "v" or string == "verbose" or string == "all"):
     output += string+""":
 EMBLmyGFF3 tool specific
+Bolean - Doesnt expect any value
 This option allows to increase the verbosity level. V stands for verbose.
 
 There is 5 verbosity level:  Critical > Error > Warning > Info > Debug
@@ -528,6 +530,7 @@ By default the verbosity level is set to Warning (Critical, Error, Warning messa
   if(string == "q" or string == "quiet" or string == "all"):
     output += string+""":
 EMBLmyGFF3 tool specific
+Bolean - Doesnt expect any value
 This option allows to decrease the verbosity level. Q stands for quiet
 
 There is 5 verbosity level:  Critical > Error > Warning > Info > Debug
@@ -543,37 +546,49 @@ This option allows to compress the output file in gzip format. This option does 
   if(string == "uncompressed_log" or string == "all"):
     output += string+""":
 EMBLmyGFF3 tool specific
+Bolean - Doesnt expect any value
 Some of the log could be compressed for a better lisibility, using this option they won't.
 """
-  if(string == "email"):
+  if(string == "email"  or string == "all"):
     output += string+""":
 EMBLmyGFF3 tool specific
 Email used to fetch information from NCBI taxonomy database. Default value 'EMBLmyGFF3@tool.org'.
 /!\ This email could be blocked at any time if someone try to access the database too many time in a short period.
 ! It is advised to use its own email address.
 """ 
-  if(string == "interleave_genes"):
+  if(string == "interleave_genes" or string == "all"):
     output += string+""":
 EMBLmyGFF3 tool specific
+Bolean - Doesnt expect any value
 Print gene features with interleaved mRNA and CDS features.
 """ 
-  if(string == "keep_duplicates"):
+  if(string == "keep_duplicates" or string == "all"):
     output += string+""":
 EMBLmyGFF3 tool specific
+Bolean - Doesnt expect any value
 Do not remove duplicate features during the process. 
 /!\ Option not suitable for submission purpose. Features that have the same key (feature type) and location as another feature are considered as duplicates and aren't allowed by the EMBL database. So they are remove during the process. If you don't plan to submit the file to ENA and you wish to keep these features, use the --keep_duplicates option.
 """ 
-  if(string == "force_unknown_features"):
+  if(string == "force_unknown_features" or string == "all"):
     output += string+""":
 EMBLmyGFF3 tool specific
+Bolean - Doesnt expect any value
 Force to keep feature types not accepted by EMBL. 
 /!\ Option not suitable for submission purpose. Indeed, an EMBL file with a feature type not accepted by ENA will not be valid.
 """
-  if(string == "force_uncomplete_features"):
+  if(string == "force_uncomplete_features" or string == "all"):
     output += string+""":
 EMBLmyGFF3 tool specific
+Bolean - Doesnt expect any value
 Force to keep features whithout all the mandatory qualifiers. 
 /!\ Option not suitable for submission purpose. Indeed, an EMBL file with a feature that have a mandatory qualifier missing will not be valid.
+""" 
+  if(string == "no_wrap_qualifier" or string == "all"):
+    output += string+""":
+EMBLmyGFF3 tool specific
+Bolean - Doesnt expect any value
+Do not wrap the qualifier line output. One line by qualifier. 
+By default the output is wrapped at 80 characters, and we cut at word levels.
 """ 
   if not output:
     output += string+""":Sorry no advanced help for this option: """+string+"\n"
