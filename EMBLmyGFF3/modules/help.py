@@ -589,6 +589,12 @@ EMBLmyGFF3 tool specific
 Bolean - Doesnt expect any value
 Do not wrap the qualifier line output. One line by qualifier. 
 By default the output is wrapped at 80 characters, and we cut at word levels.
+"""
+  if(string == "expose_translations" or string == "all"):
+    output += string+""":
+EMBLmyGFF3 tool specific
+Bolean - Doesnt expect any value
+When the option is called, the mapping json files will be copied into the current folder. A local mapping json file will always be used instead of the default internal one.
 """ 
   if not output:
     output += string+""":Sorry no advanced help for this option: """+string+"\n"

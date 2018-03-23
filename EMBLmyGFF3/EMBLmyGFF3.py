@@ -9,7 +9,7 @@ GFF convertion is based on specifications from https://github.com/The-Sequence-O
 
 shameless_plug="""
     #############################################################################
-    # NBIS 2016 - Sweden                                                        #
+    # NBIS 2018 - Sweden                                                        #
     # Authors: Martin Norling, Niclas Jareborg, Jacques Dainat                  #
     # Please visit https://github.com/NBISweden/EMBLmyGFF3 for more information #
     #############################################################################
@@ -1075,7 +1075,6 @@ class EMBL( object ):
 ##########################
 
 def main():
-
     # Deal with the advanced help
     if len(sys.argv) > 1 and (sys.argv[1] == "--ah" or sys.argv[1] == "--advanced_help"):
         if len(sys.argv) == 3:
@@ -1087,6 +1086,13 @@ def main():
         elif len(sys.argv) == 2:
             sys.stderr.write("No option specified for the advanced_help, we will display everything:\n")
             sys.stderr.write(Help("all"))
+        sys.exit()
+    # Deal with the expose_translations option
+    if len(sys.argv) == 2 and sys.argv[1] == "--expose_translations":
+        module_dir = os.path.dirname(os.path.abspath(sys.modules[Feature.__module__].__file__))
+        for filename in Feature.DEFAULT_FEATURE_TRANSLATION_FILE + list(Feature.DEFAULT_QUALIFIER_TRANSLATION_FILE):
+            logging.info("Copying translation file %s to %s" % (filename, os.getcwd()))
+            shutil.copy( "%s/%s" % (module_dir, filename), filename )
         sys.exit()
 
     parser = argparse.ArgumentParser( description = __doc__ )
