@@ -206,10 +206,12 @@ You can also find a comprehensive help about the different parameters using the 
 |  --rt|                  Reference Title. No default value.|
 |  --rx|                  Reference cross-reference. No default value.|
 |  --email|               Email used to fetch information from NCBI taxonomy database. Default value 'EMBLmyGFF3@tool.org'.|
+|  --expose_translations| Copy feature and attribute mapping files to the working directory. They will be used as mapping files instead of the default internal json files. You may modify them as it suits you.|
 |  --interleave_genes|    Print gene features with interleaved mRNA and CDS features.|
 |  --keep_duplicates|       Do not remove duplicate features during the process. /!\ Option not suitable for submission purpose.|
 |  --force_unknown_features| Force to keep feature types not accepted by EMBL. /!\ Option not suitable for submission purpose.|
 |  --force_uncomplete_features| Force to keep features whithout all the mandatory qualifiers. /!\ Option not suitable for submission purpose.|
+|  --no_wrap_qualifier|   By default there is a line wrapping at 80 characters. The cut is at the world level. Activating this option will avoid the line-wrapping for the qualifiers.|
 |  --translate|           Include translation in CDS features. Not activated by default.|
 |  --version|             Sequence version number. The default value is **1**.|
 
@@ -232,6 +234,12 @@ The challenge for a correct conversion is the correct mapping between the featur
 If you figure out that a feature type or an attribute's tag is not mapped to the corresponding EMBL features or qualifiers you would like, you will have to modify the corresponding information in the mapping files.</br>
 The software will skip the unknown feature types (Non EMBL feature types that are not mapped against an EMBL feature type) and the unknown qualifiers (Non EMBL qualifiers that are not mapped against an EMBL qualifier) and will inform you during the conversion process. If you want to include them within the output, you can add the information needed in the corresponding mapping file.
 
+**To access the json mapping files launch the following command:** 
+
+  >EMBLmyGFF3 --expose_translations
+  
+The command copy the json mapping files localy. You can then modify them as it suits you. 
+When a json mapping file is present localy, it will be used instead of the default internal one.
 
 ### Feature type
 
