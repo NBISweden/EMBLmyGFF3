@@ -49,6 +49,10 @@ class Feature(object):
     """
     Super-class for the various feature types defined in:
     http://www.insdc.org/files/feature_table.html.
+
+    Often the stucture is complex. We build a the Feature object based on a bcbio Record. A record is in fact a group of features linked together by relationship. e.g: A gene has mRNA as child which has exon as child. The exon has mRNA as parent and mRNA has gene has parent.
+    Would be nice to make create a Record objcet made from Feature object. We are mixing concepts here.
+    Some information are udeful only a the top feature. To make the child feature lighter no need to attach tehm all the information.
     """
 
     CDS_COUNTER = 0
@@ -63,7 +67,7 @@ class Feature(object):
     def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False,
                 feature_definition_dir = DEFAULT_FEATURE_DIR, qualifier_definition_dir = DEFAULT_QUALIFIER_DIR, format_data = True,
                 level = 0, reorder_gene_features = True, skip_feature = False, force_unknown_features = False, 
-                force_uncomplete_features = False, uncompressed_log = None):
+                force_uncomplete_features = False, uncompressed_log = None, no_wrap_qualifier = False):
         """
         Initializes a Feature, loads json files for feature and
         qualifiers, and starts parsing the data.
@@ -80,6 +84,7 @@ class Feature(object):
         self.feature_translation_list = {}
         self.force_uncomplete_features = force_uncomplete_features
         self.force_unknown_features = force_unknown_features
+        self.no_wrap_qualifier = no_wrap_qualifier
         self.reorder_gene_features = reorder_gene_features
         self.remove = []
         self.seq = seq
@@ -138,7 +143,7 @@ class Feature(object):
         output=""
 
         if self.skip_feature is False or self.force_unknown_features or self.force_uncomplete_features:
-            output = self._feature_as_EMBL() if self.type not in self.remove else ""
+            output = self._feature_as_EMBL(self.no_wrap_qualifier) if self.type not in self.remove else ""
 
         # Sub-features.
         #
@@ -156,7 +161,7 @@ class Feature(object):
                         list_type_l3.append(feature_l3.type)
 
                 if feature_l2.skip_feature is False or self.force_unknown_features or self.force_uncomplete_features:
-                    output += feature_l2._feature_as_EMBL() if feature_l2.type not in feature_l2.remove else ""
+                    output += feature_l2._feature_as_EMBL(self.no_wrap_qualifier) if feature_l2.type not in feature_l2.remove else ""
                 #else:
                     #check if CDS exist in subfeature. It could be helpful to create a mRNA feature instead to skip stupidly the L2 feature ! But it's not the philosophy of the tool. It should be done by using the json mapping file.
                 #    if "CDS" in list_type_l3:
@@ -169,7 +174,7 @@ class Feature(object):
                     for feature_l3 in feature_l2.sub_features:
                         if f_type == feature_l3.type:
                             if feature_l3.skip_feature is False or self.force_unknown_features or self.force_uncomplete_features:
-                                output += feature_l3._feature_as_EMBL() if feature_l3.type not in feature_l3.remove else ""
+                                output += feature_l3._feature_as_EMBL(self.no_wrap_qualifier) if feature_l3.type not in feature_l3.remove else ""
 
         else:
             for sub_feature in self.sub_features:
@@ -178,7 +183,7 @@ class Feature(object):
 
         return output
 
-    def _feature_as_EMBL(self):
+    def _feature_as_EMBL(self, no_wrap_qualifier):
         """
         Formats the feature as EMBL, limited to 80 character lines.
         """
@@ -197,7 +202,7 @@ class Feature(object):
         # Print qualifiers for the feature
         for qualifier in self.qualifiers.values():
             if qualifier.value:
-                output += str(qualifier)
+                output += qualifier.embl_format(no_wrap_qualifier)
 
         return output
 

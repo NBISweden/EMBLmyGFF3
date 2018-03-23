@@ -426,7 +426,7 @@ class EMBL( object ):
         cross-reference indexes of the sequence entries based on functional,
         structural, or other categories deemed important.
         """
-        return multiline("KW", self.keywords, suffix=".", splitL="no") + self.spacer
+        return multiline("KW", self.keywords, suffix=".", no_wrap="yes") + self.spacer
 
     def OS(self):
         """
@@ -623,7 +623,7 @@ class EMBL( object ):
             f = Feature(feature, self.record.seq, locus_tag, self.transl_table, translate=self.translate, 
                 feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1, 
                 reorder_gene_features = self.interleave_genes, force_unknown_features = self.force_unknown_features,
-                 force_uncomplete_features = self.force_uncomplete_features, uncompressed_log = self.uncompressed_log)
+                 force_uncomplete_features = self.force_uncomplete_features, uncompressed_log = self.uncompressed_log, no_wrap_qualifier = self.no_wrap_qualifier)
 
             if not self.keep_duplicates:
                 #Deal with identical CDS/UTR/etc between different isoforms:
@@ -819,41 +819,25 @@ class EMBL( object ):
         """
         Sets wheather to keep features that do not have all the mandatory qualifiers
         """
-        if "force_uncomplete_features" in EMBL.PREVIOUS_VALUES:
-            self.force_uncomplete_features = EMBL.PREVIOUS_VALUES["force_uncomplete_features"]
-        else:
-            EMBL.PREVIOUS_VALUES["force_uncomplete_features"] = force_uncomplete_features
-            self.force_uncomplete_features = force_uncomplete_features
+        self.force_uncomplete_features = force_uncomplete_features
 
     def set_force_unknown_features(self, force_unknown_features = False):
         """
         Sets wheather to keep feature types not accepted by EMBL in the output
         """
-        if "force_unknown_features" in EMBL.PREVIOUS_VALUES:
-            self.force_unknown_features = EMBL.PREVIOUS_VALUES["force_unknown_features"]
-        else:
-            EMBL.PREVIOUS_VALUES["force_unknown_features"] = force_unknown_features
-            self.force_unknown_features = force_unknown_features
+        self.force_unknown_features = force_unknown_features
 
     def set_interleave_genes(self, interleave_genes = True):
         """
         Sets wheather to interleave mRNA and CDS subfeatures in gene features
         """
-        if "interleave_genes" in EMBL.PREVIOUS_VALUES:
-            self.interleave_genes = EMBL.PREVIOUS_VALUES["interleave_genes"]
-        else:
-            EMBL.PREVIOUS_VALUES["interleave_genes"] = interleave_genes
-            self.interleave_genes = interleave_genes
+        self.interleave_genes = interleave_genes
 
     def set_keep_duplicates(self, keep_duplicates = False):
         """
         Sets wheather to keep duplicate features during the processing
         """
-        if "keep_duplicates" in EMBL.PREVIOUS_VALUES:
-            self.keep_duplicates = EMBL.PREVIOUS_VALUES["keep_duplicates"]
-        else:
-            EMBL.PREVIOUS_VALUES["keep_duplicates"] = keep_duplicates
-            self.keep_duplicates = keep_duplicates
+        self.keep_duplicates = keep_duplicates
 
     def set_keywords(self, keywords = []):
         """
@@ -914,10 +898,7 @@ class EMBL( object ):
         """
         Sets the entry locus_numbering_start numbers
         """
-        if "no_wrap_qualifier" in EMBL.PREVIOUS_VALUES:
-            self.no_wrap_qualifier = EMBL.PREVIOUS_VALUES["no_wrap_qualifier"]
-        else:
-            EMBL.PREVIOUS_VALUES["no_wrap_qualifier"] = no_wrap_qualifier
+        self.no_wrap_qualifier = no_wrap_qualifier
 
     def set_organelle(self, organelle = None):
         """
@@ -1028,23 +1009,22 @@ class EMBL( object ):
         """
         Sets flag whether to write into a log file.
         """
-        if "uncompressed_log" not in EMBL.PREVIOUS_VALUES:
-            EMBL.PREVIOUS_VALUES["uncompressed_log"] = uncompressed_log
-            self.uncompressed_log = uncompressed_log
-        else:
-            self.uncompressed_log = EMBL.PREVIOUS_VALUES["uncompressed_log"]
+        self.uncompressed_log = uncompressed_log
 
     def set_version(self, version = None):
         """
         Sets the release version, or parses it from the current record.
         """
-        if version:
-            self.version = "SV %i" % version
-        #elif hasattr(self.record, "version"):
-        #    logging.error("If do not have the atttribute ?")
-        #    self.version = self.record.version
-        elif not hasattr(self, "version"):
-            self.version = "XXX"
+        if "version" in EMBL.PREVIOUS_VALUES:
+            self.version = EMBL.PREVIOUS_VALUES["version"]
+        else:    
+            if version:
+                version = "SV %i" % version
+            else:
+                version = "XXX"
+
+            self.version = version
+            EMBL.PREVIOUS_VALUES["version"] = version
 
     def write_all(self, out = sys.stdout):
         """
@@ -1137,7 +1117,7 @@ def main():
     parser.add_argument("--rt", default=";", help="Reference Title.")
     parser.add_argument("--rl", default=None, help="Reference publishing location.")
 
-    parser.add_argument("--no_wrap_qualifier", default=None, action="store_true", help="To avoid line-wrapping for qualifiers.")
+    parser.add_argument("--no_wrap_qualifier", action="store_true", help="To avoid line-wrapping for qualifiers.")
     parser.add_argument("--keep_duplicates", action="store_true", help="Do not remove duplicate features during the process.")
     parser.add_argument("--interleave_genes", action="store_false", help="Print gene features with interleaved mRNA and CDS features.")
     parser.add_argument("--force_unknown_features", action="store_true", help="Force to keep feature types not accepted by EMBL. /!\ Option not suitable for submission purpose.")
@@ -1228,6 +1208,7 @@ def main():
         writer.set_locus_tag( args.locus_tag )
         writer.set_locus_numbering_start(args.locus_numbering_start)
         writer.set_molecule_type( args.molecule_type )
+        writer.set_no_wrap_qualifier( args.no_wrap_qualifier)
         writer.set_organelle( args.organelle )
         writer.set_project_id( args.project_id )
         writer.set_taxonomy( args.taxonomy )
@@ -1236,7 +1217,7 @@ def main():
         writer.set_translation(args.translate)
         writer.set_uncompressed_log(args.uncompressed_log)
         writer.set_version( args.version )
-        writer.set_no_wrap_qualifier( args.no_wrap_qualifier)
+        
 
         writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)
 

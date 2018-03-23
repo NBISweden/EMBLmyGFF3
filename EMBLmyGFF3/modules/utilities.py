@@ -16,31 +16,25 @@ def print_overwritable(text):
 
 #Wrap is 75 for all line (OC   =5 characters + 75 = 80) except FT
 #For FT the wrap is 59 (FT   =5 + 16 characters (feature type + blanc) + 59 characters = 80)
-# splitL to allow split lines
+# no_wrap to allow split lines
 # splitW to allow split Word
 # split_char character to use for split instead of split by word. 
-def multiline(prefix, data, sep=";", suffix="", indentprefix = 3, featureType="", wrap=75 ,splitL="yes", splitW="", split_char=""):
+def multiline(prefix, data, sep=";", suffix="", indentprefix = 3, featureType="", wrap=75 ,no_wrap=None, splitW="", split_char=""):
     """
     Creates a multiline entry.
 
     If data is a list, the entries are listed with "sep" as separator
     """
-    logging.error("type: %s data:%s" % (prefix, data) )
+    #logging.error("prefix: %s featureType: %s data: %s" % (prefix, featureType, data) )
     
-    if splitL == "no": # equivalent to no wrap when split line deactivated
+    if no_wrap: # equivalent to no wrap when split line deactivated
         wrap = 1000000
     output=""
-
-    #particular case when RT come empty. We must print ; wihtout quotes
-    if(prefix == "RT" and data == ";"):
-        output = "%s%s" % (prefix, " "*indentprefix)
-        output += str(data)
-        return "\n" + output + suffix
 
     # List Case
     previousChunck=""
     if type(data) == type([]):
-        logging.error("list case")
+        #logging.error("list case")
         for i, item in enumerate(data):
             if item:
                 currentChunck = item + previousChunck
@@ -68,7 +62,7 @@ def multiline(prefix, data, sep=";", suffix="", indentprefix = 3, featureType=""
 
     # String case
     else:
-        logging.error("string case")
+        #logging.error("string case")
         output,lastLine = _splitStringMultiline(output, data, wrap, splitW, split_char)
         
         #add suffix if needed_
@@ -85,11 +79,6 @@ def multiline(prefix, data, sep=";", suffix="", indentprefix = 3, featureType=""
                 output+=lastLine+suffix
             else:
                 output+="\n"+lastLine+suffix
-
-    #Check if we have output. If not we have to avoid the strip at the end
-    #doNotStrip=False
-    #if not output:
-    #    doNotStrip = True
 
     #Last step: add prefix and middle at each line
     cleanOutput=""
@@ -111,10 +100,6 @@ def multiline(prefix, data, sep=";", suffix="", indentprefix = 3, featureType=""
         cleanOutput += "%s%s" % (prefix, " "*indentprefix) #the "+sep" is a trick to keep the final cleaning within the return working properly
 
     return "\n" + cleanOutput
-    #if doNotStrip: # Because is only i.e >KW    <
-    #    return "\n" + cleanOutput + suffix
-    #else:
-    #    return "\n" + cleanOutput.strip().strip(sep) + suffix
 
 # This method allow to wrap a string at a size of wrapSize taking care of quote
 # It return back the result in different part: the last line and everything before if exists.
@@ -131,7 +116,7 @@ def _splitStringMultiline(output, data, wrap, splitW, split_char):
                 string = string[len(string):]
             else: # len(string) > wrapSize:
                 splitLoc = _splitWordsMax(string,wrap,splitW,split_char)
-                logging.error("split returned1 = %i" % splitLoc)
+                #logging.error("split returned1 = %i" % splitLoc)
                 line = string[:splitLoc]
                 string = string[len(line):]
                 string=string.strip() # remove white space
@@ -140,7 +125,7 @@ def _splitStringMultiline(output, data, wrap, splitW, split_char):
         else: #Not the first round
             if len(string) > wrap:
                 splitLoc = _splitWordsMax(string,wrap,splitW,split_char)
-                logging.error("split returned2 = %i" % splitLoc)
+                #logging.error("split returned2 = %i" % splitLoc)
                 line = string[:splitLoc]
                 string = string[len(line):]
                 string=string.strip() # remove white space
@@ -158,13 +143,13 @@ def _splitWordsMax(string, valueMax, splitW, split_char):
 
     if split_char:
         words = _splitkeepsep(string, split_char)
-        logging.error(words)
+        #logging.error(words)
     else:
         words = string.split()
 
     newString=words.pop(0)
     position = len(newString)
-    logging.error("position = %i" % position)
+    #logging.error("position = %i" % position)
 
     if position >= valueMax:
         return valueMax

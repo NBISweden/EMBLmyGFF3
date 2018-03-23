@@ -16,12 +16,13 @@ class Qualifier( object ):
     SINGLE_VALUE_QUALIFIERS = ["gene"]
     PREVIOUS_ERRORS = []
     
-    def __init__(self, qualifier, value = [], mandatory = False, qualifier_definition_dir = "modules/qualifiers"):
+    def __init__(self, qualifier, value = [], mandatory = False, qualifier_definition_dir = "modules/qualifiers", no_wrap= None):
         """
         Initializes a Qualifier, loads json definition and starts 
         parsing the input data.
         """
         self.name = qualifier
+        self.no_wrap = no_wrap
         self.mandatory = mandatory
         self.qualifier_definition_dir = qualifier_definition_dir
         self._load_definition("%s/%s.json" % (qualifier_definition_dir, qualifier.strip()))
@@ -33,34 +34,7 @@ class Qualifier( object ):
         """
         Prints the current Qualifier in EMBL format
         """
-        return self._embl_format()
-    
-    def _embl_format(self):
-        """
-        Format lines as EMBL format, limiting lines to 80 characters
-        """
-        output = ""
-        value = self.value
-        if type(value) != type([]):
-            value = [value]
-        for val in value:
-            if val == []:
-                continue
-            if type(val) == type([]) and len(val):
-                val = val[0]
-            if type(val) in [type(""), type(u"")]:
-                val = "\"%s\"" % val
-            if getattr(self, "value_type", None) == "none":
-                output += "\nFT                   /%s\n"
-                continue
-            
-            string = "/%s=%s" % (self.name, val)
-            output += multiline("FT", string, wrap=59)
-            
-            # break if only one value is legal
-            if self.name in self.SINGLE_VALUE_QUALIFIERS:
-                break
-        return output
+        return self.embl_format()
     
     def _load_definition(self, filename):
         """
@@ -143,7 +117,34 @@ class Qualifier( object ):
             sys.exit(1)
         
         return formatted_value
-    
+
+    def embl_format(self, no_wrap=None):
+        """
+        Format lines as EMBL format, limiting lines to 80 characters
+        """
+        output = ""
+        value = self.value
+        if type(value) != type([]):
+            value = [value]
+        for val in value:
+            if val == []:
+                continue
+            if type(val) == type([]) and len(val):
+                val = val[0]
+            if type(val) in [type(""), type(u"")]:
+                val = "\"%s\"" % val
+            if getattr(self, "value_type", None) == "none":
+                output += "\nFT                   /%s\n"
+                continue
+            
+            string = "/%s=%s" % (self.name, val)
+            output += multiline("FT", string, wrap=59, no_wrap = no_wrap)
+            
+            # break if only one value is legal
+            if self.name in self.SINGLE_VALUE_QUALIFIERS:
+                break
+        return output
+         
     def add_value(self, value):
         """
         Adds a value to the current set of values for this qualifier.
