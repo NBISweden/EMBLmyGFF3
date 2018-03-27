@@ -207,14 +207,17 @@ You can also find a comprehensive help about the different parameters using the 
 |  --rx|                  Reference cross-reference. No default value.|
 |  --email|               Email used to fetch information from NCBI taxonomy database. Default value 'EMBLmyGFF3@tool.org'.|
 |  --expose_translations| Copy feature and attribute mapping files to the working directory. They will be used as mapping files instead of the default internal json files. You may modify them as it suits you.|
-|  --interleave_genes|    Print gene features with interleaved mRNA and CDS features.|
-|  --keep_duplicates|       Do not remove duplicate features during the process. /!\ Option not suitable for submission purpose.|
 |  --force_unknown_features| Force to keep feature types not accepted by EMBL. /!\ Option not suitable for submission purpose.|
 |  --force_uncomplete_features| Force to keep features whithout all the mandatory qualifiers. /!\ Option not suitable for submission purpose.|
+|  --interleave_genes|    Print gene features with interleaved mRNA and CDS features.|
+|  --keep_duplicates|       Do not remove duplicate features during the process. /!\ Option not suitable for submission purpose.|
 |  --no_wrap_qualifier|   By default there is a line wrapping at 80 characters. The cut is at the world level. Activating this option will avoid the line-wrapping for the qualifiers.|
 |  --translate|           Include translation in CDS features. Not activated by default.|
 |  --version|             Sequence version number. The default value is **1**.|
-
+|  --strain|              Strain from which sequence was obtained. May be needed when organism belongs to Bacteria.|
+|  --environmental_sample|             Bolean. identifies sequences derived by direct molecular isolation from a bulk environmental DNA sample with no reliable identification of the source organism. May be needed when organism belongs to Bacteria.|
+|  --isolation_source|    Describes the physical, environmental and/or local geographical source of the biological sample from which the sequence was derived. Mandatory when environmental_sample option used.|
+|  --isolate|             Individual isolate from which the sequence was obtained. May be needed when organism belongs to Bacteria.|
 **Optional arguments related to the software:**
 
 | Parameter | Description |
