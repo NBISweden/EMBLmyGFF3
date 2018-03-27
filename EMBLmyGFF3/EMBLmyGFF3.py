@@ -1199,10 +1199,10 @@ def main():
     parser.add_argument("--version", default=None, type=int, help="Sequence version number.")
 
     #Procaryote specific parameter
-    parser.add_argument("--strain", default=None, help="Strain from which sequence was obtained. May be needed when organism belongs to Bacteria")
+    parser.add_argument("--strain", default=None, help="Strain from which sequence was obtained. May be needed when organism belongs to Bacteria.")
     parser.add_argument("--environmental_sample", action="store_true",  help="Bolean. identifies sequences derived by direct molecular isolation from a bulk environmental DNA sample with no reliable identification of the source organism. May be needed when organism belongs to Bacteria.")
     parser.add_argument("--isolation_source", default=None, help="Describes the physical, environmental and/or local geographical source of the biological sample from which the sequence was derived. Mandatory when environmental_sample option used.")
-    parser.add_argument("--isolate", default=None, help="Individual isolate from which the sequence was obtained. May be needed when organism belongs to Bacteria")
+    parser.add_argument("--isolate", default=None, help="Individual isolate from which the sequence was obtained. May be needed when organism belongs to Bacteria.")
 
     args = parser.parse_args()
 
