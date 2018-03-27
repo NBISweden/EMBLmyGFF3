@@ -170,6 +170,15 @@ class EMBL( object ):
             source_feature.qualifiers["mol_type"] = self.molecule_type
             source_feature.qualifiers["organism"] = self.species
             source_feature.type = "source"
+            if "strain" in  EMBL.PREVIOUS_VALUES:
+                source_feature.qualifiers["strain"] = EMBL.PREVIOUS_VALUES["strain"]
+            if "environmental_sample" in  EMBL.PREVIOUS_VALUES:
+                source_feature.qualifiers["environmental_sample"] = EMBL.PREVIOUS_VALUES["environmental_sample"]
+            if "isolation_source" in  EMBL.PREVIOUS_VALUES:
+                source_feature.qualifiers["isolation_source"] = EMBL.PREVIOUS_VALUES["isolation_source"]
+            if "isolate" in  EMBL.PREVIOUS_VALUES:
+                source_feature.qualifiers["isolate"] = EMBL.PREVIOUS_VALUES["isolate"]
+
             self.record.features[0:0] = [source_feature]
 
         # Make sure that there's a gap feature for every span of n's
@@ -445,13 +454,6 @@ class EMBL( object ):
         of the source organism as described in Section 2.2 of
         ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt
         """
-
-        output = "OC   "
-
-        if len(self.classification) == 0 and self.verify:
-            sys.stderr.write("At least one classification level is needed: ")
-            self.classification += [raw_input()]
-
         return multiline("OC", self.classification, sep=";", suffix=".") + self.spacer
 
     def OG(self):
@@ -731,19 +733,14 @@ class EMBL( object ):
                 self.accession = "XXX"
                 EMBL.PREVIOUS_VALUES["accession"] = "XXX"
 
-    def set_classification(self, classification = []):
+    def set_classification(self, classification = None, strain = None, environmental_sample = None, isolation_source = None, isolate = None):
         """
         Sets the entry phylogenetic classification, or parses it from the current record
         """
         if "classification" in EMBL.PREVIOUS_VALUES:
             self.classification = EMBL.PREVIOUS_VALUES["classification"]
         else:
-            if classification:
-                self.classification = classification
-                EMBL.PREVIOUS_VALUES["classification"] = classification
-            #elif hasattr(self.record, "classification"):
-            #    self.classification += self.record.classification
-            if not getattr(self, "classification", False):
+            if not classification:
                 lineage = "Life" # default value
                 try:
                     taxid = self.get_taxid_from_species(self.species)
@@ -759,8 +756,64 @@ class EMBL( object ):
                     logging.error(e)
                     logging.error("<Life> will be used by default to populate the OC line to keep a format suitable for ENA submission")
 
-                self.classification = [lineage]
-                EMBL.PREVIOUS_VALUES["classification"] = [lineage]
+                classification = lineage
+
+            self.classification = classification
+            EMBL.PREVIOUS_VALUES["classification"] = classification
+
+            # Take care of procaryote case:  At least one of the following qualifiers "strain, environmental_sample, isolate" must exist when organism belongs to Bacteria.
+            if "Bacteria" in classification:
+
+                #first check if one of the mandatory data for procayote are given by the command line:
+                if not strain and not environmental_sample and not isolate: #no information provided, let's ask the user
+                    onekey = None
+                    while not onekey:
+                        sys.stderr.write("At least one of the following qualifiers \"strain, environmental_sample, isolate\" must exist when organism belongs to Bacteria. Please fill one of those information.(source feature keys containing the /environmental_sample qualifier should also contain the /isolation_source qualifier. entries including /environmental_sample must not include the /strain qualifier)\nStrain:")
+                        strain = raw_input()
+                        if strain: 
+                            EMBL.PREVIOUS_VALUES["strain"]=strain
+                            onekey = strain
+                        if not strain: #Entry with /environmental_sample must not include the /strain qualifier
+                            environmental_sample = None
+                            while environmental_sample != "n" and environmental_sample != "y" :
+                                sys.stderr.write("Environmental_sample [y/n]:")
+                                environmental_sample = raw_input()
+                                if environmental_sample == "y":
+                                    EMBL.PREVIOUS_VALUES["environmental_sample"]=None
+                                    onekey = environmental_sample
+                                    isolation_source=None
+                                    sys.stderr.write("/environmental_sample qualifier should also contain the /isolation_source qualifier.")
+                                    while not isolation_source: #/environmental_sample qualifier should also contain the /isolation_source qualifier
+                                        sys.stderr.write("isolation_source:")
+                                        isolation_source = raw_input()
+                                    EMBL.PREVIOUS_VALUES["isolation_source"]=isolation_source
+
+                        sys.stderr.write("isolate:")
+                        isolate = raw_input()
+                        if isolate:
+                            EMBL.PREVIOUS_VALUES["isolate"]=isolate
+                            onekey = isolate
+                else: #information provided - we have to verify the different combination
+                    if strain and environmental_sample: #both forbidden
+                        sys.stderr.write("Entry with /environmental_sample must not include the /strain qualifier.\n")
+                        sys.exit()
+                    if isolate:
+                        EMBL.PREVIOUS_VALUES["isolate"]=isolate
+                    if isolation_source:
+                            EMBL.PREVIOUS_VALUES["isolation_source"]=isolation_source
+                    if strain:
+                        EMBL.PREVIOUS_VALUES["strain"]=strain
+                    if(environmental_sample):
+                        EMBL.PREVIOUS_VALUES["environmental_sample"]=None
+                        if not isolation_source:
+                            sys.stderr.write("/environmental_sample qualifier should also contain the /isolation_source qualifier.\n")
+                            while not isolation_source: #/environmental_sample qualifier should also contain the /isolation_source qualifier
+                                sys.stderr.write("isolation_source:")
+                                isolation_source = raw_input()
+                            EMBL.PREVIOUS_VALUES["isolation_source"]=isolation_source
+
+
+
 
     def set_created(self, timestamp = None):
         """
@@ -1097,8 +1150,11 @@ def main():
 
     parser = argparse.ArgumentParser( description = __doc__ )
 
+    #positional arguments
     parser.add_argument("gff_file", help="Input gff-file.")
     parser.add_argument("fasta", help="Input fasta sequence.")
+
+    #single character parameter
     parser.add_argument("-a", "--accession", default=None, help="Accession number(s) for the entry. This value is automatically filled up by ENA during the submission by a unique accession number they will assign.")
     parser.add_argument("-c", "--created", default=None, help="Creation time of the original entry.")
     parser.add_argument("-d", "--data_class", default=None, help="Data class of the sample.", choices=["CON", "PAT", "EST", "GSS", "HTC", "HTG", "MGA", "WGS", "TSA", "STS", "STD"])
@@ -1109,12 +1165,16 @@ def main():
     parser.add_argument("-m", "--molecule_type", default=None, help="Molecule type of the sample.", choices=["genomic DNA", "genomic RNA", "mRNA", "tRNA", "rRNA", "other RNA", "other DNA", "transcribed RNA", "viral cRNA", "unassigned DNA", "unassigned RNA"])
     parser.add_argument("-o", "--output", default=None, help="Output filename.")
     parser.add_argument("-p", "--project_id", help="Project ID.")
+    parser.add_argument("-q", "--quiet", action="count", default=0, help="Decrease verbosity.")
     parser.add_argument("-r", "--transl_table", type=int, default=None, help="Translation table.", choices=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
     parser.add_argument("-s", "--species", default=None, help="Species, formatted as 'Genus species' or using a taxid.")
     parser.add_argument("-t", "--topology", default=None, help="Sequence topology.", choices=["linear", "circular"])
-
+    parser.add_argument("-v", "--verbose", action="count", default=2, help="Increase verbosity.")
+    parser.add_argument("-x", "--taxonomy", default=None, help="Source taxonomy.", choices=["PHG", "ENV", "FUN", "HUM", "INV", "MAM", "VRT", "MUS", "PLN", "PRO", "ROD", "SYN", "TGN", "UNC", "VRL"])
     parser.add_argument("-z", "--gzip", default=False, action="store_true", help="Gzip output file")
 
+    #double character parameter
+    parser.add_argument("--ah", "--advanced_help", choices=["One of the parameters above"], help="It displays advanced information of the parameter specified. If you don't specify any parameter it will display advanced information of all of them.")
     parser.add_argument("--de", default="XXX", help="Description.")
     parser.add_argument("--rc", default=None, help="Reference Comment.")
     parser.add_argument("--rx", default=None, help="Reference cross-reference.")
@@ -1123,27 +1183,26 @@ def main():
     parser.add_argument("--rt", default=";", help="Reference Title.")
     parser.add_argument("--rl", default=None, help="Reference publishing location.")
 
-    parser.add_argument("--no_wrap_qualifier", action="store_true", help="To avoid line-wrapping for qualifiers.")
-    parser.add_argument("--keep_duplicates", action="store_true", help="Do not remove duplicate features during the process.")
-    parser.add_argument("--interleave_genes", action="store_false", help="Print gene features with interleaved mRNA and CDS features.")
+    # Long word parameter
+    parser.add_argument("--email", default=None, help="Email used to fetch information from NCBI taxonomy database.")
+    parser.add_argument("--expose_translations", action="store_true", help="Copy feature and attribute mapping files to the working directory.")
     parser.add_argument("--force_unknown_features", action="store_true", help="Force to keep feature types not accepted by EMBL. /!\ Option not suitable for submission purpose.")
     parser.add_argument("--force_uncomplete_features", action="store_true", help="Force to keep features whithout all the mandatory qualifiers. /!\ Option not suitable for submission purpose.")
+    parser.add_argument("--interleave_genes", action="store_false", help="Print gene features with interleaved mRNA and CDS features.")
+    parser.add_argument("--keep_duplicates", action="store_true", help="Do not remove duplicate features during the process.")
     parser.add_argument("--locus_numbering_start", default=1, type=int, help="Start locus numbering with the provided value.")
-
-    parser.add_argument("--email", default=None, help="Email used to fetch information from NCBI taxonomy database.")
+    parser.add_argument("--no_progress", action="store_false", help="Hide conversion progress counter.")
+    parser.add_argument("--no_wrap_qualifier", action="store_true", help="To avoid line-wrapping for qualifiers.")
     parser.add_argument("--shame", action="store_true", help="Suppress the shameless plug.")
     parser.add_argument("--translate", action="store_true", help="Include translation in CDS features.")
-
-    parser.add_argument("--expose_translations", action="store_true", help="Copy feature and attribute mapping files to the working directory.")
-    parser.add_argument("--no_progress", action="store_false", help="Hide conversion progress counter.")
-    parser.add_argument("--version", default=None, type=int, help="Sequence version number.")
-    parser.add_argument("-x", "--taxonomy", default=None, help="Source taxonomy.", choices=["PHG", "ENV", "FUN", "HUM", "INV", "MAM", "VRT", "MUS", "PLN", "PRO", "ROD", "SYN", "TGN", "UNC", "VRL"])
-
-    parser.add_argument("-v", "--verbose", action="count", default=2, help="Increase verbosity.")
-    parser.add_argument("-q", "--quiet", action="count", default=0, help="Decrease verbosity.")
     parser.add_argument("--uncompressed_log", action="store_true", help="Some logs can be compressed for better lisibility, they won't.")
+    parser.add_argument("--version", default=None, type=int, help="Sequence version number.")
 
-    parser.add_argument("--ah", "--advanced_help", choices=["One of the parameters above"], help="It displays advanced information of the parameter specified. If you don't specify any parameter it will display advanced information of all of them.")
+    #Procaryote specific parameter
+    parser.add_argument("--strain", default=None, help="Strain from which sequence was obtained. May be needed when organism belongs to Bacteria")
+    parser.add_argument("--environmental_sample", action="store_true",  help="Bolean. identifies sequences derived by direct molecular isolation from a bulk environmental DNA sample with no reliable identification of the source organism. May be needed when organism belongs to Bacteria.")
+    parser.add_argument("--isolation_source", default=None, help="Describes the physical, environmental and/or local geographical source of the biological sample from which the sequence was derived. Mandatory when environmental_sample option used.")
+    parser.add_argument("--isolate", default=None, help="Individual isolate from which the sequence was obtained. May be needed when organism belongs to Bacteria")
 
     args = parser.parse_args()
 
@@ -1202,7 +1261,7 @@ def main():
 
         #Set up the rest
         writer.set_accession( args.accession )
-        writer.set_classification( args.classification )
+        writer.set_classification( args.classification, args.strain, args.environmental_sample, args.isolation_source, args.isolate)
         writer.set_created( args.created )
         writer.set_data_class( args.data_class )
         writer.set_description(args.de)

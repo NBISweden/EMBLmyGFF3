@@ -13,7 +13,6 @@ LEGAL_DBXREF_FILE="legal_dbxref.json"
 
 class Qualifier( object ):
     
-    SINGLE_VALUE_QUALIFIERS = ["gene"]
     PREVIOUS_ERRORS = []
     
     def __init__(self, qualifier, value = [], mandatory = False, qualifier_definition_dir = "modules/qualifiers", no_wrap= None):
@@ -127,31 +126,32 @@ class Qualifier( object ):
         if type(value) != type([]):
             value = [value]
         for val in value:
+            string=""
             if val == []:
                 continue
             if type(val) == type([]) and len(val):
                 val = val[0]
-            if type(val) in [type(""), type(u"")]:
-                val = "\"%s\"" % val
-            if getattr(self, "value_type", None) == "none":
-                output += "\nFT                   /%s\n"
-                continue
+            if not val: # if empty => no value
+                string = "/%s" % (self.name)
+            elif type(val) in [type(""), type(u"")]: #if a string => we add quote to the value
+                #logging.error("always go there: %s" % self.name)
+                string = "/%s=\"%s\"" % (self.name, val)
+            else:# A value but is an integer => we do not add quote
+                #logging.error("nonono: %s" % self.name)
+                 string = "/%s=%s" % (self.name, val)
+            #if getattr(self, "value_type", None) == "none":
+            #    string = "/%s" % (self.name)
+            #    continue
             
-            string = "/%s=%s" % (self.name, val)
             output += multiline("FT", string, wrap=59, no_wrap = no_wrap)
             
-            # break if only one value is legal
-            if self.name in self.SINGLE_VALUE_QUALIFIERS:
-                break
         return output
          
     def add_value(self, value):
         """
         Adds a value to the current set of values for this qualifier.
+        Qualifier wihtout value is possible. e.g environmental_sample
         """
-        if not value:
-            logging.debug("%s - Not adding value (current value: %s)" % (self.name, self.value))
-            return
         self.value = [self.value] if type(self.value) != type([]) else self.value
         value = [value] if type(value) != type([]) else value
         

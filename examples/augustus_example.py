@@ -14,10 +14,10 @@ def fill_path(file):
 	return tail[0]+"/"+file
 
 def main():
-	#FASTA file used to produce the annotation
+	#PATH to the FASTA file used to produce the annotation
 	GENOME="augustus.fa"
 	
-	# ANNOATION in gff3 FORMAT
+	#PATH to the ANNOTATION in gff3 FORMAT
 	ANNOTATION="augustus.gff3"
 
 	#PROJECT name registered on EMBL

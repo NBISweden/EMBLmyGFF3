@@ -147,7 +147,7 @@ def _splitWordsMax(string, valueMax, splitW, split_char):
     words=[]
 
     if split_char:
-        words = _splitkeepsep(string, split_char)
+        words = splitkeepsep(string, split_char)
         #logging.error(words)
     else:
         words = string.split()
@@ -169,5 +169,5 @@ def _splitWordsMax(string, valueMax, splitW, split_char):
 
     return positionBefore
 
-def _splitkeepsep(s, sep):
+def splitkeepsep(s, sep):
     return reduce(lambda acc, elem: acc[:-1] + [acc[-1] + elem] if elem == sep else acc + [elem], re.split("(%s)" % re.escape(sep), s), [])

@@ -4,11 +4,11 @@
 # Script example to simplify the use of many options #
 ########################################################
 
-#FASTA file used to produce the annotation
-GENOME="maker.fa"
+#PATH to the FASTA file used to produce the annotation
+GENOME=`dirname "$0"`"/maker.fa"
 
-# ANNOATION in gff3 FORMAT
-ANNOTATION="maker.gff3"
+#PATH to the ANNOTATION in gff3 FORMAT
+ANNOTATION=`dirname "$0"`"/maker.gff3"
 
 #PROJECT name registered on EMBL
 PROJECT="17285"

@@ -14,10 +14,10 @@ def fill_path(file):
 	return tail[0]+"/"+file
 
 def main():
-	#FASTA file used to produce the annotation
+	#PATH to the FASTA file used to produce the annotation
 	GENOME="prokka.fa"
 
-	# ANNOATION in gff3 FORMAT
+	#PATH to the ANNOTATION in gff3 FORMAT
 	ANNOTATION="prokka.gff3"
 
 	#PROJECT name registered on EMBL
@@ -44,8 +44,11 @@ def main():
 	#Molecule type of the sample.
 	MOLECULE="genomic DNA"
 
+	#Strain
+	STRAIN="K-12"
+
 	#Create the command
-	command = "EMBLmyGFF3 --rg REFERENCE_GROUP -i "+LOCUS_TAG+" -p "+PROJECT+" -m \""+MOLECULE+"\" -r "+TABLE+" -t "+TOPOLOGY+" -s \""+SPECIES+"\" -x "+TAXONOMY+" -o EMBLmyGFF3-prokka-example.embl "+fill_path(ANNOTATION)+" "+fill_path(GENOME)
+	command = "EMBLmyGFF3 --rg REFERENCE_GROUP -i "+LOCUS_TAG+" -p "+PROJECT+" -m \""+MOLECULE+"\" -r "+TABLE+" -t "+TOPOLOGY+" --strain \""+STRAIN+"\" -s \""+SPECIES+"\" -x "+TAXONOMY+" -o EMBLmyGFF3-prokka-example.embl "+fill_path(ANNOTATION)+" "+fill_path(GENOME)
 	print("Running the following command: "+command)
 
 	#Execute the command

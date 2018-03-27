@@ -596,6 +596,34 @@ EMBLmyGFF3 tool specific
 Bolean - Doesnt expect any value
 When the option is called, the mapping json files will be copied into the current folder. A local mapping json file will always be used instead of the default internal one.
 """ 
+##Procaryote specific parameters
+  if(string == "strain" or string == "all"):
+    output += string+""":
+EMBL specific - used to create the source feature keys.
+At least one of the following qualifiers \"strain, environmental_sample, isolate\" must exist when organism belongs to Bacteria.
+Strain from which sequence was obtained. Entries including /environmental_sample must not include the /strain qualifier.
+""" 
+  if(string == "environmental_sample" or string == "all"):
+    output += string+""":
+EMBL specific - used to create the source feature keys.
+Bolean - Doesnt expect any value
+At least one of the following qualifiers \"strain, environmental_sample, isolate\" must exist when organism belongs to Bacteria.
+Definition:  identifies sequences derived by direct molecular isolation from a bulk environmental DNA sample (by PCR with or without subsequent cloning of the product, DGGE, or other anonymous methods) with no reliable identification of the source organism. Environmental samples include clinical samples, gut contents, and other sequences from anonymous organisms that may be associated with a particular host. They do not include endosymbionts that can be reliably recovered from a particular host, organisms from a readily identifiable but uncultured field sample (e.g., many cyanobacteria), or phytoplasmas that can be reliably recovered from diseased plants (even though these cannot be grown in axenic culture).
+Comment: source feature keys containing the /environmental_sample qualifier should also contain the /isolation_source qualifier. Entries including /environmental_sample must not include the /strain qualifier.
+""" 
+  if(string == "isolation_source" or string == "all"):
+    output += string+""":
+EMBL specific - used to create the source feature keys.
+Definition:  describes the physical, environmental and/or local geographical source of the biological sample from which the sequence was derived.
+Comment: source feature keys containing an /environmental_sample qualifier should also contain an /isolation_source qualifier; the /country qualifier should be used to describe the country and major geographical sub-region.
+""" 
+  if(string == "isolate" or string == "all"):
+    output += string+""":
+EMBL specific - used to create the source feature keys.
+At least one of the following qualifiers \"strain, environmental_sample, isolate\" must exist when organism belongs to Bacteria.
+Individual isolate from which the sequence was obtained.
+""" 
+
   if not output:
     output += string+""":Sorry no advanced help for this option: """+string+"\n"
 
