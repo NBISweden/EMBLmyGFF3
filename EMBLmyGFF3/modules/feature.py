@@ -64,7 +64,7 @@ class Feature(object):
     DEFAULT_FEATURE_DIR = os.path.join(SCRIPT_DIR, "modules/features")
     DEFAULT_QUALIFIER_DIR = os.path.join(SCRIPT_DIR, "modules/qualifiers/")
 
-    def __init__(self, feature, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False,
+    def __init__(self, feature = None, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False,
                 feature_definition_dir = DEFAULT_FEATURE_DIR, qualifier_definition_dir = DEFAULT_QUALIFIER_DIR, format_data = True,
                 level = 0, reorder_gene_features = True, skip_feature = False, force_unknown_features = False, 
                 force_uncomplete_features = False, uncompressed_log = None, no_wrap_qualifier = False):
@@ -72,6 +72,7 @@ class Feature(object):
         Initializes a Feature, loads json files for feature and
         qualifiers, and starts parsing the data.
         """
+        self.feature = feature
         self.legal_qualifiers = []
         self.level = level
         self.location = feature.location
@@ -568,7 +569,12 @@ class Feature(object):
         seq = Seq(str(self.sequence()),IUPACAmbiguousDNA())
         translated_seq = seq.translate(codon_table).tostring().replace('B','X').replace('Z','X').replace('J','X')
         if '*' in translated_seq[:-1]: # check if premature stop codon in the translation
-            logging.error('Stop codon found within the CDS. It will rise an error submiting the data to ENA. Please fix your gff file.')
+            ID=''
+            for qualifier in self.feature.qualifiers:
+                if 'id' == qualifier.lower():
+                    ID =  "%s" % " ".join(self.feature.qualifiers[qualifier])
+                    break
+            logging.error('Stop codon found within the CDS (ID = %s). It will rise an error submiting the data to ENA. Please fix your gff file.' %  ID)
 
         # remove the stop character. It's not accepted by embl
         if translated_seq[-1:] == "*":

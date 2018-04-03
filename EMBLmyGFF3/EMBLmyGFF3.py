@@ -618,7 +618,7 @@ class EMBL( object ):
                 for qualifier in feature.qualifiers:
                     if 'locus_tag' == qualifier.lower():
                         locus_tag_suffix = "%s" % "_".join(feature.qualifiers[qualifier])
-
+                        break
                 # create locus tag from locus_tag_suffix and accession
                 locus_tag = "%s_%s" % (locus_tag_prefix, locus_tag_suffix)
 
