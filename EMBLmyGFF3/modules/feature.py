@@ -567,14 +567,34 @@ class Feature(object):
         """
         codon_table = CodonTable.ambiguous_dna_by_id[self.transl_table]  
         seq = Seq(str(self.sequence()),IUPACAmbiguousDNA())
+
+        #start translation according to the phase
+        phase = int(self.feature.qualifiers.get("phase", [0])[0])
+        if phase != 0:
+            seq = seq[phase:]
+
+        #check if multiple of three
+        remaining_nuc = len(seq)%3
+        if remaining_nuc != 0:   
+            #create warning
+            ID=''
+            for qualifier in self.feature.qualifiers:
+                if 'id' == qualifier.lower():
+                    ID =  "%s" % " ".join(self.feature.qualifiers[qualifier])
+                    break
+            logging.warning('Partial CDS. The CDS with ID = %s not a multiple of three.' %  ID)
+
+        #translate the sequence in AA with normal frame even if stop inside
         translated_seq = seq.translate(codon_table).tostring().replace('B','X').replace('Z','X').replace('J','X')
+        
+        #Extra check about stop codon in CDS
         if '*' in translated_seq[:-1]: # check if premature stop codon in the translation
             ID=''
             for qualifier in self.feature.qualifiers:
                 if 'id' == qualifier.lower():
                     ID =  "%s" % " ".join(self.feature.qualifiers[qualifier])
                     break
-            logging.error('Stop codon found within the CDS (ID = %s). It will rise an error submiting the data to ENA. Please fix your gff file.' %  ID)
+            logging.error('Stop codon found within the CDS (ID = %s). It will rise an error submiting the data to ENA. Please fix your gff file (check the phase Column 8).' %  ID)
 
         # remove the stop character. It's not accepted by embl
         if translated_seq[-1:] == "*":
