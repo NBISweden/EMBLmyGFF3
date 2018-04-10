@@ -1,4 +1,6 @@
 #!/usr/bin/env python2.7
+# -*- coding: utf-8 -*-
+
 """
 Qualifier handler for EMBL feature tables
 """
@@ -132,13 +134,11 @@ class Qualifier( object ):
             if type(val) == type([]) and len(val):
                 val = val[0]
             if not val: # if empty => no value
-                string = "/%s" % (self.name)
+                string = "/{}".format(self.name)
             elif type(val) in [type(""), type(u"")]: #if a string => we add quote to the value
-                #logging.error("always go there: %s" % self.name)
-                string = "/%s=\"%s\"" % (self.name, val)
+                string = "/{}=\"{}\"".format(self.name, val)
             else:# A value but is an integer => we do not add quote
-                #logging.error("nonono: %s" % self.name)
-                 string = "/%s=%s" % (self.name, val)
+                 string = "/{}={}".format(self.name, val)
             #if getattr(self, "value_type", None) == "none":
             #    string = "/%s" % (self.name)
             #    continue

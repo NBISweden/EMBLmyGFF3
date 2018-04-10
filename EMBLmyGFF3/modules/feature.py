@@ -1,4 +1,5 @@
 #!/usr/bin/env python2.7
+# -*- coding: utf-8 -*-
 
 from __future__ import division
 
@@ -141,7 +142,7 @@ class Feature(object):
         Formats the feature as EMBL, limited to 80 character lines,
         including sub features.
         """
-        output=""
+        output=unicode("")
 
         if self.skip_feature is False or self.force_unknown_features or self.force_uncomplete_features:
             output = self._feature_as_EMBL(self.no_wrap_qualifier) if self.type not in self.remove else ""
