@@ -199,6 +199,7 @@ You can also find a comprehensive help about the different parameters using the 
 |  -k , --keyword|        Keywords for the entry. No default value.|
 |  -l , --classification| Organism classification. The default value is the classification found in the NCBI taxonomy DB from the species/taxid given as --species parameter. If none is found, 'Life' will be the default value.|
 |  -x , --taxonomy       |Source taxonomy. Default value 'XXX'. This option is used to set the taxonomic division within ID line (6th token).|
+|  --de|                  Description. Default value 'XXX'.|
 |  --rc|                  Reference Comment. No default value.|
 |  --ra , --author|       Author for the reference. No default value.|
 |  --rg                  |Reference Group, the working groups/consortia that produced the record. Default value 'XXX'.|
