@@ -473,7 +473,7 @@ class EMBL( object ):
         """
 
         if self.organelle:
-            return "\nOG   %s" % self.organelle + self.spacer
+            return ("OG   %s" % (self.organelle,)).strip() + "\n" + self.spacer
         return ""
 
     def RF(self):
@@ -606,21 +606,36 @@ class EMBL( object ):
 
         for i, feature in enumerate(self.record.features):
 
-            #manage locus_tag
+            ####################
+            # manage locus_tag #
+            
             locus_tag=None
+            #skip feature without locus_tag
             if feature.type.lower() != "source" and feature.type.lower() != "gap":
-                cpt_locus = self.PREVIOUS_VALUES['locus_numbering_start']
-                locus_tag_suffix="LOCUS"+str(cpt_locus)
-                # now the locus has been used we can increment the locus value
-                self.PREVIOUS_VALUES['locus_numbering_start'] += 1
 
-                # replace locus_tag_suffix by the value of the locus_tag qualifier if this one exists
-                for qualifier in feature.qualifiers:
-                    if 'locus_tag' == qualifier.lower():
-                        locus_tag_suffix = "%s" % "_".join(feature.qualifiers[qualifier])
-                        break
-                # create locus tag from locus_tag_suffix and accession
-                locus_tag = "%s_%s" % (locus_tag_prefix, locus_tag_suffix)
+                # When option attribute_to_use_as_locus_tag activated, use the value of an attribute defined by the user 
+                if self.PREVIOUS_VALUES['attribute_to_use_as_locus_tag']: # If we have defined an attribute to use as locus_tag
+                    attribute = self.PREVIOUS_VALUES['attribute_to_use_as_locus_tag']
+                    for qualifier in feature.qualifiers:
+                        if attribute.lower() == qualifier.lower():
+                            locus_tag = feature.qualifiers[attribute]
+                            break
+                    if not locus_tag:
+                            logging.error("You told me to use the value of the attribute %s from the gff3 file as locus_tag but this attribute doesnt exist for feature %s." % (attribute, feature.id) )
+                # create a locus tag base on the prefix + LOCUS + incremented number
+                if not locus_tag:
+                    cpt_locus = self.PREVIOUS_VALUES['locus_numbering_start']
+                    locus_tag_suffix="LOCUS"+str(cpt_locus)
+                    # now the locus has been used we can increment the locus value
+                    self.PREVIOUS_VALUES['locus_numbering_start'] += 1
+
+                    # replace locus_tag_suffix by the value of the locus_tag qualifier if this one exists
+                    for qualifier in feature.qualifiers:
+                        if 'locus_tag' == qualifier.lower():
+                            locus_tag_suffix = "%s" % "_".join(feature.qualifiers[qualifier])
+                            break
+                    # create locus tag from locus_tag_suffix and accession
+                    locus_tag = "%s_%s" % (locus_tag_prefix, locus_tag_suffix)
 
             f = Feature(feature, self.record.seq, locus_tag, self.transl_table, translate=self.translate, 
                 feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1, 
@@ -904,6 +919,15 @@ class EMBL( object ):
             EMBL.PREVIOUS_VALUES["keywords"] = keywords
             self.keywords = keywords
 
+    def set_attribute_to_use_as_locus_tag (self, attribute_to_use_as_locus_tag = None):
+        """
+        Sets the attribute to look at to get the locus_tag value
+        """
+        if "attribute_to_use_as_locus_tag" in EMBL.PREVIOUS_VALUES:
+            self.attribute_to_use_as_locus_tag = EMBL.PREVIOUS_VALUES["attribute_to_use_as_locus_tag"]
+        else:
+            self.attribute_to_use_as_locus_tag = attribute_to_use_as_locus_tag
+            EMBL.PREVIOUS_VALUES["attribute_to_use_as_locus_tag"] = attribute_to_use_as_locus_tag
 
     def set_locus_tag(self, locus_tag = ""):
         """
@@ -917,8 +941,10 @@ class EMBL( object ):
                 EMBL.PREVIOUS_VALUES["locus_tag"] = locus_tag
             elif not hasattr(self, "locus_tag"):
 
-                sys.stderr.write("No value provided as locus_tag.\nPlease provide a locus_tag:")
-                locus_tag = raw_input()
+                if not self.PREVIOUS_VALUES['attribute_to_use_as_locus_tag']:
+                    sys.stderr.write("No value provided as locus_tag.\nPlease provide a locus_tag:")
+                    locus_tag = raw_input()
+                
                 if not locus_tag:
                     locus_tag="XXX"
 
@@ -961,7 +987,7 @@ class EMBL( object ):
             self.organelle = EMBL.PREVIOUS_VALUES["organelle"]
         else:
             if self.verify and organelle:
-                organelle = self._verify( organelle, "organelle")
+                organelle = self._verify( self.organelle, "organelle")
             
             self.organelle = organelle
             EMBL.PREVIOUS_VALUES["organelle"] = organelle
@@ -1195,6 +1221,7 @@ def main():
     parser.add_argument("--no_wrap_qualifier", action="store_true", help="To avoid line-wrapping for qualifiers.")
     parser.add_argument("--shame", action="store_true", help="Suppress the shameless plug.")
     parser.add_argument("--translate", action="store_true", help="Include translation in CDS features.")
+    parser.add_argument("--use_attribute_value_as_locus_tag", default=None, help="Use the value of the defined attribute as locus_tag.")
     parser.add_argument("--uncompressed_log", action="store_true", help="Some logs can be compressed for better lisibility, they won't.")
     parser.add_argument("--version", default=None, type=int, help="Sequence version number.")
 
@@ -1270,8 +1297,11 @@ def main():
         writer.set_interleave_genes( args.interleave_genes )
         writer.set_keep_duplicates( args.keep_duplicates )
         writer.set_keywords( args.keyword )
+
+        writer.set_attribute_to_use_as_locus_tag( args.use_attribute_value_as_locus_tag ) #has to be before set_locus_tag
         writer.set_locus_tag( args.locus_tag )
         writer.set_locus_numbering_start(args.locus_numbering_start)
+        
         writer.set_molecule_type( args.molecule_type )
         writer.set_no_wrap_qualifier( args.no_wrap_qualifier)
         writer.set_organelle( args.organelle )

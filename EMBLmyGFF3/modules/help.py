@@ -623,6 +623,11 @@ EMBL specific - used to create the source feature keys.
 At least one of the following qualifiers \"strain, environmental_sample, isolate\" must exist when organism belongs to Bacteria.
 Individual isolate from which the sequence was obtained.
 """ 
+  if(string == "use_attribute_value_as_locus_tag" or string == "all"):
+    output += string+""":
+This option allows to use the value of an attribute from the gff3 as locus_tag. /!\\ If the value stored by the defined attribute does not follow the ENA locus_tag 
+specification you will end up with an unvalid EMBL flat file that will not be accepted for submission. Please read documentation about locus_tag for more information. 
+If the attribute you mentioned is not present, we will create a locus_tag using the information provided by -i/--locus_tag option if filled.""" 
 
   if not output:
     output += string+""":Sorry no advanced help for this option: """+string+"\n"
