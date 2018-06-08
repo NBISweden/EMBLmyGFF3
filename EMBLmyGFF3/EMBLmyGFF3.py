@@ -624,6 +624,7 @@ class EMBL( object ):
                             logging.error("You told me to use the value of the attribute %s from the gff3 file as locus_tag but this attribute doesnt exist for feature %s." % (attribute, feature.id) )
                 # create a locus tag base on the prefix + LOCUS + incremented number
                 if not locus_tag:
+
                     cpt_locus = self.PREVIOUS_VALUES['locus_numbering_start']
                     locus_tag_suffix="LOCUS"+str(cpt_locus)
                     # now the locus has been used we can increment the locus value
