@@ -5,8 +5,8 @@ GFF3 to EMBL conversion tool
 
 Software to convert GFF3 and fasta to legal [EMBL format](https://www.ebi.ac.uk/ena/submit/flat-file) suitable for [ENA](http://www.ebi.ac.uk/ena) submission.
 
-Based on documentation from http://www.insdc.org/files/feature_table.html, http://www.ebi.ac.uk/ena/WebFeat/ and
-ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
+Based on documentation from http://www.insdc.org/files/feature_table.html, http://www.ebi.ac.uk/ena/WebFeat/, [ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.html#7.1.1](ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.html#7.1.1) and
+[ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt](ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt).
 
 __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Tips](http://ena-docs.readthedocs.io/en/latest/)__
 
