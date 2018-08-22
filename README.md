@@ -323,6 +323,11 @@ Features that have the same key (feature type) and location as another feature a
 
 ## CITATION
 
+[Norling M, Jareborg N, Dainat J. EMBLmyGFF3: a converter facilitating genome annotation submission to European Nucleotide Archive.
+BMC Res Notes. 2018 Aug 13;11(1):584. doi: 10.1186/s13104-018-3686-x.](https://doi.org/10.1186/s13104-018-3686-x)
+
+And
+
 [![DOI](https://zenodo.org/badge/64933149.svg)](https://zenodo.org/badge/latestdoi/64933149)
 
 ## AUTHOR
