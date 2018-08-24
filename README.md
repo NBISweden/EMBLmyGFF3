@@ -184,7 +184,14 @@ EMBLmyGFF3 maker.gff3 maker.fa -o result.embl
 Minimum requirement to launch the software and avoid any prompt.
 
 ```bash
-EMBLmyGFF3 maker.gff3 maker.fa --topology linear --molecule_type 'genomic DNA' --transl_table 1  --species 'Drosophila melanogaster' --locus_tag MY_LOCUS_TAG --project_id PRJXXXXXXX -o result.embl
+EMBLmyGFF3 maker.gff3 maker.fa \
+        --topology linear \
+        --molecule_type 'genomic DNA' \
+        --transl_table 1  \
+        --species 'Drosophila melanogaster' \
+        --locus_tag MY_LOCUS_TAG \
+        --project_id PRJXXXXXXX \
+        -o result.embl
 ```
 
 ### Advanced case 1
@@ -192,7 +199,17 @@ EMBLmyGFF3 maker.gff3 maker.fa --topology linear --molecule_type 'genomic DNA' -
 Adding more information than those mandatory (filling the ID).
 
 ```bash
-EMBLmyGFF3 maker.gff3 maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --project_id PRJXXXXXXX --rg MYGROUP -o result.embl
+EMBLmyGFF3 maker.gff3 maker.fa \
+        --data_class STD \
+        --topology linear \
+        --molecule_type "genomic DNA" \
+        --transl_table 1  \
+        --species 'Drosophila melanogaster' \
+        --taxonomy INV \
+        --locus_tag LOCUS_TAG \
+        --project_id PRJXXXXXXX \
+        --rg MYGROUP \
+        -o result.embl
 ```
 
 ### Advanced case 2
@@ -200,7 +217,20 @@ EMBLmyGFF3 maker.gff3 maker.fa --data_class STD --topology linear --molecule_typ
 Adding more information than those mandatory (filling the ID line + publication and authors information).
 
 ```bash
-EMBLmyGFF3 maker.gff3 maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
+EMBLmyGFF3 maker.gff3 maker.fa \
+        --data_class STD \
+        --topology linear \
+        --molecule_type "genomic DNA" \
+        --transl_table 1  \
+        --species 'Drosophila melanogaster' \
+        --taxonomy INV \
+        --locus_tag LOCUS_TAG \
+        --project_id PRJXXXXXXX \
+        --rg MYGROUP \
+        --author 'author for the reference' \
+        --rt 'reference title' \
+        --rl 'Some journal' \
+        -o result.embl
 ```
 
 ### Use through a script
@@ -341,13 +371,16 @@ The **source** (2nd column) as well as the **score** (6th column) from the GFF3 
 
 ```json
 "source": {
-    "source description": "The source is a free text qualifier intended to describe the algorithm or operating procedure that generated this
-                           feature. Typically this is the name of a piece of software, such as Genescan or a database name, such
-                           as Genbank. In effect, the source is used to extend the feature ontology by adding a qualifier to the type
-                           creating a new composite type that is a subclass of the type in the type column.",
+    "source description": "The source is a free text qualifier intended to describe the algorithm or
+                           operating procedure that generated this feature. Typically this is the name of
+                           a piece of software, such as Genescan or a database name, such as Genbank. In
+                           effect, the source is used to extend the feature ontology by adding a qualifier
+                           to the type creating a new composite type that is a subclass of the type in the
+                           type column.",
     "target": "note",
     "prefix": "source:",
-    "dev comment": "EMBL qualifiers tend to be more specific than this, so very hard to create a good mapping.
+    "dev comment": "EMBL qualifiers tend to be more specific than this, so very hard to create a good
+                    mapping."
 },
 ```
 
