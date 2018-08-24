@@ -326,7 +326,7 @@ The file handling the proper mapping is ***translation_gff_attribute_to_embl_qua
 **example:**
 
 ```json
->"Dbxref": {
+"Dbxref": {
     "source description": "A database cross reference.",
     "target": "db_xref",
     "dev comment": ""
@@ -345,8 +345,8 @@ The **source** (2nd column) as well as the **score** (6th column) from the GFF3 
                            feature. Typically this is the name of a piece of software, such as Genescan or a database name, such
                            as Genbank. In effect, the source is used to extend the feature ontology by adding a qualifier to the type
                            creating a new composite type that is a subclass of the type in the type column.",
-    "target": "note"
-    "prefix": "source:"
+    "target": "note",
+    "prefix": "source:",
     "dev comment": "EMBL qualifiers tend to be more specific than this, so very hard to create a good mapping.
 },
 ```
