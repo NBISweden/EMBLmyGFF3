@@ -48,61 +48,85 @@ In order to install pip please use the following steps:
 
 **Mac OS X / LINUX:**
 
- Intall pip the python package manager:
- >sudo easy_install pip
+Install pip the python package manager:
 
- biopython and bcbio-gff will be installed automatically with the next steps
+```bash
+sudo easy_install pip
+```
+
+biopython and bcbio-gff will be installed automatically with the next steps
 
 ## Installation
 
 #### Installation with pip:
->pip install git+https://github.com/NBISweden/EMBLmyGFF3.git
+```bash
+pip install git+https://github.com/NBISweden/EMBLmyGFF3.git
+```
 
 or if you do not have administartive rights on your machine
 
->pip install --user git+https://github.com/NBISweden/EMBLmyGFF3.git
+```bash
+pip install --user git+https://github.com/NBISweden/EMBLmyGFF3.git
+```
 
 
 #### Installation with git:
 
 Clone the repository:
 
- >git clone https://github.com/NBISweden/EMBLmyGFF3.git
+```bash
+git clone https://github.com/NBISweden/EMBLmyGFF3.git
+```
 
 Move into the folder and install:
- >cd EMBLmyGFF3/
- >python setup.py install
 
- #### Check installation
- 
- Executing:
- >EMBLmyGFF3
+```bash
+cd EMBLmyGFF3/
+python setup.py install
+```
 
- or
+#### Check installation
 
- >EMBLmyGFF3 -h
+Executing:
+```bash
+EMBLmyGFF3
+```
+
+or
+
+```bash
+EMBLmyGFF3 -h
+```
 
 will display some help.
 
 ## Update
 
 #### Update with pip:
- 
- >pip install git+https://github.com/NBISweden/EMBLmyGFF3.git --upgrade
+
+```bash
+pip install git+https://github.com/NBISweden/EMBLmyGFF3.git --upgrade
+```
 
 or if you do not have administartive rights on your machine
 
- >pip install --user git+https://github.com/NBISweden/EMBLmyGFF3.git --upgrade
+```bash
+pip install --user git+https://github.com/NBISweden/EMBLmyGFF3.git --upgrade
+```
 
 #### Update with git:
 
 Move into the repository folder and execute:
 
- >git pull
+```bash
+git pull
+```
 
 ## Uninstall
 
- >pip uninstall EMBLmyGFF3
+```bash
+pip uninstall EMBLmyGFF3
+```
 
 ## USAGE
 
@@ -120,46 +144,62 @@ To learn how to obtain a *locus tag* [click here](https://www.ebi.ac.uk/ena/subm
 Three examples are provided with the tool and are located in the ***examples*** folder.
 You can try one of the 3 examples by calling **EMBLmyGFF3-maker-example** or **EMBLmyGFF3-augustus-example** or **EMBLmyGFF3-prokka-example** accordingly. This way is convenient when you performed the installation using pip.
 
-  >EMBLmyGFF3-maker-example
+```bash
+EMBLmyGFF3-maker-example
+```
 
 If you installed EMBLmyGFF3 using git those example files are located where you have cloned the repository in EMBLmyGFF3/examples/.
 You could also access these files by downloading the ***examples*** folder [here.](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/NBISweden/EMBLmyGFF3/tree/master/examples)
 You can then try the examples moving in the examples folder and launching one of the .py or .sh executable like that:
 
- >python maker_example.py
- 
- or
- 
- >./maker_example.sh
- 
+```bash
+python maker_example.py
+```
+
+or
+
+```bash
+./maker_example.sh
+```
+
 ### Simple case
 
- >EMBLmyGFF3 maker.gff3 maker.fa
+```bash
+EMBLmyGFF3 maker.gff3 maker.fa
+```
 
 Will prompt you to fill one by one the mandatory information needed to produce a proper EMBL file.
 Once the software has all the information it needs, it will process the input files and will print the result to STDOUT.
 
 In order to write the result in the desired file use the **-o** option:
 
- >EMBLmyGFF3 maker.gff3 maker.fa -o result.embl
+```bash
+EMBLmyGFF3 maker.gff3 maker.fa -o result.embl
+```
 
 ### Complete case
 
 Minimum requirement to launch the software and avoid any prompt.
 
- >EMBLmyGFF3 maker.gff3 maker.fa --topology linear --molecule_type 'genomic DNA' --transl_table 1  --species 'Drosophila melanogaster' --locus_tag MY_LOCUS_TAG --project_id PRJXXXXXXX -o result.embl
+```bash
+EMBLmyGFF3 maker.gff3 maker.fa --topology linear --molecule_type 'genomic DNA' --transl_table 1  --species 'Drosophila melanogaster' --locus_tag MY_LOCUS_TAG --project_id PRJXXXXXXX -o result.embl
+```
 
 ### Advanced case 1
 
 Adding more information than those mandatory (filling the ID).
 
- >EMBLmyGFF3 maker.gff3 maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --project_id PRJXXXXXXX --rg MYGROUP -o result.embl
+```bash
+EMBLmyGFF3 maker.gff3 maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --project_id PRJXXXXXXX --rg MYGROUP -o result.embl
+```
 
 ### Advanced case 2
 
 Adding more information than those mandatory (filling the ID line + publication and authors information).
 
- >EMBLmyGFF3 maker.gff3 maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
+```bash
+EMBLmyGFF3 maker.gff3 maker.fa --data_class STD --topology linear --molecule_type "genomic DNA" --transl_table 1  --species 'Drosophila melanogaster' --taxonomy INV --locus_tag LOCUS_TAG --project_id PRJXXXXXXX --rg MYGROUP --author 'author for the reference' --rt 'reference title' --rl 'Some journal' -o result.embl
+```
 
 ### Use through a script
 
@@ -242,8 +282,10 @@ The software will skip the unknown feature types (Non EMBL feature types that ar
 
 **To access the json mapping files launch the following command:** 
 
-  >EMBLmyGFF3 --expose_translations
-  
+```bash
+EMBLmyGFF3 --expose_translations
+```
+
 The command copy the json mapping files localy. You can then modify them as it suits you. 
 When a json mapping file is present localy, it will be used instead of the default internal one.
 
@@ -255,18 +297,22 @@ The file handling the proper mapping is ***translation_gff_feature_to_embl_featu
 
 **example:**
 
-  >"three_prime_UTR": {</br>
-  &nbsp;&nbsp;"target": "3'UTR"</br>
-  }
+```json
+"three_prime_UTR": {
+    "target": "3'UTR"
+}
+```
 
 This will map the **three_prime_UTR** feature type from the 3th column of the GFF3 file to the **3'UTR** EMBL feature type.
 **When the feature type from the GFF3 is identical to the EMBL feature no need to specify any target.** If a target is needed and you didn't specified it, the tool will throw a warning message during the process.
 
 You can decide which features will be printed in the output using the **remove** parameter:
 
-  >"exon": {</br>
-  &nbsp;&nbsp;"remove": true</br>
-  }
+```json
+"exon": {
+    "remove": true
+}
+```
 
 Like that no exon feature will be display in the output.
 
@@ -277,11 +323,13 @@ The file handling the proper mapping is ***translation_gff_attribute_to_embl_qua
 
 **example:**
 
-  >"Dbxref": {</br>
-  &nbsp;&nbsp;"source description": "A database cross reference.",</br>
-  &nbsp;&nbsp;"target": "db_xref",</br>
-  &nbsp;&nbsp;"dev comment": ""</br>
-  },
+```json
+>"Dbxref": {
+    "source description": "A database cross reference.",
+    "target": "db_xref",
+    "dev comment": ""
+},
+```
 
 This will map the **Dbxref** attribute's tag from the 9th columm of the GFF3 file to the **db_xref** embl qualifier.
 
@@ -289,15 +337,17 @@ This will map the **Dbxref** attribute's tag from the 9th columm of the GFF3 fil
 
 The **source** (2nd column) as well as the **score** (6th column) from the GFF3 file can also be handled through the ***translation_gff_other_to_embl_qualifier.json*** mapping file.
 
-  >"source": {</br>&nbsp;&nbsp;
-  "source description": "The source is a free text qualifier intended to describe the algorithm or operating procedure that generated this
+```json
+"source": {
+    "source description": "The source is a free text qualifier intended to describe the algorithm or operating procedure that generated this
                            feature. Typically this is the name of a piece of software, such as Genescan or a database name, such
                            as Genbank. In effect, the source is used to extend the feature ontology by adding a qualifier to the type
-                           creating a new composite type that is a subclass of the type in the type column.", </br>
-  &nbsp;&nbsp;"target": "note",</br>
-  &nbsp;&nbsp;"prefix": "source:",</br>
-  &nbsp;&nbsp;"dev comment": "EMBL qualifiers tend to be more specific than this, so very hard to create a good mapping."</br>
-  },
+                           creating a new composite type that is a subclass of the type in the type column.",
+    "target": "note"
+    "prefix": "source:"
+    "dev comment": "EMBL qualifiers tend to be more specific than this, so very hard to create a good mapping.
+},
+```
 
 This will map the **source** from the 2nd columm of the GFF3 file to the **note** embl qualifier.
 
@@ -316,7 +366,9 @@ There's a bug between bcbio-gff 0.6.4 and biopython 1.68 though, so use biopytho
 
 If you have several version of biopython or bcbio-gff on your computer it is possible that an incompatible version is used by default which will lead to an execution error. To check the real version used during the execution you can use this command:
 
- >python -c "import Bio; from BCBio import GFF; print 'biopython version: '+Bio.\_\_version\_\_; print 'bcbio-gff version: '+GFF.\_\_version\_\_"
+```bash
+python -c "import Bio; from BCBio import GFF; print 'biopython version: '+Bio.\_\_version\_\_; print 'bcbio-gff version: '+GFF.\_\_version\_\_"
+```
 
 **Duplicated Features**</br>
 Features that have the same key (feature type) and location as another feature are considered as duplicates and aren't allowed by the EMBL database. So they are remove during the process. If you don't plan to submit the file to ENA and you wish to keep these features, use the *--keep_duplicates* option.
