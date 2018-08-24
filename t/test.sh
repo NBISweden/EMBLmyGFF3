@@ -18,6 +18,7 @@ python setup.py install
 cd t
 SUCCESS=0
 FAIL=0
+
 for NAME in augustus maker prokka; do
     RESULT_FILE="EMBLmyGFF3-${NAME}-example.embl"
     EXPECTED_FILE="EMBLmyGFF3-${NAME}-test.embl"
