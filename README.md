@@ -253,12 +253,12 @@ You can also find a comprehensive help about the different parameters using the 
 
 | Parameter | Description |
 | --- | --- |
-|  -i , --locus_tag     | Locus tag. It is is used to set up the prefix of the locus_tag qualifier. The locus tag has to be registered at ENA prior any submission. More information [here](https://www.ebi.ac.uk/ena/submit/locus-tags). The default value is XXX.|
-|  -p , --project_id     |Project ID. The defalut value is 'XXX' *(This option is used to set up the PR line.)*|
-|  -r , --transl_table   |Translation table. No default value. *(This option is used to set up the translation table qualifier| transl_table of the CDS features.)* Please visit this [NCBI genetic code](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) page for more information.|
-|  -s , --species        |Sample Species, formatted as 'Genus species' or taxid. No default value. This option is used to set up the OS line.|
-|  -t , --topology       |Sequence topology. No default value. *(This option is used to set up the Topology that is the 3th token of the ID line.)*|
-|  -m , --molecule_type  |Molecule type of the sample. No default value.|
+|  -i, --locus_tag     | Locus tag. Used to set up the prefix of the locus_tag qualifier. It has to be registered at ENA prior any submission. More information [here](https://www.ebi.ac.uk/ena/submit/locus-tags). The default is XXX.|
+|  -p, --project_id    | Project ID. Defalut is 'XXX' *(This is used to set up the PR line.)*|
+|  -r, --transl_table  | Translation table. No default. *(This is used to set up the translation table qualifier transl_table of the CDS features.)* Please visit [NCBI genetic code](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) for more information.|
+|  -s, --species       | Sample species, formatted as 'Genus species' or taxid. No default. *(This is used to set up the OS line.)*|
+|  -t, --topology      | Sequence topology. No default. *(This is used to set up the Topology that is the 3rd token of the ID line.)*|
+|  -m, --molecule_type | Molecule type of the sample. No default.|
 
 **Optional arguments related to the EMBL format:**
 
