@@ -14,7 +14,7 @@ __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Ti
 ## Table of Contents
 
    * [GFF3 to EMBL conversion tool](#gff3-to-embl-conversion-tool)
-      * [Prerequisite](#prerequisite)
+      * [Prerequisites](#prerequisites)
       * [Installation](#installation)
             * [Installation with pip:](#installation-with-pip)
             * [Installation with git:](#installation-with-git)
@@ -42,7 +42,7 @@ __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Ti
       * [Author](#author)
 
 
-## Prerequisite
+## Prerequisites
 
 **Python 2.7**, **biopython 1.67** and the **bcbio-gff 0.6.4** python packages.
 
