@@ -31,7 +31,7 @@ __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Ti
          * [Advanced case 1](#advanced-case-1)
          * [Advanced case 2](#advanced-case-2)
          * [Use through a script](#use-through-a-script)
-      * [Parameter](#parameter)
+      * [Parameters](#parameters)
       * [Mapping](#mapping)
          * [Feature type](#feature-type)
          * [GFF3 Attribute to EMBL qualifier](#gff3-attribute-to-embl-qualifier)
@@ -237,7 +237,7 @@ EMBLmyGFF3 maker.gff3 maker.fa \
 
 You may prefer to launch the software through a script especially when you want to fill many information, so we provide examples of such scripts in bash (.sh) or python (.py) in the **examples** folder.
 
-## Parameter
+## Parameters
 
 Some parameters are mandatory and some others are not. Here is a list of all parameters available.
 You can also find a comprehensive help about the different parameters using the software `-h` or `--help` command and even a more advanced help using `--ah X` or `--advanced_help X` where X is the parameter you would like to learn more about.
