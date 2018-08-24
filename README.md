@@ -254,43 +254,45 @@ You can also find a comprehensive help about the different parameters using the 
 | Parameter | Description |
 | --- | --- |
 |  -i, --locus_tag     | Locus tag. Used to set up the prefix of the locus_tag qualifier. It has to be registered at ENA prior any submission. More information [here](https://www.ebi.ac.uk/ena/submit/locus-tags). The default is XXX.|
-|  -p, --project_id    | Project ID. Defalut is 'XXX' *(This is used to set up the PR line.)*|
-|  -r, --transl_table  | Translation table. No default. *(This is used to set up the translation table qualifier transl_table of the CDS features.)* Please visit [NCBI genetic code](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) for more information.|
-|  -s, --species       | Sample species, formatted as 'Genus species' or taxid. No default. *(This is used to set up the OS line.)*|
-|  -t, --topology      | Sequence topology. No default. *(This is used to set up the Topology that is the 3rd token of the ID line.)*|
-|  -m, --molecule_type | Molecule type of the sample. No default.|
+|  -p, --project_id    | Project ID. Default is 'XXX' (This is used to set up the PR line).|
+|  -r, --transl_table  | Translation table. No default. (This is used to set up the translation table qualifier transl_table of the CDS features.) Please visit [NCBI genetic code](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi) for more information.|
+|  -s, --species       | Sample species, formatted as 'Genus species' or taxid. No default. (This is used to set up the OS line.)|
+|  -t, --topology      | Sequence topology. No default. (This is used to set up the Topology that is the 3rd token of the ID line.)|
+|  -m, --molecule_type | Molecule type of the sample. No default value.|
 
 **Optional arguments related to the EMBL format:**
 
 | Parameter | Description |
 | --- | --- |
-|  -a , --accession      |Accession number(s) for the entry. Default value: **XXX** . This option is used to set up the accession number of the AC line and the first token of the ID line as well. **The unique accession number is assigned by the database.** Please visit [this page](https://www.ebi.ac.uk/ena/submit/accession-number-formats) and [this one](https://www.ebi.ac.uk/ena/submit/sequence-submission) to learn more about it.|   
-|  -c , --created|        Creation time of the original entry. The default value is the **date of the day**.|
-|  -d , --data_class     |Data class of the sample. Default value 'XXX'. *(This option is used to set up the 5th token of the ID line.)*
+|  -a , --accession      |Accession number(s) for the entry. Default value: XXX. The proper value is automatically filled up by ENA during the submission by a unique accession number they will assign. The accession number is used to set up the AC line and the first token of the ID line as well. Please visit [this page](https://www.ebi.ac.uk/ena/submit/accession-number-formats) and [this one](https://www.ebi.ac.uk/ena/submit/sequence-submission) to learn more about it.|   
+|  -c , --created|        Creation time of the original entry. The default value is the date of the day.|
+|  -d , --data_class     |Data class of the sample. Default value 'XXX'. This option is used to set up the 5th token of the ID line.|
 |  -g , --organelle|      Sample organelle. No default value.|
 |  -k , --keyword|        Keywords for the entry. No default value.|
-|  -l , --classification| Organism classification. The default value is the classification found in the NCBI taxonomy DB from the species/taxid given as --species parameter. If none is found, 'Life' will be the default value.|
+|  -l , --classification| Organism classification e.g 'Eukaryota; Opisthokonta; Metazoa'. The default value is the classification found in the NCBI taxonomy DB from the species/taxid given as --species parameter. If none is found, 'Life' will be the default value.|
 |  -x , --taxonomy       |Source taxonomy. Default value 'XXX'. This option is used to set the taxonomic division within ID line (6th token).|
 |  --de|                  Description. Default value 'XXX'.|
-|  --rc|                  Reference Comment. No default value.|
 |  --ra , --author|       Author for the reference. No default value.|
+|  --rc|                  Reference Comment. No default value.|
 |  --rg                  |Reference Group, the working groups/consortia that produced the record. Default value 'XXX'.|
 |  --rl|                  Reference publishing location. No default value.|
 |  --rt|                  Reference Title. No default value.|
 |  --rx|                  Reference cross-reference. No default value.|
 |  --email|               Email used to fetch information from NCBI taxonomy database. Default value 'EMBLmyGFF3@tool.org'.|
-|  --environmental_sample|             Bolean. identifies sequences derived by direct molecular isolation from a bulk environmental DNA sample with no reliable identification of the source organism. May be needed when organism belongs to Bacteria.|
-|  --expose_translations| Copy feature and attribute mapping files to the working directory. They will be used as mapping files instead of the default internal json files. You may modify them as it suits you.|
+|  --environmental_sample|             Identifies sequences derived by direct molecular isolation from a bulk environmental DNA sample with no reliable identification of the source organism. May be needed when organism belongs to Bacteria.|
+|  --expose_translations| Copy feature and attribute mapping files to the working directory. They will be used as mapping files instead of the default internal JSON files. You may modify them as it suits you.|
 |  --force_unknown_features| Force to keep feature types not accepted by EMBL. /!\ Option not suitable for submission purpose.|
 |  --force_uncomplete_features| Force to keep features whithout all the mandatory qualifiers. /!\ Option not suitable for submission purpose.|
 |  --interleave_genes|    Print gene features with interleaved mRNA and CDS features.|
 |  --isolate|             Individual isolate from which the sequence was obtained. May be needed when organism belongs to Bacteria.|
 |  --isolation_source|    Describes the physical, environmental and/or local geographical source of the biological sample from which the sequence was derived. Mandatory when environmental_sample option used.|
 |  --keep_duplicates|       Do not remove duplicate features during the process. /!\ Option not suitable for submission purpose.|
+|  --locus_numbering_start| Start locus numbering with the provided value.|
+|  --no_progress|         Hide conversion progress counter.|
 |  --no_wrap_qualifier|   By default there is a line wrapping at 80 characters. The cut is at the world level. Activating this option will avoid the line-wrapping for the qualifiers.|
-|  --translate|           Include translation in CDS features. Not activated by default.|
+|  --translate|           Include translation in CDS features.|
 |  --use_attribute_value_as_locus_tag|           Use the value of the defined attribute as locus_tag.|
-|  --version|             Sequence version number. The default value is **1**.|
+|  --version|             Sequence version number. The default value is 1.|
 |  --strain|              Strain from which sequence was obtained. May be needed when organism belongs to Bacteria.|
 
 **Optional arguments related to the software:**
@@ -303,7 +305,7 @@ You can also find a comprehensive help about the different parameters using the 
 |  -q, --quiet           |Decrease verbosity.|
 |  --shame               |Suppress the shameless plug.|
 |  -z, --gzip            |Gzip output file.|
-|  --uncompressed_log    |Some logs are compressed to ease the reading. With this option they will not be.|
+|  --uncompressed_log    |Some logs can be compressed for better lisibility, they won't.|
 |  -o , --output         |Output filename.|
 
 ## Mapping
