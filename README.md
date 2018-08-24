@@ -11,36 +11,38 @@ Based on documentation from http://www.insdc.org/files/feature_table.html, http:
 __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Tips](http://ena-docs.readthedocs.io/en/latest/)__
 
 
-## INDEX
+## Table of Contents
 
-[Prerequisite](#prerequisite)</br>
-[Installation](#installation)</br>
-&nbsp;&nbsp;&nbsp;[Installation with pip](#installation-with-pip)</br>
-&nbsp;&nbsp;&nbsp;[Installation with git](#installation-with-git)</br>
-&nbsp;&nbsp;&nbsp;[Check installation](#check-installation)</br>
-[Update](#update)</br>
-&nbsp;&nbsp;&nbsp;[Update with pip](#update-with-pip)</br>
-&nbsp;&nbsp;&nbsp;[Update with git](#update-with-git)</br>
-[Uninstall](#uninstall)</br>
-[Usage](#usage)</br>
-&nbsp;&nbsp;&nbsp;[Foreword](#foreword)</br>
-&nbsp;&nbsp;&nbsp;[Use a provided example](#use-provided-examples)</br>
-&nbsp;&nbsp;&nbsp;[Simple case](#simple-case)</br>
-&nbsp;&nbsp;&nbsp;[Complete case](#complete-case)</br>
-&nbsp;&nbsp;&nbsp;[Advanced case 1](#advanced-case-1)</br>
-&nbsp;&nbsp;&nbsp;[Advanced case 2](#advanced-case-2)</br>
-&nbsp;&nbsp;&nbsp;[Use through a script](#use-through-a-bash-script)</br>
-[Parameter](#parameter)</br>
-[Mapping](#mapping)</br>
-&nbsp;&nbsp;&nbsp;[Feature type](#feature-type)</br>
-&nbsp;&nbsp;&nbsp;[GFF3 Attribute to EMBL qualifier](#gff3-attribute-to-embl-qualifier)</br>
-&nbsp;&nbsp;&nbsp;[Other](#other)</br>
-[Validate your embl flat file](#validate-your-embl-flat-file)</br>
-[Known issues](#known-issues)</br>
-[Citation](#citation)
-[Author](#author)
+   * [GFF3 to EMBL conversion tool](#gff3-to-embl-conversion-tool)
+      * [Prerequisite](#prerequisite)
+      * [Installation](#installation)
+            * [Installation with pip:](#installation-with-pip)
+            * [Installation with git:](#installation-with-git)
+            * [Check installation](#check-installation)
+      * [Update](#update)
+            * [Update with pip:](#update-with-pip)
+            * [Update with git:](#update-with-git)
+      * [Uninstall](#uninstall)
+      * [Usage](#usage)
+         * [Foreword](#foreword)
+         * [Use provided examples](#use-provided-examples)
+         * [Simple case](#simple-case)
+         * [Complete case](#complete-case)
+         * [Advanced case 1](#advanced-case-1)
+         * [Advanced case 2](#advanced-case-2)
+         * [Use through a script](#use-through-a-script)
+      * [Parameter](#parameter)
+      * [Mapping](#mapping)
+         * [Feature type](#feature-type)
+         * [GFF3 Attribute to EMBL qualifier](#gff3-attribute-to-embl-qualifier)
+         * [Other](#other)
+      * [Validate your embl flat file](#validate-your-embl-flat-file)
+      * [Known issues](#known-issues)
+      * [Citation](#citation)
+      * [Author](#author)
 
-## PREREQUISITE
+
+## Prerequisite
 
 **Python 2.7**, **biopython 1.67** and the **bcbio-gff 0.6.4** python packages.
 
@@ -128,9 +130,9 @@ git pull
 pip uninstall EMBLmyGFF3
 ```
 
-## USAGE
+## Usage
 
-### FOREWORD
+### Foreword
 
 A correct **GFF3 file** and the **genome in FASTA format** that has been used to produce the GFF3 file are the mandatory input files.
 Then, in order to get a valid EMBL flat file suitable for submission you have to fill carefully all mandatory metadata.
@@ -205,7 +207,7 @@ EMBLmyGFF3 maker.gff3 maker.fa --data_class STD --topology linear --molecule_typ
 
 You may prefer to launch the software through a script especially when you want to fill many information, so we provide examples of such scripts in bash (.sh) or python (.py) in the **examples** folder.
 
-## PARAMETER
+## Parameter
 
 Some parameters are mandatory and some others are not. Here is a list of all parameters available.
 You can also find a comprehensive help about the different parameters using the software `-h` or `--help` command and even a more advanced help using `--ah X` or `--advanced_help X` where X is the parameter you would like to learn more about.
@@ -274,7 +276,7 @@ You can also find a comprehensive help about the different parameters using the 
 |  --uncompressed_log    |Some logs are compressed to ease the reading. With this option they will not be.|
 |  -o , --output         |Output filename.|
 
-## MAPPING
+## Mapping
 
 The challenge for a correct conversion is the correct mapping between the feature types described in the 3th column as well as the different attribute’s tags of the 9th column of the GFF3 file and the corresponding EMBL features and qualifiers.</br>
 If you figure out that a feature type or an attribute's tag is not mapped to the corresponding EMBL features or qualifiers you would like, you will have to modify the corresponding information in the mapping files.</br>
@@ -355,11 +357,11 @@ This will map the **source** from the 2nd columm of the GFF3 file to the **note*
 e.g: The source value is "Prokka":</br>
 Within the embl file, instead to get **note="Prokka"**, here we will get **note="source:Prokka"**
 
-## VALIDATE YOUR EMBL FLAT FILE
+## Validate your embl flat file
 
 The output can be validated using the ENA flat file validator distributed by EMBL. Please visit http://www.ebi.ac.uk/ena/software/flat-file-validator and/or https://github.com/enasequence/sequencetools for more information.
 
-## KNOWN ISSUES
+## Known issues
 
 **biopython version**
 There's a bug between bcbio-gff 0.6.4 and biopython 1.68 though, so use biopython 1.67.
@@ -373,7 +375,7 @@ python -c "import Bio; from BCBio import GFF; print 'biopython version: '+Bio.\_
 **Duplicated Features**</br>
 Features that have the same key (feature type) and location as another feature are considered as duplicates and aren't allowed by the EMBL database. So they are remove during the process. If you don't plan to submit the file to ENA and you wish to keep these features, use the *--keep_duplicates* option.
 
-## CITATION
+## Citation
 
 [Norling M, Jareborg N, Dainat J. EMBLmyGFF3: a converter facilitating genome annotation submission to European Nucleotide Archive.
 BMC Res Notes. 2018 Aug 13;11(1):584. doi: 10.1186/s13104-018-3686-x.](https://doi.org/10.1186/s13104-018-3686-x)
@@ -382,7 +384,7 @@ And
 
 [![DOI](https://zenodo.org/badge/64933149.svg)](https://zenodo.org/badge/latestdoi/64933149)
 
-## AUTHOR
+## Author
 
 Martin Norling<sup>1,2</sup>, Niclas Jareborg<sup>1,3</sup>, Jacques Dainat<sup>1,2</sup>
 
