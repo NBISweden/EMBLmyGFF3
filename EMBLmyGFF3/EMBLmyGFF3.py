@@ -262,6 +262,51 @@ class EMBL( object ):
 
         return key
 
+    def _verify_locus_tag(self, locus_tag):
+        """
+        A locus tag prefix must have the following format:
+        starts with a letter
+        is at least 3 characters long
+        is upper case | if not we make it uppercase
+        contains only alpha-numeric characters and no symbols such as -_*
+        """
+        checked_locus_tag=None
+        while not checked_locus_tag:
+            
+            if not locus_tag: 
+                sys.stderr.write("No value provided as locus_tag.\nPlease provide a locus_tag (A default XXX locus_tag will be set up if none provided):")
+                locus_tag = raw_input()      
+                if not locus_tag:
+                    self.locus_tag="XXX"
+
+
+            #If lower case convert it in uppercase
+            if any(c.islower() for c in locus_tag):
+                locus_tag = locus_tag.upper()
+
+
+            # if starts with a letter
+            if locus_tag[:1].isalpha():
+                # if contains only alpha-numeric characters 
+                if locus_tag.isalnum():
+                    # if more than 3 characters    
+                    if len(locus_tag) >= 3:
+                        checked_locus_tag = locus_tag # passes all checks, save the value !
+                    else:
+                        logging.error("locus_tag must be at least 3 characters long !")
+                else:
+                    logging.error("locus_tag must contain only alpha-numeric characters !")
+            else:
+                logging.error("locus_tag must start by a letter !")
+
+            if not checked_locus_tag:
+                sys.stderr.write("Please provide a locus_tag (A default XXX locus_tag will be set up if none provided):")
+                locus_tag = raw_input()
+                if not locus_tag:
+                    self.locus_tag="XXX"
+
+        return checked_locus_tag
+
     #if species is a taxid we change by the species name
     def get_species_from_taxid(self, taxid):
         #if it is an integer (a taxid), try to get the species name
@@ -937,20 +982,18 @@ class EMBL( object ):
         if "locus_tag" in EMBL.PREVIOUS_VALUES:
             self.locus_tag = EMBL.PREVIOUS_VALUES["locus_tag"]
         else:
-            if locus_tag:
+            if locus_tag: # we have to check it
+                locus_tag = self._verify_locus_tag(locus_tag)
                 self.locus_tag = locus_tag
                 EMBL.PREVIOUS_VALUES["locus_tag"] = locus_tag
-            elif not hasattr(self, "locus_tag"):
-
+            
+            else :
                 if not self.PREVIOUS_VALUES['attribute_to_use_as_locus_tag']:
-                    sys.stderr.write("No value provided as locus_tag.\nPlease provide a locus_tag:")
-                    locus_tag = raw_input()
-                
-                if not locus_tag:
-                    locus_tag="XXX"
+                    # we have to create it
+                    locus_tag = self._verify_locus_tag(locus_tag)
 
-                self.locus_tag = locus_tag
-                EMBL.PREVIOUS_VALUES["locus_tag"] = locus_tag
+            self.locus_tag= locus_tag
+            EMBL.PREVIOUS_VALUES["locus_tag"] = locus_tag
 
     def set_locus_numbering_start (self, locus_numbering_start = 1):
         """
