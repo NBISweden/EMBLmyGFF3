@@ -77,6 +77,8 @@ class EMBL( object ):
 
     """
 
+    PREVIOUS_ERRORS = {}
+
     legal_values = {'data_class':{"CON":"Entry constructed from segment entry sequences; if unannotated, annotation may be drawn from segment entries",
                                   "PAT":"Patent",
                                   "EST":"Expressed Sequence Tag",
@@ -377,6 +379,26 @@ class EMBL( object ):
             print_overwritable( bar )
             print_overwritable( progress )
 
+    def handle_message(self, type, msg_type, msg, value):
+    
+        if EMBL.PREVIOUS_ERRORS.has_key(msg_type):
+            EMBL.PREVIOUS_ERRORS[msg_type] += 1
+        
+        level = eval("logging.%s" % type.upper())
+
+        if self.uncompressed_log:
+            logging.log(level, msg)
+        else:
+            if not value:   # number of line accepted to display (defaut or given to the method)
+                value = 5    
+            if not EMBL.PREVIOUS_ERRORS.has_key(msg_type) or EMBL.PREVIOUS_ERRORS[msg_type] < value:
+                logging.log(level, msg)
+                EMBL.PREVIOUS_ERRORS.setdefault(msg_type,1)
+            elif EMBL.PREVIOUS_ERRORS[msg_type] == value:
+                logging.log(level, msg)
+                final_message = 'We will not display anymore this %s. Please use the --uncompressed_log parameter if you wish having all of them.' % type
+                logging.log(level, final_message) 
+
 #================== def EMBL line =======================
 #\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 
@@ -665,8 +687,10 @@ class EMBL( object ):
                         if attribute.lower() == qualifier.lower():
                             locus_tag = feature.qualifiers[attribute]
                             break
-                    if not locus_tag:
-                            logging.error("You told me to use the value of the attribute %s from the gff3 file as locus_tag but this attribute doesnt exist for feature %s." % (attribute, feature.id) )
+                    if not locus_tag: #inform the user that we will use the locus_tag instead
+                        msg_type = "I'm suppose to use the value of the attribute %s from the gff3 file as locus_tag but this attribute doesnt exist" % (attribute)
+                        msg = "I'm suppose to use the value of the attribute %s from the gff3 file as locus_tag but this attribute doesnt exist for feature %s. Consequently I will use the locus_tag %s to create a proper one." % (attribute, feature.id, self.locus_tag) 
+                        self.handle_message("warning", msg_type, msg, None)
                 # create a locus tag base on the prefix + LOCUS + incremented number
                 if not locus_tag:
 
@@ -986,12 +1010,13 @@ class EMBL( object ):
                 locus_tag = self._verify_locus_tag(locus_tag)
                 self.locus_tag = locus_tag
                 EMBL.PREVIOUS_VALUES["locus_tag"] = locus_tag
-            
-            else :
+            # if no locus_tag
+            else : #and we do not use attribute_to_use_as_locus_tag
                 if not self.PREVIOUS_VALUES['attribute_to_use_as_locus_tag']:
                     # we have to create it
                     locus_tag = self._verify_locus_tag(locus_tag)
-
+                else:
+                    locus_tag = 'XXX'
             self.locus_tag= locus_tag
             EMBL.PREVIOUS_VALUES["locus_tag"] = locus_tag
 

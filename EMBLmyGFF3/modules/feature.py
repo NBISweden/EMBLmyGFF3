@@ -307,7 +307,7 @@ class Feature(object):
                         setattr(self, key, value)
         except IOError as e:
             logging.debug("%s" % e)
-            msg = ">>%s<< is not a valid EMBL feature type. You can ignore this message if you don't need it.\nOtherwise tell me which EMBL feature it corresponds to by adding the information within the json mapping file." % (self.type)
+            msg = ">>%s<< is not a valid EMBL feature type. You can ignore this message if you don't need the feature.\nOtherwise tell me which EMBL feature it corresponds to by adding the information within the json mapping file." % (self.type)
             self.handle_message("error", msg, msg, 1)
 
             self.skip_feature=True
