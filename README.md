@@ -1,5 +1,8 @@
-GFF3 to EMBL conversion tool
-==============================
+
+
+EMBLmyGFF3 [![Build Status](https://travis-ci.org/NBISweden/EMBLmyGFF3.svg?branch=master)](https://travis-ci.org/NBISweden/EMBLmyGFF3)
+=========================================
+### GFF3 to EMBL conversion tool
 
 <img src="EMBLmyGFF3.png" width="500" height="150" />
 
