@@ -24,7 +24,7 @@ def main():
 	PROJECT="17285"
 
 	#Locus tag registered on EMBL
-	LOCUS_TAG="MY_LOCUS_TAG"
+	LOCUS_TAG="MYLOCUSTAG"
 
 	# species name
 	SPECIES="Drosophila melanogaster"

@@ -14,7 +14,7 @@ ANNOTATION=`dirname "$0"`"/prokka.gff3"
 PROJECT="17285"
 
 #Locus tag registered on EMBL
-LOCUS_TAG="MY_LOCUS_TAG"
+LOCUS_TAG="MYLOCUSTAG"
 
 # species name
 SPECIES="escherichia coli"
