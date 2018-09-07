@@ -192,7 +192,7 @@ EMBLmyGFF3 maker.gff3 maker.fa \
         --molecule_type 'genomic DNA' \
         --transl_table 1  \
         --species 'Drosophila melanogaster' \
-        --locus_tag MY_LOCUS_TAG \
+        --locus_tag LOCUSTAG \
         --project_id PRJXXXXXXX \
         -o result.embl
 ```
@@ -209,7 +209,7 @@ EMBLmyGFF3 maker.gff3 maker.fa \
         --transl_table 1  \
         --species 'Drosophila melanogaster' \
         --taxonomy INV \
-        --locus_tag LOCUS_TAG \
+        --locus_tag LOCUSTAG \
         --project_id PRJXXXXXXX \
         --rg MYGROUP \
         -o result.embl
@@ -227,7 +227,7 @@ EMBLmyGFF3 maker.gff3 maker.fa \
         --transl_table 1  \
         --species 'Drosophila melanogaster' \
         --taxonomy INV \
-        --locus_tag LOCUS_TAG \
+        --locus_tag LOCUSTAG \
         --project_id PRJXXXXXXX \
         --rg MYGROUP \
         --author 'author for the reference' \
