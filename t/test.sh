@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ## SETUP VIRTUAL ENVIRONMENT FOR TESTING
-if [ "x$TRAVIS" -ne "x" ]; then
+if [ "x$TRAVIS" != "x" ]; then
     if [ -d t/venv ]; then
         rm -rf t/venv
     fi
@@ -16,6 +16,11 @@ python setup.py install
 
 ## RUN TESTS
 cd t
+
+sed -Ei -e 's/^(DT   )[0-9]{2}-[A-Za-z]{3}-[0-9]{4}/\1'"$(date +%d-%b-%Y)"'/' \
+        -e 's/^(RL   Submitted \()[0-9]{2}-[A-Za-z]{3}-[0-9]{4}/\1'"$(date +%d-%^b-%Y)"'/' \
+       *.embl
+
 SUCCESS=0
 FAIL=0
 
