@@ -1,6 +1,7 @@
 # exclude .embl files and .embl.gz files
-*.embl
-*.embl.gz
+examples/*.embl
+examples/*.embl.gz
+t/*-example.embl
 
 # exclude .pyc files
 __pycache__/
@@ -13,3 +14,4 @@ __pycache__/
 build/
 dist/
 *.egg-info
+
