@@ -1,6 +1,6 @@
 
 
-EMBLmyGFF3 [![Build Status](https://travis-ci.org/NBISweden/EMBLmyGFF3.svg?branch=master)](https://travis-ci.org/NBISweden/EMBLmyGFF3)
+EMBLmyGFF3 [![Build Status](https://travis-ci.org/NBISweden/EMBLmyGFF3.svg?branch=master)](https://travis-ci.org/NBISweden/EMBLmyGFF3) [![DOI](EMBLmyGFF3.svg)](https://doi.org/10.1186/s13104-018-3686-x)
 =========================================
 ### GFF3 to EMBL conversion tool
 
