@@ -1,0 +1,7 @@
+{
+ "comment": "the /specimen_voucher qualifier is intended to annotate a reference to the physical specimen that remains after the sequence has been obtained; if the specimen was destroyed in the process of sequencing, electronic images (e-vouchers) are an adequate substitute for a physical voucher specimen; ideally the specimens will be deposited in a curated museum, herbarium, or frozen tissue collection, but often they will remain in a personal or laboratory collection for some time before they are deposited in a curated collection; there are three forms of specimen_voucher qualifiers; if the text of the qualifier includes one or more colons it is a 'structured voucher'; structured vouchers include institution-codes (and optional collection-codes) taken from a controlled vocabulary maintained by the INSDC that denotes the museum or herbarium collection where the specimen resides; Please also visit: http://www.insdc.org/controlled-vocabulary-specimenvoucher-qualifier", 
+ "definition": "identifier for the specimen from which the nucleic acid sequenced was obtained", 
+ "example": "/specimen_voucher=\"UAM:Mamm:52179\" /specimen_voucher=\"AMCC:101706\" /specimen_voucher=\"USNM:field series 8798\" /specimen_voucher=\"personal:Dan Janzen:99-SRNP-2003\" /specimen_voucher=\"99-SRNP-2003\"", 
+ "qualifier": "specimen_voucher", 
+ "value_format": "/specimen_voucher=\"[<institution-code>:[<collection-code>:]]<specimen_id>\""
+}

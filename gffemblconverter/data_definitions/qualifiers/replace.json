@@ -1,0 +1,6 @@
+{
+ "definition": "indicates that the sequence identified a feature's intervals is replaced by the sequence shown in \"text\"; if no sequence is contained within the qualifier, this indicates a deletion.", 
+ "example": "/replace=\"a\" /replace=\"\"", 
+ "qualifier": "replace", 
+ "value_format": "\"text\""
+}

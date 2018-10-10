@@ -1,0 +1,7 @@
+{
+ "comment": "modified nucleotides not found in the restricted vocabulary list can be annotated by entering '/mod_base=OTHER' with '/note=\"name of modified base\"'", 
+ "definition": "abbreviation for a modified nucleotide base", 
+ "example": "/mod_base=m5c", 
+ "qualifier": "mod_base", 
+ "value_format": "modified_base"
+}

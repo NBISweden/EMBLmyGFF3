@@ -1,0 +1,7 @@
+{
+ "comment": "entries including /strain must not include the /environmental_sample qualifier", 
+ "definition": "strain from which sequence was obtained", 
+ "example": "/strain=\"BALB/c\"", 
+ "qualifier": "strain", 
+ "value_format": "\"text\""
+}

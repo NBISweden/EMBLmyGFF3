@@ -1,0 +1,7 @@
+{
+ "comment": "<type-of-type> is taken from a controlled vocabularly, listed above. <organism name> should be listed as the scientific name (or as a synonym) at the species (or subsopecies) node in the taxonomy database. Usage of /type_material will start in the second half of 2014.", 
+ "definition": "indicates that the organism from which this sequence was obtained is a nomenclatural type of the species (or subspecies) corresponding with the /organism identified in the sequence entry", 
+ "example": "/type_material=\"type strain of Escherichia coli\" /type_material=\"holotype of Cercopitheus lomamiensis\" /type_material=\"paratype of Cercopitheus lomamiensis\"", 
+ "qualifier": "type_material", 
+ "value_format": "\"<type-of-type> of <organism name>\" where type-of-type is one of the following: type strain, neotype strain, holotype, paratype, neotype, allotype, hapanotype, syntype, lectotype, paralectotype, isotype, epitype, isosyntype, ex-type, reference strain, type material;"
+}

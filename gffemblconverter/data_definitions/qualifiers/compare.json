@@ -1,0 +1,7 @@
+{
+ "comment": "This qualifier may be used on the following features: misc_difference, unsure, old_sequence and variation. The feature \"old_sequence\" must have either a /citation or a /compare qualifier. Multiple /compare qualifiers with different contents are allowed within a single feature. This qualifier is not intended for large-scale annotation of variations, such as SNPs.", 
+ "definition": "Reference details of an existing public INSD entry to which a comparison is made", 
+ "example": "/compare=AJ634337.1", 
+ "qualifier": "compare", 
+ "value_format": "[accession-number.sequence-version]"
+}

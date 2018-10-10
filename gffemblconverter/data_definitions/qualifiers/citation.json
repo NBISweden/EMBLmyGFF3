@@ -1,0 +1,7 @@
+{
+ "comment": "used to indicate the citation providing the claim of and/or evidence for a feature; brackets are used for conformity.", 
+ "definition": "reference to a citation listed in the entry reference field", 
+ "example": "/citation=[3]", 
+ "qualifier": "citation", 
+ "value_format": "[integer-number] where integer-number is the number of the reference as enumerated in the reference field"
+}

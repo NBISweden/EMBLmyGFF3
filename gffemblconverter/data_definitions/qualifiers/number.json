@@ -1,0 +1,7 @@
+{
+ "comment": "text limited to integers, letters or combination of integers and/or letters represented as an unquoted single token (e.g. 5a, XIIb); any additional terms should be included in /standard_name. Example:  /number=2A /standard_name=\"long\"", 
+ "definition": "a number to indicate the order of genetic elements (e.g., exons or introns) in the 5' to 3' direction", 
+ "example": "/number=4 /number=6B", 
+ "qualifier": "number", 
+ "value_format": "unquoted text (single token)"
+}

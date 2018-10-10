@@ -1,0 +1,23 @@
+{
+ "comment": "used for RNA which may be the result of post-transcriptional processing;  if the RNA in question is known not to have been processed, use the prim_transcript key.", 
+ "definition": "any RNA species that is not yet the mature RNA product; may include ncRNA, rRNA, tRNA, 5' untranslated region (5'UTR), coding sequences (CDS, exon), intervening sequences (intron) and 3' untranslated region (3'UTR);", 
+ "optional_qualifiers": {
+  "function": "\"text\"", 
+  "map": "\"text\"", 
+  "locus_tag": "\"text\" (single token)", 
+  "inference": "\"[CATEGORY:]TYPE[ (same species)][:EVIDENCE_BASIS]\"", 
+  "operon": "\"text\"", 
+  "old_locus_tag": "\"text\" (single token)", 
+  "citation": "[number]", 
+  "gene_synonym": "\"text\"", 
+  "trans_splicing": null, 
+  "note": "\"text\"", 
+  "db_xref": "\"<database>:<identifier>\"", 
+  "standard_name": "\"text\"", 
+  "experiment": "\"[CATEGORY:]text\"", 
+  "allele": "\"text\"", 
+  "gene": "\"text\"", 
+  "product": "\"text\""
+ }, 
+ "feature_key": "precursor_RNA"
+}

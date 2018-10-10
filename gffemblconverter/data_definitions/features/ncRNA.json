@@ -1,0 +1,29 @@
+{
+ "comment": "the ncRNA feature is not used for ribosomal and transfer RNA annotation, for which the rRNA and tRNA feature keys should be used, respectively;", 
+ "definition": "a non-protein-coding gene, other than ribosomal RNA and transfer RNA, the functional molecule of which is the RNA transcript;", 
+ "feature_key": "ncRNA", 
+ "mandatory_qualifiers": {
+  "ncRNA_class": "\"TYPE\""
+ }, 
+ "optional_qualifiers": {
+  "function": "\"text\"", 
+  "map": "\"text\"", 
+  "locus_tag": "\"text\" (single token)", 
+  "pseudogene": "\"TYPE\"", 
+  "inference": "\"[CATEGORY:]TYPE[ (same species)][:EVIDENCE_BASIS]\"", 
+  "operon": "\"text\"", 
+  "old_locus_tag": "\"text\" (single token)", 
+  "citation": "[number]", 
+  "pseudo": null, 
+  "gene_synonym": "\"text\"", 
+  "trans_splicing": null, 
+  "note": "\"text\"", 
+  "db_xref": "\"<database>:<identifier>\"", 
+  "standard_name": "\"text\"", 
+  "experiment": "\"[CATEGORY:]text\"", 
+  "allele": "\"text\"", 
+  "gene": "\"text\"", 
+  "product": "\"text\""
+ }, 
+ "example": "/ncRNA_class=\"miRNA\" /ncRNA_class=\"siRNA\" /ncRNA_class=\"scRNA\""
+}

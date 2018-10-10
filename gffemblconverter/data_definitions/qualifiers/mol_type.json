@@ -1,0 +1,7 @@
+{
+ "comment": "all values refer to the in vivo or synthetic molecule for primary entries and the hypothetical molecule in Third Party Annotation entries; the value \"genomic DNA\" does not imply that the molecule is nuclear (e.g. organelle and plasmid DNA should be described using \"genomic DNA\"); ribosomal RNA genes should be described using \"genomic DNA\"; \"rRNA\" should only be used if the ribosomal RNA molecule itself has been sequenced; /mol_type is mandatory on every source feature key; all /mol_type values within one entry/record must be the same; values \"other RNA\" and \"other DNA\" should be applied to synthetic molecules, values \"unassigned DNA\", \"unassigned RNA\" should be applied where in vivo molecule is unknown Please also visit: http://www.insdc.org/controlled-vocabulary-moltype-qualifier", 
+ "definition": "in vivo molecule type of sequence", 
+ "example": "/mol_type=\"genomic DNA\"", 
+ "qualifier": "mol_type", 
+ "value_format": "\"genomic DNA\", \"genomic RNA\", \"mRNA\", \"tRNA\", \"rRNA\", \"other RNA\", \"other DNA\", \"transcribed RNA\", \"viral cRNA\", \"unassigned DNA\", \"unassigned RNA\""
+}

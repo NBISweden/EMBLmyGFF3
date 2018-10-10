@@ -1,0 +1,7 @@
+{
+ "comment": "use /standard_name to give full gene name, but use /gene to give gene symbol (in the above example /gene=\"Dt\").", 
+ "definition": "accepted standard name for this feature", 
+ "example": "/standard_name=\"dotted\"", 
+ "qualifier": "standard_name", 
+ "value_format": "\"text\""
+}

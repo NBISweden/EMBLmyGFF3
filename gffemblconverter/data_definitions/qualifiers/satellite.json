@@ -1,0 +1,7 @@
+{
+ "comment": "many satellites have base composition or other properties that differ from those of the rest of the genome that allows them to be identified. Please also visit: http://www.insdc.org/controlled-vocabulary-satellite-qualifier", 
+ "definition": "identifier for a satellite DNA marker, compose of many tandem repeats (identical or related) of a short basic repeated unit;", 
+ "example": "/satellite=\"satellite: S1a\" /satellite=\"satellite: alpha\" /satellite=\"satellite: gamma III\" /satellite=\"microsatellite: DC130\"", 
+ "qualifier": "satellite", 
+ "value_format": "\"<satellite_type>[:<class>][ <identifier>]\" where satellite_type is one of the following \"satellite\", \"microsatellite\", \"minisatellite\""
+}

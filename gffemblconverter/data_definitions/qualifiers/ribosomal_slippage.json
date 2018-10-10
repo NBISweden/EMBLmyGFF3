@@ -1,0 +1,7 @@
+{
+ "comment": "a join operator,e.g.: [join(486..1784,1787..4810)] should be used in the CDS spans to indicate the location of ribosomal_slippage", 
+ "definition": "during protein translation, certain sequences can program ribosomes to change to an alternative reading frame by a mechanism known as ribosomal slippage", 
+ "example": "/ribosomal_slippage", 
+ "qualifier": "ribosomal_slippage", 
+ "value_format": "none"
+}

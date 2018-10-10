@@ -1,0 +1,7 @@
+{
+ "comment": "The qualifier /pseudo should be used to describe non-functional genes that are not formally described as pseudogenes, e.g. CDS has no translation due to other reasons than pseudogenisation events. Other reasons may include sequencing or assembly errors. In order to annotate pseudogenes the qualifier /pseudogene= must be used indicating the TYPE which can be taken from the INSDC controlled vocabulary for pseudogenes.", 
+ "definition": "indicates that this feature is a non-functional version of the element named by the feature key", 
+ "example": "/pseudo", 
+ "qualifier": "pseudo", 
+ "value_format": "none"
+}

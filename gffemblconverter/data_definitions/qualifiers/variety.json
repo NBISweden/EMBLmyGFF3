@@ -1,0 +1,7 @@
+{
+ "comment": "use the cultivar qualifier for cultivated plant varieties, i.e., products of artificial selection; varieties other than plant and fungal variatas should be annotated via /note, e.g. /note=\"breed:Cukorova\"", 
+ "definition": "variety (= varietas, a formal Linnaean rank) of organism from which sequence was derived.", 
+ "example": "/variety=\"insularis\"", 
+ "qualifier": "variety", 
+ "value_format": "\"text\""
+}

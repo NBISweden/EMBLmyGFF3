@@ -1,0 +1,7 @@
+{
+ "comment": "genetic code exceptions outside range of specified tables are reported in /transl_except qualifier.", 
+ "definition": "definition of genetic code table used if other than universal genetic code table. Tables used are described in appendix IV.", 
+ "example": "/transl_table=4", 
+ "qualifier": "transl_table", 
+ "value_format": "<integer; 1=universal table 1;2=non-universal table 2;..."
+}

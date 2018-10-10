@@ -1,0 +1,7 @@
+{
+ "comment": "detailed experimental details should not be included, and would normally be found in the cited publications; PMID, DOI and any experimental database ID is allowed to be used in /experiment qualifier; value \"experimental evidence, no additional details recorded\" was used to  replace instances of /evidence=EXPERIMENTAL in December 2005", 
+ "definition": "a brief description of the nature of the experimental evidence that supports the feature identification or assignment.", 
+ "example": "/experiment=\"5' RACE\" /experiment=\"Northern blot [DOI: 12.3456/FT.789.1.234-567.2010]\" /experiment=\"heterologous expression system of Xenopus laevis oocytes [PMID: 12345678, 10101010, 987654]\" /experiment=\"COORDINATES: 5' and 3' RACE\"", 
+ "qualifier": "experiment", 
+ "value_format": "\"[CATEGORY:]text\" where CATEGORY is one of the following: \"COORDINATES\" support for the annotated coordinates \"DESCRIPTION\" support for a broad concept of function such as that based on phenotype, genetic approach, biochemical function, pathway information, etc. \"EXISTENCE\" support for the known or inferred existence of the product where text is free text (see examples)"
+}

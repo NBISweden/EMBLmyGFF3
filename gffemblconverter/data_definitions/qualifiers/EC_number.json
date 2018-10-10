@@ -1,0 +1,7 @@
+{
+ "comment": "valid values for EC numbers are defined in the list prepared by the Nomenclature Committee of the International Union of Biochemistry and Molecular Biology (NC-IUBMB) (published in Enzyme Nomenclature 1992, Academic Press, San Diego, or a more recent revision thereof). The format represents a string of four numbers separated by full stops; up to three numbers starting from the end of the string can be replaced by dash \".\" to indicate uncertain assignment. Symbol \"n\" can be used in the last position instead of a number where the EC number is awaiting assignment. Please note that such incomplete EC numbers are not approved by NC-IUBMB.", 
+ "definition": "Enzyme Commission number for enzyme product of sequence", 
+ "example": "/EC_number=\"1.1.2.4\" /EC_number=\"1.1.2.-\" /EC_number=\"1.1.2.n\"", 
+ "qualifier": "EC_number", 
+ "value_format": "\"text\""
+}

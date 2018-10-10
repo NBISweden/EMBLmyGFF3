@@ -1,0 +1,6 @@
+{
+ "definition": "natural (as opposed to laboratory) host to the organism from which sequenced molecule was obtained", 
+ "example": "/host=\"Homo sapiens\" /host=\"Homo sapiens 12 year old girl\" /host=\"Rhizobium NGR234\"", 
+ "qualifier": "host", 
+ "value_format": "\"text\""
+}

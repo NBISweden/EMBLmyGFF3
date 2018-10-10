@@ -1,0 +1,7 @@
+{
+ "comment": "If the parental strain is not given, this should be annotated in the strain qualifier instead of sub_strain. Either: /strain=\"K-12\" /sub_strain=\"MG1655\" or: /strain=\"MG1655\"", 
+ "definition": "name or identifier of a genetically or otherwise modified strain from which sequence was obtained, derived from a parental strain (which should be annotated in the /strain qualifier).sub_strain from which sequence was obtained", 
+ "example": "/sub_strain=\"abis\"", 
+ "qualifier": "sub_strain", 
+ "value_format": "\"text\""
+}

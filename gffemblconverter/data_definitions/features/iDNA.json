@@ -1,0 +1,22 @@
+{
+ "comment": "e.g., in the somatic processing of immunoglobulin genes.", 
+ "definition": "intervening DNA; DNA which is eliminated through any of several kinds of recombination;", 
+ "optional_qualifiers": {
+  "function": "\"text\"", 
+  "map": "\"text\"", 
+  "locus_tag": "\"text\" (single token)", 
+  "inference": "\"[CATEGORY:]TYPE[ (same species)][:EVIDENCE_BASIS]\"", 
+  "old_locus_tag": "\"text\" (single token)", 
+  "citation": "[number]", 
+  "gene_synonym": "\"text\"", 
+  "number": "unquoted text (single token)", 
+  "note": "\"text\"", 
+  "db_xref": "\"<database>:<identifier>\"", 
+  "standard_name": "\"text\"", 
+  "experiment": "\"[CATEGORY:]text\"", 
+  "allele": "\"text\"", 
+  "gene": "\"text\""
+ }, 
+ "molecule_scope": "DNA", 
+ "feature_key": "iDNA"
+}
