@@ -279,13 +279,12 @@ class EMBL( object ):
                 sys.stderr.write("No value provided as locus_tag.\nPlease provide a locus_tag (A default XXX locus_tag will be set up if none provided):")
                 locus_tag = raw_input()      
                 if not locus_tag:
-                    self.locus_tag="XXX"
-
+                    checked_locus_tag="XXX"
+                    break
 
             #If lower case convert it in uppercase
             if any(c.islower() for c in locus_tag):
                 locus_tag = locus_tag.upper()
-
 
             # if starts with a letter
             if locus_tag[:1].isalpha():
@@ -305,7 +304,8 @@ class EMBL( object ):
                 sys.stderr.write("Please provide a locus_tag (A default XXX locus_tag will be set up if none provided):")
                 locus_tag = raw_input()
                 if not locus_tag:
-                    self.locus_tag="XXX"
+                    checked_locus_tag="XXX"
+                    break
 
         return checked_locus_tag
 
@@ -1006,17 +1006,8 @@ class EMBL( object ):
         if "locus_tag" in EMBL.PREVIOUS_VALUES:
             self.locus_tag = EMBL.PREVIOUS_VALUES["locus_tag"]
         else:
-            if locus_tag: # we have to check it
-                locus_tag = self._verify_locus_tag(locus_tag)
-                self.locus_tag = locus_tag
-                EMBL.PREVIOUS_VALUES["locus_tag"] = locus_tag
-            # if no locus_tag
-            else : #and we do not use attribute_to_use_as_locus_tag
-                if not self.PREVIOUS_VALUES['attribute_to_use_as_locus_tag']:
-                    # we have to create it
-                    locus_tag = self._verify_locus_tag(locus_tag)
-                else:
-                    locus_tag = 'XXX'
+            # we have to check it if provided or create it.
+            locus_tag = self._verify_locus_tag(locus_tag)
             self.locus_tag= locus_tag
             EMBL.PREVIOUS_VALUES["locus_tag"] = locus_tag
 
