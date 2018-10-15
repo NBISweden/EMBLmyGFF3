@@ -569,8 +569,8 @@ class Feature(object):
         codon_table = CodonTable.ambiguous_dna_by_id[self.transl_table]  
         seq = Seq(str(self.sequence()),IUPACAmbiguousDNA())
 
-        #start translation according to the phase
-        phase = int(self.feature.qualifiers.get("phase", [0])[0])
+        #start translation according to the phase. Phase and codon_start are not the same coordinate system. It is why we have to remove 1
+        phase = int(self.qualifiers.get('codon_start').value[0]) - 1
         if phase != 0:
             seq = seq[phase:]
 
