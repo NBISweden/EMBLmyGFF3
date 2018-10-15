@@ -475,10 +475,14 @@ class Feature(object):
             for val in value:
                 if val not in self.qualifiers[qualifier].value:
                     self.qualifiers[qualifier].add_value(val)
+                else:
+                    logging.debug('val %s alredy exist (list case)' %  val)
         # Scalar case
         else:
             if value not in self.qualifiers[qualifier].value:
                 self.qualifiers[qualifier].add_value(value)
+            else:
+                logging.debug('val %s alredy exist (scalar case)' %  val)
 
     def combine(self, other):
         """

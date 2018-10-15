@@ -76,10 +76,10 @@ class Qualifier( object ):
             elif self.value_format.startswith("\"<database:identifier>\""): # Handle dbxref's 
                 self._load_legal_dbxref( LEGAL_DBXREF_FILE )
                 value = value if type(value) == type([]) else [value]
-                new_value=[]
+
                 for val in value:
                     if val.split(':')[0].lower() in [v.lower() for v in self.legal_dbxref]:
-                        new_value.append(val)
+                        new_value = val
                     else:
                         msg = "Unknown db_xref '%s' - removing." % (val.split(':')[0])
                         if msg not in Qualifier.PREVIOUS_ERRORS:
@@ -153,11 +153,10 @@ class Qualifier( object ):
         Qualifier wihtout value is possible. e.g environmental_sample
         """
         self.value = [self.value] if type(self.value) != type([]) else self.value
-        value = [value] if type(value) != type([]) else value
         
-        new_values = [self._by_value_format(v) for v in value]
-        logging.debug("%s - Changing value: '%s' to '%s'" % (self.name, value, new_values))
-        self.value += new_values
+        new_value = self._by_value_format(value)
+        logging.debug("%s - Changing value: '%s' to '%s'" % (self.name, value, new_value))
+        self.value.append(new_value)
         logging.debug("%s - Current value: '%s'" % (self.name, self.value))
 
     def set_value(self, value):
