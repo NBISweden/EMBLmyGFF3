@@ -444,7 +444,7 @@ class EMBL( object ):
         output += self.accession + "; "
 
         #add the AC * _contig1 line
-        output += "\nXX\nAC * _"+self.accession
+        output += "\nXX\nAC * _"+self.record.id
 
         return "\n" + output.strip() + self.spacer
 
