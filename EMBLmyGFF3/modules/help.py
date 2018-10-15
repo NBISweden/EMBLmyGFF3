@@ -9,10 +9,11 @@ def Help(string):
 
   if(string == "a" or string == "accession" or string == "all"):   
     output += string+""":
-EMBL specific
+EMBL specific - Bolean
 This option is used to set up the accession number of the AC line (see above) and the first token of the ID line.
 Default value = XXX
 Advise: Let the default value as it is, ENA will automatically replace it during the submission by a unique accession number they will assign.
+Activating the option will set the Accession number with the fasta sequence identifier.
 
 3.4.2  The AC Line
 The AC (ACcession number) line lists the accession numbers associated with 

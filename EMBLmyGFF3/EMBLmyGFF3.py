@@ -444,14 +444,7 @@ class EMBL( object ):
         output += self.accession + "; "
 
         #add the AC * _contig1 line
-        output += "\nXX"
-        description=""
-        if hasattr(self.record, "description"):
-            description = self.record.description
-        else:
-            logging.error("The first row is missing within the gff3 file.")
-            description = "xxx";
-        output += "\nAC * _"+description
+        output += "\nXX\nAC * _"+self.accession
 
         return "\n" + output.strip() + self.spacer
 
@@ -808,15 +801,11 @@ class EMBL( object ):
         """
         Sets the entry accession numbers, or parses it from the current record
         """
-        if "accession" in EMBL.PREVIOUS_VALUES:
-            self.accession = EMBL.PREVIOUS_VALUES["accession"]
-        else:
-            if accession:
-                self.accession = accession
-                EMBL.PREVIOUS_VALUES["accession"] = accession
-            elif not hasattr(self, "accession"):
-                self.accession = "XXX"
-                EMBL.PREVIOUS_VALUES["accession"] = "XXX"
+        if not accession: # we set it for the rest of the processing
+            self.accession = "XXX"
+            EMBL.PREVIOUS_VALUES["accession"] = "XXX"
+        else: # we have to take the sequence fasta name of each record
+            self.accession = self.record.id
 
     def set_classification(self, classification = None, strain = None, environmental_sample = None, isolation_source = None, isolate = None):
         """
@@ -1241,7 +1230,7 @@ def main():
     parser.add_argument("fasta", help="Input fasta sequence.")
 
     #single character parameter
-    parser.add_argument("-a", "--accession", default=None, help="Accession number(s) for the entry. Default value: XXX. The proper value is automatically filled up by ENA during the submission by a unique accession number they will assign. The accession number is used to set up the AC line and the first token of the ID line as well. Please visit [this page](https://www.ebi.ac.uk/ena/submit/accession-number-formats) and [this one](https://www.ebi.ac.uk/ena/submit/sequence-submission) to learn more about it.")
+    parser.add_argument("-a", "--accession", default=None, action="store_true", help="Bolean. Accession number(s) for the entry. Default value: XXX. The proper value is automatically filled up by ENA during the submission by a unique accession number they will assign. The accession number is used to set up the AC line and the first token of the ID line as well. Please visit [this page](https://www.ebi.ac.uk/ena/submit/accession-number-formats) and [this one](https://www.ebi.ac.uk/ena/submit/sequence-submission) to learn more about it. Activating the option will set the Accession number with the fasta sequence identifier.")
     parser.add_argument("-c", "--created", default=None, help="Creation time of the original entry. The default value is the date of the day.")
     parser.add_argument("-d", "--data_class", default=None, help="Data class of the sample. Default value 'XXX'. This option is used to set up the 5th token of the ID line.", choices=["CON", "PAT", "EST", "GSS", "HTC", "HTG", "MGA", "WGS", "TSA", "STS", "STD"])
     parser.add_argument("-g", "--organelle", default=None, help="Sample organelle. No default value.")

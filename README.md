@@ -267,7 +267,7 @@ You can also find a comprehensive help about the different parameters using the 
 
 | Parameter | Description |
 | --- | --- |
-|  -a , --accession      |Accession number(s) for the entry. Default value: XXX. The proper value is automatically filled up by ENA during the submission by a unique accession number they will assign. The accession number is used to set up the AC line and the first token of the ID line as well. Please visit [this page](https://www.ebi.ac.uk/ena/submit/accession-number-formats) and [this one](https://www.ebi.ac.uk/ena/submit/sequence-submission) to learn more about it.|   
+|  -a , --accession      |Bolean. Accession number(s) for the entry. Default value: XXX. The proper value is automatically filled up by ENA during the submission by a unique accession number they will assign. The accession number is used to set up the AC line and the first token of the ID line as well. Please visit [this page](https://www.ebi.ac.uk/ena/submit/accession-number-formats) and [this one](https://www.ebi.ac.uk/ena/submit/sequence-submission) to learn more about it. Activating the option will set the Accession number with the fasta sequence identifier.|   
 |  -c , --created|        Creation time of the original entry. The default value is the date of the day.|
 |  -d , --data_class     |Data class of the sample. Default value 'XXX'. This option is used to set up the 5th token of the ID line.|
 |  -g , --organelle|      Sample organelle. No default value.|
