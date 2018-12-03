@@ -1,6 +1,0 @@
-{
- "definition": "location of the anticodon of tRNA and the amino acid for which it codes", 
- "example": "/anticodon=(pos:34..36,aa:Phe,seq:aaa) /anticodon=(pos:join(5,495..496),aa:Leu,seq:taa) /anticodon=(pos:complement(4156..4158),aa:Gln,seq:ttg)", 
- "qualifier": "anticodon", 
- "value_format": "(pos:<location>,aa:<amino_acid>,seq:<text>) where location is the position of the anticodon and amino_acid is the abbreviation for the amino acid encoded and seq is the sequence of the anticodon"
-}

@@ -1,6 +1,0 @@
-{
- "definition": "if the sequence was obtained from an organism in a specific developmental stage, it is specified with this qualifier", 
- "example": "/dev_stage=\"fourth instar larva\"", 
- "qualifier": "dev_stage", 
- "value_format": "\"text\""
-}

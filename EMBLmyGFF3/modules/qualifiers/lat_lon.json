@@ -1,7 +1,0 @@
-{
- "comment": "degrees latitude and longitude in format \"d[d.dddd] N|S d[dd.dddd] W|E\" (see the examples)", 
- "definition": "geographical coordinates of the location where the specimen was collected", 
- "example": "/lat_lon=\"47.94 N 28.12 W\" /lat_lon=\"45.0123 S 4.1234 E\"", 
- "qualifier": "lat_lon", 
- "value_format": "\"text\""
-}

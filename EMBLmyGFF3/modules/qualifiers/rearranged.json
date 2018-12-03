@@ -1,7 +1,0 @@
-{
- "comment": "/rearranged should not be used to annotate chromosome rearrangements that are not involved in an adaptive immune response; /germline and /rearranged cannot be used in the same source feature; /germline and /rearranged should only be used for molecules that can undergo somatic rearrangements as part of an adaptive immune response; these are the T-cell receptor (TCR) and immunoglobulin loci in the jawed vertebrates, and the unrelated variable lymphocyte receptor (VLR) locus in the jawless fish (lampreys and hagfish); /germline and /rearranged should not be used outside of the Craniata (taxid=89593)", 
- "definition": "the sequence presented in the entry has undergone somatic rearrangement as part of an adaptive immune response; it is not the unrearranged sequence that was inherited from the parental germline", 
- "example": "/rearranged", 
- "qualifier": "rearranged", 
- "value_format": "none"
-}

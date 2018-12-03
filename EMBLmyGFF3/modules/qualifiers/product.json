@@ -1,6 +1,0 @@
-{
- "definition": "name of the product associated with the feature, e.g. the mRNA of an mRNA feature, the polypeptide of a CDS, the mature peptide of a mat_peptide, etc.", 
- "example": "/product=\"trypsinogen\" (when qualifier appears in CDS feature) /product=\"trypsin\" (when qualifier appears in mat_peptide feature) /product=\"XYZ neural-specific transcript\" (when qualifier appears in mRNA feature)", 
- "qualifier": "product", 
- "value_format": "\"text\""
-}

@@ -1,6 +1,0 @@
-{
- "definition": "individual isolate from which the sequence was obtained", 
- "example": "/isolate=\"Patient #152\" /isolate=\"DGGE band PSBAC-13\"", 
- "qualifier": "isolate", 
- "value_format": "\"text\""
-}

@@ -1,7 +1,0 @@
-{
- "comment": "Intended to provide a reference to the site where the source organism was isolated or sampled. Regions and localities should be indicated where possible. Note that the physical geography of the isolation or sampling site should be represented in /isolation_source.", 
- "definition": "locality of isolation of the sequenced organism indicated in terms of political names for nations, oceans or seas, followed by regions and localities", 
- "example": "/country=\"Canada:Vancouver\" /country=\"France:Cote d'Azur, Antibes\" /country=\"Atlantic Ocean:Charlie Gibbs Fracture Zone\"", 
- "qualifier": "country", 
- "value_format": "\"<country_value>[:<region>][, <locality>]\" where country_value is any value from the controlled vocabulary at http://www.insdc.org/documents/country-qualifier-vocabulary"
-}

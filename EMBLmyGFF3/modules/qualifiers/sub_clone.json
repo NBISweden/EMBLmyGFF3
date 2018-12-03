@@ -1,7 +1,0 @@
-{
- "comment": "the comments on /clone apply to /sub_clone", 
- "definition": "sub-clone from which sequence was obtained", 
- "example": "/sub_clone=\"lambda-hIL7.20g\"", 
- "qualifier": "sub_clone", 
- "value_format": "\"text\""
-}

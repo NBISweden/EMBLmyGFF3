@@ -1,6 +1,0 @@
-{
- "definition": "name of subpopulation or phenotype of the sample from which the sequence was derived", 
- "example": "/pop_variant=\"pop1\" /pop_variant=\"Bear Paw\"", 
- "qualifier": "pop_variant", 
- "value_format": "\"text\""
-}

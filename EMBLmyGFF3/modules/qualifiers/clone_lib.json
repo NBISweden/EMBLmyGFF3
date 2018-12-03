@@ -1,6 +1,0 @@
-{
- "definition": "clone library from which the sequence was obtained", 
- "example": "/clone_lib=\"lambda-hIL7\"", 
- "qualifier": "clone_lib", 
- "value_format": "\"text\""
-}

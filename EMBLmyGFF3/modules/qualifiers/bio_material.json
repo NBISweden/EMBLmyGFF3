@@ -1,7 +1,0 @@
-{
- "comment": "the bio_material qualifier should be used to annotate the identifiers of material in biological collections that are not appropriate to annotate as either /specimen_voucher or /culture_collection; these include zoos and aquaria, stock centres, seed banks, germplasm repositories and DNA banks; material_id is mandatory, institution_code and collection_code are optional; institution code is mandatory where collection code is present; institution code and collection code are taken from a controlled vocabulary maintained by the INSDC.", 
- "definition": "identifier for the biological material from which the nucleic acid sequenced was obtained, with optional institution code and collection code for the place where it is currently stored.", 
- "example": "/bio_material=\"CGC:CB3912\"      <- Caenorhabditis stock centre", 
- "qualifier": "bio_material", 
- "value_format": "\"[<institution-code>:[<collection-code>:]]<material_id>\""
-}

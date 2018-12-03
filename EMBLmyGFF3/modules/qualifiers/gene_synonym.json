@@ -1,7 +1,0 @@
-{
- "comment": "used where it is helpful to indicate a gene symbol synonym; when used, a primary gene symbol must always be indicated in /gene or a /locus_tag must be used.", 
- "definition": "synonymous, replaced, obsolete or former gene symbol", 
- "example": "/gene_synonym=\"Hox-3.3\" in a feature where /gene=\"Hoxc6\"", 
- "qualifier": "gene_synonym", 
- "value_format": "\"text\""
-}

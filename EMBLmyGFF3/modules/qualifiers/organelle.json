@@ -1,7 +1,0 @@
-{
- "comment": "s        modifier text limited to values from controlled list Please also visit: http://www.insdc.org/controlled-vocabulary-organelle-qualifier", 
- "definition": "type of membrane-bound intracellular structure from which the sequence was obtained", 
- "example": "s        /organelle=\"chromatophore\" /organelle=\"hydrogenosome\" /organelle=\"mitochondrion\" /organelle=\"nucleomorph\" /organelle=\"plastid\" /organelle=\"mitochondrion:kinetoplast\" /organelle=\"plastid:chloroplast\" /organelle=\"plastid:apicoplast\" /organelle=\"plastid:chromoplast\" /organelle=\"plastid:cyanelle\" /organelle=\"plastid:leucoplast\" /organelle=\"plastid:proplastid\"", 
- "qualifier": "organelle", 
- "value_format": "chromatophore, hydrogenosome, mitochondrion, nucleomorph, plastid, mitochondrion:kinetoplast, plastid:chloroplast, plastid:apicoplast, plastid:chromoplast, plastid:cyanelle, plastid:leucoplast, plastid:proplastid"
-}

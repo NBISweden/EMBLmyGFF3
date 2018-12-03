@@ -1,7 +1,0 @@
-{
- "comment": "expected to be used only for genome-scale annotation.", 
- "definition": "indicates that location of the CDS or mRNA is modified to adjust for the presence of a frameshift or internal stop codon and not because of biological processing between the regions.", 
- "example": "/artificial_location=\"heterogeneous population sequenced\" /artificial_location=\"low-quality sequence region\"", 
- "qualifier": "artificial_location", 
- "value_format": "\"heterogeneous population sequenced\", \"low-quality sequence region\""
-}

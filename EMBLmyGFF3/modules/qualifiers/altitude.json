@@ -1,7 +1,0 @@
-{
- "comment": "Values indicate altitudes above or below nominal sea level provided in metres", 
- "definition": "geographical altitude of the location from which the sample was collected", 
- "example": "/altitude=\"-256 m\" /altitude=\"330.12 m\"", 
- "qualifier": "altitude", 
- "value_format": "\"text\""
-}

@@ -1,7 +1,0 @@
-{
- "comment": "/mobile_element_type is legal on mobile_element feature key only. Mobile element should be used to represent both elements which are currently mobile, and those which were mobile in the past. Value \"other\" requires a mobile_element_name.", 
- "definition": "type and name or identifier of the mobile element which is described by the parent feature", 
- "example": "/mobile_element_type=\"transposon:Tnp9\"", 
- "qualifier": "mobile_element_type", 
- "value_format": "\"<mobile_element_type>[:<mobile_element_name>]\" where mobile_element_type is one of the following: \"transposon\", \"retrotransposon\", \"integron\", \"insertion sequence\", \"non-LTR retrotransposon\", \"SINE\", \"MITE\", \"LINE\", \"other\"."
-}

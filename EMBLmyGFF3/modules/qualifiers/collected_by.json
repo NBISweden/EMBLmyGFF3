@@ -1,6 +1,0 @@
-{
- "definition": "name of persons or institute who collected the specimen", 
- "example": "/collected_by=\"Dan Janzen\"", 
- "qualifier": "collected_by", 
- "value_format": "\"text\""
-}

@@ -1,7 +1,0 @@
-{
- "comment": "when the protein sequence encoded by the CDS changes, only the version number of the /protein_id value is incremented; the stable part of the /protein_id remains unchanged and as a result will permanently be associated with a given protein; this qualifier is valid only on CDS features which translate into a valid protein.", 
- "definition": "protein identifier, issued by International collaborators. this qualifier consists of a stable ID portion (3+5 format with 3 position letters and 5 numbers) plus a version number after the decimal point.", 
- "example": "/protein_id=\"AAA12345.1\"", 
- "qualifier": "protein_id", 
- "value_format": "regex:[a-zA-Z]{3}[0-9]{5}\\.[0-9]+"
-}

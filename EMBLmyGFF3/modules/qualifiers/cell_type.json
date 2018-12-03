@@ -1,6 +1,0 @@
-{
- "definition": "cell type from which the sequence was obtained", 
- "example": "/cell_type=\"leukocyte\"", 
- "qualifier": "cell_type", 
- "value_format": "\"text\""
-}

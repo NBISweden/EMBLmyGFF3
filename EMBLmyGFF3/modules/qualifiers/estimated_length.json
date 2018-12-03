@@ -1,6 +1,0 @@
-{
- "definition": "estimated length of the gap in the sequence", 
- "example": "/estimated_length=unknown /estimated_length=342", 
- "qualifier": "estimated_length", 
- "value_format": "unknown or <integer>"
-}

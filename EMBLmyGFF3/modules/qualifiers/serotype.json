@@ -1,7 +1,0 @@
-{
- "comment": "used only with the source feature key; the Bacteriological Code recommends the use of the term 'serovar' instead of 'serotype' for the prokaryotes; see the International Code of Nomenclature of Bacteria (1990 Revision) Appendix 10.B \"Infraspecific Terms\".", 
- "definition": "serological variety of a species characterized by its antigenic properties", 
- "example": "/serotype=\"B1\"", 
- "qualifier": "serotype", 
- "value_format": "\"text\""
-}

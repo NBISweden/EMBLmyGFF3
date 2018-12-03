@@ -1,6 +1,0 @@
-{
- "definition": "name of viral or phage segment sequenced", 
- "example": "/segment=\"6\"", 
- "qualifier": "segment", 
- "value_format": "\"text\""
-}

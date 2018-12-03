@@ -1,7 +1,0 @@
-{
- "comment": "to be used with CDS feature only; this is a mandatory qualifier in the CDS feature key except where /pseudogene=\"TYPE\" or /pseudo is shown; see /transl_table for definition and location of genetic code tables.", 
- "definition": "automatically generated one-letter abbreviated amino acid sequence derived from either the universal genetic code or the table as specified in /transl_table and as determined by an exception in the /transl_except qualifier", 
- "example": "/translation=\"MASTFPPWYRGCASTPSLKGLIMCTW\"", 
- "qualifier": "translation", 
- "value_format": "IUPAC one-letter amino acid abbreviation, \"X\" is to be used for AA exceptions."
-}

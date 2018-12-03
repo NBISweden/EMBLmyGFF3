@@ -1,6 +1,0 @@
-{
- "definition": "this qualifier is used to flag sequence obtained from a virus or phage that is integrated into the genome of another organism", 
- "example": "/proviral", 
- "qualifier": "proviral", 
- "value_format": "none"
-}

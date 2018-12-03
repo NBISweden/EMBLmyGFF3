@@ -1,6 +1,0 @@
-{
- "definition": "phenotype conferred by the feature, where phenotype is defined as a physical, biochemical or behavioural characteristic or set of characteristics", 
- "example": "/phenotype=\"erythromycin resistance\"", 
- "qualifier": "phenotype", 
- "value_format": "\"text\""
-}

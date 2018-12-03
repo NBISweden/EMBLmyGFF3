@@ -1,7 +1,0 @@
-{
- "comment": "it is recommended that the amino acid sequence corresponding to the /tag_peptide be annotated by describing a 5' partial CDS feature; e.g. CDS    <90..122;", 
- "definition": "base location encoding the polypeptide for proteolysis tag of tmRNA and its termination codon;", 
- "example": "/tag_peptide=90..122", 
- "qualifier": "tag_peptide", 
- "value_format": "<base_range>"
-}

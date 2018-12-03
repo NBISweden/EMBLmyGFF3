@@ -1,7 +1,0 @@
-{
- "comment": "not more than one clone should be specified for a given source feature;  to indicate that the sequence was obtained from multiple clones, multiple source features should be given.", 
- "definition": "clone from which the sequence was obtained", 
- "example": "/clone=\"lambda-hIL7.3\"", 
- "qualifier": "clone", 
- "value_format": "\"text\""
-}

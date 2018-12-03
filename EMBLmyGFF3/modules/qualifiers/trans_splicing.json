@@ -1,7 +1,0 @@
-{
- "comment": "should be used on features such as CDS, mRNA and other features that are produced as a result of a trans-splicing event. This qualifier should be used only when the splice event is indicated in the \"join\" operator, eg join(complement(69611..69724),139856..140087)", 
- "definition": "indicates that exons from two RNA molecules are ligated in intermolecular reaction to form mature RNA", 
- "example": "/trans_splicing", 
- "qualifier": "trans_splicing", 
- "value_format": "none"
-}

@@ -1,6 +1,0 @@
-{
- "definition": "name for a group of similar haplotypes that share some sequence variation. Haplogroups are often used to track migration of population groups", 
- "example": "/haplogroup=\"H*\"", 
- "qualifier": "haplogroup", 
- "value_format": "\"text\""
-}

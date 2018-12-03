@@ -1,6 +1,0 @@
-{
- "definition": "name of sub-species of organism from which sequence was obtained", 
- "example": "/sub_species=\"lactis\"", 
- "qualifier": "sub_species", 
- "value_format": "\"text\""
-}

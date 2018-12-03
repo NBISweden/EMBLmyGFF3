@@ -1,7 +1,0 @@
-{
- "comment": "/sex should be used (instead of /mating_type) in the Metazoa, Embryophyta, Rhodophyta & Phaeophyceae; /mating_type should be used (instead of /sex) in the Bacteria, Archaea & Fungi; neither /sex nor /mating_type should be used in the viruses; outside of the taxa listed above, /mating_type should be used unless the value of the qualifier is taken from the vocabulary given in the examples above", 
- "definition": "sex of the organism from which the sequence was obtained; sex is used for eukaryotic organisms that undergo meiosis and have sexually dimorphic gametes", 
- "example": "s        /sex=\"female\" /sex=\"male\" /sex=\"hermaphrodite\" /sex=\"unisexual\" /sex=\"bisexual\" /sex=\"asexual\" /sex=\"monoecious\" [or monecious] /sex=\"dioecious\" [or diecious]", 
- "qualifier": "sex", 
- "value_format": "\"text\""
-}

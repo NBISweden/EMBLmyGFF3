@@ -1,7 +1,0 @@
-{
- "comment": "the /culture_collection qualifier should be used to annotate live microbial and viral cultures, and cell lines that have been deposited in curated culture collections; microbial cultures in personal or laboratory collections should be annotated in strain qualifiers; annotation with a culture_collection qualifier implies that the sequence was obtained from a sample retrieved (by the submitter or a collaborator) from the indicated culture collection, or that the sequence was obtained from a sample that was deposited (by the submitter or a collaborator) in the indicated culture collection; annotation with more than one culture_collection qualifier indicates that the sequence was obtained from a sample that was deposited (by the submitter or a collaborator) in more than one culture collection. culture_id and institution_code are mandatory, collection_code is optional; institution code and collection code are taken from a controlled vocabulary maintained by the INSDC. http://www.insdc.org/controlled-vocabulary-culturecollection-qualifier", 
- "definition": "institution code and identifier for the culture from which the nucleic acid sequenced was obtained, with optional collection code.", 
- "example": "/culture_collection=\"ATCC:26370\"", 
- "qualifier": "culture_collection", 
- "value_format": "\"<institution-code>:[<collection-code>:]<culture_id>\""
-}

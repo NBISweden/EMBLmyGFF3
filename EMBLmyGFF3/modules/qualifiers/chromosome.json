@@ -1,6 +1,0 @@
-{
- "definition": "chromosome (e.g. Chromosome number) from which the sequence was obtained", 
- "example": "/chromosome=\"1\"", 
- "qualifier": "chromosome", 
- "value_format": "\"text\""
-}

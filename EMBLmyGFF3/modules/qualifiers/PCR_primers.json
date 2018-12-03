@@ -1,7 +1,0 @@
-{
- "comment": "fwd_seq and rev_seq are both mandatory; fwd_name and rev_name are both optional. Both sequences should be presented in 5'>3' order. The sequences should be given in the IUPAC degenerate-base alphabet, except for the modified bases; those must be enclosed within angle brackets <>", 
- "definition": "PCR primers that were used to amplify the sequence. A single /PCR_primers qualifier should contain all the primers used for a single PCR reaction. If multiple forward or reverse primers are present in a  single PCR reaction, multiple sets of fwd_name/fwd_seq or rev_name/rev_seq values will be  present.", 
- "example": "/PCR_primers=\"fwd_name: CO1P1, fwd_seq: ttgattttttggtcayccwgaagt, rev_name: CO1R4, rev_seq: ccwvytardcctarraartgttg\" /PCR_primers=\" fwd_name: hoge1, fwd_seq: cgkgtgtatcttact, rev_name: hoge2, rev_seq: cg<i>gtgtatcttact\" /PCR_primers=\"fwd_name: CO1P1, fwd_seq: ttgattttttggtcayccwgaagt, fwd_name: CO1P2, fwd_seq: gatacacaggtcayccwgaagt, rev_name: CO1R4, rev_seq: ccwvytardcctarraartgttg\"", 
- "qualifier": "PCR_primers", 
- "value_format": "/PCR_primers=\"[fwd_name: XXX1, ]fwd_seq: xxxxx1,[fwd_name: XXX2,] fwd_seq: xxxxx2, [rev_name: YYY1, ]rev_seq: yyyyy1, [rev_name: YYY2, ]rev_seq: yyyyy2\""
-}

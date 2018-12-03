@@ -1,7 +1,0 @@
-{
- "comment": "if the amino acid is not on the restricted vocabulary list use e.g., '/transl_except=(pos:213..215,aa:OTHER)' with '/note=\"name of unusual amino acid\"'; for modified amino-acid selenocysteine use three letter code 'Sec'  (one letter code 'U' in amino-acid sequence) /transl_except=(pos:1002..1004,aa:Sec); for partial termination codons where TAA stop codon is completed by the addition of 3' A residues to the mRNA either a single base_position or a base_range is used, e.g. if partial stop codon is a single base: /transl_except=(pos:1017,aa:TERM) if partial stop codon consists of two bases: /transl_except=(pos:2000..2001,aa:TERM) with '/note='stop codon completed by the addition of 3' A residues to the mRNA'.", 
- "definition": "translational exception: single codon the translation of which does not conform to genetic code defined by /organism or /transl_table.", 
- "example": "/transl_except=(pos:213..215,aa:Trp) /transl_except=(pos:1017,aa:TERM) /transl_except=(pos:2000..2001,aa:TERM) /transl_except=(pos:X22222:15..17,aa:Ala)", 
- "qualifier": "transl_except", 
- "value_format": "(pos:location,aa:<amino_acid>) where amino_acid is the amino acid coded by the codon at the base_range position"
-}

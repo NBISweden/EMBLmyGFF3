@@ -1,7 +1,0 @@
-{
- "comment": "TYPE is a term taken from the INSDC controlled vocabulary for ncRNA classes (http://www.insdc.org/rna_vocab.html); on 15-Oct-2013, the following terms were valid: \"antisense_RNA\" \"autocatalytically_spliced_intron\" \"ribozyme\" \"hammerhead_ribozyme\" \"lncRNA\" \"RNase_P_RNA\" \"RNase_MRP_RNA\" \"telomerase_RNA\" \"guide_RNA\" \"rasiRNA\" \"scRNA\" \"siRNA\" \"miRNA\" \"piRNA\" \"snoRNA\" \"snRNA\" \"SRP_RNA\" \"vault_RNA\" \"Y_RNA\" \"other\" ncRNA classes not yet in the INSDC /ncRNA_class controlled vocabulary can be annotated by entering '/ncRNA_class=\"other\"' with '/note=\"[brief explanation of novel ncRNA_class]\"';", 
- "definition": "a structured description of the classification of the non-coding RNA described by the ncRNA parent key", 
- "example": "/ncRNA_class=\"miRNA\" /ncRNA_class=\"siRNA\" /ncRNA_class=\"scRNA\"", 
- "qualifier": "ncRNA_class", 
- "value_format": "\"TYPE\""
-}

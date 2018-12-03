@@ -1,7 +1,0 @@
-{
- "comment": "TYPE is a term taken from the INSDC controlled vocabulary for recombination classes (http://www.insdc.org/controlled-vocabulary-recombination-class); on  15-OCT-2016, the following terms were valid: \"meiotic_recombination\" \"mitotic_recombination\" \"non_allelic_homologous_recombination_region\" \"chromosome_breakpoint\" \"other\" recombination classes not yet in the INSDC /recombination_class controlled vocabulary can be annotated by entering /recombination_class=\"other\" with /note=\"[brief explanation of novel /recombination_class]\";", 
- "definition": "a structured description of the classification of recombination hotspot region within a sequence", 
- "example": "/recombination_class=\"meiotic recombination\" /recombination_class=\"chromosome_breakpoint\"", 
- "qualifier": "recombination_class", 
- "value_format": "\"TYPE\""
-}

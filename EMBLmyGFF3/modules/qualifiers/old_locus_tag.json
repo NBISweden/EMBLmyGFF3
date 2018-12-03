@@ -1,7 +1,0 @@
-{
- "comment": "/old_locus_tag can be used with any feature where /gene is valid and where a /locus_tag qualifier is present. Identical /old_locus_tag values may be used within an entry/record, but only if the identical /old_locus_tag values are associated with the same gene; in all other circumstances the /old_locus_tag value must be unique within that entry/record. Multiple/old_locus_tag qualifiers with distinct values are allowed within a single feature; /old_locus_tag and /locus_tag values must not be identical within a single feature.", 
- "definition": "feature tag assigned for tracking purposes", 
- "example": "/old_locus_tag=\"RSc0382\" /locus_tag=\"YPO0002\"", 
- "qualifier": "old_locus_tag", 
- "value_format": "\"text\" (single token)"
-}

@@ -1,7 +1,0 @@
-{
- "comment": "not to be used for new entries from 15-DEC-2001; use '<' and '>' signs in the location descriptors to indicate that the sequence is partial.", 
- "definition": "differentiates between complete regions and partial ones", 
- "example": "/partial", 
- "qualifier": "partial", 
- "value_format": "none"
-}

@@ -1,6 +1,0 @@
-{
- "definition": "name of the group of contiguous genes transcribed into a single transcript to which that feature belongs.", 
- "example": "/operon=\"lac\"", 
- "qualifier": "operon", 
- "value_format": "\"text\""
-}

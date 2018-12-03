@@ -1,6 +1,0 @@
-{
- "definition": "tissue library from which sequence was obtained", 
- "example": "/tissue_lib=\"tissue library 772\"", 
- "qualifier": "tissue_lib", 
- "value_format": "\"text\""
-}

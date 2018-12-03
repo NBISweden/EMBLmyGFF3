@@ -1,6 +1,0 @@
-{
- "definition": "type of repeated sequence; \"Alu\" or \"Kpn\", for example", 
- "example": "/rpt_family=\"Alu\"", 
- "qualifier": "rpt_family", 
- "value_format": "\"text\""
-}

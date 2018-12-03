@@ -1,7 +1,0 @@
-{
- "comment": "used only with the source feature key; source feature keys containing an /environmental_sample qualifier should also contain an /isolation_source qualifier; the /country qualifier should be used to describe the country and major geographical sub-region.", 
- "definition": "describes the physical, environmental and/or local geographical source of the biological sample from which the sequence was derived", 
- "example": "s        /isolation_source=\"rumen isolates from standard Pelleted ration-fed steer #67\" /isolation_source=\"permanent Antarctic sea ice\" /isolation_source=\"denitrifying activated sludge from carbon_limited continuous reactor\"", 
- "qualifier": "isolation_source", 
- "value_format": "\"text\""
-}

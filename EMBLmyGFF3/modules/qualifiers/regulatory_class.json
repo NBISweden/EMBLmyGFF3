@@ -1,7 +1,0 @@
-{
- "comment": "regulatory classes not yet in the INSDC /regulatory_class controlled vocabulary can be annotated by entering /regulatory_class=\"other\" with /note=\"[brief explanation of novel regulatory_class]\";", 
- "definition": "a structured description of the classification of transcriptional, translational, replicational and chromatin structure related regulatory elements in a sequence", 
- "example": "/regulatory_class=\"promoter\" /regulatory_class=\"enhancer\" /regulatory_class=\"ribosome_binding_site\"", 
- "qualifier": "regulatory_class", 
- "value_format": "\"TYPE\""
-}

@@ -1,7 +1,0 @@
-{
- "comment": "used only with the source feature key; source feature keys containing the /environmental_sample qualifier should also contain the /isolation_source qualifier. entries including /environmental_sample must not include the /strain qualifier", 
- "definition": "identifies sequences derived by direct molecular isolation from a bulk environmental DNA sample (by PCR with or without subsequent cloning of the product, DGGE, or other anonymous methods) with no reliable identification of the source organism. Environmental samples include clinical samples, gut contents, and other sequences from anonymous organisms that may be associated with a particular host. They do not include endosymbionts that can be reliably recovered from a particular host, organisms from a readily identifiable but uncultured field sample (e.g., many cyanobacteria), or phytoplasmas that can be reliably recovered from diseased plants (even though these cannot be grown in axenic culture).", 
- "example": "/environmental_sample", 
- "qualifier": "environmental_sample", 
- "value_format": "none"
-}

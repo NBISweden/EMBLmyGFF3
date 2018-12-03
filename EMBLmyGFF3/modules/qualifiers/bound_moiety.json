@@ -1,7 +1,0 @@
-{
- "comment": "A single /bound_moiety qualifier is legal on the \"misc_binding\", \"oriT\" and \"protein_bind\" features.", 
- "definition": "name of the molecule/complex that may bind to the given feature", 
- "example": "/bound_moiety=\"GAL4\"", 
- "qualifier": "bound_moiety", 
- "value_format": "\"text\""
-}

@@ -1,7 +1,0 @@
-{
- "comment": "transgenic sequences must have at least two source feature keys; the source feature key having the /transgenic qualifier must span the whole sequence; the source feature carrying the /transgenic qualifier identifies the main organism of the entry, this determines: a) the name displayed in the organism lines, b) if no translation table is specified, the translation table; only one source feature with /transgenic is allowed in an entry; the /focus and /transgenic qualifiers are mutually exclusive in an entry.", 
- "definition": "identifies the source feature of the organism which was the recipient of transgenic DNA.", 
- "example": "/transgenic", 
- "qualifier": "transgenic", 
- "value_format": "none"
-}

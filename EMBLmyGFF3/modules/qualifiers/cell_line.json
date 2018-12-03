@@ -1,6 +1,0 @@
-{
- "definition": "cell line from which the sequence was obtained", 
- "example": "/cell_line=\"MCF7\"", 
- "qualifier": "cell_line", 
- "value_format": "\"text\""
-}

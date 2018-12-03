@@ -1,6 +1,0 @@
-{
- "definition": "tissue type from which the sequence was obtained", 
- "example": "/tissue_type=\"liver\"", 
- "qualifier": "tissue_type", 
- "value_format": "\"text\""
-}

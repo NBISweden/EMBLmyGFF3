@@ -1,7 +1,0 @@
-{
- "comment": "/mating_type=\"male\" and /mating_type=\"female\" are valid in the prokaryotes, but not in the eukaryotes; for more information, see the entry for /sex.", 
- "definition": "mating type of the organism from which the sequence was obtained; mating type is used for prokaryotes, and for eukaryotes that undergo meiosis without sexually dimorphic gametes", 
- "example": "s        /mating_type=\"MAT-1\" /mating_type=\"plus\" /mating_type=\"-\" /mating_type=\"odd\" /mating_type=\"even\"", 
- "qualifier": "mating_type", 
- "value_format": "\"text\""
-}

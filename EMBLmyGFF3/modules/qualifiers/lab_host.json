@@ -1,7 +1,0 @@
-{
- "comment": "the full binomial scientific name of the host organism should be used when known; extra conditional information relating to the host may also be included", 
- "definition": "scientific name of the laboratory host used to propagate the source organism from which the sequenced molecule was obtained", 
- "example": "/lab_host=\"Gallus gallus\" /lab_host=\"Gallus gallus embryo\" /lab_host=\"Escherichia coli strain DH5 alpha\" /lab_host=\"Homo sapiens HeLa cells\"", 
- "qualifier": "lab_host", 
- "value_format": "\"text\""
-}

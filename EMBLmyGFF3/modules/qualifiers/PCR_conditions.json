@@ -1,7 +1,0 @@
-{
- "comment": "used with primer_bind key", 
- "definition": "description of reaction conditions and components for PCR", 
- "example": "/PCR_conditions=\"Initial denaturation:94degC,1.5min\"", 
- "qualifier": "PCR_conditions", 
- "value_format": "\"text\""
-}

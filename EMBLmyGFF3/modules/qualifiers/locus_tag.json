@@ -1,7 +1,0 @@
-{
- "comment": "/locus_tag can be used with any feature that /gene can be used with; identical /locus_tag values may be used within an entry/record, but only if the identical /locus_tag values are associated with the same gene; in all other circumstances the /locus_tag value must be unique within that entry/record. Multiple /locus_tag values are not allowed within one feature for entries created after 15-OCT-2004. If a /locus_tag needs to be re-assigned the /old_locus_tag qualifier should be used to store the old value. The /locus_tag value should not be in a format which resembles INSD accession numbers, accession.version, or /protein_id identifiers.", 
- "definition": "a submitter-supplied, systematic, stable identifier for a gene and its associated features, used for tracking purposes", 
- "example": "/locus_tag=\"ABC_0022\" /locus_tag=\"A1C_00001\"", 
- "qualifier": "locus_tag", 
- "value_format": "\"text\"(single token) but not \"<1-5 letters><5-9 digit integer>[.<integer>]\""
-}
