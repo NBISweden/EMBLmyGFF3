@@ -19,10 +19,7 @@ setup(
     include_package_data=True,
 
     entry_points={
-        'console_scripts': ['EMBLmyGFF3 = EMBLmyGFF3:main',  
-        'EMBLmyGFF3-augustus-example = examples.augustus_example:main',
-        'EMBLmyGFF3-maker-example = examples.maker_example:main',
-        'EMBLmyGFF3-prokka-example = examples.prokka_example:main',
+        'console_scripts': ['EMBLmyGFF3 = EMBLmyGFF3:main',
         ],
     }
 )

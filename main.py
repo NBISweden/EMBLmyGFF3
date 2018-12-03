@@ -46,13 +46,6 @@ def gff_input(args):
 
     return {"gff_files":infile, "base_dict":seq_dict}
 
-def feature_table_args(args):
-    """Convenience function to extract command line arguments and format them
-    to be properly passed to a FeatureTable.
-    """
-
-    return {"header":{"data_class":args.data_class}}
-
 def resolve_output(args):
     """Convenience function that returns either stdout or a file handle with
     the correct extension, depending on wheather it should be gzip'ed or not.
@@ -95,7 +88,7 @@ if __name__ == '__main__':
                               " retrieved online on the NCBI taxonomy DB based"
                               " on the species name or taxid."))
 
-    HEADER.add_argument("--creation_time",
+    HEADER.add_argument("--created",
                         help=("Creation time of the original entry, formatted"
                               " as: 'YYYY-MM-DD' or 'DD-MON-YYYY'."))
 
@@ -104,6 +97,11 @@ if __name__ == '__main__':
                         help="Data class of the sample.",
                         choices=["CON", "PAT", "EST", "GSS", "HTC", "HTG",
                                  "MGA", "WGS", "TSA", "STS", "STD"])
+
+    HEADER.add_argument("--description",
+                        default=["XXX"],
+                        nargs="+",
+                        help="Short description of the data.")
 
     HEADER.add_argument("--keywords",
                         default=[],
@@ -155,6 +153,12 @@ if __name__ == '__main__':
                         help="Translation table for the submission DNA.",
                         choices=list(range(1,26)))
 
+    HEADER.add_argument("--version",
+                        type=int,
+                        default=1,
+                        help="Submission version number.")
+
+
     # Logging arguments
     LOGGING = PARSER.add_argument_group("logging control")
     LOGGING.add_argument("-v", "--verbose",
@@ -204,9 +208,10 @@ if __name__ == '__main__':
     for i, record in enumerate(GFF.parse(**gff_input(ARGS))):
         FEATURES += [EmblWriter(record, 
                                 thread_pool=THREAD_POOL,
-                                **feature_table_args(ARGS))]
+                                header=ARGS)]
 
     for i, feature in enumerate(FEATURES):
         while feature.get_progress() < 1.0:
             time.sleep(0.1)
-        outfile.write(f"{i} - {feature}\n")
+        outfile.write(f"{feature}\n")
+        break
