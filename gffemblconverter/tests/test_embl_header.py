@@ -14,6 +14,9 @@ class TestEMBLHeader(unittest.TestCase):
     def setUp(self):
         self.header = EMBLHeader()
 
+    def tearDown(self):
+        del self.header
+
     def test_spacer(self):
         """Testing spacer function
         """

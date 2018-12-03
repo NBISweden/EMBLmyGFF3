@@ -18,7 +18,7 @@ def embl_line(line_code, information, add_spacer=True):
     to a maximum of 79 characters.
     ex. PR   Project:17285;
     """
-    output = ensure_row_length(f"{line_code:<5}{information}\n", 79)
+    output = ensure_row_length(f"{line_code:5.4s}{information}\n", 79)
 
     if add_spacer:
         output += "XX\n"
