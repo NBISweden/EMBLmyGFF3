@@ -4,7 +4,8 @@ Unit tests for the functions from embl_utilities.py.
 """
 
 import unittest
-from gffemblconverter.feature_table.embl_utilities import embl_line, ensure_row_length
+from gffemblconverter.feature_table.embl_utilities import embl_line, \
+    ensure_row_length, ensure_quoted
 
 class TestEMBLUtilities(unittest.TestCase):
     """
@@ -26,6 +27,16 @@ class TestEMBLUtilities(unittest.TestCase):
                                             "truncated. Hint: it does.")),
                          ("AC   this is a long line of words that may or may "
                           "not need to be truncated.\nAC   Hint: it does. \n"))
+
+    def test_ensure_quoted(self):
+        """Testing ensure_quoted
+        """
+        self.assertEqual(ensure_quoted('test string', '"'), '"test string"')
+        self.assertEqual(ensure_quoted('"test string', '"'), '"test string"')
+        self.assertEqual(ensure_quoted('test string"', '"'), '"test string"')
+        self.assertEqual(ensure_quoted('"test string"', '"'), '"test string"')
+        self.assertEqual(ensure_quoted('test string', '|'), '|test string|')
+        self.assertEqual(ensure_quoted(''), '')
 
 if __name__ == '__main__':
     unittest.main()

@@ -5,8 +5,8 @@ header, as described in ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
 """
 
 from datetime import datetime
-from argparse import Namespace
 
+from .embl_reference import EMBLReference
 from .embl_utilities import embl_line, get_ena_release, taxid_to_species
 
 class EMBLHeader():
@@ -21,16 +21,15 @@ class EMBLHeader():
         argparse Namespace object. This class then formats and checks what goes
         into the EMBL file header.
         """
-        variables = ["accession", "version", "topology", "molecule_type",
-                     "data_class", "taxonomic_division", "sequence_length",
-                     "created"]
-        self.settings = {}
-        if args is None:
-            args = Namespace()
-        for key in variables:
-            self.settings[key] = None
-        for key, value in vars(args).items():
-            self.settings[key] = value
+
+        self.settings = {"accession":None, "version":None, "topology":None,
+                         "molecule_type":None, "data_class":None,
+                         "taxonomic_division":None, "sequence_length":None,
+                         "created":None}
+
+        if args:
+            for key, value in vars(args).items():
+                self.settings[key] = value
 
         # format settings
         if self.settings.get('created', False):
@@ -47,6 +46,9 @@ class EMBLHeader():
         self.settings["updated"] = datetime.today()
         self.settings["updated_release"] = \
             get_ena_release(self.settings['updated'])
+
+        # Add references
+        self.references = [str(EMBLReference(args))]
 
     def __repr__(self):
         # ID - identification             (begins each entry; 1 per entry)
@@ -68,7 +70,8 @@ class EMBLHeader():
         # OG - organelle                  (0 or 1 per entry)
         # output += self.organelle()
         # References, including RN, RC, RP, RX, RG, RA, RT and RL
-        # output += self.references()
+        for reference in self.references:
+            output += reference
         # DR - database cross-reference   (>=0 per entry)
         # output += self.xref()
         # CC - comments or notes          (>=0 per entry)

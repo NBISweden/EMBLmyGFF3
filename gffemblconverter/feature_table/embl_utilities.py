@@ -10,7 +10,7 @@ from Bio import Entrez
 
 ENTREZ_EMAIL = "gffconverter@nbis.se"
 
-def embl_line(line_code, information, add_spacer=True):
+def embl_line(line_code, information, add_spacer=True, split_on=" "):
     """
     This function formats an EMBL output line.
 
@@ -18,13 +18,25 @@ def embl_line(line_code, information, add_spacer=True):
     to a maximum of 79 characters.
     ex. PR   Project:17285;
     """
-    output = ensure_row_length(f"{line_code:5.4s}{information}\n", 79)
+    output = ensure_row_length(f"{line_code:5.4s}{information}\n", 79, split_on)
 
     if add_spacer:
         output += "XX\n"
     return output
 
-def ensure_row_length(line, max_length=79):
+def ensure_quoted(string, quotation_mark="\""):
+    """
+    Ensures that a string has the quotation_mark at each end.
+    """
+    if not string:
+        return ""
+    if string[0] != quotation_mark:
+        string = quotation_mark + string
+    if string[-1] != quotation_mark:
+        string += quotation_mark
+    return string
+
+def ensure_row_length(line, max_length=79, split_on=" "):
     """Function that ensures that no line is longer than the maximum allowed
     line length.
 
@@ -37,7 +49,7 @@ def ensure_row_length(line, max_length=79):
     output = ""
     line_code = line[:2]
     row = line[:5] # line code and spaces
-    words = line[5:].split()
+    words = line[5:].split(split_on)
     while words:
         # if a word must be split
         if len(words[0]) > max_length-6:
@@ -45,13 +57,15 @@ def ensure_row_length(line, max_length=79):
             row += words[0][:max_length-split]
             words[0] = words[0][max_length-split:]
 
-        if len(row + " " + words[0]) > max_length:
+        if len(row + split_on + words[0]) > max_length:
             output += row
             output = output.rstrip() + "\n"
-            row = f"{line_code}   " + words[0] + " "
+            row = f"{line_code}   " + words[0].lstrip()
         else:
-            row += words[0] + " "
+            row += words[0]
         words = words[1:]
+        if words:
+            row += split_on
 
     if row:
         output += row
