@@ -34,6 +34,7 @@ RL   Oak Ridge, TN 37831, USA;
 
 """
 
+from datetime import datetime
 from .embl_utilities import embl_line, ensure_quoted
 
 class EMBLReference():
@@ -120,12 +121,15 @@ class EMBLReference():
         The RP line in the example above is:
             RP   1-1859
         """
-        if not self.settings['reference_position']:
-            return ""
+        positions = self.settings['reference_position']
+        if not positions:
+            if 'sequence_length' in self.settings:
+                positions = ["1-{}".format(self.settings['sequence_length'])]
         line_code = "RP"
-        template = "{reference_position}"
+        template = "{position}"
+        value = ",".join([template.format(position=r) for r in positions])
 
-        return embl_line(line_code, template.format(**self.settings), False)
+        return embl_line(line_code, value, False)
 
     def x_ref(self):
         """
@@ -298,7 +302,8 @@ class EMBLReference():
             RL   (misc)Proc. Vth Int. Symp. Biol. Terr. Isopods 2:365-380(2003).
         """
         if not self.settings['reference_publisher']:
-            return ""
+            self.settings['reference_publisher'] = \
+                f"Submitted ({datetime.today():%d-%b-%Y}) to the INSDC."
         line_code = "RL"
         template = "{reference_publisher}"
 

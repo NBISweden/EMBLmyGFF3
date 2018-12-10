@@ -7,7 +7,8 @@ header, as described in ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
 from datetime import datetime
 
 from .embl_reference import EMBLReference
-from .embl_utilities import embl_line, get_ena_release, taxid_to_species
+from .embl_utilities import embl_line, get_ena_release, taxid_to_species, \
+                            classification_from_taxid, species_to_taxid
 
 class EMBLHeader():
     """Formatting class for keep track of the values associated with an EMBL
@@ -48,13 +49,16 @@ class EMBLHeader():
             get_ena_release(self.settings['updated'])
 
         # Add references
-        self.references = [str(EMBLReference(args))]
+        self.references = [EMBLReference(args)]
 
     def __repr__(self):
         # ID - identification             (begins each entry; 1 per entry)
         output = self.id_line()
         # AC - accession number           (>=1 per entry)
         output += self.accession_line()
+        # Submission AC
+        if self.settings.get("record_id", False):
+            output += self.accession_line(True, self.settings["record_id"])
         # PR - project identifier         (0 or 1 per entry)
         output += self.project_line()
         # DT - date                       (2 per entry)
@@ -68,14 +72,14 @@ class EMBLHeader():
         # OC - organism classification    (>=1 per entry)
         output += self.classification()
         # OG - organelle                  (0 or 1 per entry)
-        # output += self.organelle()
+        output += self.organelle()
         # References, including RN, RC, RP, RX, RG, RA, RT and RL
         for reference in self.references:
-            output += reference
+            output += str(reference)
         # DR - database cross-reference   (>=0 per entry)
-        # output += self.xref()
+        output += self.xref()
         # CC - comments or notes          (>=0 per entry)
-        # output += self.comment()
+        output += self.comment()
 
         # output += self.third_party_annotation()
 
@@ -116,7 +120,7 @@ class EMBLHeader():
 
         return embl_line(line_code, template.format(**self.settings))
 
-    def accession_line(self, submission=True):
+    def accession_line(self, submission=False, accession=False):
         """
         3.4.2  The AC Line
         The AC (ACcession number) line lists the accession numbers associated
@@ -164,7 +168,14 @@ class EMBLHeader():
         line_code = "AC *" if submission else "AC"
         template = "{accession};"
 
-        return embl_line(line_code, template.format(**self.settings))
+        if accession:
+            if not accession.startswith("_"):
+                accession = f"_{accession}"
+            value = template.format(accession=accession)
+        else:
+            value = template.format(**self.settings)
+
+        return embl_line(line_code, value)
 
     def project_line(self):
         """
@@ -176,6 +187,9 @@ class EMBLHeader():
         http://www.ebi.ac.uk/ena/about/page.php?page=project_guidelines.
         Example:        PR   Project:17285;
         """
+        if not self.settings["project_id"]:
+            return ""
+
         line_code = "PR"
         template = "Project:{project_id};"
 
@@ -357,6 +371,81 @@ class EMBLHeader():
         """
         line_code = "OC"
         template = "{classification}"
+
+        if self.settings['classification'] is None:
+            if self.settings["species"].isdigit():
+                taxid = self.settings["species"]
+            else:
+                taxid = species_to_taxid(self.settings["species"])
+            self.settings['classification'] = classification_from_taxid(taxid)
+
+        return embl_line(line_code, template.format(**self.settings))
+
+    def organelle(self):
+        """
+        3.4.9  The OG Line
+        The OG (OrGanelle) linetype indicates the sub-cellular location of
+        non-nuclear sequences.  It is only present in entries containing
+        non-nuclear sequences and appears after the last OC line in such
+        entries.
+        The OG line contains
+        a) one data item (title cased) from the controlled list detailed under
+        the /organelle qualifier definition in the Feature Table Definition
+        document that accompanies this release or
+        b) a plasmid name.
+        Examples include "Mitochondrion", "Plastid:Chloroplast" and
+        "Plasmid pBR322".
+
+        For example, a chloroplast sequence from Euglena gracilis would appear
+        as:
+            OS   Euglena gracilis (green algae)
+            OC   Eukaryota; Planta; Phycophyta; Euglenophyceae.
+            OG   Plastid:Chloroplast
+        """
+        if not self.settings["organelle"]:
+            return ""
+
+        line_code = "OG"
+        template = "{organelle}"
+        return embl_line(line_code, template.format(**self.settings))
+
+    def xref(self):
+        """
+        3.4.11  The DR Line
+        The DR (Database Cross-reference) line cross-references other databases
+        which contain information related to the entry in which the DR line
+        appears. For example, if an annotated/assembled sequence in ENA is cited
+        in the IMGT/LIGM database there will be a DR line pointing to the
+        relevant IMGT/LIGM entry. The format of the DR line is as follows:
+            DR   database_identifier; primary_identifier; secondary_identifier.
+        The first item on the DR line, the database identifier, is the
+        abbreviated name of the data collection to which reference is made.
+        The second item on the DR line, the primary identifier, is a pointer to
+        the entry in the external database to which reference is being made.
+        The third item on the DR line is the secondary identifier, if available,
+        from the referenced database.
+        An example of a DR line is shown below:
+        DR   MGI; 98599; Tcrb-V4.
+        """
+        if not self.settings["reference_xref"]:
+            return ""
+
+        line_code = "DR"
+        template = "{reference_xref};"
+        return embl_line(line_code, template.format(**self.settings))
+
+    def comment(self):
+        """
+        3.4.19  The CC Line
+        CC lines are free text comments about the entry, and may be used to
+        convey any sort of information thought to be useful that is unsuitable
+        for inclusion in other line types.
+        """
+        if not self.settings["reference_comment"]:
+            return ""
+
+        line_code = "CC"
+        template = "{reference_comment};"
         return embl_line(line_code, template.format(**self.settings))
 
     @staticmethod
@@ -375,7 +464,3 @@ class EMBLHeader():
         embl_utilities.py, but this function is kept for completeness.
         """
         return "XX\n"
-
-# line_code = ""
-# template = "{}"
-# return embl_line(line_code, template.format(**self.settings))

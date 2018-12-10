@@ -3,6 +3,8 @@
 parts of the EMBL writer.
 """
 
+import ssl
+import urllib
 import logging
 from datetime import datetime
 
@@ -113,11 +115,74 @@ def taxid_to_species(taxid):
         Entrez.email = ENTREZ_EMAIL
         try:
             search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
-            data = Entrez.read(search)
-            species = data[0]['ScientificName']
+        except urllib.error.URLError as error:
+            if "SSL: CERTIFICATE_VERIFY_FAILED" in str(error):
+                logging.warning("SSL: CERTIFICATE_VERIFY_FAILED")
+                logging.warning("retrying without trusting certificate")
+            else:
+                raise error
+            ssl._create_default_https_context = ssl._create_unverified_context
+            search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
         except IOError as error:
             logging.error(error)
+            logging.error(type(error))
             logging.error("Could not get species from taxid '%s'", taxid)
             species = taxid
+        data = Entrez.read(search)
+        species = data[0]['ScientificName']
 
     return "%s%s" % (species[0].upper(), species[1:].lower())
+
+def species_to_taxid(species):
+    """
+    Attempts to fetch the taxid for a species name from Entrez.
+    """
+    Entrez.email = ENTREZ_EMAIL
+
+    species = species.replace(" ", "+").strip()
+    try:
+        search = Entrez.esearch(term=species, db="taxonomy", retmode="xml")
+    except urllib.error.URLError as error:
+        if "SSL: CERTIFICATE_VERIFY_FAILED" in str(error):
+            logging.warning("SSL: CERTIFICATE_VERIFY_FAILED")
+            logging.warning("retrying without trusting certificate")
+        else:
+            raise error
+        ssl._create_default_https_context = ssl._create_unverified_context
+        search = Entrez.esearch(term=species, db="taxonomy", retmode="xml")
+    except IOError as error:
+        logging.error("Could not get taxid from species: %s", error)
+    record = Entrez.read(search)
+    if not record['IdList']: #no taxid found
+        logging.error(("Please verify the species name. '%s' species is unknown"
+                       " in the NCBI taxonomy databse. Impossible to check the "
+                       "taxonomic classification. We will use the default value"
+                       " 'Life' to populate the OC line.", species))
+        taxid = None
+    else:
+        taxid = record['IdList'][0]
+
+    return taxid
+
+def classification_from_taxid(taxid):
+    """
+    Returns the correct phylogenetic classification from Entrez, given a tax_id.
+    """
+    Entrez.email = ENTREZ_EMAIL
+    try:
+        search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
+    except urllib.error.URLError as error:
+        if "SSL: CERTIFICATE_VERIFY_FAILED" in str(error):
+            logging.warning("SSL: CERTIFICATE_VERIFY_FAILED")
+            logging.warning("retrying without trusting certificate")
+        else:
+            raise error
+        ssl._create_default_https_context = ssl._create_unverified_context
+        search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
+    except IOError as error:
+        logging.error(error)
+        logging.error(("<Life> will be used by default to populate the OC line "
+                       "to keep a format suitable for ENA submission"))
+        return "Life"
+    data = Entrez.read(search)
+    return data[0]['Lineage']

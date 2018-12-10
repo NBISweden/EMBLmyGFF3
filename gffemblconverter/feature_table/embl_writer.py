@@ -15,7 +15,9 @@ class EmblWriter(FeatureTable):
     """
 
     def __init__(self, record, thread_pool=None, header=None):
-        header.sequence_length = len(record.seq)
+        if header:
+            header.sequence_length = len(record.seq)
+            header.record_id = record.id
         super().__init__(record, thread_pool, EMBLHeader(header))
 
     def __repr__(self):

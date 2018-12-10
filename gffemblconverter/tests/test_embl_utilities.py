@@ -15,7 +15,7 @@ class TestEMBLUtilities(unittest.TestCase):
     def test_embl_line(self):
         """Testing embl line function
         """
-        self.assertEqual(embl_line("AC", ""), "AC   \nXX\n")
+        self.assertEqual(embl_line("AC", "", True), "AC   \nXX\n")
         self.assertEqual(embl_line("AC", "", False), "AC   \n")
         self.assertEqual(embl_line("ACACAC", "", False), "ACAC \n")
 
@@ -26,7 +26,7 @@ class TestEMBLUtilities(unittest.TestCase):
                                             " that may or may not need to be "
                                             "truncated. Hint: it does.")),
                          ("AC   this is a long line of words that may or may "
-                          "not need to be truncated.\nAC   Hint: it does. \n"))
+                          "not need to be truncated.\nAC   Hint: it does.\n"))
 
     def test_ensure_quoted(self):
         """Testing ensure_quoted
