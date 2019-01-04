@@ -2,6 +2,9 @@
 """Feature object for EMBL feature tables
 """
 
+import logging
+from Bio.SeqIO import InsdcIO
+
 class Feature():
     """Feature object for EMBL feature tables.
 
@@ -27,7 +30,22 @@ class Feature():
             setattr(self, key, value)
 
     def __repr__(self):
-        return "[Feature: {}]".format(self.name)
+        output = f"{self.name:<16}{self.embl_location(self.location)}"
+        for qualifier in self.qualifiers:
+            output += f"{qualifier}"
+        return output
+
+    @staticmethod
+    def embl_location(location, rec_length=None):
+        """
+        Formats a FeatureLocation as an EMBL location by calling the
+        InsdcIO._insdc_location_string function in biopython. I'd prefer to not
+        call a private function here, but I haven't figured out how to properly
+        do this in any other way.
+        """
+        if rec_length is None:
+            rec_length = location.end
+        return InsdcIO._insdc_location_string(location, rec_length)
 
     def update_values(self, seq_feature):
         """
@@ -63,3 +81,7 @@ class Feature():
         if qualifier in self.optional_qualifiers \
         or qualifier in self.mandatory_qualifiers:
             self.qualifiers += [(qualifier, value)]
+        else:
+            logging.warning(("Qualifier %s is neither an optional nor a "
+                             "mandatory qualifier of %s"),
+                            qualifier, self.name)
