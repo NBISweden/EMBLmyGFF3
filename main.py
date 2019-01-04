@@ -17,6 +17,7 @@ from Bio import SeqIO
 from BCBio import GFF
 
 from gffemblconverter.feature_table.embl_writer import EmblWriter
+from gffemblconverter.concise_log import ConciseStreamHandler
 
 SHAMELESS_PLUG = """
 ###############################################################################
@@ -214,10 +215,13 @@ if __name__ == '__main__':
 
     ARGS = PARSER.parse_args()
 
-    logging.basicConfig(format=("%(asctime)s %(levelname)s %(module)s: "
-                                "%(message)s"),
-                        level=50-10*(ARGS.verbose+ARGS.quiet),
-                        datefmt="%H:%M:%S")
+    LOGGER = logging.getLogger()
+    HANDLER = ConciseStreamHandler()
+    FORMATTER = logging.Formatter(("%(asctime)s %(levelname)s %(module)s: "
+                                   "%(message)s"))
+    HANDLER.setFormatter(FORMATTER)
+    LOGGER.setLevel(50-10*(ARGS.verbose-ARGS.quiet))
+    LOGGER.addHandler(HANDLER)
 
     FEATURES = []
 
