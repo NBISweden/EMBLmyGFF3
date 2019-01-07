@@ -6,7 +6,6 @@ formatted EMBL.
 
 from .feature_table import FeatureTable
 from .embl_header import EMBLHeader
-from .embl_utilities import embl_line
 
 class EmblWriter(FeatureTable):
     """
@@ -26,7 +25,6 @@ class EmblWriter(FeatureTable):
         output += self.feature_header()
         for feature in self.features:
             output += self.embl_feature(feature)
-            break
         return output
 
     @staticmethod
@@ -52,10 +50,11 @@ class EmblWriter(FeatureTable):
         in the document "The DDBJ/ENA/GenBank Feature Table:  Definition".
         URL: ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.txt
         """
-        line_code = "FT"
-        information = str(feature)
 
-        return embl_line(line_code, information, add_spacer=False)
+        # The features do their own formatting, so this function is just a
+        # wrapper.
+
+        return str(feature)
 
     @staticmethod
     def feature_header():

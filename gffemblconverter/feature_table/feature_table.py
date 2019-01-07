@@ -32,6 +32,7 @@ class FeatureTable():
     LEGAL_XREF = os.path.join(DATAPATH, "legal_dbxref.json")
     TRANSLATION_DIR = TRANSLATIONPATH
 
+    CACHE_DIRS = []
     DBXREF_CACHE = {}
     QUALIFIER_CACHE = {}
     FEATURE_CACHE = {}
@@ -44,16 +45,12 @@ class FeatureTable():
         self.progress = [0, -1]
 
         self.features = []
-        self.templates = {"qualifiers":{},
-                          "features":{}}
         self.legal_dbxref = []
 
         if not self.legal_dbxref:
             self.load_dbxref(FeatureTable.LEGAL_XREF)
-        if not self.templates["qualifiers"]:
-            self.load_qualifier_definitions(FeatureTable.QUALIFIERS_DIR)
-        if not self.templates["features"]:
-            self.load_feature_definitions(FeatureTable.FEATURES_DIR)
+        self.load_qualifier_definitions(FeatureTable.QUALIFIERS_DIR)
+        self.load_feature_definitions(FeatureTable.FEATURES_DIR)
 
         self._load_translations(FeatureTable.TRANSLATION_DIR)
         self.parse_record(record)
@@ -99,7 +96,8 @@ class FeatureTable():
                 )
             FeatureTable.TRANSLATIONS["qualifiers"].update(
                 self.load_translation(
-                "translation_gff_other_to_embl_qualifier.json", translations_dir
+                    "translation_gff_other_to_embl_qualifier.json",
+                    translations_dir
                 )
             )
         if "features" not in FeatureTable.TRANSLATIONS:
@@ -118,7 +116,7 @@ class FeatureTable():
         """Creates a new Feature from the feature_templates dictionary.
         """
 
-        if feature.type not in self.templates["features"]:
+        if feature.type not in FeatureTable.FEATURE_CACHE:
             # Check if we know a translation for this value
             translations = FeatureTable.TRANSLATIONS.get("features", [])
             if feature.type in translations:
@@ -132,9 +130,9 @@ class FeatureTable():
             else:
                 logging.error("Unknown Feature type: %s", feature.type)
                 self.progress[0] += 1
-                return
+                return None
 
-        template = copy.copy(self.templates["features"][feature.type])
+        template = copy.deepcopy(FeatureTable.FEATURE_CACHE[feature.type])
         template.add_translations(FeatureTable.TRANSLATIONS)
         template.update_values(feature)
 
@@ -150,38 +148,40 @@ class FeatureTable():
                 json.loads(open(filename).read())
         self.legal_dbxref = FeatureTable.DBXREF_CACHE[filename]
 
-    def load_feature_definitions(self, dirname):
-        """Loads feature definitions from the supplied directory, and creates
-        the self.feature_templates list. This list will be used when creating
-        new features for the FeatureTable.
+    @staticmethod
+    def load_feature_definitions(dirname):
+        """Loads feature definitions from the supplied directory into the class
+        variable FeatureTable.FEATURE_CACHE.
+        This dictionary will be used when creating new features for the
+        FeatureTable.
         """
-        if dirname not in FeatureTable.FEATURE_CACHE:
+        if dirname not in FeatureTable.CACHE_DIRS:
             logging.info("Loading feature definitions")
             logging.debug("Feature definition dir: %s", dirname)
-            FeatureTable.FEATURE_CACHE[dirname] = {}
+            FeatureTable.CACHE_DIRS += [dirname]
 
             for filename in glob.glob(os.path.join(dirname, "*.json")):
                 feature = Feature(json.loads(open(filename).read()))
-                FeatureTable.FEATURE_CACHE[dirname][feature.name] = feature
+                FeatureTable.FEATURE_CACHE[feature.name] = feature
 
-        self.templates["features"] = FeatureTable.FEATURE_CACHE[dirname]
-
-    def load_qualifier_definitions(self, dirname):
-        """Loads qualifier definitions from the supplied directory, and
-        creates the self.qualifier_templates list. This list will be used when
-        creating new qualifiers for the FeatureTable.
+    @staticmethod
+    def load_qualifier_definitions(dirname):
+        """Loads qualifier definitions from the supplied directory into the class
+        variable FeatureTable.QUALIFIER_CACHE.
+        This dictionary will be used when creating new qualifiers for the
+        FeatureTable, and particularly it's Features.
         """
-        if dirname not in FeatureTable.QUALIFIER_CACHE:
+        if dirname not in FeatureTable.CACHE_DIRS:
             logging.info("Loading qualifier definitions")
             logging.debug("Qualifier definition dir: %s", dirname)
-            FeatureTable.QUALIFIER_CACHE[dirname] = {}
+            FeatureTable.CACHE_DIRS += [dirname]
 
             for filename in glob.glob(os.path.join(dirname, "*.json")):
                 qualifier = Qualifier(json.loads(open(filename).read()))
-                FeatureTable.QUALIFIER_CACHE[dirname][qualifier.name] = \
-                    qualifier
+                FeatureTable.QUALIFIER_CACHE[qualifier.name] = qualifier
 
-        self.templates["qualifiers"] = FeatureTable.QUALIFIER_CACHE[dirname]
+        # Also add the qualifier templates to Feature
+        Feature.QUALIFIER_TEMPLATES = FeatureTable.QUALIFIER_CACHE
 
     def parse_record(self, record):
         """Parses the record information into Features and Qualifiers of the
@@ -189,9 +189,9 @@ class FeatureTable():
         """
         self.name = record.name
         self.progress[1] = len(record.features)
-        for i, feature in enumerate(record.features):
+        for feature in record.features:
             if self.thread_pool:
                 future = self.thread_pool.submit(self.new_feature, feature)
                 self.features += [future.result()]
             else:
-                self.insert_feature(feature)
+                self.features += [self.new_feature(feature)]

@@ -12,7 +12,7 @@ from Bio import Entrez
 
 ENTREZ_EMAIL = "gffconverter@nbis.se"
 
-def embl_line(line_code, information, add_spacer=True, split_on=" "):
+def embl_line(line_code, information, add_spacer=True, split_on=" ", pad=5):
     """
     This function formats an EMBL output line.
 
@@ -20,7 +20,8 @@ def embl_line(line_code, information, add_spacer=True, split_on=" "):
     to a maximum of 79 characters.
     ex. PR   Project:17285;
     """
-    output = ensure_row_length(f"{line_code:5.4s}{information}\n", 79, split_on)
+    output = ensure_row_length(f"{line_code:{pad}.4s}{information}\n", 79,
+                               split_on, pad)
 
     if add_spacer:
         output += "XX\n"
@@ -38,7 +39,7 @@ def ensure_quoted(string, quotation_mark="\""):
         string += quotation_mark
     return string
 
-def ensure_row_length(line, max_length=79, split_on=" "):
+def ensure_row_length(line, max_length=79, split_on=" ", pad=5):
     """Function that ensures that no line is longer than the maximum allowed
     line length.
 
@@ -50,11 +51,11 @@ def ensure_row_length(line, max_length=79, split_on=" "):
 
     output = ""
     line_code = line[:2]
-    row = line[:5] # line code and spaces
-    words = line[5:].split(split_on)
+    row = line[:pad] # line code and spaces
+    words = line[pad:].split(split_on)
     while words:
         # if a word must be split
-        if len(words[0]) > max_length-6:
+        if len(words[0]) > max_length-pad-1:
             split = len(row)
             row += words[0][:max_length-split]
             words[0] = words[0][max_length-split:]

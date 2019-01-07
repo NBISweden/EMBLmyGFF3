@@ -2,8 +2,11 @@
 """Feature object for EMBL feature tables
 """
 
+import copy
 import logging
 from Bio.SeqIO import InsdcIO
+
+from .embl_utilities import embl_line
 
 class Feature():
     """Feature object for EMBL feature tables.
@@ -15,6 +18,8 @@ class Feature():
     The feature key permits a user to quickly find or retrieve similar features or
     features with related functions. "
     """
+
+    QUALIFIER_TEMPLATES = {}
 
     def __init__(self, definition):
         """
@@ -31,7 +36,9 @@ class Feature():
             setattr(self, key, value)
 
     def __repr__(self):
-        output = f"{self.name:<16}{self.embl_location(self.location)}"
+        information = f"{self.name:<16}{self.embl_location(self.location)}"
+
+        output = embl_line("FT", information, add_spacer=False)
         for qualifier in self.qualifiers:
             output += f"{qualifier}"
         return output
@@ -89,14 +96,12 @@ class Feature():
         If the qualifier is unknown, the translations['qualifiers'] dictionary
         will be used to try to find a mapping to a legal qualifier.
         """
-        if qualifier in self.optional_qualifiers or \
-           qualifier in self.mandatory_qualifiers:
-            self.qualifiers += [(qualifier, value)]
-        else:
+        if qualifier not in self.optional_qualifiers or \
+           qualifier not in self.mandatory_qualifiers:
             translations = self.translations.get('qualifiers', [])
             if qualifier not in translations:
                 logging.warning(("Qualifier %s is neither an optional nor a "
-                                    "mandatory qualifier of %s"),
+                                 "mandatory qualifier of %s"),
                                 qualifier, self.name)
                 return
             if translations[qualifier].get("target", ""):
@@ -106,4 +111,22 @@ class Feature():
                 qualifier = translations[qualifier]["target"]
             else:
                 logging.info("Qualifier %s has no translation target",
-                             feature.type)
+                             qualifier)
+                return
+
+        if qualifier not in Feature.QUALIFIER_TEMPLATES:
+            logging.error("Legal qualifier %s not found in qualifier cache!",
+                          qualifier)
+            raise ValueError(f"Legal qualifier {qualifier} not found in cache.")
+
+        if not isinstance(value, list):
+            value = [value]
+
+        # add prefixes to values
+        for i, val in enumerate(value):
+            value[i] = f"{prefix}{val}"
+
+        template = copy.deepcopy(Feature.QUALIFIER_TEMPLATES[qualifier])
+        template.set_value(value)
+
+        self.qualifiers += [template]

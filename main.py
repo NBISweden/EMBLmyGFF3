@@ -244,4 +244,3 @@ if __name__ == '__main__':
         while record.get_progress() < 1.0:
             time.sleep(0.1)
         OUTFILE.write(f"{record}\n")
-        break
