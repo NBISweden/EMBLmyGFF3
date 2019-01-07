@@ -24,6 +24,7 @@ class Feature():
         self.location = None
         self.name = definition['feature_key']
         self.qualifiers = []
+        self.translations = []
         self.optional_qualifiers = {}
         self.mandatory_qualifiers = {}
         for key, value in definition.items():
@@ -34,6 +35,13 @@ class Feature():
         for qualifier in self.qualifiers:
             output += f"{qualifier}"
         return output
+
+    def add_translations(self, translations):
+        """
+        Adds translation dictionaries which will direct how input data fields
+        are mapped to EMBL fields.
+        """
+        self.translations = translations
 
     @staticmethod
     def embl_location(location, rec_length=None):
@@ -72,16 +80,30 @@ class Feature():
         """
         self.location = seq_location
 
-    def set_qualifier(self, qualifier, value):
+    def set_qualifier(self, qualifier, value, prefix=""):
         """
         Adds a legal qualifier value to the feature, given that it has a
         template in the self.optional_qualifiers or self.mandatory_qualifiers
         dictionaries.
+
+        If the qualifier is unknown, the translations['qualifiers'] dictionary
+        will be used to try to find a mapping to a legal qualifier.
         """
-        if qualifier in self.optional_qualifiers \
-        or qualifier in self.mandatory_qualifiers:
+        if qualifier in self.optional_qualifiers or \
+           qualifier in self.mandatory_qualifiers:
             self.qualifiers += [(qualifier, value)]
         else:
-            logging.warning(("Qualifier %s is neither an optional nor a "
-                             "mandatory qualifier of %s"),
-                            qualifier, self.name)
+            translations = self.translations.get('qualifiers', [])
+            if qualifier not in translations:
+                logging.warning(("Qualifier %s is neither an optional nor a "
+                                    "mandatory qualifier of %s"),
+                                qualifier, self.name)
+                return
+            if translations[qualifier].get("target", ""):
+                prefix = translations[qualifier].get("prefix", prefix)
+                logging.debug("Translated qualifier %s to %s", qualifier,
+                              translations[qualifier]["target"])
+                qualifier = translations[qualifier]["target"]
+            else:
+                logging.info("Qualifier %s has no translation target",
+                             feature.type)

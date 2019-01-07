@@ -15,6 +15,9 @@ FILEPATH = os.path.dirname(os.path.abspath(__file__))
 DATAPATH = os.path.abspath(
     os.path.join(FILEPATH, os.pardir, "data_definitions")
     )
+TRANSLATIONPATH = os.path.abspath(
+    os.path.join(FILEPATH, os.pardir, "translations")
+    )
 
 class FeatureTable():
     """This is the parent class for the EMBL formatter.
@@ -27,10 +30,12 @@ class FeatureTable():
     FEATURES_DIR = os.path.join(DATAPATH, "features")
     QUALIFIERS_DIR = os.path.join(DATAPATH, "qualifiers")
     LEGAL_XREF = os.path.join(DATAPATH, "legal_dbxref.json")
+    TRANSLATION_DIR = TRANSLATIONPATH
 
     DBXREF_CACHE = {}
     QUALIFIER_CACHE = {}
     FEATURE_CACHE = {}
+    TRANSLATIONS = {}
 
     def __init__(self, record, thread_pool=None, header=None):
         self.name = None
@@ -50,10 +55,58 @@ class FeatureTable():
         if not self.templates["features"]:
             self.load_feature_definitions(FeatureTable.FEATURES_DIR)
 
+        self._load_translations(FeatureTable.TRANSLATION_DIR)
         self.parse_record(record)
 
     def __repr__(self):
         return "[FeatureTable: {}]".format(self.name)
+
+    @staticmethod
+    def load_translation(translation_file, translations_dir=None):
+        """
+        Loads a translation file, either from the current working dir, or from
+        the translation_dir. Note that a file in the current working dir will
+        have priority even if a translations_dir is given.
+        """
+        try:
+            file_path = os.path.join(os.getcwd(), translation_file)
+            os.stat(file_path)
+        except FileNotFoundError:
+            if translations_dir is not None:
+                file_path = os.path.join(translations_dir, translation_file)
+                os.stat(file_path)
+            else:
+                raise
+
+        return json.load(open(file_path))
+
+    def _load_translations(self, translations_dir):
+        """
+        Loads translation files. These will either be loaded from the current
+        working dir, or from the translations_dir.
+
+        the loaded files are:
+
+        - translation_gff_feature_to_embl_feature.json
+        - translation_gff_attribute_to_embl_qualifier.json
+        - translation_gff_other_to_embl_qualifier.json
+        """
+        if "qualifiers" not in FeatureTable.TRANSLATIONS:
+            logging.info("Loading qualifier translations")
+            FeatureTable.TRANSLATIONS["qualifiers"] = self.load_translation(
+                "translation_gff_attribute_to_embl_qualifier.json",
+                translations_dir
+                )
+            FeatureTable.TRANSLATIONS["qualifiers"].update(
+                self.load_translation(
+                "translation_gff_other_to_embl_qualifier.json", translations_dir
+                )
+            )
+        if "features" not in FeatureTable.TRANSLATIONS:
+            logging.info("Loading feature translations")
+            FeatureTable.TRANSLATIONS["features"] = self.load_translation(
+                "translation_gff_feature_to_embl_feature.json", translations_dir
+                )
 
     def get_progress(self):
         """
@@ -61,23 +114,32 @@ class FeatureTable():
         """
         return self.progress[0]/self.progress[1]
 
-    def insert_feature(self, feature, index=None):
-        """Creates a new Feature from the feature_templates dictionary,
-        and inserts it into the self.features list.
+    def new_feature(self, feature):
+        """Creates a new Feature from the feature_templates dictionary.
         """
 
         if feature.type not in self.templates["features"]:
-            logging.error("Unknown Feature type: %s", feature.type)
-            return
+            # Check if we know a translation for this value
+            translations = FeatureTable.TRANSLATIONS.get("features", [])
+            if feature.type in translations:
+                if "target" in translations[feature.type]:
+                    logging.debug("Translated feature %s to %s", feature.type,
+                                  translations[feature.type]["target"])
+                    feature.type = translations[feature.type]["target"]
+                else:
+                    logging.info("Feature %s has no translation target",
+                                 feature.type)
+            else:
+                logging.error("Unknown Feature type: %s", feature.type)
+                self.progress[0] += 1
+                return
 
         template = copy.copy(self.templates["features"][feature.type])
+        template.add_translations(FeatureTable.TRANSLATIONS)
         template.update_values(feature)
 
-        if index:
-            self.features[index] = [template]
-        else:
-            self.features += [template]
         self.progress[0] += 1
+        return template
 
     def load_dbxref(self, filename):
         """Loads a list of legal database cross reference values.
@@ -94,13 +156,12 @@ class FeatureTable():
         new features for the FeatureTable.
         """
         if dirname not in FeatureTable.FEATURE_CACHE:
-            logging.info("Loading Feature definitions")
+            logging.info("Loading feature definitions")
             logging.debug("Feature definition dir: %s", dirname)
             FeatureTable.FEATURE_CACHE[dirname] = {}
 
             for filename in glob.glob(os.path.join(dirname, "*.json")):
                 feature = Feature(json.loads(open(filename).read()))
-                logging.debug(" - %s", feature.name)
                 FeatureTable.FEATURE_CACHE[dirname][feature.name] = feature
 
         self.templates["features"] = FeatureTable.FEATURE_CACHE[dirname]
@@ -111,13 +172,12 @@ class FeatureTable():
         creating new qualifiers for the FeatureTable.
         """
         if dirname not in FeatureTable.QUALIFIER_CACHE:
-            logging.info("Loading Qualifier definitions")
+            logging.info("Loading qualifier definitions")
             logging.debug("Qualifier definition dir: %s", dirname)
             FeatureTable.QUALIFIER_CACHE[dirname] = {}
 
             for filename in glob.glob(os.path.join(dirname, "*.json")):
                 qualifier = Qualifier(json.loads(open(filename).read()))
-                logging.debug(" - %s", qualifier.name)
                 FeatureTable.QUALIFIER_CACHE[dirname][qualifier.name] = \
                     qualifier
 
@@ -131,7 +191,7 @@ class FeatureTable():
         self.progress[1] = len(record.features)
         for i, feature in enumerate(record.features):
             if self.thread_pool:
-                self.features += [i]
-                self.thread_pool.submit(self.insert_feature, (feature, i))
+                future = self.thread_pool.submit(self.new_feature, feature)
+                self.features += [future.result()]
             else:
                 self.insert_feature(feature)

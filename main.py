@@ -203,7 +203,7 @@ if __name__ == '__main__':
                         help="Suppress the shameless plug.")
 
     PARSER.add_argument("-t", "--num_threads",
-                        type=int, default=1,
+                        type=int, default=2,
                         help="Number of threads to use for conversion")
 
     PARSER.add_argument("-o", "--output",
@@ -223,7 +223,7 @@ if __name__ == '__main__':
     LOGGER.setLevel(50-10*(ARGS.verbose-ARGS.quiet))
     LOGGER.addHandler(HANDLER)
 
-    FEATURES = []
+    RECORDS = []
 
     if not ARGS.shame:
         print(SHAMELESS_PLUG)
@@ -236,12 +236,12 @@ if __name__ == '__main__':
 
     logging.info("Starting record parsing")
     for i, record in enumerate(GFF.parse(**gff_input(ARGS))):
-        FEATURES += [EmblWriter(record,
+        RECORDS += [EmblWriter(record,
                                 thread_pool=THREAD_POOL,
                                 header=ARGS)]
 
-    for i, feature in enumerate(FEATURES):
-        while feature.get_progress() < 1.0:
+    for i, record in enumerate(RECORDS):
+        while record.get_progress() < 1.0:
             time.sleep(0.1)
-        OUTFILE.write(f"{feature}\n")
+        OUTFILE.write(f"{record}\n")
         break
