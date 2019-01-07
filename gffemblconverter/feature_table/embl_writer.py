@@ -25,6 +25,9 @@ class EmblWriter(FeatureTable):
         output += self.feature_header()
         for feature in self.features:
             output += self.embl_feature(feature)
+        output += self.embl_sequence_header()
+        output += self.embl_sequence_data()
+        output += "//"
         return output
 
     @staticmethod
@@ -55,6 +58,62 @@ class EmblWriter(FeatureTable):
         # wrapper.
 
         return str(feature)
+
+    def embl_sequence_data(self):
+        """
+        3.4.18 The Sequence Data Line
+        The sequence data line has a line code consisting of two blanks. The
+        sequence is written 60 bases per line, in groups of 10 bases separated
+        by a blank character, beginning at position 6 of the line. The direction
+        listed is always 5' to 3', and wherever possible the non-coding strand
+        (homologous to the message) has been stored. Columns 73-80 of each
+        sequence line contain base numbers for easier reading and quick
+        location of regions of interest. The numbers are right justified and
+        indicate the number of the last base on each line.
+        An example of a data line is:
+            aaacaaacca aatatggatt [...] ctgtttgtta ttagctcatt        60
+
+        The characters used for the bases correspond to the IUPAC-IUB
+        Commission recommendations (see appendices).
+        """
+        counter = 0
+        output = ""
+        while counter < len(self.record.seq):
+            line = str(self.record.seq[counter:counter+60])
+            output += "     "
+            output += (f"{line[:10]:<10} {line[10:20]:<10} {line[20:30]:<10} "
+                       f"{line[30:40]:<10} {line[40:50]:<10} {line[50:60]:<10}")
+            counter += len(line)
+            output += f"{counter:>10}\n"
+        return output
+
+    def embl_sequence_header(self):
+        """
+        Prints the sequence in EMBL format.
+
+        3.4.17  The SQ Line
+        The SQ (SeQuence header) line marks the beginning of the sequence data
+        and Gives a summary of its content. An example is:
+            SQ   Sequence 1859 BP; 609 A; 314 C; 355 G; 581 T; 0 other;
+        As shown, the line contains the length of the sequence in base pairs
+        followed by its base composition.  Bases other than A, C, G and T are
+        grouped together as "other". (Note that "BP" is also used for single
+        stranded RNA sequences, which is not strictly accurate, but has been
+        used for consistency of format.) This information can be used as a check
+        on accuracy or for statistical  purposes. The word "Sequence" is present
+        solely as a marker for readability.
+        """
+        seq_len = len(self.record.seq)
+        num_a = self.record.seq.upper().count('A')
+        num_c = self.record.seq.upper().count('C')
+        num_g = self.record.seq.upper().count('G')
+        num_t = self.record.seq.upper().count('T')
+        num_other = seq_len - num_a - num_c - num_g - num_t
+        header = (f"SQ   Sequence {seq_len} BP; "
+                  f"{num_a} A; {num_c} C; {num_g} G; {num_t} T; "
+                  f"{num_other} other;\n")
+
+        return header
 
     @staticmethod
     def feature_header():

@@ -43,6 +43,7 @@ class FeatureTable():
         self.header = header
         self.thread_pool = thread_pool
         self.progress = [0, -1]
+        self.record = record
 
         self.features = []
         self.legal_dbxref = []
