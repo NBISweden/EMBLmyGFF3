@@ -35,7 +35,7 @@ RL   Oak Ridge, TN 37831, USA;
 """
 
 from datetime import datetime
-from .embl_utilities import embl_line, ensure_quoted
+from .embl_utilities import embl_line, quoted
 
 class EMBLReference():
     """
@@ -233,7 +233,7 @@ class EMBLReference():
         template = "{title};"
         if self.settings['reference_title'] is None:
             self.settings['reference_title'] = ""
-        title = ensure_quoted(self.settings['reference_title'])
+        title = quoted(self.settings['reference_title'])
 
         return embl_line(line_code, template.format(title=title), False)
 

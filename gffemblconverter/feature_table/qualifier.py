@@ -2,7 +2,9 @@
 """Qualifier object for EMBL feature tables
 """
 
-from .embl_utilities import embl_line, ensure_quoted
+import logging
+
+from .embl_utilities import embl_line, quoted
 
 class Qualifier():
     """Qualifier object for EMBL feature tables.
@@ -17,6 +19,7 @@ class Qualifier():
         Initializes a Qualifier from a defintion.
         """
         self.name = definition['qualifier']
+        self.value_format = None
         for key, value in definition.items():
             setattr(self, key, value)
         self.value = []
@@ -36,7 +39,7 @@ class Qualifier():
                 value = "/{self.name}"
             elif isinstance(value, str):
                 # quote string values
-                value = f"/{self.name}={ensure_quoted(value)}"
+                value = f"/{self.name}={quoted(value)}"
             else:
                 value = f"/{self.name}={value}"
 
@@ -44,15 +47,49 @@ class Qualifier():
 
         return output
 
+    def validate_value(self, value):
+        """
+        This function attempts to validate qualifier format by using the
+        value_format tag of the qualifier definition. Currently, only the
+        simpler cases are handled, but given time, more validations will be
+        added.
+        """
+        formatted_value = value
+
+        if self.value_format is None:
+            return value
+
+        if self.value_format == "none": # no value taken
+            if value:
+                logging.warning(("Qualifier '%s' has value '%s', but %s "
+                                 "qualifier does not take a value", self.name,
+                                 value, self.name))
+            return ""
+        if self.value_format == "<identifier>":
+            pass
+        elif self.value_format == "\"text\"":
+            formatted_value = quoted(value)
+        elif self.value_format == "1 or 2 or 3":
+            formatted_value = int(value) + 1
+            if formatted_value not in [1, 2, 3]:
+                logging.error("Value format '1 or 2 or 3' has value: %i",
+                              formatted_value)
+
+        return formatted_value
+
+    def add_value(self, value):
+        """
+        Runs the qualifier value validator, and adds a value to the current list
+        of qualifier values
+        """
+        value = self.validate_value(value)
+        if not isinstance(self.value, list):
+            self.set_value(self.value)
+        self.value += [value]
+
     def set_value(self, value):
         """
-        Sets the qualifier value, and attempts to verify the value according
-        if value_format is set.
+        Runs the qualifier value validator and sets the qualifier value.
         """
+        value = self.validate_value(value)
         self.value = value if isinstance(value, list) else [value]
-
-    def get_value(self):
-        """
-        Returns the qualifier value in the default format.
-        """
-        return self.value

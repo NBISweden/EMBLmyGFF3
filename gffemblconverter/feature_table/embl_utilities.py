@@ -27,10 +27,12 @@ def embl_line(line_code, information, add_spacer=True, split_on=" ", pad=5):
         output += "XX\n"
     return output
 
-def ensure_quoted(string, quotation_mark="\""):
+def quoted(string, quotation_mark="\""):
     """
     Ensures that a string has the quotation_mark at each end.
     """
+    if isinstance(string, list):
+        return [quoted(s, quotation_mark) for s in string]
     if not string:
         return ""
     if string[0] != quotation_mark:

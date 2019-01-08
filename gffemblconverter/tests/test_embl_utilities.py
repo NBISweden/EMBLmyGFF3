@@ -5,7 +5,7 @@ Unit tests for the functions from embl_utilities.py.
 
 import unittest
 from gffemblconverter.feature_table.embl_utilities import embl_line, \
-    ensure_row_length, ensure_quoted
+    ensure_row_length, quoted
 
 class TestEMBLUtilities(unittest.TestCase):
     """
@@ -28,15 +28,15 @@ class TestEMBLUtilities(unittest.TestCase):
                          ("AC   this is a long line of words that may or may "
                           "not need to be truncated.\nAC   Hint: it does.\n"))
 
-    def test_ensure_quoted(self):
-        """Testing ensure_quoted
+    def test_quoted(self):
+        """Testing quoted
         """
-        self.assertEqual(ensure_quoted('test string', '"'), '"test string"')
-        self.assertEqual(ensure_quoted('"test string', '"'), '"test string"')
-        self.assertEqual(ensure_quoted('test string"', '"'), '"test string"')
-        self.assertEqual(ensure_quoted('"test string"', '"'), '"test string"')
-        self.assertEqual(ensure_quoted('test string', '|'), '|test string|')
-        self.assertEqual(ensure_quoted(''), '')
+        self.assertEqual(quoted('test string', '"'), '"test string"')
+        self.assertEqual(quoted('"test string', '"'), '"test string"')
+        self.assertEqual(quoted('test string"', '"'), '"test string"')
+        self.assertEqual(quoted('"test string"', '"'), '"test string"')
+        self.assertEqual(quoted('test string', '|'), '|test string|')
+        self.assertEqual(quoted(''), '')
 
 if __name__ == '__main__':
     unittest.main()
