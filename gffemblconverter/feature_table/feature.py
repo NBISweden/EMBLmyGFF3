@@ -44,6 +44,9 @@ class Feature():
         for qualifier in self.qualifiers:
             output += f"{qualifier}"
 
+        for sub_feature in self.sub_features:
+            output += str(sub_feature)
+
         return output
 
     @staticmethod
@@ -57,6 +60,36 @@ class Feature():
         if rec_length is None:
             rec_length = location.end
         return InsdcIO._insdc_location_string(location, rec_length)
+
+    @staticmethod
+    def from_template(feature):
+        """
+        This function will create a new Feature from a template in the
+        Feature.FEATURE_TEMPLATES dictionary, using the Feature.TRANSLATIONS
+        dictionary to try to map to the correct feature type if the type is
+        unknown.
+        This template will then be updated with the values contained in feature,
+        which should be a SeqFeature, and returned.
+        """
+        if feature.type not in Feature.FEATURE_TEMPLATES:
+            # Check if we know a translation for this value
+            translations = Feature.TRANSLATIONS.get("features", [])
+            if feature.type in translations:
+                if "target" in translations[feature.type]:
+                    logging.debug("Translated feature %s to %s", feature.type,
+                                  translations[feature.type]["target"])
+                    feature.type = translations[feature.type]["target"]
+                else:
+                    logging.info("Feature %s has no translation target",
+                                 feature.type)
+            else:
+                logging.error("Unknown Feature type: %s", feature.type)
+                return None
+
+        template = copy.deepcopy(Feature.FEATURE_TEMPLATES[feature.type])
+        template.update_values(feature)
+
+        return template
 
     def update_values(self, seq_feature):
         """
@@ -73,6 +106,11 @@ class Feature():
         # add all legal qualifiers
         for qualifier, value in seq_feature.qualifiers.items():
             self.set_qualifier(qualifier, value)
+
+        # set sub-features
+        for sub_feature in seq_feature.sub_features:
+            templated_feature = self.from_template(sub_feature)
+            self.sub_features += [templated_feature]
 
     def set_location(self, seq_location):
         """

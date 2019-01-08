@@ -122,27 +122,9 @@ class FeatureTable():
     def new_feature(self, feature):
         """Creates a new Feature from the feature_templates dictionary.
         """
-
-        if feature.type not in FeatureTable.FEATURE_CACHE:
-            # Check if we know a translation for this value
-            translations = FeatureTable.TRANSLATIONS.get("features", [])
-            if feature.type in translations:
-                if "target" in translations[feature.type]:
-                    logging.debug("Translated feature %s to %s", feature.type,
-                                  translations[feature.type]["target"])
-                    feature.type = translations[feature.type]["target"]
-                else:
-                    logging.info("Feature %s has no translation target",
-                                 feature.type)
-            else:
-                logging.error("Unknown Feature type: %s", feature.type)
-                self.progress[0] += 1
-                return None
-
-        template = copy.deepcopy(FeatureTable.FEATURE_CACHE[feature.type])
-        template.update_values(feature)
-
+        template = Feature.from_template(feature)
         self.progress[0] += 1
+
         return template
 
     def load_dbxref(self, filename):
@@ -175,8 +157,8 @@ class FeatureTable():
 
     @staticmethod
     def load_qualifier_definitions(dirname):
-        """Loads qualifier definitions from the supplied directory into the class
-        variable FeatureTable.QUALIFIER_CACHE.
+        """Loads qualifier definitions from the supplied directory into the
+        class variable FeatureTable.QUALIFIER_CACHE.
         This dictionary will be used when creating new qualifiers for the
         FeatureTable, and particularly it's Features.
         """

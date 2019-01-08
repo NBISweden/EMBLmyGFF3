@@ -54,11 +54,13 @@ class Qualifier():
         simpler cases are handled, but given time, more validations will be
         added.
         """
-        formatted_value = value
+        if isinstance(value, list):
+            return [self.validate_value(v) for v in value]
 
         if self.value_format is None:
             return value
 
+        formatted_value = value
         if self.value_format == "none": # no value taken
             if value:
                 logging.warning(("Qualifier '%s' has value '%s', but %s "
