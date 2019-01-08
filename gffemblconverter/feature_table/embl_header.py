@@ -287,7 +287,8 @@ class EMBLHeader():
         """
         line_code = "KW"
 
-        return embl_line(line_code, "; ".join(self.settings["keywords"]) + ".")
+        return embl_line(line_code, "; ".join(self.settings["keywords"]) + ".",
+                         split_on="; ")
 
     def species(self):
         """

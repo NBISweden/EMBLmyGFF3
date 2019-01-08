@@ -237,8 +237,8 @@ if __name__ == '__main__':
     logging.info("Starting record parsing")
     for i, record in enumerate(GFF.parse(**gff_input(ARGS))):
         RECORDS += [EmblWriter(record,
-                                thread_pool=THREAD_POOL,
-                                header=ARGS)]
+                               thread_pool=THREAD_POOL,
+                               header=ARGS)]
 
     for i, record in enumerate(RECORDS):
         while record.get_progress() < 1.0:

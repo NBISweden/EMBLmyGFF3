@@ -54,18 +54,19 @@ def ensure_row_length(line, max_length=79, split_on=" ", pad=5):
     output = ""
     line_code = line[:2]
     row = line[:pad] # line code and spaces
-    words = line[pad:].split(split_on)
+    words = line[pad:].strip().split(split_on)
     while words:
         # if a word must be split
-        if len(words[0]) > max_length-pad-1:
+        if len(words[0]) >= max_length-pad:
             split = len(row)
             row += words[0][:max_length-split]
             words[0] = words[0][max_length-split:]
 
-        if len(row + split_on + words[0]) > max_length:
+        if len(row + words[0]) > max_length:
             output += row
-            output = output.rstrip() + "\n"
-            row = f"{line_code}   " + words[0].lstrip()
+            row = f"{line_code:<{pad}.4}"
+            output = output.rstrip("\n") + "\n"
+            row += words[0].lstrip()
         else:
             row += words[0]
         words = words[1:]

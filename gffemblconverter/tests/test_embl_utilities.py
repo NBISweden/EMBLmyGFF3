@@ -22,11 +22,33 @@ class TestEMBLUtilities(unittest.TestCase):
     def test_ensure_row_length(self):
         """Testing ensure_row_length function
         """
+        # exact length
+        self.assertEqual(ensure_row_length(("AC   here are some words that are "
+                                            "exactly at the full length for a "
+                                            "single line.")),
+                         ("AC   here are some words that are exactly at the "
+                          "full length for a single line.\n"))
+        # long
         self.assertEqual(ensure_row_length(("AC   this is a long line of words"
                                             " that may or may not need to be "
                                             "truncated. Hint: it does.")),
                          ("AC   this is a long line of words that may or may "
-                          "not need to be truncated.\nAC   Hint: it does.\n"))
+                          "not need to be truncated. \nAC   Hint: it does.\n"))
+        # other padding
+        self.assertEqual(ensure_row_length(("AC            this is a long line "
+                                            "of words that may or may not need "
+                                            "to be truncated. Hint: it does."),
+                                           pad=14),
+                         ("AC            this is a long line of words that may "
+                          "or may not need to be \nAC            truncated. "
+                          "Hint: it does.\n"))
+        # other separator
+        self.assertEqual(ensure_row_length(("AC   Good times; Tests passing; "
+                                            "Everything turns out great; No "
+                                            "problems around here."),
+                                           split_on="; "),
+                         ("AC   Good times; Tests passing; Everything turns out"
+                          " great; \nAC   No problems around here.\n"))
 
     def test_quoted(self):
         """Testing quoted
