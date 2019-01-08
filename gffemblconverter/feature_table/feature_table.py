@@ -101,11 +101,17 @@ class FeatureTable():
                     translations_dir
                 )
             )
+            # Also add translations to Feature
+            Feature.TRANSLATIONS["qualifiers"] = \
+                FeatureTable.TRANSLATIONS["qualifiers"]
         if "features" not in FeatureTable.TRANSLATIONS:
             logging.info("Loading feature translations")
             FeatureTable.TRANSLATIONS["features"] = self.load_translation(
                 "translation_gff_feature_to_embl_feature.json", translations_dir
                 )
+            # Also add translations to Feature
+            Feature.TRANSLATIONS["features"] = \
+                FeatureTable.TRANSLATIONS["features"]
 
     def get_progress(self):
         """
@@ -134,7 +140,6 @@ class FeatureTable():
                 return None
 
         template = copy.deepcopy(FeatureTable.FEATURE_CACHE[feature.type])
-        template.add_translations(FeatureTable.TRANSLATIONS)
         template.update_values(feature)
 
         self.progress[0] += 1
@@ -164,6 +169,9 @@ class FeatureTable():
             for filename in glob.glob(os.path.join(dirname, "*.json")):
                 feature = Feature(json.loads(open(filename).read()))
                 FeatureTable.FEATURE_CACHE[feature.name] = feature
+
+        # Also add the feature templates to Feature
+        Feature.FEATURE_TEMPLATES = FeatureTable.FEATURE_CACHE
 
     @staticmethod
     def load_qualifier_definitions(dirname):

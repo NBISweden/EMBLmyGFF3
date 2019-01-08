@@ -20,6 +20,8 @@ class Feature():
     """
 
     QUALIFIER_TEMPLATES = {}
+    FEATURE_TEMPLATES = {}
+    TRANSLATIONS = {}
 
     def __init__(self, definition):
         """
@@ -28,8 +30,8 @@ class Feature():
         self.identifier = None
         self.location = None
         self.name = definition['feature_key']
+        self.sub_features = []
         self.qualifiers = []
-        self.translations = []
         self.optional_qualifiers = {}
         self.mandatory_qualifiers = {}
         for key, value in definition.items():
@@ -41,14 +43,8 @@ class Feature():
         output = embl_line("FT", information, add_spacer=False)
         for qualifier in self.qualifiers:
             output += f"{qualifier}"
-        return output
 
-    def add_translations(self, translations):
-        """
-        Adds translation dictionaries which will direct how input data fields
-        are mapped to EMBL fields.
-        """
-        self.translations = translations
+        return output
 
     @staticmethod
     def embl_location(location, rec_length=None):
@@ -67,9 +63,6 @@ class Feature():
         Attempts to update all legal values in the Feature from the
         information in a Bio.SeqFeature.
         """
-        if not hasattr(self, "optional_qualifiers"):
-            raise ValueError(("Qualifiers are required to have the "
-                              "optional_qualifiers dictionary."))
 
         # update own identifier to the seq_feature's id
         self.identifier = seq_feature.id
@@ -98,7 +91,7 @@ class Feature():
         """
         if qualifier not in self.optional_qualifiers or \
            qualifier not in self.mandatory_qualifiers:
-            translations = self.translations.get('qualifiers', [])
+            translations = Feature.TRANSLATIONS.get('qualifiers', [])
             if qualifier not in translations:
                 logging.warning(("Qualifier %s is neither an optional nor a "
                                  "mandatory qualifier of %s"),
