@@ -203,7 +203,7 @@ if __name__ == '__main__':
                         help="Suppress the shameless plug.")
 
     PARSER.add_argument("-t", "--num_threads",
-                        type=int, default=2,
+                        type=int, default=1,
                         help="Number of threads to use for conversion")
 
     PARSER.add_argument("-o", "--output",

@@ -117,6 +117,7 @@ def taxid_to_species(taxid):
     """
     if taxid.isdigit():
         Entrez.email = ENTREZ_EMAIL
+        search = None
         try:
             search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
         except urllib.error.URLError as error:
@@ -132,8 +133,10 @@ def taxid_to_species(taxid):
             logging.error(type(error))
             logging.error("Could not get species from taxid '%s'", taxid)
             species = taxid
-        data = Entrez.read(search)
-        species = data[0]['ScientificName']
+        finally:
+            if not search is None:
+                data = Entrez.read(search)
+                species = data[0]['ScientificName']
 
     return "%s%s" % (species[0].upper(), species[1:].lower())
 
