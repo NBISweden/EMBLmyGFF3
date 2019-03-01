@@ -51,17 +51,14 @@ def resolve_output(args):
     """Convenience function that returns either stdout or a file handle with
     the correct extension, depending on wheather it should be gzip'ed or not.
     """
-
-    if args.output:
-        outfile = args.output
-        if args.gzip:
-            if not outfile.endswith(".embl.gz"):
-                outfile += ".gz" if outfile.endswith(".embl") else ".embl.gz"
-            return gzip.open(outfile, "wb")
-        if not outfile.endswith(".embl"):
-            outfile += ".embl"
-        return open(outfile, "wb")
-    return sys.stdout
+    outfile = args.output
+    if args.gzip:
+        if not outfile.endswith(".embl.gz"):
+            outfile += ".gz" if outfile.endswith(".embl") else ".embl.gz"
+        return gzip.open(outfile, "wb")
+    if not outfile.endswith(".embl"):
+        outfile += ".embl"
+    return open(outfile, "wb")
 
 if __name__ == '__main__':
 
@@ -228,8 +225,6 @@ if __name__ == '__main__':
     if not ARGS.shame:
         print(SHAMELESS_PLUG)
 
-    OUTFILE = resolve_output(ARGS)
-
     THREAD_POOL = None
     if ARGS.num_threads > 1:
         THREAD_POOL = ThreadPoolExecutor(max_workers=ARGS.num_threads)
@@ -240,7 +235,14 @@ if __name__ == '__main__':
                                thread_pool=THREAD_POOL,
                                header=ARGS)]
 
+    if ARGS.output:
+        OUTFILE = resolve_output(ARGS)
+
     for i, record in enumerate(RECORDS):
         while record.get_progress() < 1.0:
             time.sleep(0.1)
-        OUTFILE.write(f"{record}\n")
+        if ARGS.output:
+            OUTFILE.write(f"{record}\n".encode('utf8'))
+        else:
+            sys.stdout.write(f"{record}\n")
+        break
