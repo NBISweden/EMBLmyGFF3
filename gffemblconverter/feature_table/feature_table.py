@@ -3,7 +3,6 @@
 """
 
 import os
-import copy
 import glob
 import json
 import logging
@@ -122,7 +121,7 @@ class FeatureTable():
     def new_feature(self, feature):
         """Creates a new Feature from the feature_templates dictionary.
         """
-        template = Feature.from_template(feature)
+        template = Feature.from_seq_feature(feature)
         self.progress[0] += 1
 
         return template

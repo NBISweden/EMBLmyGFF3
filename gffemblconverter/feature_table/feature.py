@@ -2,8 +2,8 @@
 """Feature object for EMBL feature tables
 """
 
-import copy
 import logging
+from copy import deepcopy
 from Bio.SeqIO import InsdcIO
 
 from .embl_utilities import embl_line
@@ -62,31 +62,38 @@ class Feature():
         return InsdcIO._insdc_location_string(location, rec_length)
 
     @staticmethod
-    def from_template(feature):
+    def from_template(template_name):
         """
         This function will create a new Feature from a template in the
         Feature.FEATURE_TEMPLATES dictionary, using the Feature.TRANSLATIONS
         dictionary to try to map to the correct feature type if the type is
         unknown.
+        """
+        if template_name not in Feature.FEATURE_TEMPLATES:
+            # Check if we know a translation for this value
+            translations = Feature.TRANSLATIONS.get("features", [])
+            if template_name in translations:
+                if "target" in translations[template_name]:
+                    logging.debug("Translated feature %s to %s", template_name,
+                                  translations[template_name]["target"])
+                    template_name = translations[template_name]["target"]
+                else:
+                    logging.info("Feature %s has no translation target",
+                                 template_name)
+            else:
+                logging.error("Unknown Feature type: '%s'", template_name)
+                return None
+
+        template = deepcopy(Feature.FEATURE_TEMPLATES[template_name])
+        return template
+
+    @staticmethod
+    def from_seq_feature(feature):
+        """
         This template will then be updated with the values contained in feature,
         which should be a SeqFeature, and returned.
         """
-        if feature.type not in Feature.FEATURE_TEMPLATES:
-            # Check if we know a translation for this value
-            translations = Feature.TRANSLATIONS.get("features", [])
-            if feature.type in translations:
-                if "target" in translations[feature.type]:
-                    logging.debug("Translated feature %s to %s", feature.type,
-                                  translations[feature.type]["target"])
-                    feature.type = translations[feature.type]["target"]
-                else:
-                    logging.info("Feature %s has no translation target",
-                                 feature.type)
-            else:
-                logging.error("Unknown Feature type: %s", feature.type)
-                return None
-
-        template = copy.deepcopy(Feature.FEATURE_TEMPLATES[feature.type])
+        template = Feature.from_template(feature.type)
         template.update_values(feature)
 
         return template
@@ -109,7 +116,7 @@ class Feature():
 
         # set sub-features
         for sub_feature in seq_feature.sub_features:
-            templated_feature = self.from_template(sub_feature)
+            templated_feature = self.from_seq_feature(sub_feature)
             self.sub_features += [templated_feature]
 
     def set_location(self, seq_location):
@@ -127,7 +134,7 @@ class Feature():
         If the qualifier is unknown, the translations['qualifiers'] dictionary
         will be used to try to find a mapping to a legal qualifier.
         """
-        if qualifier not in self.optional_qualifiers or \
+        if qualifier not in self.optional_qualifiers and \
            qualifier not in self.mandatory_qualifiers:
             translations = Feature.TRANSLATIONS.get('qualifiers', [])
             if qualifier not in translations:
@@ -157,7 +164,7 @@ class Feature():
         for i, val in enumerate(value):
             value[i] = f"{prefix}{val}"
 
-        template = copy.deepcopy(Feature.QUALIFIER_TEMPLATES[qualifier])
+        template = deepcopy(Feature.QUALIFIER_TEMPLATES[qualifier])
         template.set_value(value)
 
         self.qualifiers += [template]

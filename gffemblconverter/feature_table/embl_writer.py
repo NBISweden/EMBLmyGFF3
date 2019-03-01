@@ -4,8 +4,13 @@ This is a sub-class of the FeatureTable class, intended to produce properly
 formatted EMBL.
 """
 
+import logging
+
+from Bio.SeqFeature import FeatureLocation
+
 from .feature_table import FeatureTable
 from .embl_header import EMBLHeader
+from .feature import Feature
 
 class EmblWriter(FeatureTable):
     """
@@ -19,6 +24,7 @@ class EmblWriter(FeatureTable):
             header.sequence_length = len(record.seq)
             header.record_id = record.id
         super().__init__(record, thread_pool, EMBLHeader(header))
+        self.add_source()
 
     def __repr__(self):
         output = str(self.header)
@@ -29,6 +35,24 @@ class EmblWriter(FeatureTable):
         output += self.embl_sequence_data()
         output += "//"
         return output
+
+    def add_source(self):
+        """
+        Adds the source feature to the record.
+        """
+        seq_length = self.header.settings['sequence_length']
+        mol_type = self.header.settings['molecule_type']
+        species = self.header.settings['species']
+        if not seq_length:
+            logging.warning(("Couldn't get sequence length, can't create "
+                             "'source' qualifier."))
+            return
+
+        source = Feature.from_template("source")
+        source.set_location(FeatureLocation(0, seq_length))
+        source.set_qualifier('mol_type', mol_type)
+        source.set_qualifier('organism', species)
+        self.features[0:0] = [source]
 
     @staticmethod
     def as_embl(feature):
