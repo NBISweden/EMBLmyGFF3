@@ -10,6 +10,8 @@ from datetime import datetime
 
 from Bio import Entrez
 
+from .global_vars import CACHE
+
 ENTREZ_EMAIL = "gffconverter@nbis.se"
 
 def embl_line(line_code, information, add_spacer=True, split_on=" ", pad=5):
@@ -115,7 +117,10 @@ def taxid_to_species(taxid):
     """
     Attempts to convert a taxid to a species name, by querying Entrez.
     """
-    if taxid.isdigit():
+    global CACHE
+    if 'taxid' in CACHE and taxid in CACHE['taxid']:
+        species = CACHE['taxid'][taxid]
+    elif taxid.isdigit():
         Entrez.email = ENTREZ_EMAIL
         search = None
         try:
@@ -137,6 +142,11 @@ def taxid_to_species(taxid):
             if not search is None:
                 data = Entrez.read(search)
                 species = data[0]['ScientificName']
+                if not 'taxid' in CACHE:
+                    CACHE['taxid'] = {}
+                CACHE['taxid'][taxid] = species
+    else:
+        species = ['unknown', 'species']
 
     return "%s%s" % (species[0].upper(), species[1:].lower())
 
@@ -144,9 +154,14 @@ def species_to_taxid(species):
     """
     Attempts to fetch the taxid for a species name from Entrez.
     """
+    global CACHE
     Entrez.email = ENTREZ_EMAIL
 
     species = species.replace(" ", "+").strip()
+
+    if 'species' in CACHE and taxid in CACHE['species']:
+        return CACHE['species'][species]
+
     try:
         search = Entrez.esearch(term=species, db="taxonomy", retmode="xml")
     except urllib.error.URLError as error:
@@ -168,6 +183,9 @@ def species_to_taxid(species):
         taxid = None
     else:
         taxid = record['IdList'][0]
+        if not 'species' in CACHE:
+            CACHE['species'] = {}
+        CACHE['species'][species] = taxid
 
     return taxid
 
@@ -175,7 +193,11 @@ def classification_from_taxid(taxid):
     """
     Returns the correct phylogenetic classification from Entrez, given a tax_id.
     """
+    global CACHE
     Entrez.email = ENTREZ_EMAIL
+    if 'classification' in CACHE and taxid in CACHE['classification']:
+        return CACHE['classification'][taxid]
+
     try:
         search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
     except urllib.error.URLError as error:
@@ -192,4 +214,10 @@ def classification_from_taxid(taxid):
                        "to keep a format suitable for ENA submission"))
         return "Life"
     data = Entrez.read(search)
-    return data[0]['Lineage']
+    classification = data[0]['Lineage']
+
+    if not 'classification' in CACHE:
+        CACHE['classification'] = {}
+    CACHE['classification'][taxid] = classification
+
+    return classification

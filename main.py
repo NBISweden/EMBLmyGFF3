@@ -245,4 +245,3 @@ if __name__ == '__main__':
             OUTFILE.write(f"{record}\n".encode('utf8'))
         else:
             sys.stdout.write(f"{record}\n")
-        break
