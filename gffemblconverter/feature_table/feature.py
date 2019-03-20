@@ -15,8 +15,8 @@ class Feature():
     "Feature keys indicate
     (1) the biological nature of the annotated feature or
     (2) information about changes to or other versions of the sequence.
-    The feature key permits a user to quickly find or retrieve similar features or
-    features with related functions. "
+    The feature key permits a user to quickly find or retrieve similar features
+    or features with related functions. "
     """
 
     QUALIFIER_TEMPLATES = {}
@@ -48,6 +48,26 @@ class Feature():
             output += str(sub_feature)
 
         return output
+
+    def add_locus_tag(self, value):
+        """
+        Checks if this feature needs a locus tag, and adds it if that is the
+        case. To make sure that all locus tags are ordered, a placeholder tag
+        will be used, which will be updated when the file is written to disk.
+        """
+        # Only add locus tag if it isn't already set
+        if 'locus_tag' in self.qualifiers:
+            return
+
+        # Only set valid values
+        if value is None:
+            logging.warning('No value for locus tag.')
+
+        # Only add if the feature supports locus tag
+        for qualifiers in [self.optional_qualifiers, self.mandatory_qualifiers]:
+            if 'locus_tag' in qualifiers:
+                tag_template = str(value) + '_LOCUS{number}'
+                self.set_qualifier('locus_tag', tag_template)
 
     @staticmethod
     def embl_location(location, rec_length=None):
@@ -88,13 +108,23 @@ class Feature():
         return template
 
     @staticmethod
-    def from_seq_feature(feature):
+    def from_seq_feature(feature, settings=None):
         """
         This template will then be updated with the values contained in feature,
         which should be a SeqFeature, and returned.
         """
+        # Create feature from template
         template = Feature.from_template(feature.type)
+
+        # Add values from SeqFeature
         template.update_values(feature)
+
+        # Add values from settings
+        if settings is not None:
+            # See if we can set locus tag
+            locus_tag = settings.get('locus_tag', None)
+            if locus_tag is not None:
+                template.add_locus_tag(locus_tag)
 
         return template
 

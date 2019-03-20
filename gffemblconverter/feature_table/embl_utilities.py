@@ -142,7 +142,7 @@ def taxid_to_species(taxid):
             if not search is None:
                 data = Entrez.read(search)
                 species = data[0]['ScientificName']
-                if not 'taxid' in CACHE:
+                if 'taxid' not in CACHE:
                     CACHE['taxid'] = {}
                 CACHE['taxid'][taxid] = species
     else:
@@ -159,7 +159,7 @@ def species_to_taxid(species):
 
     species = species.replace(" ", "+").strip()
 
-    if 'species' in CACHE and taxid in CACHE['species']:
+    if 'species' in CACHE and species in CACHE['species']:
         return CACHE['species'][species]
 
     try:
@@ -183,7 +183,7 @@ def species_to_taxid(species):
         taxid = None
     else:
         taxid = record['IdList'][0]
-        if not 'species' in CACHE:
+        if 'species' not in CACHE:
             CACHE['species'] = {}
         CACHE['species'][species] = taxid
 
@@ -216,7 +216,7 @@ def classification_from_taxid(taxid):
     data = Entrez.read(search)
     classification = data[0]['Lineage']
 
-    if not 'classification' in CACHE:
+    if 'classification' not in CACHE:
         CACHE['classification'] = {}
     CACHE['classification'][taxid] = classification
 

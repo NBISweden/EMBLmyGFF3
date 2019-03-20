@@ -47,6 +47,12 @@ class Qualifier():
 
         return output
 
+    def __eq__(self, other):
+        """
+        Does equality comparison by comparing to self.name.
+        """
+        return self.name == other
+
     def validate_value(self, value):
         """
         This function attempts to validate qualifier format by using the

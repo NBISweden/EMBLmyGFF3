@@ -7,8 +7,11 @@ header, as described in ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt.
 from datetime import datetime
 
 from .embl_reference import EMBLReference
-from .embl_utilities import embl_line, get_ena_release, taxid_to_species, \
-                            classification_from_taxid, species_to_taxid
+from .embl_utilities import (embl_line,
+                             get_ena_release,
+                             taxid_to_species,
+                             classification_from_taxid,
+                             species_to_taxid)
 
 class EMBLHeader():
     """Formatting class for keep track of the values associated with an EMBL
