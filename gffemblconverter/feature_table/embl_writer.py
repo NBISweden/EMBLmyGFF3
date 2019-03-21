@@ -149,20 +149,16 @@ class EmblWriter(FeatureTable):
         """
         return "FH   Key             Location/Qualifiers\nFH\n"
 
-    def update_locus_tags(self, counter=0):
+    def update_locus_tags(self, counter=1):
         """
         Updates all locus tags to the final value instead of a placeholder. This
         is done in a separate step to ensure that the resulting EMBL file has a
         sequential list of locus tags, which would not be guaranteed by the
         threaded implementation.
         """
+        logging.info("updating locus tags")
         for feature in self.features:
-            logging.info("updating locus tags")
-            for qualifier in feature.qualifiers:
-                if qualifier == 'locus_tag':
-                    counter += 1 # increment before update so that we start at 1
-                    template = qualifier.value[0]
-                    qualifier.value[0] = template.format(number=counter)
-                    break
+            if feature.update_locus_tag(counter):
+                counter += 1
 
         return counter

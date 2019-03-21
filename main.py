@@ -238,7 +238,7 @@ if __name__ == '__main__':
     if ARGS.output:
         OUTFILE = resolve_output(ARGS)
 
-    LOCUS_TAG_COUNTER = 0
+    LOCUS_TAG_COUNTER = 1
     for i, record in enumerate(RECORDS):
         while record.get_progress() < 1.0:
             time.sleep(0.1)
