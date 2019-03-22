@@ -3,7 +3,7 @@
 parts of the EMBL writer.
 """
 
-import ssl
+import sys
 import urllib
 import logging
 from datetime import datetime
@@ -13,6 +13,12 @@ from Bio import Entrez
 from .global_vars import CACHE
 
 ENTREZ_EMAIL = "gffconverter@nbis.se"
+CERTIFICATE_ERROR = """
+This error is caused by not having installed certificates for Python.
+If you're running OS X, you can usually solve this by running:
+    $ cd /Applications/Python\\ 3.7/
+    $ ./Install\\ Certificates.command"
+"""
 
 def embl_line(line_code, information, add_spacer=True, split_on=" ", pad=5):
     """
@@ -127,12 +133,11 @@ def taxid_to_species(taxid):
             search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
         except urllib.error.URLError as error:
             if "SSL: CERTIFICATE_VERIFY_FAILED" in str(error):
-                logging.warning("SSL: CERTIFICATE_VERIFY_FAILED")
-                logging.warning("retrying without trusting certificate")
+                logging.error(error)
+                logging.error(CERTIFICATE_ERROR)
+                sys.exit(1)
             else:
                 raise error
-            ssl._create_default_https_context = ssl._create_unverified_context
-            search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
         except IOError as error:
             logging.error(error)
             logging.error(type(error))
@@ -166,12 +171,11 @@ def species_to_taxid(species):
         search = Entrez.esearch(term=species, db="taxonomy", retmode="xml")
     except urllib.error.URLError as error:
         if "SSL: CERTIFICATE_VERIFY_FAILED" in str(error):
-            logging.warning("SSL: CERTIFICATE_VERIFY_FAILED")
-            logging.warning("retrying without trusting certificate")
+            logging.error(error)
+            logging.error(CERTIFICATE_ERROR)
+            sys.exit(1)
         else:
             raise error
-        ssl._create_default_https_context = ssl._create_unverified_context
-        search = Entrez.esearch(term=species, db="taxonomy", retmode="xml")
     except IOError as error:
         logging.error("Could not get taxid from species: %s", error)
     record = Entrez.read(search)
@@ -202,12 +206,11 @@ def classification_from_taxid(taxid):
         search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
     except urllib.error.URLError as error:
         if "SSL: CERTIFICATE_VERIFY_FAILED" in str(error):
-            logging.warning("SSL: CERTIFICATE_VERIFY_FAILED")
-            logging.warning("retrying without trusting certificate")
+            logging.error(error)
+            logging.error(CERTIFICATE_ERROR)
+            sys.exit(1)
         else:
             raise error
-        ssl._create_default_https_context = ssl._create_unverified_context
-        search = Entrez.efetch(id=taxid, db="taxonomy", retmode="xml")
     except IOError as error:
         logging.error(error)
         logging.error(("<Life> will be used by default to populate the OC line "
