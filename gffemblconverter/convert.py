@@ -29,20 +29,23 @@ SHAMELESS_PLUG = """
 
 """
 
+def open_any(filename):
+    """Convenience function to open a file as either a regular python file or a
+    gzip-file.
+    """
+    if filename.endswith(".gz"):
+        # gzip returns bytes(), so we also need to decode to utf8
+        return gzip.open(filename, mode='rt', encoding='utf8')
+    return open(filename)
+
+
 def gff_input(args):
     """Convenience functions that opens the files supplied in the args
     structure in the appropriate way and returns them so that they can be
     supplied directly to a FeatureTable.
     """
-    if args.gff_file.endswith(".gz"):
-        infile = gzip.open(args.gff_file)
-    else:
-        infile = open(args.gff_file)
-
-    if args.fasta.endswith(".gz"):
-        infasta = gzip.open(args.fasta)
-    else:
-        infasta = open(args.fasta)
+    infile = open_any(args.gff_file)
+    infasta = open_any(args.fasta)
 
     seq_dict = SeqIO.to_dict(SeqIO.parse(infasta, "fasta"))
 
