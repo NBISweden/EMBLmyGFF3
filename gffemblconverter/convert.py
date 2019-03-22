@@ -89,9 +89,7 @@ def convert(args):
     if not args.shame:
         print(SHAMELESS_PLUG)
 
-    thread_pool = None
-    if args.num_threads > 1:
-        thread_pool = ThreadPoolExecutor(max_workers=args.num_threads)
+    thread_pool = ThreadPoolExecutor(max_workers=args.num_threads)
 
     logging.info("Starting record parsing")
     for record in GFF.parse(**gff_input(args)):

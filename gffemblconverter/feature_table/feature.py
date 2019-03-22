@@ -138,8 +138,8 @@ class Feature():
                     logging.info("Feature %s has no translation target",
                                  template_name)
             else:
-                logging.error("Unknown Feature type: '%s'", template_name)
-                return None
+                logging.warning("Unknown Feature type: '%s'", template_name)
+                raise ValueError("Unknown Feature type")
 
         template = deepcopy(Feature.FEATURE_TEMPLATES[template_name])
         return template

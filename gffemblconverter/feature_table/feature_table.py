@@ -179,9 +179,12 @@ class FeatureTable():
         """
         self.name = record.name
         self.progress[1] = len(record.features)
-        for feature in record.features:
-            if self.thread_pool:
-                future = self.thread_pool.submit(self.new_feature, feature)
+        for i, feature in enumerate(record.features):
+            future = self.thread_pool.submit(self.new_feature, feature)
+            try:
                 self.features += [future.result()]
-            else:
-                self.features += [self.new_feature(feature)]
+            except ValueError:
+                # still count that we parsed the item
+                self.progress[0] += 1
+                pass
+        logging.info("all jobs submitted")
