@@ -1340,7 +1340,9 @@ def main():
         infile.seek(0, 0)
 
     for record in GFF.parse(infile, base_dict=seq_dict):
-
+        if len(record.seq)<100:
+            logging.warning("Sequence %s too short (%s bp)! Minimum accpeted by ENA is 100, we skip it !" % (record.name, len(record.seq) ) )
+            continue
         writer = EMBL( record, True )
 
         #To set up first
