@@ -186,11 +186,16 @@ class EMBL( object ):
         # Make sure that there's a gap feature for every span of n's
         seq = str(self.record.seq).lower() if self.record else ""
         try:
-            index_position = seq.index('n')
-            while index_position:
-                start = index_position
-                logging.debug("There is gap starting at position %s", index_position)
-                end = first_nonrepeated_char(seq, index_position,'n')
+            start = seq.index('n')
+            while start:
+                logging.debug("There is gap starting at position %s", start)
+                # Now find the end
+                end = start + 1
+                while end:
+                    if seq[end] == 'n' :
+                        end +=1  
+                    else:
+                        break
 
                 found = False
                 for f in [f for f in self.record.features if f.type == 'gap']:
@@ -205,7 +210,9 @@ class EMBL( object ):
                     self.record.features += [gap_feature]
                     if EMBL.total_features:
                         EMBL.total_features += 1
-                index_position = seq.index('n',end)
+                # Move +1 to start back from outside the gap
+                end +=1 
+                start = seq.index('n',end)
 
         except ValueError as e:
             #logging.error(e)
