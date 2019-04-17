@@ -19,12 +19,12 @@ __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Ti
    * [GFF3 to EMBL conversion tool](#gff3-to-embl-conversion-tool)
       * [Prerequisites](#prerequisites)
       * [Installation](#installation)
-            * [Installation with pip:](#installation-with-pip)
-            * [Installation with git:](#installation-with-git)
-            * [Check installation](#check-installation)
+         * [Installation with pip:](#installation-with-pip)
+         * [Installation with git:](#installation-with-git)
+         * [Check installation](#check-installation)
       * [Update](#update)
-            * [Update with pip:](#update-with-pip)
-            * [Update with git:](#update-with-git)
+         * [Update with pip:](#update-with-pip)
+         * [Update with git:](#update-with-git)
       * [Uninstall](#uninstall)
       * [Usage](#usage)
          * [Foreword](#foreword)
@@ -83,11 +83,22 @@ Clone the repository:
 git clone https://github.com/NBISweden/EMBLmyGFF3.git
 ```
 
-Move into the folder and install:
+Move into the folder:
 
 ```bash
 cd EMBLmyGFF3/
+```
+
+Install:
+
+```bash
 python setup.py install
+```
+
+or if you do not have administartive rights on your machine:
+
+```bash
+python setup.py install --user
 ```
 
 #### Check installation

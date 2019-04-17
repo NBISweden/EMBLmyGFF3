@@ -10,15 +10,6 @@ import sys
 import re
 import curses.ascii
 
-#string has to be lower case
-def first_nonrepeated_char(seq, index_start, char):
-    index_start +=1
-    while index_start:
-        if seq[index_start] == 'n' :
-            index_start +=1  
-        else:
-            return index_start
-
 def print_overwritable(text):
     sys.stderr.write(text)
     sys.stderr.flush()
