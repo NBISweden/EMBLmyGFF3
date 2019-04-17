@@ -154,7 +154,7 @@ class EMBL( object ):
         self.translate = False
 
 #================== def methods =======================
-#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/        
 
     def _add_mandatory(self):
         """
@@ -184,28 +184,37 @@ class EMBL( object ):
             self.record.features[0:0] = [source_feature]
 
         # Make sure that there's a gap feature for every span of n's
-        start = None
-        for i, c in enumerate(self.record.seq):
-            if c in ['n', 'N']:
-                if start == None:
-                    start = i
-            else:
-                if start != None:
-                    found = False
-                    for f in [f for f in self.record.features if f.type == 'gap']:
-                        if f.location.start == start and f.location.end == i:
-                            found = True
-                    if not found:
-                        gap_location = FeatureLocation(ExactPosition(start), ExactPosition(i))
-                        gap_location.strand = 1
-                        gap_feature = SeqFeature( gap_location )
-                        gap_feature.qualifiers["estimated_length"] = i-start
-                        gap_feature.type = "gap"
-                        self.record.features += [gap_feature]
-                        if EMBL.total_features:
-                            EMBL.total_features += 1
+        #listn = ["n","N"]
+        #if any(x in self.record.seq for x in listn):
+        #if self.record.seq.count("n")+self.record.seq.count("N") > 0:
+        #if ["n","N"] in self.record.seq:
+        #if "n" in self.record.seq.lower():
+        seq = str(self.record.seq).lower() if self.record else ""
+        try:
+            index_position = seq.index('n')
+            while index_position:
+                start = index_position
+                print("I have a NNNN here %s",index_position,'n')
+                end = first_nonrepeated_char(seq, index_position,'n')
 
-                start = None
+                found = False
+                for f in [f for f in self.record.features if f.type == 'gap']:
+                    if f.location.start == start and f.location.end == end:
+                        found = True
+                if not found:
+                    gap_location = FeatureLocation(ExactPosition(start), ExactPosition(end))
+                    gap_location.strand = 1
+                    gap_feature = SeqFeature( gap_location )
+                    gap_feature.qualifiers["estimated_length"] = end-start
+                    gap_feature.type = "gap"
+                    self.record.features += [gap_feature]
+                    if EMBL.total_features:
+                        EMBL.total_features += 1
+                index_position = seq.index('n',end)
+
+        except ValueError as e:
+            #logging.error(e)
+            logging.debug("No gap in sequence %s", self.record.name)
 
     def _get_release(self, date):
         """
@@ -780,17 +789,18 @@ class EMBL( object ):
             out.write(output)
             output = ""
 
-        seq_len = 0
-        while seq:
-            current_line = " ".join([seq[i*10:(i+1)*10] for i in range(0, 6)])
-            seq_len += min(60, len(seq))
-            formatted_line = "\n     %s %s" % ("{:65}".format(current_line), "{:>9}".format(str(seq_len)))
+        seqBuilt_len = 0
+        lenSeq = len(seq)
+        while seqBuilt_len < lenSeq :
+            slice_seq = seq[seqBuilt_len:(seqBuilt_len+60)]
+            current_line = " ".join([slice_seq[i*10:(i+1)*10] for i in range(0, 6)]) 
+            seqBuilt_len += len(slice_seq)
+            formatted_line = "\n     %s %s" % ("{:65}".format(current_line), "{:>9}".format(str(seqBuilt_len)))
 
             if out:
                 out.write(formatted_line)
             else:
                 output += formatted_line
-            seq = seq[60:]
         return output
 
 
