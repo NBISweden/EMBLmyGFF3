@@ -10,7 +10,7 @@
    "target": "standard_name"
  },
  "exon": {
-
+	"remove": true
  },
  "transcript": {
  	"target": "mRNA"
