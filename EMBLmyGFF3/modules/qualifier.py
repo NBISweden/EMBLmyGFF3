@@ -79,13 +79,13 @@ class Qualifier( object ):
 
                 for val in value:
                     if val.split(':')[0].lower() in [v.lower() for v in self.legal_dbxref]:
-                        new_value = val
+                        formatted_value = val
                     else:
-                        msg = "Unknown db_xref '%s' - removing." % (val.split(':')[0])
+                        msg = "Unknown db_xref '%s' - skipped." % (val.split(':')[0])
                         if msg not in Qualifier.PREVIOUS_ERRORS:
-                            logging.info(msg)
+                            logging.warning(msg)
                             Qualifier.PREVIOUS_ERRORS += [msg]
-                formatted_value=new_value
+                        formatted_value=None
             elif self.value_format == "<identifier>":
                 pass
             elif self.value_format == "\"text\"":
@@ -155,9 +155,13 @@ class Qualifier( object ):
         self.value = [self.value] if type(self.value) != type([]) else self.value
         
         new_value = self._by_value_format(value)
-        logging.debug("%s - Changing value: '%s' to '%s'" % (self.name, value, new_value))
-        self.value.append(new_value)
-        logging.debug("%s - Current value: '%s'" % (self.name, self.value))
+        if new_value or new_value == "":
+            if new_value not in self.value:
+                logging.debug("%s - Changing value: '%s' to '%s'" % (self.name, value, new_value))
+                self.value.append(new_value)
+                logging.debug("%s - Current value: '%s'" % (self.name, self.value))
+            else:
+                logging.debug("%s - Value: '%s' already exists" % (self.name, self.value))
 
     def set_value(self, value):
         value = value if type(value) == type([]) else [value]
