@@ -26,7 +26,7 @@ def multiline(prefix, data, sep=";", suffix="", indentprefix = 3, featureType=""
 
     If data is a list, the entries are listed with "sep" as separator
     """
-    #logging.error("prefix: %s featureType: %s data: %s" % (prefix, featureType, data) )
+    logging.debug("prefix: %s featureType: %s data: %s" % (prefix, featureType, data) )
     
     if no_wrap: # equivalent to no wrap when split line deactivated
         wrap = 1000000
@@ -35,7 +35,7 @@ def multiline(prefix, data, sep=";", suffix="", indentprefix = 3, featureType=""
     # List Case
     previousChunck=""
     if type(data) == type([]):
-        #logging.error("list case")
+
         for i, item in enumerate(data):
             if item:
                 currentChunck = item + previousChunck
@@ -58,14 +58,13 @@ def multiline(prefix, data, sep=";", suffix="", indentprefix = 3, featureType=""
         #In oder to avoid last line longer than expected when adding the suffix
         if len(previousChunck)+len(suffix) > wrap:
             output+=previousChunck+"\n"+suffix
-            #logging.error("previousChunckL: %i suffixL %i wrapL %i" % ( len(previousChunck), len(suffix), wrap ) )
+            #logging.debug("previousChunckL: %i suffixL %i wrapL %i" % ( len(previousChunck), len(suffix), wrap ) )
 
         else:
             output+=previousChunck+suffix
 
     # String case
     else:
-        #logging.error("string case")
         output,lastLine = _splitStringMultiline(output, data, wrap, splitW, split_char)
 
         #add suffix if needed_
@@ -143,24 +142,23 @@ def _splitStringMultiline(output, data, wrap, splitW, split_char):
     return output,lastLine
 
 def _splitWordsMax(string, valueMax, splitW, split_char):
+    #logging.debug("_splitWordsMax string = %s" % string)
     position=0
     positionBefore=0
     words=[]
 
     if split_char:
         words = splitkeepsep(string, split_char)
-        #logging.error(words)
     else:
         words = string.split()
 
     newString=words.pop(0)
     position = len(newString)
-    #logging.error("position = %i" % position)
 
     if position >= valueMax:
         return valueMax
 
-    while position <= valueMax :
+    while position <= valueMax and words:
         positionBefore=position
         if split_char:
             newString += words.pop(0)
