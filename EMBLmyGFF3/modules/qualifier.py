@@ -71,7 +71,7 @@ class Qualifier( object ):
         try:
             if self.value_format == "none": # no value taken
                 if value:
-                    logging.warn("Qualifier '%s' has value '%s', but %s qualifiers does not take a value" % (self.name, value, self.name))
+                    logging.info("Qualifier '%s' has value '%s', but none expected." % (self.name, value))
                 return ""
             elif self.value_format.startswith("\"<database:identifier>\""): # Handle dbxref's 
                 self._load_legal_dbxref( LEGAL_DBXREF_FILE )
