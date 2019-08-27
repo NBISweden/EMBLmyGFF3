@@ -188,12 +188,12 @@ class EMBL( object ):
         try:
             start = seq.index('n')
             while start:
-                logging.debug("There is gap starting at position %s", start)
+                logging.debug("There is gap in %s starting at position %s" % (self.record.name,start))
                 # Now find the end
                 end = start + 1
-                while end:
+                while end < len(seq):
                     if seq[end] == 'n' :
-                        end +=1  
+                        end +=1
                     else:
                         break
 
