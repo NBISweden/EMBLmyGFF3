@@ -116,6 +116,8 @@ class FeatureTable():
         """
         Returns the prorgess of the current record import.
         """
+        if self.progress[1] == 0: # case if no feature. Because we cannot divide by 0
+            return 0
         return self.progress[0]/self.progress[1]
 
     def new_feature(self, feature):
