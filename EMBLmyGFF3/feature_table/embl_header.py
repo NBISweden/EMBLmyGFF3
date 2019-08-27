@@ -21,7 +21,7 @@ class EMBLHeader():
 
     def __init__(self, args=None):
         """
-        Takes the input arguments from the main gffemblconverter, as an
+        Takes the input arguments from the main EMBLmyGFF3, as an
         argparse Namespace object. This class then formats and checks what goes
         into the EMBL file header.
         """

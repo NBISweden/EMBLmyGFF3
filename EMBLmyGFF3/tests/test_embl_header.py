@@ -4,7 +4,7 @@ Unit tests for the functions from embl_header.py.
 """
 
 import unittest
-from gffemblconverter.feature_table.embl_header import EMBLHeader
+from EMBLmyGFF3.feature_table.embl_header import EMBLHeader
 
 class TestEMBLHeader(unittest.TestCase):
     """

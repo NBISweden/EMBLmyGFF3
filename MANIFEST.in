@@ -1,4 +1,5 @@
-include EMBLmyGFF3/modules/*.json
-include EMBLmyGFF3/modules/features/*
-include EMBLmyGFF3/modules/qualifiers/*
+include EMBLmyGFF3/translations/*
+include EMBLmyGFF3/data_definitions/*
+include EMBLmyGFF3/data_definitions/features/*
+include EMBLmyGFF3/data_definitions/qualifiers/*
 include examples/*

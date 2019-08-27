@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 """
 Setup script for EMBLmyGFF3. This tool is developed to convert and reformat the
 common GFF3 format into the more stringent EMBL format used for data submission
@@ -26,7 +26,7 @@ setup(
 
     entry_points={
         'console_scripts': [
-            'EMBLmyGFF3 = gffemblconverter.convert:main',
+            'EMBLmyGFF3 = EMBLmyGFF3.convert:main',
         ],
     }
 )

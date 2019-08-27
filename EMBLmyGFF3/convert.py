@@ -17,12 +17,12 @@ from concurrent.futures import ThreadPoolExecutor
 from Bio import SeqIO
 from BCBio import GFF
 
-from gffemblconverter.feature_table.embl_writer import EmblWriter
-from gffemblconverter.concise_log import ConciseStreamHandler
+from EMBLmyGFF3.feature_table.embl_writer import EmblWriter
+from EMBLmyGFF3.concise_log import ConciseStreamHandler
 
 SHAMELESS_PLUG = """
 ###############################################################################
-# NBIS 2018 - Sweden                                                          #
+# NBIS 2019 - Sweden                                                          #
 # Authors: Martin Norling, Niclas Jareborg, Jacques Dainat                    #
 # Please visit https://github.com/NBISweden/EMBLmyGFF3 for more information.  #
 ###############################################################################

@@ -4,7 +4,7 @@ Unit tests for the functions from embl_utilities.py.
 """
 
 import unittest
-from gffemblconverter.feature_table.embl_utilities import embl_line, \
+from EMBLmyGFF3.feature_table.embl_utilities import embl_line, \
     ensure_row_length, quoted
 
 class TestEMBLUtilities(unittest.TestCase):

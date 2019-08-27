@@ -5,7 +5,7 @@ Unit tests for the EmblLocation class from embl_writer.py.
 
 import unittest
 from Bio.SeqFeature import FeatureLocation, BeforePosition, AfterPosition
-from gffemblconverter.feature_table.feature import Feature
+from EMBLmyGFF3.feature_table.feature import Feature
 
 class TestEmblLocation(unittest.TestCase):
     """
