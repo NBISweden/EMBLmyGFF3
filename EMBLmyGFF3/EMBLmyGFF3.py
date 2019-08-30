@@ -1383,6 +1383,7 @@ def main():
         writer.write_all( outfile )
 
         writer = None
-    EMBL.print_progress(True)
+    if args.progress:    
+        EMBL.print_progress(True)
 
     sys.stderr.write( """Conversion done\n""")
