@@ -1340,6 +1340,14 @@ def main():
         infile.seek(0, 0)
 
     for record in GFF.parse(infile, base_dict=seq_dict):
+        
+        # Check existence of gff seqid among the fasta sequence identifiers
+        if record.id not in seq_dict:
+            logging.warning("Sequence id <%s> from the gff file not found within the fasta file. Are you sure to provide the correct" \
+                            " fasta file? The tool will create a string of ???? as sequence (its length will be the end position of the last feature). " \
+                            "For you information, if you use the --translate option the tool will raise an error due to ??? codons that do not exist." % (record.id))
+
+        # Check sequence size and skip if < 100 bp
         if len(record.seq)<100:
             logging.warning("Sequence %s too short (%s bp)! Minimum accpeted by ENA is 100, we skip it !" % (record.name, len(record.seq) ) )
             continue
