@@ -693,7 +693,8 @@ class EMBL( object ):
                             break
                     if not locus_tag: #inform the user that we will use the locus_tag instead
                         msg_type = "I'm suppose to use the value of the attribute %s from the gff3 file as locus_tag but this attribute doesnt exist" % (attribute)
-                        msg = "I'm suppose to use the value of the attribute %s from the gff3 file as locus_tag but this attribute doesnt exist for feature %s. Consequently I will use the locus_tag %s to create a proper one." % (attribute, feature.id, self.locus_tag) 
+                        msg = "I'm suppose to use the value of the attribute %s from the gff3 file as locus_tag but this attribute doesnt exist for feature %s. "\
+                        "Consequently I will use the locus_tag %s to create a proper one." % (attribute, feature.id, self.locus_tag) 
                         self.handle_message("warning", msg_type, msg, None)
                 # create a locus tag base on the prefix + LOCUS + incremented number
                 if not locus_tag:
@@ -854,7 +855,10 @@ class EMBL( object ):
                 if not strain and not environmental_sample and not isolate: #no information provided, let's ask the user
                     onekey = None
                     while not onekey:
-                        sys.stderr.write("At least one of the following qualifiers \"strain, environmental_sample, isolate\" must exist when organism belongs to Bacteria. Please fill one of those information.(source feature keys containing the /environmental_sample qualifier should also contain the /isolation_source qualifier. entries including /environmental_sample must not include the /strain qualifier)\nStrain:")
+                        sys.stderr.write("At least one of the following qualifiers \"strain, environmental_sample, isolate\" must exist " \
+                                         "when organism belongs to Bacteria. Please fill one of those information.(source feature keys containing "\
+                                         "the /environmental_sample qualifier should also contain the /isolation_source qualifier. entries including "\
+                                         "/environmental_sample must not include the /strain qualifier)\nStrain:")
                         strain = raw_input()
                         if strain: 
                             EMBL.PREVIOUS_VALUES["strain"]=strain
