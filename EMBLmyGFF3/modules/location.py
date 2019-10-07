@@ -19,23 +19,36 @@ class EMBLLocation(object):
         
         output = ""
         suffix = ""
-        complement = True
-        if len(self.location.parts) == len([l for l in self.location.parts if l.strand < 0]):
+
+        # Store all strand from the location parts to check potential inconsistency 
+        strand=[]
+        for l in self.location.parts:
+            if l.strand != None:
+                if l.strand not in strand:
+                    strand.append(l.strand)
+
+        if len(strand) == 0:
+            logging.debug("No strand stored among the location_parts %s" % self.location.parts)       
+        elif len(strand) > 1:
+            logging.error("Different strand stored in location_parts (+ strand will be used as default): %s" % self.location.parts)
+        elif strand == [1]:
+            logging.debug("+ strand")
+        else:
+            logging.debug("- strand")
             output += "complement("
             suffix += ")"
-            complement = False
+
+        # If more than one part let's join the differnt parts together
         if (len(self.location.parts) > 1):
             output += "join("
             suffix += ")"
-        output += ",".join(self._format_parts(self.location.parts, complement=complement))
+
+        output += ",".join(self._format_parts(self.location.parts))
             
         return output + suffix
     
-    def _format_parts(self, parts, complement = True):
+    def _format_parts(self, parts):
         output = []
         for part in parts:
-            if part.strand > 0 or complement == False:
-                output += ["%s..%s" % (type(part.start)(part.start+1), type(part.end)(part.end+0))]
-            else:
-                output += ["complement(%s..%s)" % (type(part.start)(part.start+1), type(part.end)(part.end+0))]
+            output += ["%s..%s" % (type(part.start)(part.start+1), type(part.end)(part.end+0))]
         return output
