@@ -4,12 +4,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='EMBLmyGFF3',
-    version='1.2.7',
+    version='1.2.8',
 
     description='An efficient way to convert gff3 annotation files into EMBL format ready to submit',
 
     url='https://github.com/NBISweden/EMBLmyGFF3',
-    download_url='https://github.com/NBISweden/EMBLmyGFF3/archive/v1.2.7.tar.gz',
+    download_url='https://github.com/NBISweden/EMBLmyGFF3/archive/v1.2.8.tar.gz',
     author='Martin Norling, Niclas Jareborg, Jacques Dainat',
 
     license='GPL-3.0',
