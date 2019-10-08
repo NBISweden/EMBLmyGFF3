@@ -251,6 +251,16 @@ class Feature(object):
 
             # basic info
             strand = self.location.strand
+            # raise an error if no strand for the CDS. Strand is not mandatory (can be a dot) except for CDS where it has an 
+            # impact on the translation, and to check where is start and stop codon...
+            if strand == None:
+                ID=''
+                for qualifier in self.feature.qualifiers:
+                    if 'id' == qualifier.lower():
+                        ID =  "%s" % " ".join(self.feature.qualifiers[qualifier])
+                        break
+                logging.error('CDS %s does not have any strand! Please check your gff file.'  %  ID) 
+                sys.exit()
 
             if start_codon.upper() not in codon_table.start_codons:
                 self.location = self._set_before(self.location)

@@ -9,7 +9,7 @@ GFF convertion is based on specifications from https://github.com/The-Sequence-O
 
 shameless_plug="""
     #############################################################################
-    # NBIS 2018 - Sweden                                                        #
+    # NBIS 2019 - Sweden                                                        #
     # Authors: Martin Norling, Niclas Jareborg, Jacques Dainat                  #
     # Please visit https://github.com/NBISweden/EMBLmyGFF3 for more information #
     #############################################################################
@@ -188,12 +188,12 @@ class EMBL( object ):
         try:
             start = seq.index('n')
             while start:
-                logging.debug("There is gap starting at position %s", start)
+                logging.debug("There is gap in %s starting at position %s" % (self.record.name,start))
                 # Now find the end
                 end = start + 1
-                while end:
+                while end < len(seq):
                     if seq[end] == 'n' :
-                        end +=1  
+                        end +=1
                     else:
                         break
 
@@ -693,7 +693,8 @@ class EMBL( object ):
                             break
                     if not locus_tag: #inform the user that we will use the locus_tag instead
                         msg_type = "I'm suppose to use the value of the attribute %s from the gff3 file as locus_tag but this attribute doesnt exist" % (attribute)
-                        msg = "I'm suppose to use the value of the attribute %s from the gff3 file as locus_tag but this attribute doesnt exist for feature %s. Consequently I will use the locus_tag %s to create a proper one." % (attribute, feature.id, self.locus_tag) 
+                        msg = "I'm suppose to use the value of the attribute %s from the gff3 file as locus_tag but this attribute doesnt exist for feature %s. "\
+                        "Consequently I will use the locus_tag %s to create a proper one." % (attribute, feature.id, self.locus_tag) 
                         self.handle_message("warning", msg_type, msg, None)
                 # create a locus tag base on the prefix + LOCUS + incremented number
                 if not locus_tag:
@@ -854,7 +855,10 @@ class EMBL( object ):
                 if not strain and not environmental_sample and not isolate: #no information provided, let's ask the user
                     onekey = None
                     while not onekey:
-                        sys.stderr.write("At least one of the following qualifiers \"strain, environmental_sample, isolate\" must exist when organism belongs to Bacteria. Please fill one of those information.(source feature keys containing the /environmental_sample qualifier should also contain the /isolation_source qualifier. entries including /environmental_sample must not include the /strain qualifier)\nStrain:")
+                        sys.stderr.write("At least one of the following qualifiers \"strain, environmental_sample, isolate\" must exist " \
+                                         "when organism belongs to Bacteria. Please fill one of those information.(source feature keys containing "\
+                                         "the /environmental_sample qualifier should also contain the /isolation_source qualifier. entries including "\
+                                         "/environmental_sample must not include the /strain qualifier)\nStrain:")
                         strain = raw_input()
                         if strain: 
                             EMBL.PREVIOUS_VALUES["strain"]=strain
@@ -1340,6 +1344,14 @@ def main():
         infile.seek(0, 0)
 
     for record in GFF.parse(infile, base_dict=seq_dict):
+        
+        # Check existence of gff seqid among the fasta sequence identifiers
+        if record.id not in seq_dict:
+            logging.warning("Sequence id <%s> from the gff file not found within the fasta file. Are you sure to provide the correct" \
+                            " fasta file? The tool will create a string of ???? as sequence (its length will be the end position of the last feature). " \
+                            "For you information, if you use the --translate option the tool will raise an error due to ??? codons that do not exist." % (record.id))
+
+        # Check sequence size and skip if < 100 bp
         if len(record.seq)<100:
             logging.warning("Sequence %s too short (%s bp)! Minimum accpeted by ENA is 100, we skip it !" % (record.name, len(record.seq) ) )
             continue
@@ -1383,6 +1395,7 @@ def main():
         writer.write_all( outfile )
 
         writer = None
-    EMBL.print_progress(True)
+    if args.progress:    
+        EMBL.print_progress(True)
 
     sys.stderr.write( """Conversion done\n""")
