@@ -154,7 +154,7 @@ class EMBL( object ):
         self.translate = False
 
 #================== def methods =======================
-#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/        
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 
     def _add_mandatory(self):
         """
@@ -180,7 +180,7 @@ class EMBL( object ):
                 source_feature.qualifiers["isolation_source"] = EMBL.PREVIOUS_VALUES["isolation_source"]
             if "isolate" in  EMBL.PREVIOUS_VALUES:
                 source_feature.qualifiers["isolate"] = EMBL.PREVIOUS_VALUES["isolate"]
-
+            source_feature.sub_features = [] # important to define that there is no sub_features
             self.record.features[0:0] = [source_feature]
 
         # Make sure that there's a gap feature for every span of n's
@@ -205,13 +205,14 @@ class EMBL( object ):
                     gap_location = FeatureLocation(ExactPosition(start), ExactPosition(end))
                     gap_location.strand = 1
                     gap_feature = SeqFeature( gap_location )
+                    gap_feature.sub_features = [] # important to define that there is no sub_features
                     gap_feature.qualifiers["estimated_length"] = end-start
                     gap_feature.type = "gap"
                     self.record.features += [gap_feature]
                     if EMBL.total_features:
                         EMBL.total_features += 1
                 # Move +1 to start back from outside the gap
-                end +=1 
+                end +=1
                 start = seq.index('n',end)
 
         except ValueError as e:
@@ -285,10 +286,10 @@ class EMBL( object ):
         """
         checked_locus_tag=None
         while not checked_locus_tag:
-            
-            if not locus_tag: 
+
+            if not locus_tag:
                 sys.stderr.write("No value provided as locus_tag.\nPlease provide a locus_tag (A default XXX locus_tag will be set up if none provided):")
-                locus_tag = raw_input()      
+                locus_tag = raw_input()
                 if not locus_tag:
                     checked_locus_tag="XXX"
                     break
@@ -299,9 +300,9 @@ class EMBL( object ):
 
             # if starts with a letter
             if locus_tag[:1].isalpha():
-                # if contains only alpha-numeric characters 
+                # if contains only alpha-numeric characters
                 if locus_tag.isalnum():
-                    # if more than 3 characters    
+                    # if more than 3 characters
                     if len(locus_tag) >= 3:
                         checked_locus_tag = locus_tag # passes all checks, save the value !
                     else:
@@ -391,24 +392,24 @@ class EMBL( object ):
             print_overwritable( progress )
 
     def handle_message(self, type, msg_type, msg, value):
-    
+
         if EMBL.PREVIOUS_ERRORS.has_key(msg_type):
             EMBL.PREVIOUS_ERRORS[msg_type] += 1
-        
+
         level = eval("logging.%s" % type.upper())
 
         if self.uncompressed_log:
             logging.log(level, msg)
         else:
             if not value:   # number of line accepted to display (defaut or given to the method)
-                value = 5    
+                value = 5
             if not EMBL.PREVIOUS_ERRORS.has_key(msg_type) or EMBL.PREVIOUS_ERRORS[msg_type] < value:
                 logging.log(level, msg)
                 EMBL.PREVIOUS_ERRORS.setdefault(msg_type,1)
             elif EMBL.PREVIOUS_ERRORS[msg_type] == value:
                 logging.log(level, msg)
                 final_message = 'We will not display anymore this %s. Please use the --uncompressed_log parameter if you wish having all of them.' % type
-                logging.log(level, final_message) 
+                logging.log(level, final_message)
 
 #================== def EMBL line =======================
 #\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
@@ -679,12 +680,12 @@ class EMBL( object ):
 
             ####################
             # manage locus_tag #
-            
+
             locus_tag=None
             #skip feature without locus_tag
             if feature.type.lower() != "source" and feature.type.lower() != "gap":
 
-                # When option attribute_to_use_as_locus_tag activated, use the value of an attribute defined by the user 
+                # When option attribute_to_use_as_locus_tag activated, use the value of an attribute defined by the user
                 if self.PREVIOUS_VALUES['attribute_to_use_as_locus_tag']: # If we have defined an attribute to use as locus_tag
                     attribute = self.PREVIOUS_VALUES['attribute_to_use_as_locus_tag']
                     for qualifier in feature.qualifiers:
@@ -694,7 +695,7 @@ class EMBL( object ):
                     if not locus_tag: #inform the user that we will use the locus_tag instead
                         msg_type = "I'm suppose to use the value of the attribute %s from the gff3 file as locus_tag but this attribute doesnt exist" % (attribute)
                         msg = "I'm suppose to use the value of the attribute %s from the gff3 file as locus_tag but this attribute doesnt exist for feature %s. "\
-                        "Consequently I will use the locus_tag %s to create a proper one." % (attribute, feature.id, self.locus_tag) 
+                        "Consequently I will use the locus_tag %s to create a proper one." % (attribute, feature.id, self.locus_tag)
                         self.handle_message("warning", msg_type, msg, None)
                 # create a locus tag base on the prefix + LOCUS + incremented number
                 if not locus_tag:
@@ -712,8 +713,8 @@ class EMBL( object ):
                     # create locus tag from locus_tag_suffix and accession
                     locus_tag = "%s_%s" % (locus_tag_prefix, locus_tag_suffix)
 
-            f = Feature(feature, self.record.seq, locus_tag, self.transl_table, translate=self.translate, 
-                feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1, 
+            f = Feature(feature, self.record.seq, locus_tag, self.transl_table, translate=self.translate,
+                feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1,
                 reorder_gene_features = self.interleave_genes, force_unknown_features = self.force_unknown_features,
                  force_uncomplete_features = self.force_uncomplete_features, uncompressed_log = self.uncompressed_log, no_wrap_qualifier = self.no_wrap_qualifier)
 
@@ -796,7 +797,7 @@ class EMBL( object ):
         lenSeq = len(seq)
         while seqBuilt_len < lenSeq :
             slice_seq = seq[seqBuilt_len:(seqBuilt_len+60)]
-            current_line = " ".join([slice_seq[i*10:(i+1)*10] for i in range(0, 6)]) 
+            current_line = " ".join([slice_seq[i*10:(i+1)*10] for i in range(0, 6)])
             seqBuilt_len += len(slice_seq)
             formatted_line = "\n     %s %s" % ("{:65}".format(current_line), "{:>9}".format(str(seqBuilt_len)))
 
@@ -860,7 +861,7 @@ class EMBL( object ):
                                          "the /environmental_sample qualifier should also contain the /isolation_source qualifier. entries including "\
                                          "/environmental_sample must not include the /strain qualifier)\nStrain:")
                         strain = raw_input()
-                        if strain: 
+                        if strain:
                             EMBL.PREVIOUS_VALUES["strain"]=strain
                             onekey = strain
                         if not strain: #Entry with /environmental_sample must not include the /strain qualifier
@@ -990,7 +991,7 @@ class EMBL( object ):
             self.keywords = EMBL.PREVIOUS_VALUES["keywords"]
         else:
             if not keywords:
-                keywords = [""]   
+                keywords = [""]
             EMBL.PREVIOUS_VALUES["keywords"] = keywords
             self.keywords = keywords
 
@@ -1053,7 +1054,7 @@ class EMBL( object ):
         else:
             if self.verify and organelle:
                 organelle = self._verify( self.organelle, "organelle")
-            
+
             self.organelle = organelle
             EMBL.PREVIOUS_VALUES["organelle"] = organelle
 
@@ -1113,7 +1114,7 @@ class EMBL( object ):
                     taxonomy = self._verify( taxonomy, "taxonomy")
             else:
                 taxonomy = "XXX"
-            
+
             self.taxonomy = taxonomy
             EMBL.PREVIOUS_VALUES["taxonomy"] = taxonomy
 
@@ -1125,7 +1126,7 @@ class EMBL( object ):
             self.topology = EMBL.PREVIOUS_VALUES["topology"]
         else:
             if self.verify:
-                topology = self._verify( topology, "topology")      
+                topology = self._verify( topology, "topology")
 
             self.topology = topology
             EMBL.PREVIOUS_VALUES["topology"] = topology
@@ -1136,7 +1137,7 @@ class EMBL( object ):
         """
         if "transl_table" in EMBL.PREVIOUS_VALUES:
             self.transl_table = EMBL.PREVIOUS_VALUES["transl_table"]
-        else:    
+        else:
             if self.verify:
                 transl_table = self._verify( transl_table, "transl_table")
 
@@ -1161,7 +1162,7 @@ class EMBL( object ):
         """
         if "version" in EMBL.PREVIOUS_VALUES:
             self.version = EMBL.PREVIOUS_VALUES["version"]
-        else:    
+        else:
             if version:
                 version = "SV %i" % version
             else:
@@ -1299,7 +1300,7 @@ def main():
     args = parser.parse_args()
 
     # add a convenience argument. This is because I want the argument to be called
-    # progress in the code, but --no_progress makes more sense as an argument to 
+    # progress in the code, but --no_progress makes more sense as an argument to
     # hide the progress bar.
     args.progress = args.no_progress
 
@@ -1344,7 +1345,7 @@ def main():
         infile.seek(0, 0)
 
     for record in GFF.parse(infile, base_dict=seq_dict):
-        
+
         # Check existence of gff seqid among the fasta sequence identifiers
         if record.id not in seq_dict:
             logging.warning("Sequence id <%s> from the gff file not found within the fasta file. Are you sure to provide the correct" \
@@ -1376,7 +1377,7 @@ def main():
         writer.set_attribute_to_use_as_locus_tag( args.use_attribute_value_as_locus_tag ) #has to be before set_locus_tag
         writer.set_locus_tag( args.locus_tag )
         writer.set_locus_numbering_start(args.locus_numbering_start)
-        
+
         writer.set_molecule_type( args.molecule_type )
         writer.set_no_wrap_qualifier( args.no_wrap_qualifier)
         writer.set_organelle( args.organelle )
@@ -1387,7 +1388,7 @@ def main():
         writer.set_translation(args.translate)
         writer.set_uncompressed_log(args.uncompressed_log)
         writer.set_version( args.version )
-        
+
 
         writer.add_reference(args.rt, location = args.rl, comment = args.rc, xrefs = args.rx, group = args.rg, authors = args.ra)
 
@@ -1395,7 +1396,7 @@ def main():
         writer.write_all( outfile )
 
         writer = None
-    if args.progress:    
+    if args.progress:
         EMBL.print_progress(True)
 
     sys.stderr.write( """Conversion done\n""")
