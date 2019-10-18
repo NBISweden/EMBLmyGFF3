@@ -4,22 +4,22 @@ from setuptools import setup, find_packages
 
 setup(
     name='EMBLmyGFF3',
-    version='1.2.8',
+    version='1.3',
 
     description='An efficient way to convert gff3 annotation files into EMBL format ready to submit',
 
     url='https://github.com/NBISweden/EMBLmyGFF3',
-    download_url='https://github.com/NBISweden/EMBLmyGFF3/archive/v1.2.8.tar.gz',
+    download_url='https://github.com/NBISweden/EMBLmyGFF3/archive/v1.3.tar.gz',
     author='Martin Norling, Niclas Jareborg, Jacques Dainat',
 
     license='GPL-3.0',
     packages=find_packages(),
 
-    install_requires=['biopython==1.67', 'bcbio-gff==0.6.4'],
+    install_requires=['biopython>=1.67', 'bcbio-gff>=0.6.4','numpy<1.16.5' ],
     include_package_data=True,
 
     entry_points={
-        'console_scripts': ['EMBLmyGFF3 = EMBLmyGFF3:main',  
+        'console_scripts': ['EMBLmyGFF3 = EMBLmyGFF3:main',
         'EMBLmyGFF3-augustus-example = examples.augustus_example:main',
         'EMBLmyGFF3-maker-example = examples.maker_example:main',
         'EMBLmyGFF3-prokka-example = examples.prokka_example:main',
