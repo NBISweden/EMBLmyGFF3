@@ -67,7 +67,7 @@ class Feature(object):
 
     def __init__(self, feature = None, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False,
                 feature_definition_dir = DEFAULT_FEATURE_DIR, qualifier_definition_dir = DEFAULT_QUALIFIER_DIR, format_data = True,
-                level = 0, reorder_gene_features = True, skip_feature = False, force_unknown_features = False, 
+                level = 0, reorder_gene_features = True, skip_feature = False, force_unknown_features = False,
                 force_uncomplete_features = False, uncompressed_log = None, no_wrap_qualifier = False):
         """
         Initializes a Feature, loads json files for feature and
@@ -90,7 +90,7 @@ class Feature(object):
         self.reorder_gene_features = reorder_gene_features
         self.remove = []
         self.seq = seq
-        self.singleton_types = ["exon"]
+        self.combine_types = ["CDS"]
         self.skip_feature = skip_feature
         self.sub_features = []
         self.translate = translate
@@ -105,7 +105,7 @@ class Feature(object):
         self._load_data(feature, accessions)
         self._check_qualifier(feature)
 
-        if level == 1:
+        if level == 1 :
             # Parse through subfeatures level2
             featureObj_level2 = None
             for feature_l2 in feature.sub_features:
@@ -113,7 +113,7 @@ class Feature(object):
                                                       self.feature_definition_dir, self.qualifier_definition_dir, format_data = True, level=2)
                 self.sub_features += [featureObj_level2]
 
-                
+
                 # Sort the sub-features in case they were not ordered into the gff3 file (issue 1)
                 feature_l2.sub_features.sort(key=lambda x: x.location.start)
 
@@ -122,7 +122,7 @@ class Feature(object):
                 for feature_l3 in feature_l2.sub_features:
                     l3_type = self._from_gff_feature(feature_l3.type)
                     l2_sub_features = [sf.type for sf in featureObj_level2.sub_features]
-                    if l3_type in l2_sub_features and l3_type not in self.singleton_types:
+                    if l3_type in l2_sub_features and l3_type in self.combine_types:
                         old_feature = [sf for sf in featureObj_level2.sub_features if sf.type == self._from_gff_feature(feature_l3.type)][0]
                         old_feature.combine(feature_l3)
                     else:
@@ -251,7 +251,7 @@ class Feature(object):
 
             # basic info
             strand = self.location.strand
-            # raise an error if no strand for the CDS. Strand is not mandatory (can be a dot) except for CDS where it has an 
+            # raise an error if no strand for the CDS. Strand is not mandatory (can be a dot) except for CDS where it has an
             # impact on the translation, and to check where is start and stop codon...
             if strand == None:
                 ID=''
@@ -259,7 +259,7 @@ class Feature(object):
                     if 'id' == qualifier.lower():
                         ID =  "%s" % " ".join(self.feature.qualifiers[qualifier])
                         break
-                logging.error('CDS %s does not have any strand! Please check your gff file.'  %  ID) 
+                logging.error('CDS %s does not have any strand! Please check your gff file.'  %  ID)
                 sys.exit()
 
             if start_codon.upper() not in codon_table.start_codons:
@@ -278,7 +278,7 @@ class Feature(object):
             # Check presence of mandatory qualifier
             if self.qualifiers[qualifier].mandatory:# Check if the qualifier is mandatory
                 if not self.qualifiers[qualifier].value: # No value for this mandatory qualifier
-                    
+
                     msg = "The qualifier >%s< is mandatory for the feature >%s<. We will not report the feature." % (qualifier, self.type)
                     self.handle_message('warning', msg, msg, None)
 
@@ -462,7 +462,7 @@ class Feature(object):
                 error_regex = True
 
             if error_regex:
-                
+
                 msg_type = "The value(s) is(are) invalid for the qualifier %s of the feature %s. We will not report the qualifier. (Here is the regex expected: %s)"  % (qualifier, self.type, regex)
                 msg = "The value(s) %s is(are) invalid for the qualifier %s of the feature %s. We will not report the qualifier. (Here is the regex expected: %s)"  % (value, qualifier, self.type, regex)
                 self.handle_message("warning", msg_type, msg, None)
@@ -479,7 +479,7 @@ class Feature(object):
             value = ["%s%s" % (v, self.qualifier_suffix[gff_qualifier]) for v in value]
 
         ###########################################
-        # add the value only if not already present         
+        # add the value only if not already present
         # List case
         if isinstance(value, list):
             for val in value:
@@ -580,7 +580,7 @@ class Feature(object):
         U = "Sec";  Selenocysteine
         O = "Pyl";  Pyrrolysine
         """
-        codon_table = CodonTable.ambiguous_dna_by_id[self.transl_table]  
+        codon_table = CodonTable.ambiguous_dna_by_id[self.transl_table]
         seq = Seq(str(self.sequence()),IUPACAmbiguousDNA())
 
         #start translation according to the phase. Phase and codon_start are not the same coordinate system. It is why we have to remove 1
@@ -590,7 +590,7 @@ class Feature(object):
 
         #check if multiple of three
         remaining_nuc = len(seq)%3
-        if remaining_nuc != 0:   
+        if remaining_nuc != 0:
             #create warning
             ID=''
             for qualifier in self.feature.qualifiers:
@@ -601,7 +601,7 @@ class Feature(object):
 
         #translate the sequence in AA with normal frame even if stop inside
         translated_seq = seq.translate(codon_table).tostring().replace('B','X').replace('Z','X').replace('J','X')
-        
+
         #Extra check about stop codon in CDS
         if '*' in translated_seq[:-1]: # check if premature stop codon in the translation
             ID=''
@@ -618,24 +618,24 @@ class Feature(object):
         return translated_seq
 
     def handle_message(self, type, msg_type, msg, value):
-    
+
         if Feature.PREVIOUS_ERRORS.has_key(msg_type):
             Feature.PREVIOUS_ERRORS[msg_type] += 1
-        
+
         level = eval("logging.%s" % type.upper())
 
         if self.uncompressed_log:
             logging.log(level, msg)
         else:
             if not value:   # number of line accepted to display (defaut or given to the method)
-                value = 5    
+                value = 5
             if not Feature.PREVIOUS_ERRORS.has_key(msg_type) or Feature.PREVIOUS_ERRORS[msg_type] < value:
                 logging.log(level, msg)
                 Feature.PREVIOUS_ERRORS.setdefault(msg_type,1)
             elif Feature.PREVIOUS_ERRORS[msg_type] == value:
                 logging.log(level, msg)
                 final_message = 'We will not display anymore this %s. Please use the --uncompressed_log parameter if you wish having all of them.' % type
-                logging.log(level, final_message) 
+                logging.log(level, final_message)
 
 
 if __name__ == '__main__':
