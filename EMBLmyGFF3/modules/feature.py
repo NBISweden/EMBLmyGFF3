@@ -90,7 +90,7 @@ class Feature(object):
         self.reorder_gene_features = reorder_gene_features
         self.remove = []
         self.seq = seq
-        self.combine_types = ["CDS"]
+        self.combine_types = ["CDS","3'UTR","5'UTR"]
         self.skip_feature = skip_feature
         self.sub_features = []
         self.translate = translate
