@@ -6,7 +6,7 @@ AC * _4
 XX
 PR   Project:17285;
 XX
-DT   27-Aug-2018 (Rel. 133, Created)
+DT   18-Oct-2019 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -26,7 +26,7 @@ RN   [1]
 RP   1-1351857
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (27-AUG-2018) to the INSDC.
+RL   Submitted (18-OCT-2019) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -81,8 +81,28 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g1.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(1015..3017,3071..3123,3483..8165,8721..9025,
-FT                   10378..10459,11033..11140,11852..11972,12259..12368)
+FT   intron          1015..3017
+FT                   /locus_tag="MYLOCUSTAG_LOCUS1"
+FT                   /note="source:AUGUSTUS"
+FT   intron          3071..3123
+FT                   /locus_tag="MYLOCUSTAG_LOCUS1"
+FT                   /note="source:AUGUSTUS"
+FT   intron          3483..8165
+FT                   /locus_tag="MYLOCUSTAG_LOCUS1"
+FT                   /note="source:AUGUSTUS"
+FT   intron          8721..9025
+FT                   /locus_tag="MYLOCUSTAG_LOCUS1"
+FT                   /note="source:AUGUSTUS"
+FT   intron          10378..10459
+FT                   /locus_tag="MYLOCUSTAG_LOCUS1"
+FT                   /note="source:AUGUSTUS"
+FT   intron          11033..11140
+FT                   /locus_tag="MYLOCUSTAG_LOCUS1"
+FT                   /note="source:AUGUSTUS"
+FT   intron          11852..11972
+FT                   /locus_tag="MYLOCUSTAG_LOCUS1"
+FT                   /note="source:AUGUSTUS"
+FT   intron          12259..12368
 FT                   /locus_tag="MYLOCUSTAG_LOCUS1"
 FT                   /note="source:AUGUSTUS"
 FT   gene            16086..38972
@@ -132,7 +152,16 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g2.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(23044..23730,23861..23935,24478..35681,35906..37325)
+FT   intron          23044..23730
+FT                   /locus_tag="MYLOCUSTAG_LOCUS2"
+FT                   /note="source:AUGUSTUS"
+FT   intron          23861..23935
+FT                   /locus_tag="MYLOCUSTAG_LOCUS2"
+FT                   /note="source:AUGUSTUS"
+FT   intron          24478..35681
+FT                   /locus_tag="MYLOCUSTAG_LOCUS2"
+FT                   /note="source:AUGUSTUS"
+FT   intron          35906..37325
 FT                   /locus_tag="MYLOCUSTAG_LOCUS2"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(40422..71175)
@@ -183,9 +212,28 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g3.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(42123..42237,42587..49532,50060..50174,
-FT                   50524..56499,57027..57141,57754..61299,61912..63539,
-FT                   63970..70653))
+FT   intron          complement(42123..42237)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS3"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(42587..49532)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS3"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(50060..50174)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS3"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(50524..56499)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS3"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(57027..57141)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS3"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(57754..61299)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS3"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(61912..63539)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS3"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(63970..70653)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS3"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(80617..87875)
@@ -245,7 +293,10 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g5.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(114927..115048,115242..118447)
+FT   intron          114927..115048
+FT                   /locus_tag="MYLOCUSTAG_LOCUS5"
+FT                   /note="source:AUGUSTUS"
+FT   intron          115242..118447
 FT                   /locus_tag="MYLOCUSTAG_LOCUS5"
 FT                   /note="source:AUGUSTUS"
 FT   gene            121686..130976
@@ -275,7 +326,10 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g6.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(127383..128028,128999..129052)
+FT   intron          127383..128028
+FT                   /locus_tag="MYLOCUSTAG_LOCUS6"
+FT                   /note="source:AUGUSTUS"
+FT   intron          128999..129052
 FT                   /locus_tag="MYLOCUSTAG_LOCUS6"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(132660..143325)
@@ -316,8 +370,16 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g7.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(139128..139180,139406..139463,
-FT                   139558..140513,140839..143234))
+FT   intron          complement(139128..139180)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS7"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(139406..139463)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS7"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(139558..140513)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS7"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(140839..143234)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS7"
 FT                   /note="source:AUGUSTUS"
 FT   gene            145836..164760
@@ -365,9 +427,25 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g8.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(155591..158340,158379..158432,158470..158562,
-FT                   158937..158999,159093..160895,161739..162269,
-FT                   162747..162825)
+FT   intron          155591..158340
+FT                   /locus_tag="MYLOCUSTAG_LOCUS8"
+FT                   /note="source:AUGUSTUS"
+FT   intron          158379..158432
+FT                   /locus_tag="MYLOCUSTAG_LOCUS8"
+FT                   /note="source:AUGUSTUS"
+FT   intron          158470..158562
+FT                   /locus_tag="MYLOCUSTAG_LOCUS8"
+FT                   /note="source:AUGUSTUS"
+FT   intron          158937..158999
+FT                   /locus_tag="MYLOCUSTAG_LOCUS8"
+FT                   /note="source:AUGUSTUS"
+FT   intron          159093..160895
+FT                   /locus_tag="MYLOCUSTAG_LOCUS8"
+FT                   /note="source:AUGUSTUS"
+FT   intron          161739..162269
+FT                   /locus_tag="MYLOCUSTAG_LOCUS8"
+FT                   /note="source:AUGUSTUS"
+FT   intron          162747..162825
 FT                   /locus_tag="MYLOCUSTAG_LOCUS8"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(189196..209143)
@@ -409,8 +487,19 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g9.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(189725..189773,190161..191897,
-FT                   192024..192554,193549..206452,206543..206603))
+FT   intron          complement(189725..189773)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS9"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(190161..191897)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS9"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(192024..192554)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS9"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(193549..206452)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS9"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(206543..206603)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS9"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(216788..225313)
@@ -444,8 +533,13 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g10.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(219809..221311,222010..222066,
-FT                   222285..224605))
+FT   intron          complement(219809..221311)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS10"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(222010..222066)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS10"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(222285..224605)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS10"
 FT                   /note="source:AUGUSTUS"
 FT   gene            231004..286591
@@ -500,9 +594,28 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g11.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(231113..231183,231307..249530,250198..252904,
-FT                   253475..257020,257102..264259,264375..278937,
-FT                   279093..279153,279299..279359)
+FT   intron          231113..231183
+FT                   /locus_tag="MYLOCUSTAG_LOCUS11"
+FT                   /note="source:AUGUSTUS"
+FT   intron          231307..249530
+FT                   /locus_tag="MYLOCUSTAG_LOCUS11"
+FT                   /note="source:AUGUSTUS"
+FT   intron          250198..252904
+FT                   /locus_tag="MYLOCUSTAG_LOCUS11"
+FT                   /note="source:AUGUSTUS"
+FT   intron          253475..257020
+FT                   /locus_tag="MYLOCUSTAG_LOCUS11"
+FT                   /note="source:AUGUSTUS"
+FT   intron          257102..264259
+FT                   /locus_tag="MYLOCUSTAG_LOCUS11"
+FT                   /note="source:AUGUSTUS"
+FT   intron          264375..278937
+FT                   /locus_tag="MYLOCUSTAG_LOCUS11"
+FT                   /note="source:AUGUSTUS"
+FT   intron          279093..279153
+FT                   /locus_tag="MYLOCUSTAG_LOCUS11"
+FT                   /note="source:AUGUSTUS"
+FT   intron          279299..279359
 FT                   /locus_tag="MYLOCUSTAG_LOCUS11"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(288887..309973)
@@ -540,8 +653,13 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g12.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(291126..291185,291382..307425,
-FT                   307593..307714))
+FT   intron          complement(291126..291185)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS12"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(291382..307425)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS12"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(307593..307714)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS12"
 FT                   /note="source:AUGUSTUS"
 FT   gene            322224..331471
@@ -575,8 +693,16 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g13.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(322674..329056,329706..330248,330260..330319,
-FT                   330644..330704)
+FT   intron          322674..329056
+FT                   /locus_tag="MYLOCUSTAG_LOCUS13"
+FT                   /note="source:AUGUSTUS"
+FT   intron          329706..330248
+FT                   /locus_tag="MYLOCUSTAG_LOCUS13"
+FT                   /note="source:AUGUSTUS"
+FT   intron          330260..330319
+FT                   /locus_tag="MYLOCUSTAG_LOCUS13"
+FT                   /note="source:AUGUSTUS"
+FT   intron          330644..330704
 FT                   /locus_tag="MYLOCUSTAG_LOCUS13"
 FT                   /note="source:AUGUSTUS"
 FT   gene            331854..348459
@@ -613,7 +739,13 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g14.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(334118..343489,343718..343777,344107..346456)
+FT   intron          334118..343489
+FT                   /locus_tag="MYLOCUSTAG_LOCUS14"
+FT                   /note="source:AUGUSTUS"
+FT   intron          343718..343777
+FT                   /locus_tag="MYLOCUSTAG_LOCUS14"
+FT                   /note="source:AUGUSTUS"
+FT   intron          344107..346456
 FT                   /locus_tag="MYLOCUSTAG_LOCUS14"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(361867..378218)
@@ -680,11 +812,40 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g15.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(363687..369620,369773..369838,
-FT                   370051..370106,370248..371228,371317..371390,
-FT                   371836..372211,372454..372509,372753..372806,
-FT                   373217..374976,375188..375305,375593..375656,
-FT                   375852..375935))
+FT   intron          complement(363687..369620)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(369773..369838)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(370051..370106)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(370248..371228)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(371317..371390)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(371836..372211)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(372454..372509)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(372753..372806)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(373217..374976)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(375188..375305)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(375593..375656)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(375852..375935)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
 FT                   /note="source:AUGUSTUS"
 FT   gene            380939..395882
@@ -758,10 +919,40 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g16.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(381633..382929,383240..383296,383509..383571,
-FT                   383761..384119,384272..384493,385568..386299,
-FT                   386432..386485,386946..387014,387389..390168,
-FT                   390371..390435,390591..392438,392803..392875)
+FT   intron          381633..382929
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
+FT                   /note="source:AUGUSTUS"
+FT   intron          383240..383296
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
+FT                   /note="source:AUGUSTUS"
+FT   intron          383509..383571
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
+FT                   /note="source:AUGUSTUS"
+FT   intron          383761..384119
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
+FT                   /note="source:AUGUSTUS"
+FT   intron          384272..384493
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
+FT                   /note="source:AUGUSTUS"
+FT   intron          385568..386299
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
+FT                   /note="source:AUGUSTUS"
+FT   intron          386432..386485
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
+FT                   /note="source:AUGUSTUS"
+FT   intron          386946..387014
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
+FT                   /note="source:AUGUSTUS"
+FT   intron          387389..390168
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
+FT                   /note="source:AUGUSTUS"
+FT   intron          390371..390435
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
+FT                   /note="source:AUGUSTUS"
+FT   intron          390591..392438
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
+FT                   /note="source:AUGUSTUS"
+FT   intron          392803..392875
 FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(396183..439968)
@@ -814,9 +1005,28 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g17.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(396859..397719,398296..398383,
-FT                   398452..398510,398829..399021,399188..399341,
-FT                   399527..402748,403035..411050,411900..435201))
+FT   intron          complement(396859..397719)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS17"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(398296..398383)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS17"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(398452..398510)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS17"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(398829..399021)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS17"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(399188..399341)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS17"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(399527..402748)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS17"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(403035..411050)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS17"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(411900..435201)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS17"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(455098..464178)
@@ -858,8 +1068,19 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g18.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(459545..459600,459792..460073,
-FT                   462078..462805,463016..463489,463781..463838))
+FT   intron          complement(459545..459600)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS18"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(459792..460073)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS18"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(462078..462805)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS18"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(463016..463489)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS18"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(463781..463838)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS18"
 FT                   /note="source:AUGUSTUS"
 FT   gene            467429..475390
@@ -904,9 +1125,25 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g19.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(467662..467726,467862..470549,470595..470867,
-FT                   470943..470996,471136..471815,471965..473428,
-FT                   473517..473597)
+FT   intron          467662..467726
+FT                   /locus_tag="MYLOCUSTAG_LOCUS19"
+FT                   /note="source:AUGUSTUS"
+FT   intron          467862..470549
+FT                   /locus_tag="MYLOCUSTAG_LOCUS19"
+FT                   /note="source:AUGUSTUS"
+FT   intron          470595..470867
+FT                   /locus_tag="MYLOCUSTAG_LOCUS19"
+FT                   /note="source:AUGUSTUS"
+FT   intron          470943..470996
+FT                   /locus_tag="MYLOCUSTAG_LOCUS19"
+FT                   /note="source:AUGUSTUS"
+FT   intron          471136..471815
+FT                   /locus_tag="MYLOCUSTAG_LOCUS19"
+FT                   /note="source:AUGUSTUS"
+FT   intron          471965..473428
+FT                   /locus_tag="MYLOCUSTAG_LOCUS19"
+FT                   /note="source:AUGUSTUS"
+FT   intron          473517..473597
 FT                   /locus_tag="MYLOCUSTAG_LOCUS19"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(480511..501998)
@@ -989,12 +1226,55 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g20.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(480768..480828,481283..481339,
-FT                   481674..482130,482955..483013,483128..483680,
-FT                   483807..485422,485930..487126,487245..493007,
-FT                   493147..493203,493304..495078,495395..497917,
-FT                   498710..499163,499365..499425,499495..500660,
-FT                   500865..500927,501318..501605,501768..501834))
+FT   intron          complement(480768..480828)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(481283..481339)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(481674..482130)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(482955..483013)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(483128..483680)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(483807..485422)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(485930..487126)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(487245..493007)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(493147..493203)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(493304..495078)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(495395..497917)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(498710..499163)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(499365..499425)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(499495..500660)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(500865..500927)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(501318..501605)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(501768..501834)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
 FT                   /note="source:AUGUSTUS"
 FT   gene            539434..561570
@@ -1060,10 +1340,34 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g21.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(539992..542098,543731..544956,545139..545529,
-FT                   547147..550318,551720..551781,552006..552061,
-FT                   552410..553408,553553..553608,556507..557800,
-FT                   558387..558441)
+FT   intron          539992..542098
+FT                   /locus_tag="MYLOCUSTAG_LOCUS21"
+FT                   /note="source:AUGUSTUS"
+FT   intron          543731..544956
+FT                   /locus_tag="MYLOCUSTAG_LOCUS21"
+FT                   /note="source:AUGUSTUS"
+FT   intron          545139..545529
+FT                   /locus_tag="MYLOCUSTAG_LOCUS21"
+FT                   /note="source:AUGUSTUS"
+FT   intron          547147..550318
+FT                   /locus_tag="MYLOCUSTAG_LOCUS21"
+FT                   /note="source:AUGUSTUS"
+FT   intron          551720..551781
+FT                   /locus_tag="MYLOCUSTAG_LOCUS21"
+FT                   /note="source:AUGUSTUS"
+FT   intron          552006..552061
+FT                   /locus_tag="MYLOCUSTAG_LOCUS21"
+FT                   /note="source:AUGUSTUS"
+FT   intron          552410..553408
+FT                   /locus_tag="MYLOCUSTAG_LOCUS21"
+FT                   /note="source:AUGUSTUS"
+FT   intron          553553..553608
+FT                   /locus_tag="MYLOCUSTAG_LOCUS21"
+FT                   /note="source:AUGUSTUS"
+FT   intron          556507..557800
+FT                   /locus_tag="MYLOCUSTAG_LOCUS21"
+FT                   /note="source:AUGUSTUS"
+FT   intron          558387..558441
 FT                   /locus_tag="MYLOCUSTAG_LOCUS21"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(564436..574863)
@@ -1101,8 +1405,16 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g22.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(568770..569884,570248..570339,
-FT                   570500..572616,573599..573697))
+FT   intron          complement(568770..569884)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS22"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(570248..570339)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS22"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(570500..572616)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS22"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(573599..573697)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS22"
 FT                   /note="source:AUGUSTUS"
 FT   gene            576284..587884
@@ -1139,8 +1451,16 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g23.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(580927..580974,581038..581096,581210..585166,
-FT                   585289..586032)
+FT   intron          580927..580974
+FT                   /locus_tag="MYLOCUSTAG_LOCUS23"
+FT                   /note="source:AUGUSTUS"
+FT   intron          581038..581096
+FT                   /locus_tag="MYLOCUSTAG_LOCUS23"
+FT                   /note="source:AUGUSTUS"
+FT   intron          581210..585166
+FT                   /locus_tag="MYLOCUSTAG_LOCUS23"
+FT                   /note="source:AUGUSTUS"
+FT   intron          585289..586032
 FT                   /locus_tag="MYLOCUSTAG_LOCUS23"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(587888..591433)
@@ -1174,8 +1494,16 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g24.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(589683..589739,589928..590600,
-FT                   590803..590859,590970..591034))
+FT   intron          complement(589683..589739)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS24"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(589928..590600)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS24"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(590803..590859)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS24"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(590970..591034)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS24"
 FT                   /note="source:AUGUSTUS"
 FT   gene            595334..600739
@@ -1208,7 +1536,10 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g25.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(596272..596327,596952..597604)
+FT   intron          596272..596327
+FT                   /locus_tag="MYLOCUSTAG_LOCUS25"
+FT                   /note="source:AUGUSTUS"
+FT   intron          596952..597604
 FT                   /locus_tag="MYLOCUSTAG_LOCUS25"
 FT                   /note="source:AUGUSTUS"
 FT   gene            605604..617105
@@ -1256,8 +1587,22 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g26.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(606565..607527,607720..608468,608669..609197,
-FT                   609327..612225,612986..613278,613643..613695)
+FT   intron          606565..607527
+FT                   /locus_tag="MYLOCUSTAG_LOCUS26"
+FT                   /note="source:AUGUSTUS"
+FT   intron          607720..608468
+FT                   /locus_tag="MYLOCUSTAG_LOCUS26"
+FT                   /note="source:AUGUSTUS"
+FT   intron          608669..609197
+FT                   /locus_tag="MYLOCUSTAG_LOCUS26"
+FT                   /note="source:AUGUSTUS"
+FT   intron          609327..612225
+FT                   /locus_tag="MYLOCUSTAG_LOCUS26"
+FT                   /note="source:AUGUSTUS"
+FT   intron          612986..613278
+FT                   /locus_tag="MYLOCUSTAG_LOCUS26"
+FT                   /note="source:AUGUSTUS"
+FT   intron          613643..613695
 FT                   /locus_tag="MYLOCUSTAG_LOCUS26"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(619360..627403)
@@ -1291,8 +1636,13 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g27.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(622156..622382,622562..623937,
-FT                   624879..625628))
+FT   intron          complement(622156..622382)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS27"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(622562..623937)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS27"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(624879..625628)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS27"
 FT                   /note="source:AUGUSTUS"
 FT   gene            634214..658251
@@ -1355,10 +1705,37 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g28.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(635755..635941,636550..636630,636808..638973,
-FT                   639103..640239,640410..640473,640804..653954,
-FT                   654059..654116,654487..654546,654751..654802,
-FT                   654971..655035,655082..656703)
+FT   intron          635755..635941
+FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
+FT                   /note="source:AUGUSTUS"
+FT   intron          636550..636630
+FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
+FT                   /note="source:AUGUSTUS"
+FT   intron          636808..638973
+FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
+FT                   /note="source:AUGUSTUS"
+FT   intron          639103..640239
+FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
+FT                   /note="source:AUGUSTUS"
+FT   intron          640410..640473
+FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
+FT                   /note="source:AUGUSTUS"
+FT   intron          640804..653954
+FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
+FT                   /note="source:AUGUSTUS"
+FT   intron          654059..654116
+FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
+FT                   /note="source:AUGUSTUS"
+FT   intron          654487..654546
+FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
+FT                   /note="source:AUGUSTUS"
+FT   intron          654751..654802
+FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
+FT                   /note="source:AUGUSTUS"
+FT   intron          654971..655035
+FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
+FT                   /note="source:AUGUSTUS"
+FT   intron          655082..656703
 FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(658440..678923)
@@ -1418,10 +1795,34 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g29.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(661363..662901,663055..663117,
-FT                   663355..672930,673211..673271,673469..673526,
-FT                   673678..674495,674675..675130,675425..675686,
-FT                   676062..676841,678311..678527))
+FT   intron          complement(661363..662901)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(663055..663117)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(663355..672930)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(673211..673271)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(673469..673526)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(673678..674495)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(674675..675130)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(675425..675686)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(676062..676841)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(678311..678527)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
 FT                   /note="source:AUGUSTUS"
 FT   gene            684268..690512
@@ -1458,8 +1859,19 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g30.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(684369..684480,684967..685613,685932..686576,
-FT                   687559..689045,689201..689755)
+FT   intron          684369..684480
+FT                   /locus_tag="MYLOCUSTAG_LOCUS30"
+FT                   /note="source:AUGUSTUS"
+FT   intron          684967..685613
+FT                   /locus_tag="MYLOCUSTAG_LOCUS30"
+FT                   /note="source:AUGUSTUS"
+FT   intron          685932..686576
+FT                   /locus_tag="MYLOCUSTAG_LOCUS30"
+FT                   /note="source:AUGUSTUS"
+FT   intron          687559..689045
+FT                   /locus_tag="MYLOCUSTAG_LOCUS30"
+FT                   /note="source:AUGUSTUS"
+FT   intron          689201..689755
 FT                   /locus_tag="MYLOCUSTAG_LOCUS30"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(691408..699917)
@@ -1490,7 +1902,10 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g31.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(693364..698033,698188..698271))
+FT   intron          complement(693364..698033)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS31"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(698188..698271)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS31"
 FT                   /note="source:AUGUSTUS"
 FT   gene            700158..796697
@@ -1689,22 +2104,148 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g32.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(701762..705206,705884..725700,725768..725824,
-FT                   725900..728117,728298..731542,731709..733118,
-FT                   733300..734483,734829..734876,735139..737752,
-FT                   737927..738279,738556..739899,740255..740947,
-FT                   741539..748086,748250..748729,748872..749235,
-FT                   749441..749627,749829..749899,750172..751402,
-FT                   751627..751688,752092..752185,752860..754904,
-FT                   755028..755103,755164..755339,755439..756140,
-FT                   756450..756530,756657..757444,757673..758361,
-FT                   758536..763028,763177..763413,763788..765791,
-FT                   765918..765997,766698..767101,767456..767932,
-FT                   769646..771195,772096..772802,773567..773650,
-FT                   773787..773963,774855..774912,777586..778146,
-FT                   778429..778490,778791..778845,788317..788387,
-FT                   789367..789429,789772..791178,792222..794642,
-FT                   794744..794810,794938..795002,795306..795540)
+FT   intron          701762..705206
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          705884..725700
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          725768..725824
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          725900..728117
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          728298..731542
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          731709..733118
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          733300..734483
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          734829..734876
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          735139..737752
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          737927..738279
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          738556..739899
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          740255..740947
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          741539..748086
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          748250..748729
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          748872..749235
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          749441..749627
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          749829..749899
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          750172..751402
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          751627..751688
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          752092..752185
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          752860..754904
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          755028..755103
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          755164..755339
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          755439..756140
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          756450..756530
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          756657..757444
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          757673..758361
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          758536..763028
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          763177..763413
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          763788..765791
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          765918..765997
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          766698..767101
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          767456..767932
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          769646..771195
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          772096..772802
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          773567..773650
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          773787..773963
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          774855..774912
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          777586..778146
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          778429..778490
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          778791..778845
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          788317..788387
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          789367..789429
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          789772..791178
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          792222..794642
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          794744..794810
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          794938..795002
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
+FT                   /note="source:AUGUSTUS"
+FT   intron          795306..795540
 FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(799083..819997)
@@ -1742,8 +2283,16 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g33.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(802296..806910,807653..807706,
-FT                   807728..813406,815005..815278))
+FT   intron          complement(802296..806910)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS33"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(807653..807706)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS33"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(807728..813406)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS33"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(815005..815278)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS33"
 FT                   /note="source:AUGUSTUS"
 FT   gene            820118..821466
@@ -1794,8 +2343,13 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g35.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(822566..823023,823245..823457,
-FT                   823954..829663))
+FT   intron          complement(822566..823023)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS35"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(823245..823457)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS35"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(823954..829663)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS35"
 FT                   /note="source:AUGUSTUS"
 FT   gene            994053..1028531
@@ -1847,9 +2401,28 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g36.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(994293..997391,997468..997524,997845..1020110,
-FT                   1020162..1020222,1020400..1024783,1025039..1025095,
-FT                   1025245..1026432,1026636..1026691)
+FT   intron          994293..997391
+FT                   /locus_tag="MYLOCUSTAG_LOCUS36"
+FT                   /note="source:AUGUSTUS"
+FT   intron          997468..997524
+FT                   /locus_tag="MYLOCUSTAG_LOCUS36"
+FT                   /note="source:AUGUSTUS"
+FT   intron          997845..1020110
+FT                   /locus_tag="MYLOCUSTAG_LOCUS36"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1020162..1020222
+FT                   /locus_tag="MYLOCUSTAG_LOCUS36"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1020400..1024783
+FT                   /locus_tag="MYLOCUSTAG_LOCUS36"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1025039..1025095
+FT                   /locus_tag="MYLOCUSTAG_LOCUS36"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1025245..1026432
+FT                   /locus_tag="MYLOCUSTAG_LOCUS36"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1026636..1026691
 FT                   /locus_tag="MYLOCUSTAG_LOCUS36"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(1041681..1051600)
@@ -1902,7 +2475,10 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g38.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(1052580..1053532,1053845..1053897)
+FT   intron          1052580..1053532
+FT                   /locus_tag="MYLOCUSTAG_LOCUS38"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1053845..1053897
 FT                   /locus_tag="MYLOCUSTAG_LOCUS38"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(1055959..1072950)
@@ -1951,9 +2527,25 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g39.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(1058049..1058101,1058217..1058271,
-FT                   1058367..1067885,1068017..1068078,1068189..1068448,
-FT                   1068818..1070923,1071019..1071080))
+FT   intron          complement(1058049..1058101)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS39"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1058217..1058271)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS39"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1058367..1067885)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS39"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1068017..1068078)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS39"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1068189..1068448)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS39"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1068818..1070923)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS39"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1071019..1071080)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS39"
 FT                   /note="source:AUGUSTUS"
 FT   gene            1083441..1096833
@@ -1998,8 +2590,22 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g40.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(1085810..1086481,1086512..1086565,1093732..1093786,
-FT                   1094008..1094064,1096184..1096241,1096363..1096417)
+FT   intron          1085810..1086481
+FT                   /locus_tag="MYLOCUSTAG_LOCUS40"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1086512..1086565
+FT                   /locus_tag="MYLOCUSTAG_LOCUS40"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1093732..1093786
+FT                   /locus_tag="MYLOCUSTAG_LOCUS40"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1094008..1094064
+FT                   /locus_tag="MYLOCUSTAG_LOCUS40"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1096184..1096241
+FT                   /locus_tag="MYLOCUSTAG_LOCUS40"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1096363..1096417
 FT                   /locus_tag="MYLOCUSTAG_LOCUS40"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(1097972..1104670)
@@ -2033,7 +2639,10 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g41.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(1100198..1100882,1101064..1101113))
+FT   intron          complement(1100198..1100882)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS41"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1101064..1101113)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS41"
 FT                   /note="source:AUGUSTUS"
 FT   gene            1109601..1117459
@@ -2070,8 +2679,16 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g42.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(1113036..1113097,1113255..1116201,1116343..1116419,
-FT                   1116459..1116840)
+FT   intron          1113036..1113097
+FT                   /locus_tag="MYLOCUSTAG_LOCUS42"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1113255..1116201
+FT                   /locus_tag="MYLOCUSTAG_LOCUS42"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1116343..1116419
+FT                   /locus_tag="MYLOCUSTAG_LOCUS42"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1116459..1116840
 FT                   /locus_tag="MYLOCUSTAG_LOCUS42"
 FT                   /note="source:AUGUSTUS"
 FT   gene            1121561..1133305
@@ -2108,7 +2725,13 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g43.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(1127224..1128723,1128971..1129734,1130172..1131406)
+FT   intron          1127224..1128723
+FT                   /locus_tag="MYLOCUSTAG_LOCUS43"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1128971..1129734
+FT                   /locus_tag="MYLOCUSTAG_LOCUS43"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1130172..1131406
 FT                   /locus_tag="MYLOCUSTAG_LOCUS43"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(1135942..1141820)
@@ -2161,10 +2784,31 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g44.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(1136524..1136581,1136706..1137216,
-FT                   1137225..1137285,1137373..1138476,1138532..1138593,
-FT                   1139644..1140562,1140674..1140731,1141233..1141284,
-FT                   1141428..1141540))
+FT   intron          complement(1136524..1136581)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1136706..1137216)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1137225..1137285)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1137373..1138476)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1138532..1138593)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1139644..1140562)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1140674..1140731)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1141233..1141284)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1141428..1141540)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
 FT                   /note="source:AUGUSTUS"
 FT   gene            1144861..1152047
@@ -2217,9 +2861,31 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g45.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(1144958..1145061,1145325..1145393,1145520..1147434,
-FT                   1147568..1147627,1147789..1150060,1150115..1150191,
-FT                   1150357..1150650,1150810..1151008,1151213..1151274)
+FT   intron          1144958..1145061
+FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1145325..1145393
+FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1145520..1147434
+FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1147568..1147627
+FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1147789..1150060
+FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1150115..1150191
+FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1150357..1150650
+FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1150810..1151008
+FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1151213..1151274
 FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(1158542..1163030)
@@ -2250,7 +2916,10 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g46.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(1160446..1161112,1161528..1161585))
+FT   intron          complement(1160446..1161112)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS46"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1161528..1161585)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS46"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(1165513..1176300)
@@ -2281,8 +2950,13 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g47.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(1167437..1174367,1174467..1174522,
-FT                   1174767..1175249))
+FT   intron          complement(1167437..1174367)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS47"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1174467..1174522)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS47"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1174767..1175249)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS47"
 FT                   /note="source:AUGUSTUS"
 FT   gene            1200561..1212936
@@ -2326,8 +3000,19 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g48.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(1201466..1209679,1210022..1210168,1210316..1210506,
-FT                   1210635..1210692,1211176..1211473)
+FT   intron          1201466..1209679
+FT                   /locus_tag="MYLOCUSTAG_LOCUS48"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1210022..1210168
+FT                   /locus_tag="MYLOCUSTAG_LOCUS48"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1210316..1210506
+FT                   /locus_tag="MYLOCUSTAG_LOCUS48"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1210635..1210692
+FT                   /locus_tag="MYLOCUSTAG_LOCUS48"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1211176..1211473
 FT                   /locus_tag="MYLOCUSTAG_LOCUS48"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(1213147..1218070)
@@ -2361,8 +3046,13 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g49.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(1214486..1216053,1216223..1216285,
-FT                   1216417..1216467))
+FT   intron          complement(1214486..1216053)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS49"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1216223..1216285)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS49"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1216417..1216467)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS49"
 FT                   /note="source:AUGUSTUS"
 FT   gene            1222710..1229233
@@ -2410,9 +3100,25 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g50.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(1223322..1223419,1223751..1223801,1223922..1223985,
-FT                   1224097..1225216,1225377..1225433,1225598..1225731,
-FT                   1225891..1225947)
+FT   intron          1223322..1223419
+FT                   /locus_tag="MYLOCUSTAG_LOCUS50"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1223751..1223801
+FT                   /locus_tag="MYLOCUSTAG_LOCUS50"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1223922..1223985
+FT                   /locus_tag="MYLOCUSTAG_LOCUS50"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1224097..1225216
+FT                   /locus_tag="MYLOCUSTAG_LOCUS50"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1225377..1225433
+FT                   /locus_tag="MYLOCUSTAG_LOCUS50"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1225598..1225731
+FT                   /locus_tag="MYLOCUSTAG_LOCUS50"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1225891..1225947
 FT                   /locus_tag="MYLOCUSTAG_LOCUS50"
 FT                   /note="source:AUGUSTUS"
 FT   gene            1244860..1275452
@@ -2471,10 +3177,34 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g51.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(1245484..1245551,1245624..1247202,1247379..1247444,
-FT                   1247677..1247739,1247991..1248062,1248078..1249104,
-FT                   1249250..1268556,1268692..1268754,1268882..1274470,
-FT                   1274595..1274650)
+FT   intron          1245484..1245551
+FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1245624..1247202
+FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1247379..1247444
+FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1247677..1247739
+FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1247991..1248062
+FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1248078..1249104
+FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1249250..1268556
+FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1268692..1268754
+FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1268882..1274470
+FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1274595..1274650
 FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
 FT                   /note="source:AUGUSTUS"
 FT   gene            1276540..1287550
@@ -2551,8 +3281,19 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g52.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(1286402..1286589,1286649..1286963,1287112..1287168,
-FT                   1287196..1287262,1287279..1287342)
+FT   intron          1286402..1286589
+FT                   /locus_tag="MYLOCUSTAG_LOCUS52"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1286649..1286963
+FT                   /locus_tag="MYLOCUSTAG_LOCUS52"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1287112..1287168
+FT                   /locus_tag="MYLOCUSTAG_LOCUS52"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1287196..1287262
+FT                   /locus_tag="MYLOCUSTAG_LOCUS52"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1287279..1287342
 FT                   /locus_tag="MYLOCUSTAG_LOCUS52"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(1288365..1291939)
@@ -2636,8 +3377,16 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g55.t1.cds"
 FT                   /transl_table=1
-FT   intron          join(1299825..1299885,1299898..1301055,1301216..1301745,
-FT                   1301773..1301839)
+FT   intron          1299825..1299885
+FT                   /locus_tag="MYLOCUSTAG_LOCUS55"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1299898..1301055
+FT                   /locus_tag="MYLOCUSTAG_LOCUS55"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1301216..1301745
+FT                   /locus_tag="MYLOCUSTAG_LOCUS55"
+FT                   /note="source:AUGUSTUS"
+FT   intron          1301773..1301839
 FT                   /locus_tag="MYLOCUSTAG_LOCUS55"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(1302899..1304979)
@@ -2702,7 +3451,10 @@ FT                   /codon_start=1
 FT                   /note="source:AUGUSTUS"
 FT                   /note="ID:g57.t1.cds"
 FT                   /transl_table=1
-FT   intron          complement(join(1316153..1321519,1322008..1325675))
+FT   intron          complement(1316153..1321519)
+FT                   /locus_tag="MYLOCUSTAG_LOCUS57"
+FT                   /note="source:AUGUSTUS"
+FT   intron          complement(1322008..1325675)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS57"
 FT                   /note="source:AUGUSTUS"
 FT   gene            complement(1337898..1348519)
