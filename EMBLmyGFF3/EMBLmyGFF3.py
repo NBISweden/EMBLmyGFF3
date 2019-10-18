@@ -351,7 +351,7 @@ class EMBL( object ):
                 search = Entrez.esearch(term=species, db="taxonomy", retmode="xml")
                 record = Entrez.read(search)
                 if not record['IdList']: #no taxid found
-                    logging.error("Please verify the species name. '%s' species is unknown into the NCBI taxonomy databse. Impossible to check the taxonomic classification. We will use the default value 'Life' to populate the OC line.",self.species)
+                    logging.warning("Please verify the species name. '%s' species is unknown into the NCBI taxonomy databse. Impossible to check the taxonomic classification. We will use the default value 'Life' to populate the OC line.",self.species)
                     taxid=None
                 else:
                     taxid = record['IdList'][0]
