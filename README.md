@@ -1,6 +1,6 @@
 
 
-EMBLmyGFF3 [![Build Status](https://travis-ci.org/NBISweden/EMBLmyGFF3.svg?branch=master)](https://travis-ci.org/NBISweden/EMBLmyGFF3) [![DOI](EMBLmyGFF3.svg)](https://doi.org/10.1186/s13104-018-3686-x)
+EMBLmyGFF3 [![Build Status](https://travis-ci.org/NBISweden/EMBLmyGFF3.svg?branch=master)](https://travis-ci.org/NBISweden/EMBLmyGFF3) [![DOI](EMBLmyGFF3.svg)](https://doi.org/10.1186/s13104-018-3686-x) [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/emblmygff3/README.html) [![Anaconda-Server Badge](https://anaconda.org/bioconda/agat/badges/license.svg)](https://anaconda.org/bioconda/emblmygff3)
 =========================================
 ### GFF3 to EMBL conversion tool
 
@@ -19,6 +19,7 @@ __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Ti
    * [GFF3 to EMBL conversion tool](#gff3-to-embl-conversion-tool)
       * [Prerequisites](#prerequisites)
       * [Installation](#installation)
+         * [Installation with conda](#installation-with-conda)
          * [Installation with pip](#installation-with-pip)
          * [Installation with git](#installation-with-git)
          * [Check installation](#check-installation)
@@ -62,6 +63,11 @@ sudo easy_install pip
 biopython and bcbio-gff will be installed automatically with the next steps
 
 ## Installation
+
+#### Installation with conda:
+```bash
+conda install -c bioconda emblmygff3
+```
 
 #### Installation with pip:
 ```bash
