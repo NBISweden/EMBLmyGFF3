@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
+from EMBLmyGFF3.version import __version__
 from setuptools import setup, find_packages
 
 setup(
     name='EMBLmyGFF3',
-    version='2',
+    version=__version__,
 
     description='An efficient way to convert gff3 annotation files into EMBL format ready to submit',
 

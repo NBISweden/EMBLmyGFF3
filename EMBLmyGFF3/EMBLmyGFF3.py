@@ -1,26 +1,4 @@
 #!/usr/bin/env python3
-"""
-EMBL writer for ENA data submission. Note that this implementation is basically
-just the documentation at ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt
-in python form - the implementation could be a lot more efficient!
-
-GFF convertion is based on specifications from https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md
-"""
-
-shameless_plug="""
-    #############################################################################
-    # NBIS 2019 - Sweden                                                        #
-    # Authors: Martin Norling, Niclas Jareborg, Jacques Dainat                  #
-    # Please visit https://github.com/NBISweden/EMBLmyGFF3 for more information #
-    #############################################################################
-\n"""
-
-TODO="""
-TODO: find list of previous ENA release dates and numbers
-TODO: find way to retrieve current release date
-TODO: add more reasonable way to add references
-TODO: add way to handle mandatory features and feature qualifiers (especially contingent dependencies)
-"""
 
 import os
 import sys
@@ -37,6 +15,31 @@ from BCBio import GFF
 from Bio.SeqFeature import SeqFeature, FeatureLocation, ExactPosition
 from .modules.feature import Feature
 from .modules.help import Help
+from EMBLmyGFF3.version import __version__
+
+"""
+EMBL writer for ENA data submission. Note that this implementation is basically
+just the documentation at ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt
+in python form - the implementation could be a lot more efficient!
+
+GFF convertion is based on specifications from https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md
+"""
+
+shameless_plug="""
+    #############################################################################
+    # EMBLmyGFF3 v{str1}                                                             #
+    # NBIS - National Bioinformatics Infrastructure Sweden                      #
+    # Authors: Martin Norling, Niclas Jareborg, Jacques Dainat                  #
+    # Please visit https://github.com/NBISweden/EMBLmyGFF3 for more information #
+    #############################################################################
+\n""".format(str1=__version__)
+
+TODO="""
+TODO: find list of previous ENA release dates and numbers
+TODO: find way to retrieve current release date
+TODO: add more reasonable way to add references
+TODO: add way to handle mandatory features and feature qualifiers (especially contingent dependencies)
+"""
 
 SCRIPT_DIR=os.path.dirname(__file__)
 FEATURE_DIR=SCRIPT_DIR + "/modules/features"
