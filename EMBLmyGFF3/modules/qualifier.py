@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """
@@ -9,7 +9,7 @@ import os
 import re
 import json
 import logging
-from utilities import *
+from .utilities import *
 
 LEGAL_DBXREF_FILE="legal_dbxref.json"
 
@@ -45,7 +45,7 @@ class Qualifier( object ):
         try:
             with open(filename) as data:
                 raw = json.load( data )
-                for key, value in raw.iteritems():
+                for key, value in raw.items():
                     setattr(self, key, value)
         except IOError as e:
             logging.error(e)
@@ -135,7 +135,7 @@ class Qualifier( object ):
                 val = val[0]
             if not val: # if empty => no value
                 string = "/{}".format(self.name)
-            elif type(val) in [type(""), type(u"")]: #if a string => we add quote to the value
+            elif type(val) in [type(""), type("")]: #if a string => we add quote to the value
                 string = "/{}=\"{}\"".format(self.name, val)
             else:# A value but is an integer => we do not add quote
                  string = "/{}={}".format(self.name, val)
@@ -187,7 +187,7 @@ if __name__ == '__main__':
         break
     
     for feature in record.features:
-        for qualifier, value in feature.qualifiers.iteritems():
-            print "%s: %s" % (qualifier, value)
-            print Qualifier(qualifier, value, "qualifiers")
+        for qualifier, value in feature.qualifiers.items():
+            print("%s: %s" % (qualifier, value))
+            print(Qualifier(qualifier, value, "qualifiers"))
         break

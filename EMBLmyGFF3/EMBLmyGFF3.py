@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 """
 EMBL writer for ENA data submission. Note that this implementation is basically
 just the documentation at ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt
@@ -31,12 +31,12 @@ import shutil
 import logging
 import argparse
 import re
-from modules.utilities import *
+from .modules.utilities import *
 from Bio import SeqIO, Entrez
 from BCBio import GFF
 from Bio.SeqFeature import SeqFeature, FeatureLocation, ExactPosition
-from modules.feature import Feature
-from modules.help import Help
+from .modules.feature import Feature
+from .modules.help import Help
 
 SCRIPT_DIR=os.path.dirname(__file__)
 FEATURE_DIR=SCRIPT_DIR + "/modules/features"
@@ -262,7 +262,7 @@ class EMBL( object ):
                 sys.stderr.write("\n'%s' is not a legal value for %s.\n" % (key, key_type))
             sys.stderr.write("Legal values are:\n")
             if type(self.legal_values[key_type]) == type({}):
-                for value, description in self.legal_values[key_type].iteritems():
+                for value, description in self.legal_values[key_type].items():
                     sys.stderr.write("  - %s\t%s\n" % (value, description))
             else:
                 for value in self.legal_values[key_type]:
@@ -271,7 +271,7 @@ class EMBL( object ):
                 sys.stderr.write("Please enter a value: ")
             else:
                 sys.stderr.write("Please enter new value: ")
-            key = raw_input()
+            key = input()
             if key.isdigit(): key = int(key)
 
         return key
@@ -289,7 +289,7 @@ class EMBL( object ):
 
             if not locus_tag:
                 sys.stderr.write("No value provided as locus_tag.\nPlease provide a locus_tag (A default XXX locus_tag will be set up if none provided):")
-                locus_tag = raw_input()
+                locus_tag = input()
                 if not locus_tag:
                     checked_locus_tag="XXX"
                     break
@@ -314,7 +314,7 @@ class EMBL( object ):
 
             if not checked_locus_tag:
                 sys.stderr.write("Please provide a locus_tag (A default XXX locus_tag will be set up if none provided):")
-                locus_tag = raw_input()
+                locus_tag = input()
                 if not locus_tag:
                     checked_locus_tag="XXX"
                     break
@@ -393,7 +393,7 @@ class EMBL( object ):
 
     def handle_message(self, type, msg_type, msg, value):
 
-        if EMBL.PREVIOUS_ERRORS.has_key(msg_type):
+        if msg_type in EMBL.PREVIOUS_ERRORS:
             EMBL.PREVIOUS_ERRORS[msg_type] += 1
 
         level = eval("logging.%s" % type.upper())
@@ -403,7 +403,7 @@ class EMBL( object ):
         else:
             if not value:   # number of line accepted to display (defaut or given to the method)
                 value = 5
-            if not EMBL.PREVIOUS_ERRORS.has_key(msg_type) or EMBL.PREVIOUS_ERRORS[msg_type] < value:
+            if msg_type not in EMBL.PREVIOUS_ERRORS or EMBL.PREVIOUS_ERRORS[msg_type] < value:
                 logging.log(level, msg)
                 EMBL.PREVIOUS_ERRORS.setdefault(msg_type,1)
             elif EMBL.PREVIOUS_ERRORS[msg_type] == value:
@@ -860,7 +860,7 @@ class EMBL( object ):
                                          "when organism belongs to Bacteria. Please fill one of those information.(source feature keys containing "\
                                          "the /environmental_sample qualifier should also contain the /isolation_source qualifier. entries including "\
                                          "/environmental_sample must not include the /strain qualifier)\nStrain:")
-                        strain = raw_input()
+                        strain = input()
                         if strain:
                             EMBL.PREVIOUS_VALUES["strain"]=strain
                             onekey = strain
@@ -868,7 +868,7 @@ class EMBL( object ):
                             environmental_sample = None
                             while environmental_sample != "n" and environmental_sample != "y" :
                                 sys.stderr.write("Environmental_sample [y/n]:")
-                                environmental_sample = raw_input()
+                                environmental_sample = input()
                                 if environmental_sample == "y":
                                     EMBL.PREVIOUS_VALUES["environmental_sample"]=None
                                     onekey = environmental_sample
@@ -876,11 +876,11 @@ class EMBL( object ):
                                     sys.stderr.write("/environmental_sample qualifier should also contain the /isolation_source qualifier.")
                                     while not isolation_source: #/environmental_sample qualifier should also contain the /isolation_source qualifier
                                         sys.stderr.write("isolation_source:")
-                                        isolation_source = raw_input()
+                                        isolation_source = input()
                                     EMBL.PREVIOUS_VALUES["isolation_source"]=isolation_source
 
                         sys.stderr.write("isolate:")
-                        isolate = raw_input()
+                        isolate = input()
                         if isolate:
                             EMBL.PREVIOUS_VALUES["isolate"]=isolate
                             onekey = isolate
@@ -900,7 +900,7 @@ class EMBL( object ):
                             sys.stderr.write("/environmental_sample qualifier should also contain the /isolation_source qualifier.\n")
                             while not isolation_source: #/environmental_sample qualifier should also contain the /isolation_source qualifier
                                 sys.stderr.write("isolation_source:")
-                                isolation_source = raw_input()
+                                isolation_source = input()
                             EMBL.PREVIOUS_VALUES["isolation_source"]=isolation_source
 
 
@@ -1067,7 +1067,7 @@ class EMBL( object ):
         else:
             if not project_id:
                 sys.stderr.write("No project_id provided.\nPlease provide a project ID:")
-                project_id = raw_input()
+                project_id = input()
                 if not project_id:
                     project_id = "XXX"
 
@@ -1096,7 +1096,7 @@ class EMBL( object ):
             else:
                 while not species:
                     sys.stderr.write("No value provided for species.\nPlease provide the scientific name or taxid of the organism:")
-                    species = raw_input()
+                    species = input()
 
                 species = self.get_species_from_taxid(species)
                 self.species = species
@@ -1313,17 +1313,17 @@ def main():
         if args.gzip:
             if not outfile.endswith(".embl.gz"):
                 outfile += ".gz" if outfile.endswith(".embl") else ".embl.gz"
-            outfile = gzip.open(outfile, "wb")
+            outfile = gzip.open(outfile, "wt")
         else:
             if not outfile.endswith(".embl"):
                 outfile += ".embl"
-            outfile = open(outfile, "wb")
+            outfile = open(outfile, "w")
     else:
         outfile = sys.stdout
 
     logging.info("Reading sequence file")
-    infile = gzip.open(args.gff_file) if args.gff_file.endswith(".gz") else open(args.gff_file)
-    infasta = gzip.open(args.fasta) if args.fasta.endswith(".gz") else open(args.fasta)
+    infile = gzip.open(args.gff_file, 'rt') if args.gff_file.endswith(".gz") else open(args.gff_file)
+    infasta = gzip.open(args.fasta, 'rt') if args.fasta.endswith(".gz") else open(args.fasta)
     seq_dict = SeqIO.to_dict( SeqIO.parse(infasta, "fasta") )
     logging.info("Finished reading sequence file.")
 

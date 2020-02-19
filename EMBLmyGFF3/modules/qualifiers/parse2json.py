@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 """
 Script to parse a "raw" text copy of http://www.insdc.org/files/feature_table.html#7.2 into
 a set of json feature identifiers.
@@ -14,13 +14,13 @@ class Qualifier( object ):
     Simple feature definition to keep track of things in a reasonable way until we
     write to json.
     """
-    
+
     def __init__(self, key):
         self.name = key
         self.known_identifiers = ["sign", "definition", "value_format", "example", "comment"]
         for identifier in self.known_identifiers:
             setattr(self, identifier, None)
-    
+
     def __repr__(self):
         output  = "Qualifier: %s\n" % self.name
         for identifier in self.known_identifiers:
@@ -28,7 +28,7 @@ class Qualifier( object ):
             if value:
                 output += "%s: %s\n" % (identifier.replace("_", " ").title(), value)
         return output
-    
+
     def save(self):
         with open('%s.json' % self.name, 'w') as outfile:
             data = {"qualifier":self.name}
@@ -63,7 +63,7 @@ def split_qualifiers(text):
                 temp += " "
             continue
         temp += c
-    
+
     if temp:
         if temp[0] == "/":
             out += [temp.replace("\n", " ").strip()]
@@ -74,13 +74,13 @@ def split_qualifiers(text):
 def parse_raw_to_json(infile):
     """
     Parse a raw text file into a number of Qualifiers.
-    This function will parse everything as long text strings, and then the 
+    This function will parse everything as long text strings, and then the
     Qualifier class will parse qualifiers into lists and things like that.
     """
-    
+
     current = None
     identifier = None
-    
+
     for row in infile:
         if row.startswith("Qualifier"):
             if current:
@@ -98,10 +98,10 @@ def parse_raw_to_json(infile):
                 extension = row.strip()
                 setattr(current, identifier, base + extension)
             except Exception as e:
-                print "EXCEPTION: %s" % e
-                print "ID: '%s'" % identifier
-                print "ROW: '%s'" % row
-                print current
+                print("EXCEPTION: %s" % e)
+                print("ID: '%s'" % identifier)
+                print("ROW: '%s'" % row)
+                print(current)
                 import sys
                 sys.exit(0)
         elif current != None:
@@ -121,22 +121,20 @@ def parse_raw_to_json(infile):
 
 
 if __name__ == '__main__':
-    
+
     import argparse
-    
+
     parser = argparse.ArgumentParser( description = __doc__ )
     parser.add_argument("raw", help="raw text file qualifier table dump")
     parser.add_argument("-v", "--verbose", action="count", default=2, help="increase verbosity")
     parser.add_argument("-q", "--quiet", action="count", default=0, help="decrease verbosity")
-    
+
     args = parser.parse_args()
-    
-    logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s', 
-                        level = (5-args.verbose+args.quiet)*10, 
+
+    logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s',
+                        level = (5-args.verbose+args.quiet)*10,
                         datefmt="%H:%M:%S")
-    
+
     in_file = gzip.open(args.raw) if args.raw.endswith(".gz") else open(args.raw)
-    
+
     parse_raw_to_json(in_file)
-    
-    

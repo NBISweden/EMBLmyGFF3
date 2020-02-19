@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 
 ###############################
 # Test case on augustus gff3  #
@@ -16,7 +16,7 @@ def fill_path(file):
 def main():
 	#PATH to the FASTA file used to produce the annotation
 	GENOME="augustus.fa"
-	
+
 	#PATH to the ANNOTATION in gff3 FORMAT
 	ANNOTATION="augustus.gff3"
 
@@ -48,7 +48,7 @@ def main():
 	#Execute the command
 	process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
 	stdout, stderr = process.communicate()
-	print stdout
+	print(stdout.decode('utf-8'))
 
 if __name__ == '__main__':
 	main()

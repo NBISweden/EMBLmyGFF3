@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """
@@ -9,6 +9,7 @@ import logging
 import sys
 import re
 import curses.ascii
+from functools import reduce
 
 def print_overwritable(text):
     sys.stderr.write(text)
