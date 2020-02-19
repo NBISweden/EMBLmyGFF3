@@ -6,10 +6,17 @@ EMBLmyGFF3 [![Build Status](https://travis-ci.org/NBISweden/EMBLmyGFF3.svg?branc
 
 <img src="EMBLmyGFF3.png" width="500" height="150" />
 
-Software to convert GFF3 and fasta to legal [EMBL format](https://www.ebi.ac.uk/ena/submit/flat-file) suitable for [ENA](http://www.ebi.ac.uk/ena) submission.
+**EMBLmyGFF3** converts an assembly in FASTA format along with associated annotation in GFF3 format into the [EMBL flat file format](https://www.ebi.ac.uk/ena/submit/flat-file) which is the required format for submitting annotated assemblies to [ENA](http://www.ebi.ac.uk/ena).  
 
-Based on documentation from http://www.insdc.org/files/feature_table.html, http://www.ebi.ac.uk/ena/WebFeat/, [ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.html#7.1.1](ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.html#7.1.1) and
-[ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt](ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt).
+ _[ Similarly to prepare your data for submission to NCBI please use [Genome Annotation Generator - GAG](https://github.com/genomeannotation/GAG). ]_
+
+**!** NCBI and ENA are part of [INSDC](http://www.insdc.org) and their data are synchronised every day, so everything submitted in one of this DB will also be accessible in the other.  
+
+_Based on documentation from_:  
+  * http://www.insdc.org/files/feature_table.html
+  * http://www.ebi.ac.uk/ena/WebFeat/
+  * [ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.html#7.1.1](ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.html#7.1.1) 
+  * [ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt](ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt).
 
 __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Tips](http://ena-docs.readthedocs.io/en/latest/)__
 
