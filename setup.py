@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from EMBLmyGFF3.version import __version__
-
 from setuptools import setup, find_packages
+from EMBLmyGFF3.version import __version__
 
 setup(
     name='EMBLmyGFF3',
