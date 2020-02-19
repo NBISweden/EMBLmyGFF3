@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='EMBLmyGFF3',
-    version=__version__,
+    version='2',
 
     description='An efficient way to convert gff3 annotation files into EMBL format ready to submit',
 
