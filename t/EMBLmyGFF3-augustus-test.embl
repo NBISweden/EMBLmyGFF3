@@ -76,8 +76,8 @@ FT                   /note="source:AUGUSTUS"
 FT   CDS             join(914..1014,3018..3070,3124..3482,8166..8720,
 FT                   9026..10377,10460..11032,11141..11851,11973..12258,
 FT                   12369..12911)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS1"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS1"
 FT                   /note="ID:g1.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -147,8 +147,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS2"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(22703..23043,23731..23860,23936..24477,35682..35905,
 FT                   37326..37381)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS2"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS2"
 FT                   /note="ID:g2.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -207,8 +207,8 @@ FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(41581..42122,42238..42586,49533..50059,
 FT                   50175..50523,56500..57026,57142..57753,61300..61911,
 FT                   63540..63969,70654..70857))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS3"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS3"
 FT                   /note="ID:g3.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -258,8 +258,8 @@ FT   exon            complement(87466..87875)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS4"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(86899..87364,87466..87806))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS4"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS4"
 FT                   /note="ID:g4.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -288,8 +288,8 @@ FT   exon            118448..119322
 FT                   /locus_tag="MYLOCUSTAG_LOCUS5"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(114910..114926,115049..115241,118448..118606)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS5"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS5"
 FT                   /note="ID:g5.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -321,8 +321,8 @@ FT   exon            129053..130976
 FT                   /locus_tag="MYLOCUSTAG_LOCUS6"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(127345..127382,128029..128998,129053..129118)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS6"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS6"
 FT                   /note="ID:g6.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -365,8 +365,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS7"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(137495..139127,139181..139405,
 FT                   139464..139557,140514..140838,143235..143267))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS7"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS7"
 FT                   /note="ID:g7.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -422,8 +422,8 @@ FT                   /note="source:AUGUSTUS"
 FT   CDS             join(155155..155590,158341..158378,158433..158469,
 FT                   158563..158936,159000..159092,160896..161738,
 FT                   162270..162746,162826..162891)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS8"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS8"
 FT                   /note="ID:g8.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -482,8 +482,8 @@ FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(189512..189724,189774..190160,
 FT                   191898..192023,192555..193548,206453..206542,
 FT                   206604..207460))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS9"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS9"
 FT                   /note="ID:g9.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -528,8 +528,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS10"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(218504..219808,221312..222009,
 FT                   222067..222284,224606..224796))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS10"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS10"
 FT                   /note="ID:g10.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -589,8 +589,8 @@ FT                   /note="source:AUGUSTUS"
 FT   CDS             join(231081..231112,231184..231306,249531..250197,
 FT                   252905..253474,257021..257101,264260..264374,
 FT                   278938..279092,279154..279298,279360..279394)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS11"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS11"
 FT                   /note="ID:g11.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -648,8 +648,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS12"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(291076..291125,291186..291381,
 FT                   307426..307592,307715..307823))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS12"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS12"
 FT                   /note="ID:g12.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -688,8 +688,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS13"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(322671..322673,329057..329705,330249..330259,
 FT                   330320..330643,330705..330815)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS13"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS13"
 FT                   /note="ID:g13.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -734,8 +734,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS14"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(334063..334117,343490..343717,343778..344106,
 FT                   346457..346489)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS14"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS14"
 FT                   /note="ID:g14.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -807,8 +807,8 @@ FT                   369839..370050,370107..370247,371229..371316,
 FT                   371391..371835,372212..372453,372510..372752,
 FT                   372807..373216,374977..375187,375306..375592,
 FT                   375657..375851,375936..376092))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
 FT                   /note="ID:g15.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -914,8 +914,8 @@ FT                   383572..383760,384120..384271,384494..385567,
 FT                   386300..386431,386486..386945,387015..387388,
 FT                   390169..390370,390436..390590,392439..392802,
 FT                   392876..393018)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
 FT                   /note="ID:g16.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1000,8 +1000,8 @@ FT   CDS             complement(join(396589..396858,397720..398295,
 FT                   398384..398451,398511..398828,399022..399187,
 FT                   399342..399526,402749..403034,411051..411899,
 FT                   435202..435276))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS17"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS17"
 FT                   /note="ID:g17.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1063,8 +1063,8 @@ FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(458012..459544,459601..459791,
 FT                   460074..462077,462806..463015,463490..463780,
 FT                   463839..464019))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS18"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS18"
 FT                   /note="ID:g18.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1120,8 +1120,8 @@ FT                   /note="source:AUGUSTUS"
 FT   CDS             join(467546..467661,467727..467861,470550..470594,
 FT                   470868..470942,470997..471135,471816..471964,
 FT                   473429..473516,473598..473825)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS19"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS19"
 FT                   /note="ID:g19.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1221,8 +1221,8 @@ FT                   493008..493146,493204..493303,495079..495394,
 FT                   497918..498709,499164..499364,499426..499494,
 FT                   500661..500864,500928..501317,501606..501767,
 FT                   501835..501888))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
 FT                   /note="ID:g20.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1335,8 +1335,8 @@ FT   CDS             join(539798..539991,542099..543730,544957..545138,
 FT                   545530..547146,550319..551719,551782..552005,
 FT                   552062..552409,553409..553552,553609..556506,
 FT                   557801..558386,558442..558446)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS21"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS21"
 FT                   /note="ID:g21.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1400,8 +1400,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS22"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(566289..568769,569885..570247,
 FT                   570340..570499,572617..573598,573698..573992))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS22"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS22"
 FT                   /note="ID:g22.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1446,8 +1446,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS23"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(580884..580926,580975..581037,581097..581209,
 FT                   585167..585288,586033..586147)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS23"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS23"
 FT                   /note="ID:g23.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1489,8 +1489,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS24"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(588993..589682,589740..589927,
 FT                   590601..590802,590860..590969,591035..591107))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS24"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS24"
 FT                   /note="ID:g24.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1531,8 +1531,8 @@ FT   exon            599871..600739
 FT                   /locus_tag="MYLOCUSTAG_LOCUS25"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(596187..596271,596328..596951,597605..597948)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS25"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS25"
 FT                   /note="ID:g25.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1582,8 +1582,8 @@ FT                   /note="source:AUGUSTUS"
 FT   CDS             join(606529..606564,607528..607719,608469..608668,
 FT                   609198..609326,612226..612985,613279..613642,
 FT                   613696..616142)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS26"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS26"
 FT                   /note="ID:g26.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1631,8 +1631,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS27"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(621730..622155,622383..622561,
 FT                   623938..624878,625629..627328))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS27"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS27"
 FT                   /note="ID:g27.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1700,8 +1700,8 @@ FT   CDS             join(635702..635754,635942..636549,636631..636807,
 FT                   638974..639102,640240..640409,640474..640803,
 FT                   653955..654058,654117..654486,654547..654750,
 FT                   654803..654970,655036..655081,656704..656765)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
 FT                   /note="ID:g28.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1790,8 +1790,8 @@ FT   CDS             complement(join(661138..661362,662902..663054,
 FT                   663118..663354,672931..673210,673272..673468,
 FT                   673527..673677,674496..674674,675131..675424,
 FT                   675687..676061,676842..678310,678528..678846))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
 FT                   /note="ID:g29.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1854,8 +1854,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS30"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(684327..684368,684481..684966,685614..685931,
 FT                   686577..687558,689046..689200,689756..690076)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS30"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS30"
 FT                   /note="ID:g30.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -1897,8 +1897,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS31"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(692666..693363,698034..698187,
 FT                   698272..698790))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS31"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS31"
 FT                   /note="ID:g31.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2099,8 +2099,8 @@ FT                   778147..778428,778491..778790,778846..788316,
 FT                   788388..789366,789430..789771,791179..792221,
 FT                   794643..794743,794811..794937,795003..795305,
 FT                   795541..796175)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
 FT                   /note="ID:g32.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2278,8 +2278,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS33"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(799453..802295,806911..807652,
 FT                   807707..807727,813407..815004,815279..816326))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS33"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS33"
 FT                   /note="ID:g33.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2307,8 +2307,8 @@ FT   exon            820118..821466
 FT                   /locus_tag="MYLOCUSTAG_LOCUS34"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             820197..820553
-FT                   /locus_tag="MYLOCUSTAG_LOCUS34"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS34"
 FT                   /note="ID:g34.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2338,8 +2338,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS35"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(821909..822565,823024..823244,
 FT                   823458..823953,829664..829669))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS35"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS35"
 FT                   /note="ID:g35.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2396,8 +2396,8 @@ FT                   /note="source:AUGUSTUS"
 FT   CDS             join(994227..994292,997392..997467,997525..997844,
 FT                   1020111..1020161,1020223..1020399,1024784..1025038,
 FT                   1025096..1025244,1026433..1026635,1026692..1026786)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS36"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS36"
 FT                   /note="ID:g36.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2444,8 +2444,8 @@ FT   exon            complement(1050609..1051600)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS37"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1049369..1049782,1050609..1051436))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS37"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS37"
 FT                   /note="ID:g37.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2470,8 +2470,8 @@ FT   exon            1053898..1055175
 FT                   /locus_tag="MYLOCUSTAG_LOCUS38"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1052516..1052579,1053533..1053844,1053898..1055039)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS38"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS38"
 FT                   /note="ID:g38.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2522,8 +2522,8 @@ FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1057904..1058048,1058102..1058216,
 FT                   1058272..1058366,1067886..1068016,1068079..1068188,
 FT                   1068449..1068817,1070924..1071018,1071081..1071145))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS39"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS39"
 FT                   /note="ID:g39.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2585,8 +2585,8 @@ FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1085734..1085809,1086482..1086511,1086566..1093731,
 FT                   1093787..1094007,1094065..1096183,1096242..1096362,
 FT                   1096418..1096740)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS40"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS40"
 FT                   /note="ID:g40.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2634,8 +2634,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS41"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1100175..1100197,1100883..1101063,
 FT                   1101114..1101116))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS41"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS41"
 FT                   /note="ID:g41.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2674,8 +2674,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS42"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1112967..1113035,1113098..1113254,1116202..1116342,
 FT                   1116420..1116458,1116841..1116971)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS42"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS42"
 FT                   /note="ID:g42.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2720,8 +2720,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS43"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1127221..1127223,1128724..1128970,1129735..1130171,
 FT                   1131407..1131511)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS43"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS43"
 FT                   /note="ID:g43.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2779,8 +2779,8 @@ FT   CDS             complement(join(1136453..1136523,1136582..1136705,
 FT                   1137217..1137224,1137286..1137372,1138477..1138531,
 FT                   1138594..1139643,1140563..1140673,1140732..1141232,
 FT                   1141285..1141427,1141541..1141571))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
 FT                   /note="ID:g44.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2856,8 +2856,8 @@ FT   CDS             join(1144891..1144957,1145062..1145324,1145394..1145519,
 FT                   1147435..1147567,1147628..1147788,1150061..1150114,
 FT                   1150192..1150356,1150651..1150809,1151009..1151212,
 FT                   1151275..1151283)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
 FT                   /note="ID:g45.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2911,8 +2911,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS46"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1160359..1160445,1161113..1161527,
 FT                   1161586..1161986))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS46"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS46"
 FT                   /note="ID:g46.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2945,8 +2945,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS47"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1167432..1167436,1174368..1174466,
 FT                   1174523..1174766,1175250..1175837))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS47"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS47"
 FT                   /note="ID:g47.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -2995,8 +2995,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS48"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1201462..1201465,1209680..1210021,1210169..1210315,
 FT                   1210507..1210634,1210693..1211175,1211474..1211557)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS48"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS48"
 FT                   /note="ID:g48.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -3041,8 +3041,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS49"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1214330..1214485,1216054..1216222,
 FT                   1216286..1216416,1216468..1216710))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS49"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS49"
 FT                   /note="ID:g49.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -3095,8 +3095,8 @@ FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1222819..1223321,1223420..1223750,1223802..1223921,
 FT                   1223986..1224096,1225217..1225376,1225434..1225597,
 FT                   1225732..1225890,1225948..1226517)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS50"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS50"
 FT                   /note="ID:g50.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -3172,8 +3172,8 @@ FT   CDS             join(1245463..1245483,1245552..1245623,1247203..1247378,
 FT                   1247445..1247676,1247740..1247990,1248063..1248077,
 FT                   1249105..1249249,1268557..1268691,1268755..1268881,
 FT                   1274471..1274594,1274651..1274855)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
 FT                   /note="ID:g51.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -3276,8 +3276,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS52"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1286397..1286401,1286590..1286648,1286964..1287111,
 FT                   1287169..1287195,1287263..1287278,1287343..1287351)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS52"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS52"
 FT                   /note="ID:g52.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -3311,8 +3311,8 @@ FT   exon            complement(1291564..1291939)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS53"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(1288834..1290585)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS53"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS53"
 FT                   /note="ID:g53.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -3328,8 +3328,8 @@ FT   exon            complement(1293651..1296859)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS54"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(1295011..1296762)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS54"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS54"
 FT                   /note="ID:g54.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -3372,8 +3372,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS55"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             join(1299811..1299824,1299886..1299897,1301056..1301215,
 FT                   1301746..1301772,1301840..1301848)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS55"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS55"
 FT                   /note="ID:g55.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -3401,8 +3401,8 @@ FT   exon            complement(1302899..1304979)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS56"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(1303088..1304842)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS56"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS56"
 FT                   /note="ID:g56.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -3446,8 +3446,8 @@ FT                   /locus_tag="MYLOCUSTAG_LOCUS57"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1314266..1316152,1321520..1322007,
 FT                   1325676..1325829))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS57"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS57"
 FT                   /note="ID:g57.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1
@@ -3492,8 +3492,8 @@ FT   exon            complement(1348414..1348519)
 FT                   /locus_tag="MYLOCUSTAG_LOCUS58"
 FT                   /note="source:AUGUSTUS"
 FT   CDS             complement(join(1337996..1338084,1338658..1338811))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS58"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS58"
 FT                   /note="ID:g58.t1.cds"
 FT                   /note="source:AUGUSTUS"
 FT                   /transl_table=1

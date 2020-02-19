@@ -202,9 +202,13 @@ class Feature(object):
         output = multiline("FT", string, featureType=self.type, wrap=59, split_char=",")
 
         # Print qualifiers for the feature
-        for qualifier in list(self.qualifiers.values()):
-            if qualifier.value:
-                output += qualifier.embl_format(no_wrap_qualifier)
+        for qualifier in sorted(self.qualifiers): # sort by qualifier name
+
+            # continue if qualifier has a value
+            if self.qualifiers[qualifier].value:
+                # sort by value
+                self.qualifiers[qualifier].value = sorted(self.qualifiers[qualifier].value)
+                output += self.qualifiers[qualifier].embl_format(no_wrap_qualifier)
 
         return output
 

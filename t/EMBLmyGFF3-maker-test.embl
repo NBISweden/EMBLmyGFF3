@@ -71,8 +71,8 @@ FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(53644..53751,53817..53999,56500..57083,
 FT                   57142..61911,63540..64050))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS1"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS1"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-0.0-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -181,8 +181,8 @@ FT   CDS             join(93056..93220,93443..93488,95694..95791,103264..103372,
 FT                   106338..106425,106479..106559,107643..107792,
 FT                   115049..115241,115463..115628,120032..120101,
 FT                   124709..125039)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS2"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS2"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-1.0-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -190,8 +190,8 @@ FT   CDS             join(93056..93220,93443..93488,95694..95791,103264..103372,
 FT                   106338..106425,106479..106559,107643..107792,
 FT                   115049..115241,115463..115628,120032..120101,
 FT                   128029..>128029)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS2"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS2"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-1.0-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -271,8 +271,8 @@ FT                   /note="source:maker"
 FT   CDS             join(155155..155590,157505..157793,157849..157958,
 FT                   158017..158378,158433..158936,159000..159200,
 FT                   160896..162753,162826..163421)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS3"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS3"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-1.1-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -345,8 +345,8 @@ FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(68620..71088,71142..71306,71371..71883,
 FT                   71940..72580,72643..73010,76457..76494))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS4"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS4"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-1.2-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -397,8 +397,8 @@ FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-1.3-mRNA-1:three_p
 FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(86899..87364,87466..87806))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS5"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS5"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-1.3-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -497,8 +497,8 @@ FT   CDS             complement(join(137495..139127,139181..139405,
 FT                   139464..139557,140514..140838,141484..142425,
 FT                   142479..142582,142935..144048,144411..144518,
 FT                   149948..150052))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS6"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS6"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-1.4-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -561,8 +561,8 @@ FT                   ime_utr"
 FT                   /note="source:maker"
 FT   CDS             join(231081..231112,231184..231306,232216..232420,
 FT                   232480..232608,233254..233355,233417..233641)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS7"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS7"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.0-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -597,8 +597,8 @@ FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.1-mRNA-1:exon:14
 FT                   "
 FT                   /note="source:maker"
 FT   CDS             join(<248673..248866,249531..250197,250537..>250746)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS8"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS8"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.1-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -720,23 +720,23 @@ FT   CDS             join(252580..252603,252905..253474,254891..254971,
 FT                   255490..255570,257021..257101,257895..258185,
 FT                   260940..261024,263892..264211,264260..264374,
 FT                   265806..266389)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS9"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS9"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.2-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             join(252580..252603,252905..253474,254891..254971,
 FT                   257021..257101,257895..258185,260940..261024,
 FT                   263892..264211,264260..264374,265806..266389)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS9"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS9"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.2-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             join(261402..261459,263892..264211,264260..264374,
 FT                   265806..266389)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS9"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS9"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.2-mRNA-3:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -793,15 +793,15 @@ FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.3-mRNA-1:three_p
 FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(175405..175591,175653..175762))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS10"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS10"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.3-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             complement(join(175405..175591,175653..175773,
 FT                   176391..176529))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS10"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS10"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.3-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -866,8 +866,8 @@ FT                   /note="source:maker"
 FT   CDS             complement(join(179258..179330,179848..180338,
 FT                   180393..180901,180958..181087,181151..181389,
 FT                   181448..>181592))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS11"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS11"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.4-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -915,14 +915,14 @@ FT                   "
 FT                   /note="source:maker"
 FT   CDS             complement(join(<192255..194362,194737..194790,
 FT                   195411..195585))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS12"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS12"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.5-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             complement(join(<194711..194790,195411..195585))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS12"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS12"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.5-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -969,8 +969,8 @@ FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(199544..199660,199718..199837,
 FT                   199890..199955))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS13"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS13"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.6-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -1089,8 +1089,8 @@ FT                   /note="source:maker"
 FT   CDS             complement(join(205141..205240,205296..205421,
 FT                   206453..206542,206604..207466,208623..208795,
 FT                   208856..208995,209051..209149,209204..209805))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS14"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS14"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.7-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -1151,8 +1151,8 @@ FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(218504..222009,222067..222284,
 FT                   224606..224973))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS15"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.8-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -1288,8 +1288,8 @@ FT                   238032..238120,238874..239006,239072..239516,
 FT                   240517..240654,240770..241063,243167..243224,
 FT                   243280..243362,243417..243638,244183..244512,
 FT                   244571..245065,246388..246420,246933..246942))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.9-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -1298,8 +1298,8 @@ FT                   238032..238120,238874..239006,239072..239516,
 FT                   240517..240654,240770..241063,243167..243224,
 FT                   243280..243362,243417..243584,244183..244512,
 FT                   244571..245065,246388..246460))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.9-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -1308,8 +1308,8 @@ FT                   238032..238120,238874..239006,239072..239516,
 FT                   240517..240654,240770..241063,243167..243224,
 FT                   243280..243362,243417..243638,244183..244512,
 FT                   244571..245065,246272..>246293))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS16"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-2.9-mRNA-3:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -1423,15 +1423,15 @@ FT   CDS             join(<277193..278030,278938..279092,279154..279298,
 FT                   279904..279996,280073..280230,281856..282137,
 FT                   282200..282350,282403..282688,283832..283966,
 FT                   284978..285055,285112..285296,285370..>285575)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS17"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS17"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-3.0-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             join(<277193..278030,278938..279092,279154..279298,
 FT                   279904..279996,280073..280230,281861..281869)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS17"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS17"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-3.0-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -1484,8 +1484,8 @@ FT                   ime_utr"
 FT                   /note="source:maker"
 FT   CDS             join(329204..329705,330165..330259,330320..330643,
 FT                   330705..>330806)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS18"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS18"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-3.1-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -1538,8 +1538,8 @@ FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(270656..270762,270816..270869,
 FT                   271941..272151,272681..272796,273450..273579))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS19"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS19"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-3.2-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -1586,8 +1586,8 @@ FT                   "
 FT                   /note="source:maker"
 FT   CDS             complement(join(<291097..291125,291186..291381,
 FT                   291695..292473,292541..292798,292852..>293023))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS20"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-3.3-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -1618,8 +1618,8 @@ FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-3.4-mRNA-1:exon:82
 FT                   "
 FT                   /note="source:maker"
 FT   CDS             complement(join(<333461..333924,333983..334079))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS21"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS21"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-3.4-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -1710,8 +1710,8 @@ FT   CDS             join(381317..381632,382930..383239,383297..383508,
 FT                   383572..383760,384120..384271,384494..385567,
 FT                   386300..387388,390133..390370,390436..390590,
 FT                   391717..391983,392439..392802,392876..393018)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS22"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS22"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-4.0-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -1857,8 +1857,8 @@ FT                   370107..370305,370356..370669,371229..371316,
 FT                   371391..371835,372212..372453,372510..372752,
 FT                   372807..373216,374569..374604,374977..375187,
 FT                   375306..375592,375657..375851,375936..376092))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS23"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS23"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-4.1-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -1868,8 +1868,8 @@ FT                   370356..370669,371229..371316,371391..371835,
 FT                   372212..372453,372510..372752,372807..373216,
 FT                   374569..374604,374977..375187,375306..375592,
 FT                   375657..375851,375936..376092))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS23"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS23"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-4.1-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -1955,8 +1955,8 @@ FT   CDS             complement(join(396589..397257,397720..398295,
 FT                   398384..398451,398511..398828,399022..399187,
 FT                   399342..399526,402749..403034,407533..407610,
 FT                   411051..412157))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS24"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS24"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-4.2-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -2015,8 +2015,8 @@ FT                   /note="source:maker"
 FT   CDS             complement(join(458012..459544,459601..459791,
 FT                   460074..462077,462806..463015,463490..463780,
 FT                   463839..464019))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS25"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS25"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-4.3-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -2119,16 +2119,16 @@ FT                   /note="source:maker"
 FT   CDS             join(467546..467661,467727..467861,470868..470942,
 FT                   470997..471135,471816..472080,473244..473370,
 FT                   473429..473516,473598..>473795)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS26"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS26"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-5.0-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             join(467546..467661,467727..467861,470550..470594,
 FT                   470868..470942,470997..471135,471816..472080,
 FT                   473244..473370,473429..473516,473598..>473795)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS26"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS26"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-5.0-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -2242,15 +2242,15 @@ FT                   ime_utr"
 FT                   /note="source:maker"
 FT   CDS             join(542130..543730,544957..545138,545530..547146,
 FT                   550304..551781)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS27"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS27"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-5.1-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             join(542130..543730,544957..545138,545530..547146,
 FT                   550319..551781)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS27"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS27"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-5.1-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -2327,8 +2327,8 @@ FT                   /note="source:maker"
 FT   CDS             complement(join(480647..480767,480829..481282,
 FT                   481340..481673,482131..482954,483014..483127,
 FT                   483681..485366,485423..485941,487127..487295))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS28"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-5.2-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -2442,16 +2442,16 @@ FT   CDS             complement(join(492915..493146,493204..493303,
 FT                   493773..494345,495079..495394,495586..495730,
 FT                   497589..497728,497918..498709,499164..499364,
 FT                   499426..499494,500661..500864,500928..501269))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-5.3-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             complement(join(<495059..495394,497918..498709,
 FT                   499164..499364,499426..499494,500661..500864,
 FT                   500928..501269))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS29"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-5.3-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -2576,24 +2576,24 @@ FT                   /note="source:maker"
 FT   CDS             join(580884..580926,580975..581037,581097..581209,
 FT                   581344..581446,584987..585105,585167..585288,
 FT                   586033..586141,586227..586382)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS30"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS30"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-6.0-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             join(580992..581037,581097..581209,581344..581446,
 FT                   584987..585105,585167..585288,586036..586141,
 FT                   586227..586382)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS30"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS30"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-6.0-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             join(580992..581037,581097..581209,581344..581446,
 FT                   584987..585105,585167..585288,586033..586141,
 FT                   586227..586382)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS30"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS30"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-6.0-mRNA-3:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -2645,8 +2645,8 @@ FT                   ime_utr"
 FT                   /note="source:maker"
 FT   CDS             join(594375..595054,595961..596271,596328..596951,
 FT                   597605..597948)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS31"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS31"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-6.1-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -2768,8 +2768,8 @@ FT                   634563..635048,635662..636549,636631..636807,
 FT                   637930..637977,638974..639102,639162..639257,
 FT                   639319..639689,640263..640409,640474..640803,
 FT                   640880..>640972)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-6.2-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -2777,8 +2777,8 @@ FT   CDS             join(632029..632281,632353..632432,634241..634421,
 FT                   634563..635048,635662..636549,636631..636807,
 FT                   638974..639102,639162..639257,639319..639689,
 FT                   640263..640409,640474..640803,640880..>640972)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS32"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-6.2-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -2854,8 +2854,8 @@ FT   CDS             join(650462..650605,652253..652520,652654..652755,
 FT                   652834..653014,653074..653341,653955..654058,
 FT                   654117..654486,654547..654750,654803..654970,
 FT                   655036..655137)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS33"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS33"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-6.3-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -2913,8 +2913,8 @@ FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(566289..568769,569885..570247,
 FT                   570340..570499,571380..572006,572617..574202))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS34"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS34"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-6.4-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -2978,8 +2978,8 @@ FT                   /note="source:maker"
 FT   CDS             complement(join(588993..589682,589740..589927,
 FT                   590601..590802,590860..590969,591035..591159,
 FT                   591230..591321))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS35"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS35"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-6.5-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -3026,8 +3026,8 @@ FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(621730..622155,622383..622561,
 FT                   623938..624878,625629..627328))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS36"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS36"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-6.6-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -3062,8 +3062,8 @@ FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-6.7-mRNA-1:three_p
 FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(643997..645289,645398..646210))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS37"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS37"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-6.7-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -3120,8 +3120,8 @@ FT                   ime_utr"
 FT                   /note="source:maker"
 FT   CDS             join(684327..684368,684481..684966,685614..685931,
 FT                   686577..687558,689046..689200,689756..690076)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS38"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS38"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-7.0-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -3176,8 +3176,8 @@ FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-7.1-mRNA-2:five_pr
 FT                   ime_utr"
 FT                   /note="source:maker"
 FT   CDS             join(701335..701761,705207..706666)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS39"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS39"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-7.1-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -3224,8 +3224,8 @@ FT                   8"
 FT                   /note="source:maker"
 FT   CDS             join(<731566..731708,733119..733299,734484..735138,
 FT                   737753..737926,738280..>738548)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS40"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS40"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-7.2-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -3314,16 +3314,16 @@ FT                   /note="source:maker"
 FT   CDS             complement(join(673476..673677,674496..674674,
 FT                   675131..675424,675687..676061,676842..678310,
 FT                   678528..678963))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS41"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS41"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-7.3-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             complement(join(673476..673677,674496..674674,
 FT                   675131..675424,675687..676061,676842..678310,
 FT                   678528..678846))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS41"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS41"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-7.3-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -3381,8 +3381,8 @@ FT                   0"
 FT                   /note="source:maker"
 FT   CDS             complement(join(<712620..712985,713051..713469,
 FT                   714007..715015))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS42"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS42"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-7.4-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -3552,8 +3552,8 @@ FT                   778147..778428,778491..778790,778846..788316,
 FT                   788388..789366,789430..789771,791179..792221,
 FT                   793029..793085,794643..794743,794811..794937,
 FT                   795003..795305,795541..796175)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS43"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS43"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-8.0-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -3562,8 +3562,8 @@ FT                   773964..774854,774913..777585,778147..778428,
 FT                   778491..778790,778846..788316,788388..789366,
 FT                   789430..789771,791179..792221,794643..794743,
 FT                   794811..794937,795003..795305,795541..796175)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS43"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS43"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-8.0-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -3654,14 +3654,14 @@ FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(799453..802295,803800..803871,
 FT                   803928..804563,806818..807652,807707..807772))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-8.1-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             complement(join(806702..807652,807707..807772))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS44"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-8.1-mRNA-3:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -3718,15 +3718,15 @@ FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-8.2-mRNA-1:three_p
 FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(821909..822736,823024..823938))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-8.2-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             complement(join(821909..822736,823024..823953,
 FT                   844127..844171))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS45"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-8.2-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -3805,8 +3805,8 @@ FT                   /note="source:maker"
 FT   CDS             join(1010878..1011128,1012692..1012872,1017138..1017375,
 FT                   1018333..1018509,1019249..1019331,1024784..1025038,
 FT                   1025096..1025244,1026433..1026635,1026692..1026786)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS46"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS46"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-10.0-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -3846,8 +3846,8 @@ FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-10.1-mRNA-1:five_p
 FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             join(1052516..1052579,1053533..1053844,1053898..1055039)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS47"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS47"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-10.1-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -3958,16 +3958,16 @@ FT                   /note="source:maker"
 FT   CDS             complement(join(972465..972703,972764..973087,
 FT                   974139..974525,974646..974852,975115..975489,
 FT                   975547..975676,977171..978515,978632..978657))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS48"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS48"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-10.2-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             complement(join(972465..972703,972764..973087,
 FT                   974139..974525,974646..974852,975115..975489,
 FT                   975547..975676,977171..978280))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS48"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS48"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-10.2-mRNA-3:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -4075,8 +4075,8 @@ FT                   prime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(1035582..1035978,1036051..1036246,
 FT                   1037002..1039335,1039396..1040641,1042868..1044097))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS49"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS49"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-10.3-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -4145,8 +4145,8 @@ FT                   /note="source:maker"
 FT   CDS             complement(join(876228..876466,880933..881007,
 FT                   881066..882013,882419..885037,885974..886268,
 FT                   886328..886498,886557..886892))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS50"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS50"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-9.0-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -4331,8 +4331,8 @@ FT                   897143..897415,897496..897820,899477..899618,
 FT                   903243..903349,903587..903707,903769..903988,
 FT                   904193..904267,906080..906088,906386..906517,
 FT                   919019..>922018))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-9.1-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -4341,8 +4341,8 @@ FT                   896169..896336,896740..896865,896922..897080,
 FT                   897143..897415,897496..897820,899477..899618,
 FT                   903243..903349,903587..903707,903769..903988,
 FT                   904193..904267,906386..906517,919019..>922018))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-9.1-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -4351,16 +4351,16 @@ FT                   896169..896336,896740..896865,896922..897080,
 FT                   897143..897415,897496..897820,899477..899618,
 FT                   902469..902575,903587..903707,903769..903988,
 FT                   904193..904267,906386..906517,919019..>922018))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-9.1-mRNA-3:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             complement(join(894836..895093,895829..896110,
 FT                   896169..896336,896740..896865,896922..897080,
 FT                   897143..897415,897496..897820,899477..899520))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS51"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-9.1-mRNA-4:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -4413,14 +4413,14 @@ FT                   0"
 FT                   /note="source:maker"
 FT   CDS             complement(join(<922757..923208,923452..923908,
 FT                   923963..923968))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS52"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS52"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-9.2-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             complement(join(<922757..923908,923963..923968))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS52"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS52"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-9.2-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -4524,8 +4524,8 @@ FT                   936747..936893,937493..937716,937901..938369,
 FT                   938950..939107,939162..939402,939529..941825,
 FT                   945709..945764,946201..946312,946394..946574,
 FT                   946637..947287,950448..950525))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS53"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS53"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-9.3-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -4595,8 +4595,8 @@ FT                   /note="source:maker"
 FT   CDS             join(1085734..1085809,1086482..1086511,1086566..1093731,
 FT                   1093787..1094007,1094065..1096183,1096242..1096362,
 FT                   1096418..1096740)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS54"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS54"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-11.0-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -4643,8 +4643,8 @@ FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             join(1144891..1144957,1145062..1145324,1145394..1145519,
 FT                   1145576..1145662)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS55"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS55"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-11.1-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -4730,8 +4730,8 @@ FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             join(1152139..1152219,1152327..1152584,1154501..1154698,
 FT                   1155720..1156110,1156165..1156442)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS56"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS56"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-11.2-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -4884,8 +4884,8 @@ FT                   1058272..1058366,1058985..1059063,1064094..1064150,
 FT                   1065782..1065874,1067890..1068016,1068079..1068201,
 FT                   1068261..1068355,1068449..1068774,1069130..1069184,
 FT                   1069813..1069872,1070924..1071018,1071081..1071145))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS57"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS57"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-11.3-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -4895,8 +4895,8 @@ FT                   1064094..1064150,1065782..1065874,1067890..1068016,
 FT                   1068079..1068201,1068261..1068355,1068449..1068774,
 FT                   1069130..1069184,1069813..1069872,1070924..1071018,
 FT                   1071081..1071145))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS57"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS57"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-11.3-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -4905,8 +4905,8 @@ FT                   1058272..1058366,1058985..1059063,1065782..1065874,
 FT                   1067890..1068016,1068079..1068201,1068261..1068355,
 FT                   1068449..1068774,1069130..1069184,1069813..1069872,
 FT                   1070924..1071018,1071081..1071145))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS57"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS57"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-11.3-mRNA-3:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -4981,8 +4981,8 @@ FT                   /note="source:maker"
 FT   CDS             complement(join(<1078076..1078198,1078259..1078379,
 FT                   1078433..1078781,1078836..1079130,1079727..1079977,
 FT                   1080045..1080462,1081039..1081230))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS58"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS58"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-11.4-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -5012,8 +5012,8 @@ FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-11.5-mRNA-1:exon:5
 FT                   2"
 FT                   /note="source:maker"
 FT   CDS             complement(join(<1101820..1101833,1102753..1103560))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS59"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS59"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-11.5-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -5099,8 +5099,8 @@ FT   CDS             complement(join(1136562..1136705,1136952..1137082,
 FT                   1137141..1137224,1137286..1137840,1138477..1138531,
 FT                   1138594..1139643,1140563..1140673,1140732..1141232,
 FT                   1141285..1141427,1142085..1142199))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS60"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS60"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-11.6-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -5147,8 +5147,8 @@ FT                   8"
 FT                   /note="source:maker"
 FT   CDS             complement(join(<1161338..1161527,1161586..1161993,
 FT                   1164075..1164191,1164253..1164494,1164611..1164631))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS61"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS61"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-11.7-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -5217,8 +5217,8 @@ FT                   /note="source:maker"
 FT   CDS             join(<1208178..1208240,1208361..1208506,1208815..1208975,
 FT                   1209680..1210315,1210507..1210634,1210693..1211175,
 FT                   1212646..1212788,1212851..1212932,1212983..1212985)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS62"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS62"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-12.0-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -5275,8 +5275,8 @@ FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             join(1223643..1223750,1223802..1223921,1223986..1224414,
 FT                   1224988..1225008,1225217..1225376,1225434..>1225603)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS63"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS63"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-12.1-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -5323,8 +5323,8 @@ FT                   rime_utr"
 FT                   /note="source:maker"
 FT   CDS             join(1236896..1237236,1238405..1238525,1245456..1245623,
 FT                   1247203..>1247226)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS64"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS64"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-12.2-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -5378,8 +5378,8 @@ FT                   /note="source:maker"
 FT   CDS             join(<1247332..1247378,1247445..1247676,1247740..1247990,
 FT                   1248063..1248077,1248827..1249057,1249105..1249249,
 FT                   1249303..>1249344)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS65"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS65"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-12.3-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -5530,8 +5530,8 @@ FT                   1250828..1250964,1252029..1252216,1252273..1252562,
 FT                   1254497..1254609,1259568..1259724,1265678..1265819,
 FT                   1266138..1266305,1268382..1268691,1268755..1269135,
 FT                   1274458..1274594,1274651..1274855)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS66"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS66"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-12.4-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -5540,23 +5540,23 @@ FT                   1250828..1250964,1252029..1252216,1252273..1252562,
 FT                   1254497..1254609,1259568..1259724,1265678..1265819,
 FT                   1268382..1268691,1268755..1269135,1274458..1274594,
 FT                   1274651..1274855)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS66"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS66"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-12.4-mRNA-2:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             join(1250894..1250964,1252040..1252216,1252273..1252562,
 FT                   1254497..1254609,1257732..1257938,1259568..1259724,
 FT                   1259883..>1259935)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS66"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS66"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-12.4-mRNA-3:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
 FT   CDS             join(1268374..1268691,1268755..1269135,1274458..1274594,
 FT                   1274651..1274855)
-FT                   /locus_tag="MYLOCUSTAG_LOCUS66"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS66"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-12.4-mRNA-4:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -5619,8 +5619,8 @@ FT                   prime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(1193509..1193656,1193710..1193829,
 FT                   1194432..1194723,1194785..1195550))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS67"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS67"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-12.5-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -5696,8 +5696,8 @@ FT   CDS             complement(join(1213162..1213278,1213332..1213396,
 FT                   1214186..1214280,1214334..1214485,1216054..1216222,
 FT                   1216286..1216416,1216468..1216717,1216791..1216888,
 FT                   1216946..1217083))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS68"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS68"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-12.6-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
@@ -5755,8 +5755,8 @@ FT                   prime_utr"
 FT                   /note="source:maker"
 FT   CDS             complement(join(1229884..1230170,1230231..1230572,
 FT                   1230625..1231225,1232379..1233241,1233306..1233699))
-FT                   /locus_tag="MYLOCUSTAG_LOCUS69"
 FT                   /codon_start=1
+FT                   /locus_tag="MYLOCUSTAG_LOCUS69"
 FT                   /note="ID:maker-4-est_gff_Cufflinks-gene-12.7-mRNA-1:cds"
 FT                   /note="source:maker"
 FT                   /transl_table=1
