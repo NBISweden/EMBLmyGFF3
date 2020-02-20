@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 
+from .modules.utilities import *
+from .modules.feature import Feature
+from .modules.help import Help
+from EMBLmyGFF3.version.version import __version__
+
+
+from Bio import SeqIO, Entrez
+from BCBio import GFF
+from Bio.SeqFeature import SeqFeature, FeatureLocation, ExactPosition
+
 import os
 import sys
 import gzip
@@ -9,13 +19,6 @@ import shutil
 import logging
 import argparse
 import re
-from .modules.utilities import *
-from Bio import SeqIO, Entrez
-from BCBio import GFF
-from Bio.SeqFeature import SeqFeature, FeatureLocation, ExactPosition
-from .modules.feature import Feature
-from .modules.help import Help
-from EMBLmyGFF3.version.version import __version__
 
 """
 EMBL writer for ENA data submission. Note that this implementation is basically

@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from .qualifier import *
+from .location import EMBLLocation
+from .utilities import *
 
+from Bio.Seq import Seq
+from Bio.Data import CodonTable
+from Bio.Alphabet.IUPAC import *
+from Bio.SeqFeature import SeqFeature, FeatureLocation, BeforePosition, AfterPosition
 
 import os
 import sys
 import json
 import logging
-from .utilities import *
 from operator import attrgetter
-from Bio.Seq import Seq
-from Bio.Data import CodonTable
-from Bio.Alphabet.IUPAC import *
-from .location import EMBLLocation
-from Bio.SeqFeature import SeqFeature, FeatureLocation, BeforePosition, AfterPosition
-from .qualifier import *
 
 def chunk_format(string, chunk_string = None, offset = 0, chunk_size = 3, chunks_per_line = 30, indent = 6):
     offset = offset%chunk_size
