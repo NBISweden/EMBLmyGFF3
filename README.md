@@ -15,7 +15,7 @@ EMBLmyGFF3 [![Build Status](https://travis-ci.org/NBISweden/EMBLmyGFF3.svg?branc
 _Based on documentation from_:  
   * http://www.insdc.org/files/feature_table.html
   * http://www.ebi.ac.uk/ena/WebFeat/
-  * [ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.html#7.1.1](ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.html#7.1.1) 
+  * [ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.html#7.1.1](ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/FT_current.html#7.1.1)
   * [ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt](ftp://ftp.ebi.ac.uk/pub/databases/embl/doc/usrman.txt).
 
 __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Tips](http://ena-docs.readthedocs.io/en/latest/)__
@@ -55,7 +55,7 @@ __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Ti
 
 ## Prerequisites
 
-**Python 2.7**, **biopython 1.67** and the **bcbio-gff 0.6.4** python packages.
+**Python >=3**, **biopython >=1.67** and the **bcbio-gff >=0.6.4** python packages.
 
 In order to install pip please use the following steps:
 
@@ -341,13 +341,13 @@ The challenge for a correct conversion is the correct mapping between the featur
 If you figure out that a feature type or an attribute's tag is not mapped to the corresponding EMBL features or qualifiers you would like, you will have to modify the corresponding information in the mapping files.</br>
 The software will skip the unknown feature types (Non EMBL feature types that are not mapped against an EMBL feature type) and the unknown qualifiers (Non EMBL qualifiers that are not mapped against an EMBL qualifier) and will inform you during the conversion process. If you want to include them within the output, you can add the information needed in the corresponding mapping file.
 
-**To access the json mapping files launch the following command:** 
+**To access the json mapping files launch the following command:**
 
 ```bash
 EMBLmyGFF3 --expose_translations
 ```
 
-The command copy the json mapping files localy. You can then modify them as it suits you. 
+The command copy the json mapping files localy. You can then modify them as it suits you.
 When a json mapping file is present localy, it will be used instead of the default internal one.
 
 ### Feature type
@@ -440,7 +440,7 @@ Features that have the same key (feature type) and location as another feature a
 ## Citation
 
 Norling M, Jareborg N, Dainat J. EMBLmyGFF3: a converter facilitating genome annotation submission to European Nucleotide Archive.
-BMC Res Notes. 2018 Aug 13;11(1):584. doi: 10.1186/s13104-018-3686-x. 
+BMC Res Notes. 2018 Aug 13;11(1):584. doi: 10.1186/s13104-018-3686-x.
 
 [![DOI](EMBLmyGFF3.svg)](https://doi.org/10.1186/s13104-018-3686-x)
 
