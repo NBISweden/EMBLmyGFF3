@@ -2,11 +2,13 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup, find_packages
-from EMBLmyGFF3.version.version import __version__
+
+# access the version wihtout importing the EMBLmyGFF3 package
+with open('EMBLmyGFF3/version.py') as f: exec(f.read())
 
 setup(
     name='EMBLmyGFF3',
-    version='2',
+    version=__version__,
 
     description='An efficient way to convert gff3 annotation files into EMBL format ready to submit',
 

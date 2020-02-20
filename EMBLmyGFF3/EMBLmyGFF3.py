@@ -3,7 +3,7 @@
 from .modules.utilities import *
 from .modules.feature import Feature
 from .modules.help import Help
-from EMBLmyGFF3.version.version import __version__
+from EMBLmyGFF3.version import __version__
 
 
 from Bio import SeqIO, Entrez
