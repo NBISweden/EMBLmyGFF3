@@ -13,7 +13,7 @@ setup(
     description='An efficient way to convert gff3 annotation files into EMBL format ready to submit',
 
     url='https://github.com/NBISweden/EMBLmyGFF3',
-    download_url='https://github.com/NBISweden/EMBLmyGFF3/archive/v1.3.tar.gz',
+    download_url='https://github.com/NBISweden/EMBLmyGFF3/archive/v' + __version__ +'.tar.gz',
     author='Martin Norling, Niclas Jareborg, Jacques Dainat',
 
     license='GPL-3.0',
