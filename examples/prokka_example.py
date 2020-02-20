@@ -55,6 +55,7 @@ def main():
 	process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
 	stdout, stderr = process.communicate()
 	print(stdout.decode('utf-8'))
+	sys.exit(process.returncode)
 
 if __name__ == '__main__':
 	main()
