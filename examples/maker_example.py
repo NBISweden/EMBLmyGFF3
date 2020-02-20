@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 
 ############################
 # Test case on maker gff3  #
@@ -48,7 +48,7 @@ def main():
 	#Execute the command
 	process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
 	stdout, stderr = process.communicate()
-	print stdout
+	print(stdout.decode('utf-8'))
 
 if __name__ == '__main__':
 	main()

@@ -1,20 +1,20 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from __future__ import division
+from .qualifier import *
+from .location import EMBLLocation
+from .utilities import *
+
+from Bio.Seq import Seq
+from Bio.Data import CodonTable
+from Bio.Alphabet.IUPAC import *
+from Bio.SeqFeature import SeqFeature, FeatureLocation, BeforePosition, AfterPosition
 
 import os
 import sys
 import json
 import logging
-from utilities import *
 from operator import attrgetter
-from Bio.Seq import Seq
-from Bio.Data import CodonTable
-from Bio.Alphabet.IUPAC import *
-from location import EMBLLocation
-from Bio.SeqFeature import SeqFeature, FeatureLocation, BeforePosition, AfterPosition
-from qualifier import *
 
 def chunk_format(string, chunk_string = None, offset = 0, chunk_size = 3, chunks_per_line = 30, indent = 6):
     offset = offset%chunk_size
@@ -142,7 +142,7 @@ class Feature(object):
         Formats the feature as EMBL, limited to 80 character lines,
         including sub features.
         """
-        output=unicode("")
+        output=str("")
 
         if self.skip_feature is False or self.force_unknown_features or self.force_uncomplete_features:
             output = self._feature_as_EMBL(self.no_wrap_qualifier) if self.type not in self.remove else ""
@@ -202,9 +202,13 @@ class Feature(object):
         output = multiline("FT", string, featureType=self.type, wrap=59, split_char=",")
 
         # Print qualifiers for the feature
-        for qualifier in self.qualifiers.values():
-            if qualifier.value:
-                output += qualifier.embl_format(no_wrap_qualifier)
+        for qualifier in sorted(self.qualifiers): # sort by qualifier name
+
+            # continue if qualifier has a value
+            if self.qualifiers[qualifier].value:
+                # sort by value
+                self.qualifiers[qualifier].value = sorted(self.qualifiers[qualifier].value)
+                output += self.qualifiers[qualifier].embl_format(no_wrap_qualifier)
 
         return output
 
@@ -273,7 +277,7 @@ class Feature(object):
             sub_feature._infer_ORFs(feature)
 
     def _check_qualifier(self, feature):
-        for qualifier, value in self.qualifiers.iteritems():
+        for qualifier, value in self.qualifiers.items():
 
             # Check presence of mandatory qualifier
             if self.qualifiers[qualifier].mandatory:# Check if the qualifier is mandatory
@@ -288,7 +292,7 @@ class Feature(object):
         """
         Parses a GFF feature and stores the data in the current Feature
         """
-        for qualifier, value in feature.qualifiers.iteritems():
+        for qualifier, value in feature.qualifiers.items():
             logging.debug("Reading qualifier: %s (%s), translating to %s" % (qualifier, value, self._from_gff_qualifier(qualifier)))
             self.add_qualifier( qualifier, value )
 
@@ -302,10 +306,10 @@ class Feature(object):
         try:
             with open(filename) as data:
                 raw = json.load( data )
-                for key, value in raw.iteritems():
+                for key, value in raw.items():
                     #logging.error("key:%s value:%s",key,value)
                     if "qualifier" in key:
-                        for item, definition in value.iteritems():
+                        for item, definition in value.items():
                             #logging.error("item:%s definition:%s",item,definition)
                             self.legal_qualifiers += [item]
                             mandatory = "mandatory" in key
@@ -335,7 +339,7 @@ class Feature(object):
                 data = json.load( open("%s/%s" % (local_dir, filename)) )
             except IOError:
                 data = json.load( open("%s/%s" % (module_dir, filename)) )
-            for gff_feature, info in data.iteritems():
+            for gff_feature, info in data.items():
                 if info.get("remove", False):
                     self.remove += [gff_feature]
                 if "target" in info:
@@ -354,7 +358,7 @@ class Feature(object):
                 data = json.load( open("%s/%s" % (local_dir, filename)) )
             except IOError:
                 data = json.load( open("%s/%s" % (module_dir, filename)) )
-            for gff_feature, info in data.iteritems():
+            for gff_feature, info in data.items():
                 if "target" in info:
                     self.qualifier_translation_list[gff_feature] = info["target"]
                 if "prefix" in info:
@@ -503,7 +507,7 @@ class Feature(object):
         self.location += other.location
 
         # combine qualifier except codon start
-        for gff_qualifier, list_val_other in other.qualifiers.iteritems():
+        for gff_qualifier, list_val_other in other.qualifiers.items():
             other_qualifier = self._from_gff_qualifier(gff_qualifier) # get the real qualifier name in EMBL format to be able to compare with the one alredy saved
             if other_qualifier != "codon_start":
                 self.add_qualifier(gff_qualifier, list_val_other)
@@ -619,7 +623,7 @@ class Feature(object):
 
     def handle_message(self, type, msg_type, msg, value):
 
-        if Feature.PREVIOUS_ERRORS.has_key(msg_type):
+        if msg_type in Feature.PREVIOUS_ERRORS:
             Feature.PREVIOUS_ERRORS[msg_type] += 1
 
         level = eval("logging.%s" % type.upper())
@@ -629,7 +633,7 @@ class Feature(object):
         else:
             if not value:   # number of line accepted to display (defaut or given to the method)
                 value = 5
-            if not Feature.PREVIOUS_ERRORS.has_key(msg_type) or Feature.PREVIOUS_ERRORS[msg_type] < value:
+            if msg_type not in Feature.PREVIOUS_ERRORS or Feature.PREVIOUS_ERRORS[msg_type] < value:
                 logging.log(level, msg)
                 Feature.PREVIOUS_ERRORS.setdefault(msg_type,1)
             elif Feature.PREVIOUS_ERRORS[msg_type] == value:
@@ -660,11 +664,11 @@ if __name__ == '__main__':
             break
 
         for gff_feature in record.features:
-            print gff_feature
-            print "_"*80
+            print(gff_feature)
+            print("_"*80)
             feature = Feature( gff_feature, args.translation_file, 1, feature_definition_dir = "features", qualifier_definition_dir="qualifiers" )
-            print "_"*80
-            print feature
+            print("_"*80)
+            print(feature)
             break
     except Exception as e:
         import traceback

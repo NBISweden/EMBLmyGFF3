@@ -1,15 +1,19 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 from setuptools import setup, find_packages
 
+# access the version wihtout importing the EMBLmyGFF3 package
+with open('EMBLmyGFF3/version.py') as f: exec(f.read())
+
 setup(
     name='EMBLmyGFF3',
-    version='1.3',
+    version=__version__,
 
     description='An efficient way to convert gff3 annotation files into EMBL format ready to submit',
 
     url='https://github.com/NBISweden/EMBLmyGFF3',
-    download_url='https://github.com/NBISweden/EMBLmyGFF3/archive/v1.3.tar.gz',
+    download_url='https://github.com/NBISweden/EMBLmyGFF3/archive/v' + __version__ +'.tar.gz',
     author='Martin Norling, Niclas Jareborg, Jacques Dainat',
 
     license='GPL-3.0',

@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Location examples (http://www.insdc.org/files/feature_table.html)

@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 """
 Script to parse a "raw" text copy of http://www.insdc.org/files/feature_table.html#7.2 into
 a set of json feature identifiers.
@@ -119,10 +119,10 @@ def parse_raw_to_json(infile):
                 extension = row.strip()
                 setattr(current, identifier, base + extension)
             except Exception as e:
-                print "EXCEPTION: %s" % e
-                print "ID: '%s'" % identifier
-                print "ROW: '%s'" % row
-                print current
+                print("EXCEPTION: %s" % e)
+                print("ID: '%s'" % identifier)
+                print("ROW: '%s'" % row)
+                print(current)
                 import sys
                 sys.exit(0)
         elif current != None:
