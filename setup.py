@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup, find_packages
-from EMBLmyGFF3.version import __version__
+from EMBLmyGFF3.version.version import __version__
 
 setup(
     name='EMBLmyGFF3',

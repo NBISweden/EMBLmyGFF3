@@ -15,7 +15,7 @@ from BCBio import GFF
 from Bio.SeqFeature import SeqFeature, FeatureLocation, ExactPosition
 from .modules.feature import Feature
 from .modules.help import Help
-from EMBLmyGFF3.version import __version__
+from EMBLmyGFF3.version.version import __version__
 
 """
 EMBL writer for ENA data submission. Note that this implementation is basically
