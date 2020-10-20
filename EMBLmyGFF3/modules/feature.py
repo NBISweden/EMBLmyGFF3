@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from .qualifier import *
-from .location import EMBLLocation
-from .utilities import *
 
-from Bio.Seq import Seq
-from Bio.Data import CodonTable
-from Bio.Alphabet.IUPAC import *
-from Bio.SeqFeature import SeqFeature, FeatureLocation, BeforePosition, AfterPosition
 
 import os
 import sys
 import json
 import logging
+from .utilities import *
 from operator import attrgetter
+from Bio.Seq import Seq
+from Bio.Data import CodonTable
+from Bio.Alphabet.IUPAC import *
+from .location import EMBLLocation
+from Bio.SeqFeature import SeqFeature, FeatureLocation, BeforePosition, AfterPosition
+from .qualifier import *
 
 def chunk_format(string, chunk_string = None, offset = 0, chunk_size = 3, chunks_per_line = 30, indent = 6):
     offset = offset%chunk_size
@@ -58,50 +58,51 @@ class Feature(object):
 
     CDS_COUNTER = 0
     OK_COUNTER = 0
-    DEFAULT_FEATURE_TRANSLATION_FILE=["translation_gff_feature_to_embl_feature.json"]
-    DEFAULT_QUALIFIER_TRANSLATION_FILE=["translation_gff_attribute_to_embl_qualifier.json", "translation_gff_other_to_embl_qualifier.json"]
     PREVIOUS_ERRORS = {}
     SCRIPT_DIR = os.path.dirname(__file__)
-    DEFAULT_FEATURE_DIR = os.path.join(SCRIPT_DIR, "modules/features")
-    DEFAULT_QUALIFIER_DIR = os.path.join(SCRIPT_DIR, "modules/qualifiers/")
 
-    def __init__(self, feature = None, seq = None, accessions = [], transl_table = 1, translation_files = [], translate = False,
-                feature_definition_dir = DEFAULT_FEATURE_DIR, qualifier_definition_dir = DEFAULT_QUALIFIER_DIR, format_data = True,
-                level = 0, reorder_gene_features = True, skip_feature = False, force_unknown_features = False,
+    def __init__(self, feature = None, seq = None, accessions = [], transl_table = 1, translate = False,
+                dict_features = {}, dict_qualifiers = {}, dict_feature_translations = {}, dict_qualifier_translations = {},
+                format_data = True, level = 0, reorder_gene_features = True, skip_feature = False, force_unknown_features = False,
                 force_uncomplete_features = False, uncompressed_log = None, no_wrap_qualifier = False):
         """
         Initializes a Feature, loads json files for feature and
         qualifiers, and starts parsing the data.
         """
         self.feature = feature
-        self.legal_qualifiers = []
         self.level = level
         self.location = feature.location
-        self.qualifier_definition_dir = qualifier_definition_dir
+
+#        self.qualifier_definition_dir = qualifier_definition_dir
+        self.legal_qualifiers = []
         self.qualifiers = {}
-        self.qualifier_translation_list = {}
-        self.qualifier_prefix = {}
-        self.qualifier_suffix = {}
-        self.feature_definition_dir = feature_definition_dir
-        self.feature_translation_list = {}
+        self.qualifier_prefix = dict_qualifier_translations["qualifier_prefix"]
+        self.qualifier_suffix = dict_qualifier_translations["qualifier_suffix"]
+        self.qualifier_translation_list = dict_qualifier_translations["qualifier_translation_list"]
+        self.dict_features = dict_features
+        self.dict_qualifiers = dict_qualifiers
+#       self.feature_definition_dir = feature_definition_dir
+        self.feature_translation_list = dict_feature_translations["feature_translation_list"]
+        self.remove = dict_feature_translations["remove"]
+        logging.info("remove: %s", self.remove)
+
         self.force_uncomplete_features = force_uncomplete_features
         self.force_unknown_features = force_unknown_features
         self.no_wrap_qualifier = no_wrap_qualifier
         self.reorder_gene_features = reorder_gene_features
-        self.remove = []
         self.seq = seq
         self.combine_types = ["CDS","3'UTR","5'UTR"]
         self.skip_feature = skip_feature
         self.sub_features = []
         self.translate = translate
-        self.translation_files = translation_files
         self.transl_table = transl_table
         self.uncompressed_log = uncompressed_log
 
-        self._load_qualifier_translations(Feature.DEFAULT_QUALIFIER_TRANSLATION_FILE + translation_files)
-        self._load_feature_translations(Feature.DEFAULT_FEATURE_TRANSLATION_FILE)
         self.type = self._from_gff_feature(feature.type)
-        self._load_definition("%s/%s.json" % (feature_definition_dir, self.type))
+        logging.info("-------+------------------------------------------")
+        logging.info("FEATURE|  Name: %s" % self.type)
+        logging.info("-"*50)
+        self._load_definition()
         self._load_data(feature, accessions)
         self._check_qualifier(feature)
 
@@ -109,8 +110,9 @@ class Feature(object):
             # Parse through subfeatures level2
             featureObj_level2 = None
             for feature_l2 in feature.sub_features:
-                featureObj_level2 = Feature(feature_l2, self.seq, accessions, self.transl_table, self.translation_files, self.translate,
-                                                      self.feature_definition_dir, self.qualifier_definition_dir, format_data = True, level=2)
+                featureObj_level2 = Feature(feature_l2, self.seq, accessions, self.transl_table, self.translate,
+                                            dict_features, dict_qualifiers, dict_feature_translations, dict_qualifier_translations,
+                                            format_data = True, level=2)
                 self.sub_features += [featureObj_level2]
 
 
@@ -126,14 +128,16 @@ class Feature(object):
                         old_feature = [sf for sf in featureObj_level2.sub_features if sf.type == self._from_gff_feature(feature_l3.type)][0]
                         old_feature.combine(feature_l3)
                     else:
-                        featureObj_level3 = Feature(feature_l3, self.seq, accessions, self.transl_table, self.translation_files, self.translate,
-                                                          self.feature_definition_dir, self.qualifier_definition_dir, format_data = False, level=3)
+                        featureObj_level3 = Feature(feature_l3, self.seq, accessions, self.transl_table, self.translate,
+                                                    dict_features, dict_qualifiers, dict_feature_translations, dict_qualifier_translations,
+                                                    format_data = False, level=3)
                         featureObj_level2.sub_features += [featureObj_level3]
 
 
         if format_data:
             self._format_data(self)
-
+        logging.info("transl_table: %s" % transl_table)
+        logging.info("gg: %s" % self.dict_qualifiers["transl_table"])
         if self.type == "CDS":
             self.qualifiers['transl_table'].set_value(self.transl_table)
 
@@ -189,7 +193,7 @@ class Feature(object):
         """
         Formats the feature as EMBL, limited to 80 character lines.
         """
-
+        logging.debug("_feature_as_EMBL")
         if self.type == "CDS":
             # with open("feature_%00i.txt" % Feature.CDS_COUNTER, "w") as out:
             #     self.CDS_report(out)
@@ -277,94 +281,48 @@ class Feature(object):
             sub_feature._infer_ORFs(feature)
 
     def _check_qualifier(self, feature):
+        logging.debug("xxx _check_qualifier")
         for qualifier, value in self.qualifiers.items():
 
             # Check presence of mandatory qualifier
             if self.qualifiers[qualifier].mandatory:# Check if the qualifier is mandatory
                 if not self.qualifiers[qualifier].value: # No value for this mandatory qualifier
-
                     msg = "The qualifier >%s< is mandatory for the feature >%s<. We will not report the feature." % (qualifier, self.type)
                     self.handle_message('warning', msg, msg, None)
-
                     self.skip_feature = True
 
     def _load_data(self, feature, accessions):
         """
         Parses a GFF feature and stores the data in the current Feature
         """
+        logging.debug("xxx _load_data")
         for qualifier, value in feature.qualifiers.items():
             logging.debug("Reading qualifier: %s (%s), translating to %s" % (qualifier, value, self._from_gff_qualifier(qualifier)))
             self.add_qualifier( qualifier, value )
 
         if 'locus_tag' in self.qualifiers:
+            logging.debug("_load_data add locus_tag")
             self.qualifiers['locus_tag'].set_value( accessions )
 
-    def _load_definition(self, filename):
+    def _load_definition(self):
         """
         Loads a Feature definition json file.
         """
-        try:
-            with open(filename) as data:
-                raw = json.load( data )
-                for key, value in raw.items():
-                    #logging.error("key:%s value:%s",key,value)
-                    if "qualifier" in key:
-                        for item, definition in value.items():
-                            #logging.error("item:%s definition:%s",item,definition)
-                            self.legal_qualifiers += [item]
-                            mandatory = "mandatory" in key
-                            self.qualifiers[item] = Qualifier(item, mandatory = mandatory, qualifier_definition_dir=self.qualifier_definition_dir)
-                    else:
-                        # this is not super important, as it just adds comments and
-                        # description from the documentation to the features. I used
-                        # it to have a bit of debugging information.
-                        setattr(self, key, value)
-        except IOError as e:
-            logging.debug("%s" % e)
+        logging.debug("_load_definition - List qualifiers for feature %s", self.type)
+        if self.type in self.dict_features:
+            self.legal_qualifiers = self.dict_features[self.type]["legal_qualifiers"]
+            #logging.debug("legal_qualifiers:%s",self.legal_qualifiers)
+            for qualifier in self.dict_features[self.type]["legal_qualifiers"]:
+                logging.debug("qualifier:%s", qualifier)
+                mandatory = True if (qualifier in self.dict_features[self.type]["mandatory"]) else False
+                self.qualifiers[qualifier] = Qualifier(qualifier, self.dict_qualifiers[qualifier], mandatory = mandatory)
+        else:
             msg = ">>%s<< is not a valid EMBL feature type. You can ignore this message if you don't need the feature.\nOtherwise tell me which EMBL feature it corresponds to by adding the information within the json mapping file." % (self.type)
             self.handle_message("error", msg, msg, 1)
-
             self.skip_feature=True
-
-    def _load_feature_translations(self, filenames):
-        """
-        Load translation json files. Files are loaded in order that they are given,
-        thus newer rules can be loaded to replace default rules.
-        """
-        module_dir = os.path.dirname(os.path.abspath(sys.modules[Feature.__module__].__file__))
-        local_dir = os.getcwd()
-
-        for filename in filenames:
-            try:
-                data = json.load( open("%s/%s" % (local_dir, filename)) )
-            except IOError:
-                data = json.load( open("%s/%s" % (module_dir, filename)) )
-            for gff_feature, info in data.items():
-                if info.get("remove", False):
-                    self.remove += [gff_feature]
-                if "target" in info:
-                    self.feature_translation_list[gff_feature] = info["target"]
-
-    def _load_qualifier_translations(self, filenames):
-        """
-        Load translation json files. Files are loaded in order that they are given,
-        thus newer rules can be loaded to replace default rules.
-        """
-        module_dir = os.path.dirname(os.path.abspath(sys.modules[Feature.__module__].__file__))
-        local_dir = os.getcwd()
-
-        for filename in filenames:
-            try:
-                data = json.load( open("%s/%s" % (local_dir, filename)) )
-            except IOError:
-                data = json.load( open("%s/%s" % (module_dir, filename)) )
-            for gff_feature, info in data.items():
-                if "target" in info:
-                    self.qualifier_translation_list[gff_feature] = info["target"]
-                if "prefix" in info:
-                    self.qualifier_prefix[gff_feature] = info["prefix"]
-                if "suffix" in info:
-                    self.qualifier_suffix[gff_feature] = info["suffix"]
+            for qualifier in self.dict_qualifiers:
+                logging.debug("feature:%s qualifier:%s",self.type, qualifier)
+                self.qualifiers[qualifier] = Qualifier(qualifier, self.dict_qualifiers[qualifier])
 
     def _reformat_exons(self):
         """
@@ -427,6 +385,7 @@ class Feature(object):
         """
         This is where qualifier values are added to the feature.
         """
+        logging.debug("add_qualifier")
         qualifier = self._from_gff_qualifier(gff_qualifier)
         logging.debug("Qualifier: %s - %s" % (qualifier, value))
 
@@ -434,16 +393,14 @@ class Feature(object):
             logging.debug("Skipping empty qualifier with value '%s'" % value)
             return
 
-        if qualifier not in self.qualifiers:
-            try:
-                os.stat( "%s/%s.json" % (self.qualifier_definition_dir, qualifier) )
-            except Exception as e:
-                msg = "Unknown qualifier '%s' - skipped" % qualifier
-                self.handle_message('warning', msg, msg, 1)
-            else:
-                logging.debug("'%s' is not a legal qualifier for feature type '%s'" % (qualifier, self.type))
-
+        if qualifier not in self.dict_qualifiers:
+            msg = "Unknown qualifier '%s' - skipped" % qualifier
+            self.handle_message('warning', msg, msg, 1)
             return
+        else:
+            if self.type in self.dict_features and qualifier not in self.dict_features[self.type]["legal_qualifiers"]:
+                    logging.debug("'%s' is not a legal qualifier for feature type '%s'" % (qualifier, self.type))
+                    return
 
         # Check if qualifier follow rules (i.e regex)
         if self.qualifiers[qualifier].value_format.startswith("regex:"):
@@ -502,7 +459,7 @@ class Feature(object):
         """
         Attempt to combine all features from another feature into this one.
         """
-
+        logging.debug("xxx combine")
         # add new location
         self.location += other.location
 
@@ -519,16 +476,18 @@ class Feature(object):
                     phase = int(other.qualifiers.get("phase", [0])[0])
 
                     if "codon_start" in self.legal_qualifiers:
-
+                        logging.debug("add codon_start")
                         if not "codon_start" in self.qualifiers:
-                            self.qualifiers["codon_start"] = Qualifier("codon_start", phase, qualifier_definition_dir = self.qualifier_definition_dir)
+                            self.qualifiers["codon_start"] = Qualifier("codon_start", phase,  self.dict_qualifiers["codon_start"])
                         else:
+
                             self.qualifiers["codon_start"].set_value(phase)
 
     def CDS_report(self, out = sys.stdout, parts = False, codon_info = True):
         """
         Writes a short report about a CDS to a file, used for debugging.
         """
+        logging.debug("xxx CDS_report")
         seq = "%s" % self.sequence()
         aa = self.translation()
 
@@ -604,7 +563,7 @@ class Feature(object):
             logging.warning('Partial CDS. The CDS with ID = %s not a multiple of three.' %  ID)
 
         #translate the sequence in AA with normal frame even if stop inside
-        translated_seq = seq.translate(codon_table).tostring().replace('B','X').replace('Z','X').replace('J','X')
+        translated_seq = str(seq.translate(codon_table)).replace('B','X').replace('Z','X').replace('J','X')
 
         #Extra check about stop codon in CDS
         if '*' in translated_seq[:-1]: # check if premature stop codon in the translation
@@ -666,7 +625,7 @@ if __name__ == '__main__':
         for gff_feature in record.features:
             print(gff_feature)
             print("_"*80)
-            feature = Feature( gff_feature, args.translation_file, 1, feature_definition_dir = "features", qualifier_definition_dir="qualifiers" )
+            feature = Feature( gff_feature, args.translation_file, 1 )
             print("_"*80)
             print(feature)
             break
