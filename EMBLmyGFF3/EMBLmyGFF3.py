@@ -1411,6 +1411,7 @@ def main():
     """
     DEFAULT_FEATURE_TRANSLATION_FILE=["translation_gff_feature_to_embl_feature.json"]
     dict_feature_translations = {}
+    dict_feature_translations["remove"] = []
     dict_key = {}
     local_dir = os.getcwd()
     for filename in DEFAULT_FEATURE_TRANSLATION_FILE:
