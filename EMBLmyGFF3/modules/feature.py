@@ -561,9 +561,20 @@ class Feature(object):
                     ID =  "%s" % " ".join(self.feature.qualifiers[qualifier])
                     break
             logging.warning('Partial CDS. The CDS with ID = %s not a multiple of three.' %  ID)
+            # removing remaining_nuc to avoid biopython warning:
+            # BiopythonWarning: Partial codon, len(sequence) not a multiple of three. Explicitly trim the sequence or add trailing N before translation. This may become an error in future.
+            seq = seq[:-remaining_nuc]
 
         #translate the sequence in AA with normal frame even if stop inside
-        translated_seq = str(seq.translate(codon_table)).replace('B','X').replace('Z','X').replace('J','X')
+        # cannot use translate(table=codon_table,cds=true) because fails if contains premature stop codon or missing/frangmented stop codon
+        translated_seq = str(seq.translate(table=codon_table)).replace('B','X').replace('Z','X').replace('J','X')
+        # checks the sequence starts with a valid alternative start codon, which will be translated as methionine, M
+        start_codon = seq[0:3];
+        if phase == 0 and start_codon in codon_table.start_codons:
+            if(translated_seq[0:1] != "M"): # if the start codon was not a M while it is a valid start codon we have to replace it by a methionine
+                translated_seq=translated_seq[1:] # removing first AA
+                translated_seq = start_codon+translated_seq  # adding M as first AA
+                logging.debug('Replacing valid alternative start codon (AA=%s) by a methionine (AA=M).' %  translated_seq[0:1])
 
         #Extra check about stop codon in CDS
         if '*' in translated_seq[:-1]: # check if premature stop codon in the translation
