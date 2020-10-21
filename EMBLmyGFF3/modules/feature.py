@@ -604,7 +604,7 @@ class Feature(object):
             logging.warning('Partial CDS. The CDS with ID = %s not a multiple of three.' %  ID)
 
         #translate the sequence in AA with normal frame even if stop inside
-        translated_seq = seq.translate(codon_table).tostring().replace('B','X').replace('Z','X').replace('J','X')
+        translated_seq = str(seq.translate(codon_table)).replace('B','X').replace('Z','X').replace('J','X')
 
         #Extra check about stop codon in CDS
         if '*' in translated_seq[:-1]: # check if premature stop codon in the translation
