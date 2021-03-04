@@ -502,7 +502,7 @@ class EMBL( object ):
 
         updated = time.localtime() # this should be the latest update...
 
-        output  = "\nDT   %s (Rel. %s, Created)" % (time.strftime("%d-%b-%Y", self.created), self._get_release(self.created))
+        output  = "\nDT   %s (Rel. %s, Created)" % (time.strftime("%d-%b-%Y", self.created).upper(), self._get_release(self.created))
         #output += "\nDT   %s (Rel. %s, Last updated, Version %i)" % (time.strftime("%d-%b-%Y", updated),
         #                                                             self._get_release(updated), self.version)
         return output + self.spacer
