@@ -31,7 +31,7 @@ GFF convertion is based on specifications from https://github.com/The-Sequence-O
 
 shameless_plug="""
     #############################################################################
-    # EMBLmyGFF3 v{str1}                                                             #
+    # EMBLmyGFF3 v{str1}                                                           #
     # NBIS - National Bioinformatics Infrastructure Sweden                      #
     # Authors: Martin Norling, Niclas Jareborg, Jacques Dainat                  #
     # Please visit https://github.com/NBISweden/EMBLmyGFF3 for more information #
