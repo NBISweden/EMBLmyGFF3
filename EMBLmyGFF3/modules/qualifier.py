@@ -11,70 +11,64 @@ import json
 import logging
 from .utilities import *
 
-LEGAL_DBXREF_FILE="legal_dbxref.json"
-
 class Qualifier( object ):
-    
+
     PREVIOUS_ERRORS = []
-    
-    def __init__(self, qualifier, value = [], mandatory = False, qualifier_definition_dir = "modules/qualifiers", no_wrap= None):
+
+    def __init__(self, qualifier, dict_qualifiers, mandatory = False, legal_dbxref=[], value = [], no_wrap= None):
         """
-        Initializes a Qualifier, loads json definition and starts 
+        Initializes a Qualifier, loads json definition and starts
         parsing the input data.
         """
         self.name = qualifier
         self.no_wrap = no_wrap
         self.mandatory = mandatory
-        self.qualifier_definition_dir = qualifier_definition_dir
-        self._load_definition("%s/%s.json" % (qualifier_definition_dir, qualifier.strip()))
+        self.legal_dbxref = legal_dbxref
+        self._load_definition(dict_qualifiers)
         self.value = []
         if value:
             self.add_value( value )
-    
+
     def __repr__(self):
         """
         Prints the current Qualifier in EMBL format
         """
         return self.embl_format()
-    
-    def _load_definition(self, filename):
+
+    def _load_definition(self, dict_qualifiers):
         """
         Loads the json definition for a qualifier type and sets its
         own attributes based on the content
         """
         try:
-            with open(filename) as data:
-                raw = json.load( data )
-                for key, value in raw.items():
+            for key, value in dict_qualifiers.items():
+                #logging.error("key:%s value:%s",key, value)
+                if key != "legal_dbxref":
                     setattr(self, key, value)
+                else:
+                    self.legal_dbxref = value
         except IOError as e:
             logging.error(e)
-    
-    def _load_legal_dbxref(self, filename):
-        """
-        Loads a list of legal external references
-        """
-        self.legal_dbxref = json.load(open("%s/%s" % (self.qualifier_definition_dir, filename)))
-    
+
     def _by_value_format(self, value):
         """
-        This is the main function of the qualifier class, it attempts to validate qualifier 
+        This is the main function of the qualifier class, it attempts to validate qualifier
         format by using the value_format tag of the qualifier definition.
         These definitions are written for humans though, not for scripts...
         TODO: keep implementing these
         """
+        logging.debug("_by_value_format %s",value)
         formatted_value = value
-        
+
         if not hasattr(self, "value_format"):
             return value
-        
+
         try:
             if self.value_format == "none": # no value taken
                 if value:
                     logging.info("Qualifier '%s' has value '%s', but none expected." % (self.name, value))
                 return ""
-            elif self.value_format.startswith("\"<database:identifier>\""): # Handle dbxref's 
-                self._load_legal_dbxref( LEGAL_DBXREF_FILE )
+            elif self.value_format.startswith("\"<database:identifier>\""): # Handle dbxref's
                 value = value if type(value) == type([]) else [value]
 
                 for val in value:
@@ -100,7 +94,7 @@ class Qualifier( object ):
                     logging.error("Value format '1 or 2 or 3' has value: %i" % formatted_value)
             else:
                 logging.debug("No rule to format '%s'" % self.value_format)
-        
+
             # TODO: implement validators for all value_format types
         except Exception as e:
             import traceback
@@ -116,7 +110,7 @@ class Qualifier( object ):
             traceback.print_exc(limit=5)
             import sys
             sys.exit(1)
-        
+
         return formatted_value
 
     def embl_format(self, no_wrap=None):
@@ -142,18 +136,19 @@ class Qualifier( object ):
             #if getattr(self, "value_type", None) == "none":
             #    string = "/%s" % (self.name)
             #    continue
-            
+
             output += multiline("FT", string, wrap=59, no_wrap = no_wrap)
-            
+
         return output
-         
+
     def add_value(self, value):
         """
         Adds a value to the current set of values for this qualifier.
         Qualifier wihtout value is possible. e.g environmental_sample
         """
+        logging.debug("add_value")
         self.value = [self.value] if type(self.value) != type([]) else self.value
-        
+
         new_value = self._by_value_format(value)
         if new_value or new_value == "":
             if new_value not in self.value:
@@ -164,28 +159,29 @@ class Qualifier( object ):
                 logging.debug("%s - Value: '%s' already exists" % (self.name, self.value))
 
     def set_value(self, value):
+        logging.debug("xxx set_value %s", value)
         value = value if type(value) == type([]) else [value]
         self.value = [self._by_value_format(v) for v in value]
 
 if __name__ == '__main__':
-    
+
     import argparse
     from BCBio import GFF
-    
+
     parser = argparse.ArgumentParser( description = __doc__ )
     parser.add_argument("test_gff", help="gff file to load a test qualifier from")
     parser.add_argument("-v", "--verbose", action="count", default=2, help="increase verbosity")
     parser.add_argument("-q", "--quiet", action="count", default=0, help="decrease verbosity")
-    
+
     args = parser.parse_args()
-    
-    logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s', 
-                        level = (5-args.verbose+args.quiet)*10, 
+
+    logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s',
+                        level = (5-args.verbose+args.quiet)*10,
                         datefmt="%H:%M:%S")
-    
+
     for record in GFF.parse(open(args.test_gff)):
         break
-    
+
     for feature in record.features:
         for qualifier, value in feature.qualifiers.items():
             print("%s: %s" % (qualifier, value))

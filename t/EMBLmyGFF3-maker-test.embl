@@ -6,7 +6,7 @@ AC * _4
 XX
 PR   Project:17285;
 XX
-DT   19-Feb-2020 (Rel. 133, Created)
+DT   04-MAR-2021 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -17,7 +17,7 @@ XX
 OC   cellular organisms; Eukaryota; Opisthokonta; Metazoa; Eumetazoa; Bilateria;
 OC   Protostomia; Ecdysozoa; Panarthropoda; Arthropoda; Mandibulata;
 OC   Pancrustacea; Hexapoda; Insecta; Dicondylia; Pterygota; Neoptera;
-OC   Holometabola; Diptera; Brachycera; Muscomorpha; Eremoneura; Cyclorrhapha;
+OC   Endopterygota; Diptera; Brachycera; Muscomorpha; Eremoneura; Cyclorrhapha;
 OC   Schizophora; Acalyptratae; Ephydroidea; Drosophilidae; Drosophilinae;
 OC   Drosophilini; Drosophila; Sophophora; melanogaster group; melanogaster
 OC   subgroup.
@@ -26,7 +26,7 @@ RN   [1]
 RP   1-1351857
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (19-FEB-2020) to the INSDC.
+RL   Submitted (04-MAR-2021) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH

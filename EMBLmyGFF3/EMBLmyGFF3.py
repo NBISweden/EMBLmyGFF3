@@ -13,6 +13,7 @@ from Bio.SeqFeature import SeqFeature, FeatureLocation, ExactPosition
 import os
 import sys
 import gzip
+import json
 import pprint
 import time
 import shutil
@@ -30,7 +31,7 @@ GFF convertion is based on specifications from https://github.com/The-Sequence-O
 
 shameless_plug="""
     #############################################################################
-    # EMBLmyGFF3 v{str1}                                                             #
+    # EMBLmyGFF3 v{str1}                                                           #
     # NBIS - National Bioinformatics Infrastructure Sweden                      #
     # Authors: Martin Norling, Niclas Jareborg, Jacques Dainat                  #
     # Please visit https://github.com/NBISweden/EMBLmyGFF3 for more information #
@@ -45,8 +46,12 @@ TODO: add way to handle mandatory features and feature qualifiers (especially co
 """
 
 SCRIPT_DIR=os.path.dirname(__file__)
+TRANSLATION_DIR=SCRIPT_DIR + "/modules"
 FEATURE_DIR=SCRIPT_DIR + "/modules/features"
 QUALIFIER_DIR=SCRIPT_DIR + "/modules/qualifiers"
+DEFAULT_FEATURE_TRANSLATION_FILE=["translation_gff_feature_to_embl_feature.json"]
+DEFAULT_QUALIFIER_TRANSLATION_FILE=["translation_gff_attribute_to_embl_qualifier.json", "translation_gff_other_to_embl_qualifier.json"]
+
 
 class EMBL( object ):
     """
@@ -158,6 +163,11 @@ class EMBL( object ):
         self.construct_information = []
         self.comment = ""
         self.translate = False
+        self.dict_features = {}
+        self.dict_feature_translations = {}
+        self.dict_qualifiers = {}
+        self.dict_qualifier_translations = {}
+
 
 #================== def methods =======================
 #\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
@@ -492,7 +502,7 @@ class EMBL( object ):
 
         updated = time.localtime() # this should be the latest update...
 
-        output  = "\nDT   %s (Rel. %s, Created)" % (time.strftime("%d-%b-%Y", self.created), self._get_release(self.created))
+        output  = "\nDT   %s (Rel. %s, Created)" % (time.strftime("%d-%b-%Y", self.created).upper(), self._get_release(self.created))
         #output += "\nDT   %s (Rel. %s, Last updated, Version %i)" % (time.strftime("%d-%b-%Y", updated),
         #                                                             self._get_release(updated), self.version)
         return output + self.spacer
@@ -720,9 +730,10 @@ class EMBL( object ):
                     locus_tag = "%s_%s" % (locus_tag_prefix, locus_tag_suffix)
 
             f = Feature(feature, self.record.seq, locus_tag, self.transl_table, translate=self.translate,
-                feature_definition_dir=FEATURE_DIR, qualifier_definition_dir=QUALIFIER_DIR, level=1,
-                reorder_gene_features = self.interleave_genes, force_unknown_features = self.force_unknown_features,
-                 force_uncomplete_features = self.force_uncomplete_features, uncompressed_log = self.uncompressed_log, no_wrap_qualifier = self.no_wrap_qualifier)
+                dict_features=self.dict_features, dict_qualifiers=self.dict_qualifiers,
+                dict_feature_translations=self.dict_feature_translations,dict_qualifier_translations=self.dict_qualifier_translations,
+                level=1,reorder_gene_features = self.interleave_genes, force_unknown_features = self.force_unknown_features,
+                force_uncomplete_features = self.force_uncomplete_features, uncompressed_log = self.uncompressed_log, no_wrap_qualifier = self.no_wrap_qualifier)
 
             if not self.keep_duplicates:
                 #Deal with identical CDS/UTR/etc between different isoforms:
@@ -1350,6 +1361,103 @@ def main():
         logging.info("Total features: %i" % EMBL.total_features)
         infile.seek(0, 0)
 
+
+    """
+    Loads a Feature definition json file.
+    """
+    dict_features = {}
+    dict_key_features = {}
+    for file in os.listdir(FEATURE_DIR):
+        if file.endswith(".json"):
+            filepath = FEATURE_DIR + "/" + file
+            dict_key_features = {}
+            dict_key_features["legal_qualifiers"]=[]
+            dict_key_features["mandatory"]=[]
+            with open(filepath) as data:
+                raw = json.load( data )
+                for key, value in raw.items():
+                    #logging.error("key:%s value:%s",key,value)
+                    if "qualifier" in key:
+                        for item, definition in value.items():
+                            #logging.error("item:%s definition:%s",item,definition)
+                            dict_key_features.setdefault("legal_qualifiers", []).append(item)
+                            if "mandatory" in key:
+                                dict_key_features.setdefault("mandatory", []).append(item)
+        dict_features[ file.rsplit( ".", 1 )[ 0 ] ] = dict_key_features
+
+    """
+    Loads a Qualifier definition json file.
+    """
+    dict_qualifiers = {}
+    dict_key_qualifiers = {}
+    for file in os.listdir(QUALIFIER_DIR):
+        if file.endswith(".json"):
+            filepath = QUALIFIER_DIR + "/" + file
+            dict_key_qualifiers = {}
+            with open(filepath) as data:
+                raw = json.load( data )
+                if (file == "legal_dbxref.json"):
+                    #logging.error("raw:%s",raw)
+                    dict_key_qualifiers["legal_dbxref"] = raw
+                else:
+                    for key, value in raw.items():
+                        #logging.error("key:%s value:%s",key,value)
+                        dict_key_qualifiers[key] = value
+            dict_qualifiers[ file.rsplit( ".", 1 )[ 0 ]  ] = dict_key_qualifiers
+
+    """
+    Load feature translation json files. Files are loaded in order that they are given,
+    thus newer rules can be loaded to replace default rules.
+    """
+    DEFAULT_FEATURE_TRANSLATION_FILE=["translation_gff_feature_to_embl_feature.json"]
+    dict_feature_translations = {}
+    dict_feature_translations["remove"] = []
+    dict_key = {}
+    local_dir = os.getcwd()
+    for filename in DEFAULT_FEATURE_TRANSLATION_FILE:
+        try:
+            data = json.load( open("%s/%s" % (local_dir, filename)) )
+        except IOError:
+            data = json.load( open("%s/%s" % (TRANSLATION_DIR, filename)) )
+        for gff_feature, info in data.items():
+            if info.get("remove", False):
+                dict_feature_translations.setdefault("remove", []).append(gff_feature)
+            if "target" in info:
+                dict_key[gff_feature] = info["target"]
+    dict_feature_translations["feature_translation_list"] = dict_key
+
+
+    """
+    Load qualifier translation json files. Files are loaded in order that they are given,
+    thus newer rules can be loaded to replace default rules.
+    """
+    DEFAULT_QUALIFIER_TRANSLATION_FILE=["translation_gff_attribute_to_embl_qualifier.json", "translation_gff_other_to_embl_qualifier.json"]
+    dict_qualifier_translations = {}
+    qualifier_translation_list = {}
+    qualifier_prefix = {}
+    qualifier_suffix = {}
+    for filename in DEFAULT_QUALIFIER_TRANSLATION_FILE:
+        try:
+            data = json.load( open("%s/%s" % (local_dir, filename)) )
+        except IOError:
+            data = json.load( open("%s/%s" % (TRANSLATION_DIR, filename)) )
+        for gff_feature, info in data.items():
+            if "target" in info:
+                qualifier_translation_list[gff_feature] = info["target"]
+            if "prefix" in info:
+                qualifier_prefix[gff_feature] = info["prefix"]
+            if "suffix" in info:
+                qualifier_suffix[gff_feature] = info["suffix"]
+
+    dict_qualifier_translations["qualifier_translation_list"] = qualifier_translation_list
+    dict_qualifier_translations["qualifier_prefix"] = qualifier_prefix
+    dict_qualifier_translations["qualifier_suffix"] = qualifier_suffix
+
+    #import pprint
+    #pprint.pprint(dict_qualifier_translations)
+
+    # ------------------
+    # read all features
     for record in GFF.parse(infile, base_dict=seq_dict):
 
         # Check existence of gff seqid among the fasta sequence identifiers
@@ -1363,6 +1471,12 @@ def main():
             logging.warning("Sequence %s too short (%s bp)! Minimum accpeted by ENA is 100, we skip it !" % (record.name, len(record.seq) ) )
             continue
         writer = EMBL( record, True )
+
+        # qualifiers / features json information
+        writer.dict_qualifier_translations = dict_qualifier_translations
+        writer.dict_feature_translations = dict_feature_translations
+        writer.dict_qualifiers = dict_qualifiers
+        writer.dict_features = dict_features
 
         #To set up first
         writer.set_email(args.email) # has to be before set_species
