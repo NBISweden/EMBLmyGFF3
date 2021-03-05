@@ -17,7 +17,7 @@ python setup.py install
 ## RUN TESTS
 cd t
 
-sed -Ei -e 's/^(DT   )[0-9]{2}-[A-Za-z]{3}-[0-9]{4}/\1'"$(date +%d-%b-%Y)"'/' \
+sed -Ei -e 's/^(DT   )[0-9]{2}-[A-Za-z]{3}-[0-9]{4}/\1'"$(date +%d-%^b-%Y)"'/' \
         -e 's/^(RL   Submitted \()[0-9]{2}-[A-Za-z]{3}-[0-9]{4}/\1'"$(date +%d-%^b-%Y)"'/' \
        *.embl
 
@@ -33,6 +33,7 @@ for NAME in augustus maker prokka; do
     if diff -q "$RESULT_FILE" "$EXPECTED_FILE"; then
         SUCCESS=$(( $SUCCESS + 1 ))
     else
+        diff "$RESULT_FILE" "$EXPECTED_FILE"
         FAIL=$(( $FAIL + 1 ))
     fi
 done
