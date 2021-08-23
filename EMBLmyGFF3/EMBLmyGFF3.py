@@ -1252,7 +1252,7 @@ def main():
     # Deal with the expose_translations option
     if len(sys.argv) == 2 and sys.argv[1] == "--expose_translations":
         module_dir = os.path.dirname(os.path.abspath(sys.modules[Feature.__module__].__file__))
-        for filename in Feature.DEFAULT_FEATURE_TRANSLATION_FILE + list(Feature.DEFAULT_QUALIFIER_TRANSLATION_FILE):
+        for filename in (DEFAULT_FEATURE_TRANSLATION_FILE + DEFAULT_QUALIFIER_TRANSLATION_FILE):
             logging.info("Copying translation file %s to %s" % (filename, os.getcwd()))
             shutil.copy( "%s/%s" % (module_dir, filename), filename )
         sys.exit()
@@ -1349,7 +1349,7 @@ def main():
 
     if args.expose_translations:
         module_dir = os.path.dirname(os.path.abspath(sys.modules[Feature.__module__].__file__))
-        for filename in Feature.DEFAULT_FEATURE_TRANSLATION_FILE + list(Feature.DEFAULT_QUALIFIER_TRANSLATION_FILE):
+        for filename in (DEFAULT_FEATURE_TRANSLATION_FILE + DEFAULT_QUALIFIER_TRANSLATION_FILE):
             logging.info("Copying translation file %s to %s" % (filename, os.getcwd()))
             shutil.copy( "%s/%s" % (module_dir, filename), filename )
 
@@ -1409,7 +1409,6 @@ def main():
     Load feature translation json files. Files are loaded in order that they are given,
     thus newer rules can be loaded to replace default rules.
     """
-    DEFAULT_FEATURE_TRANSLATION_FILE=["translation_gff_feature_to_embl_feature.json"]
     dict_feature_translations = {}
     dict_feature_translations["remove"] = []
     dict_key = {}
@@ -1431,7 +1430,6 @@ def main():
     Load qualifier translation json files. Files are loaded in order that they are given,
     thus newer rules can be loaded to replace default rules.
     """
-    DEFAULT_QUALIFIER_TRANSLATION_FILE=["translation_gff_attribute_to_embl_qualifier.json", "translation_gff_other_to_embl_qualifier.json"]
     dict_qualifier_translations = {}
     qualifier_translation_list = {}
     qualifier_prefix = {}
