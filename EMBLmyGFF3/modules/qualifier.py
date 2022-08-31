@@ -42,11 +42,8 @@ class Qualifier( object ):
         """
         try:
             for key, value in dict_qualifiers.items():
-                #logging.error("key:%s value:%s",key, value)
-                if key != "legal_dbxref":
-                    setattr(self, key, value)
-                else:
-                    self.legal_dbxref = value
+                setattr(self, key, value)
+
         except IOError as e:
             logging.error(e)
 
@@ -72,7 +69,7 @@ class Qualifier( object ):
                 value = value if type(value) == type([]) else [value]
 
                 for val in value:
-                    if val.split(':')[0].lower() in [v.lower() for v in self.legal_dbxref]:
+                    if val.split(':')[0].lower() in self.legal_dbxref:
                         formatted_value = val
                     else:
                         msg = "Unknown db_xref '%s' - skipped." % (val.split(':')[0])
