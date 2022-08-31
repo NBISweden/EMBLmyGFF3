@@ -1402,12 +1402,12 @@ def main():
                     # Set all value of the list as lowercase
                     for i in range(len(raw)):
                         raw[i] = raw[i].lower()
-                    dict_qualifiers["legal_dbxref"] = raw
+                    dict_key_qualifiers["legal_dbxref"] = raw
                 else:
                     for key, value in raw.items():
                         #logging.error("key:%s value:%s",key,value)
                         dict_key_qualifiers[key] = value
-                    dict_qualifiers[ file.rsplit( ".", 1 )[ 0 ]  ] = dict_key_qualifiers
+                dict_qualifiers[ file.rsplit( ".", 1 )[ 0 ]  ] = dict_key_qualifiers
 
     """
     Load feature translation json files. Files are loaded in order that they are given,

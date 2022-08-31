@@ -42,7 +42,8 @@ class Qualifier( object ):
         """
         try:
             for key, value in dict_qualifiers.items():
-                setattr(self, key, value)
+                if key != "legal_dbxref":
+                    setattr(self, key, value)
 
         except IOError as e:
             logging.error(e)

@@ -314,14 +314,14 @@ class Feature(object):
             for qualifier in self.dict_features[self.type]["legal_qualifiers"]:
                 logging.debug("qualifier:%s", qualifier)
                 mandatory = True if (qualifier in self.dict_features[self.type]["mandatory"]) else False
-                self.qualifiers[qualifier] = Qualifier(qualifier, self.dict_qualifiers[qualifier], mandatory = mandatory, legal_dbxref=self.dict_qualifiers["legal_dbxref"])
+                self.qualifiers[qualifier] = Qualifier(qualifier, self.dict_qualifiers[qualifier], mandatory = mandatory, legal_dbxref=self.dict_qualifiers["legal_dbxref"]["legal_dbxref"])
         else:
             msg = ">>%s<< is not a valid EMBL feature type. You can ignore this message if you don't need the feature.\nOtherwise tell me which EMBL feature it corresponds to by adding the information within the json mapping file." % (self.type)
             self.handle_message("error", msg, msg, 1)
             self.skip_feature=True
             for qualifier in self.dict_qualifiers:
                 logging.debug("feature:%s qualifier:%s",self.type, qualifier)
-                self.qualifiers[qualifier] = Qualifier(qualifier, self.dict_qualifiers[qualifier], legal_dbxref=self.dict_qualifiers["legal_dbxref"])
+                self.qualifiers[qualifier] = Qualifier(qualifier, self.dict_qualifiers[qualifier], legal_dbxref=self.dict_qualifiers["legal_dbxref"]["legal_dbxref"])
 
     def _reformat_exons(self):
         """
