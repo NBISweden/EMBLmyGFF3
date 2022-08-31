@@ -19,7 +19,7 @@ setup(
     license='GPL-3.0',
     packages=find_packages(),
 
-    install_requires=['biopython>=1.67,<=1.77', 'bcbio-gff>=0.6.4','numpy<1.16.5', 'python_version>="3.6.0"' ],
+    install_requires=['biopython>=1.78', 'bcbio-gff>=0.6.4','numpy>1.19', 'python_version>="3.6.0"' ],
     include_package_data=True,
 
     entry_points={

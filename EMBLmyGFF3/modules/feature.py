@@ -11,7 +11,6 @@ from .utilities import *
 from operator import attrgetter
 from Bio.Seq import Seq
 from Bio.Data import CodonTable
-from Bio.Alphabet.IUPAC import *
 from .location import EMBLLocation
 from Bio.SeqFeature import SeqFeature, FeatureLocation, BeforePosition, AfterPosition
 from .qualifier import *
@@ -544,7 +543,7 @@ class Feature(object):
         O = "Pyl";  Pyrrolysine
         """
         codon_table = CodonTable.ambiguous_dna_by_id[self.transl_table]
-        seq = Seq(str(self.sequence()),IUPACAmbiguousDNA())
+        seq = Seq(str(self.sequence()))
 
         #start translation according to the phase. Phase and codon_start are not the same coordinate system. It is why we have to remove 1
         phase = int(self.qualifiers.get('codon_start').value[0]) - 1
