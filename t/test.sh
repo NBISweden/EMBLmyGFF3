@@ -16,9 +16,9 @@ python setup.py install
 
 ## RUN TESTS
 cd t
-
-sed -Ei -e 's/^(DT   )[0-9]{2}-[A-Za-z]{3}-[0-9]{4}/\1'"$(date +%d-%^b-%Y)"'/' \
-        -e 's/^(RL   Submitted \()[0-9]{2}-[A-Za-z]{3}-[0-9]{4}/\1'"$(date +%d-%^b-%Y)"'/' \
+thedate=$(LC_TIME=en_US.UTF-8 date +%d-%^b-%Y)
+sed -Ei -e 's/^(DT   )[0-9]{2}-[A-Za-z]{3}-[0-9]{4}/\1'"$thedate"'/' \
+        -e 's/^(RL   Submitted \()[0-9]{2}-[A-Za-z]{3}-[0-9]{4}/\1'"$thedate"'/' \
        *.embl
 
 SUCCESS=0
