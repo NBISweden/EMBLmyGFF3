@@ -24,7 +24,7 @@ sed -Ei -e 's/^(DT   )[0-9]{2}-[A-Za-z]{3}-[0-9]{4}/\1'"$thedate"'/' \
 SUCCESS=0
 FAIL=0
 
-for NAME in augustus maker prokka prokka_disorder dbxref_test ; do
+for NAME in augustus maker prokka prokka_disorder dbxref_test aa; do
     RESULT_FILE="EMBLmyGFF3-${NAME}-example.embl"
     EXPECTED_FILE="EMBLmyGFF3-${NAME}-test.embl"
     [ -f "$RESULT_FILE" ] && rm $RESULT_FILE
@@ -44,5 +44,5 @@ if [ $FAIL -eq 0 ]; then
     exit 0
 fi
 
-echo "Failed $FAIL out of 5 tests"
+echo "Failed $FAIL out of 6 tests"
 exit 1
