@@ -1341,6 +1341,9 @@ def main():
     logging.info("Reading sequence file")
     infile = gzip.open(args.gff_file, 'rt') if args.gff_file.endswith(".gz") else open(args.gff_file)
     infasta = gzip.open(args.fasta, 'rt') if args.fasta.endswith(".gz") else open(args.fasta)
+    # Since Python 3.6, the default dict class maintains key order, meaning this dictionary 
+    # will reflect the order of records given to it. As of Biopython 1.72, 
+    # on older versions of Python we explicitly use an OrderedDict so that you can always assume the record order is preserved.
     seq_dict = SeqIO.to_dict( SeqIO.parse(infasta, "fasta") )
     logging.info("Finished reading sequence file.")
 
