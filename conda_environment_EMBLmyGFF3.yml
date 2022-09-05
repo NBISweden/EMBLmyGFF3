@@ -1,0 +1,12 @@
+# conda env create -f conda_environment_AGAT.yml
+name: emblmygff3
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+
+dependencies:
+  - python>=3.8.0
+  - biopython>=1.78
+  - bcbio-gff>=0.6.4
+  - numpy>=1.22

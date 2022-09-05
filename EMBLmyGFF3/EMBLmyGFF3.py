@@ -1341,6 +1341,9 @@ def main():
     logging.info("Reading sequence file")
     infile = gzip.open(args.gff_file, 'rt') if args.gff_file.endswith(".gz") else open(args.gff_file)
     infasta = gzip.open(args.fasta, 'rt') if args.fasta.endswith(".gz") else open(args.fasta)
+    # Since Python 3.6, the default dict class maintains key order, meaning this dictionary 
+    # will reflect the order of records given to it. As of Biopython 1.72, 
+    # on older versions of Python we explicitly use an OrderedDict so that you can always assume the record order is preserved.
     seq_dict = SeqIO.to_dict( SeqIO.parse(infasta, "fasta") )
     logging.info("Finished reading sequence file.")
 
@@ -1387,6 +1390,8 @@ def main():
 
     """
     Loads a Qualifier definition json file.
+    /!\ legal_dbxref is not a qualifier but contain the list of accepted databse for the dbxref qualifier.
+        It has been added for easy handle
     """
     dict_qualifiers = {}
     dict_key_qualifiers = {}
@@ -1397,13 +1402,15 @@ def main():
             with open(filepath) as data:
                 raw = json.load( data )
                 if (file == "legal_dbxref.json"):
-                    #logging.error("raw:%s",raw)
+                    # Set all value of the list as lowercase
+                    for i in range(len(raw)):
+                        raw[i] = raw[i].lower()
                     dict_key_qualifiers["legal_dbxref"] = raw
                 else:
                     for key, value in raw.items():
                         #logging.error("key:%s value:%s",key,value)
                         dict_key_qualifiers[key] = value
-            dict_qualifiers[ file.rsplit( ".", 1 )[ 0 ]  ] = dict_key_qualifiers
+                dict_qualifiers[ file.rsplit( ".", 1 )[ 0 ]  ] = dict_key_qualifiers
 
     """
     Load feature translation json files. Files are loaded in order that they are given,
