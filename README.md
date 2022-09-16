@@ -1,6 +1,6 @@
 
 
-EMBLmyGFF3 [![Build Status](https://travis-ci.org/NBISweden/EMBLmyGFF3.svg?branch=master)](https://travis-ci.org/NBISweden/EMBLmyGFF3) [![DOI](EMBLmyGFF3.svg)](https://doi.org/10.1186/s13104-018-3686-x) [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/emblmygff3/README.html) [![Anaconda-Server Badge](https://anaconda.org/bioconda/emblmygff3/badges/license.svg)](https://anaconda.org/bioconda/emblmygff3)
+EMBLmyGFF3 [![Build Status](https://travis-ci.org/NBISweden/EMBLmyGFF3.svg?branch=master)](https://travis-ci.org/NBISweden/EMBLmyGFF3) [![DOI](EMBLmyGFF3.svg)](https://doi.org/10.1186/s13104-018-3686-x) [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/emblmygff3/README.html) [![Anaconda-Server Badge](https://img.shields.io/conda/dn/bioconda/emblmygff3.svg?style=flat)](https://anaconda.org/bioconda/emblmygff3) [![Anaconda-Server Badge](https://anaconda.org/bioconda/emblmygff3/badges/license.svg)](https://anaconda.org/bioconda/emblmygff3)
 =========================================
 ### GFF3 to EMBL conversion tool
 
