@@ -1070,7 +1070,7 @@ class EMBL( object ):
             self.organelle = EMBL.PREVIOUS_VALUES["organelle"]
         else:
             if self.verify and organelle:
-                organelle = self._verify( self.organelle, "organelle")
+                organelle = self._verify(organelle, "organelle")
 
             self.organelle = organelle
             EMBL.PREVIOUS_VALUES["organelle"] = organelle
