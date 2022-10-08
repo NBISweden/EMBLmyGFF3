@@ -96,8 +96,17 @@ class Feature(object):
         self.translate = translate
         self.transl_table = transl_table
         self.uncompressed_log = uncompressed_log
-
         self.type = self._from_gff_feature(feature.type)
+
+        # Check phase is not missing for CDS otherwise fix it to avoid crash.
+        if level == 3 and  self.type == "CDS":
+            if not "phase" in self.feature.qualifiers.keys():
+                ID=""
+                if "ID" in self.feature.qualifiers.keys():
+                    ID =  "%s" % " ".join(self.feature.qualifiers["ID"])
+                logging.error('CDS %s does not have any phase! Please check your gff file. EMBLmyGFF3 set it to 0 by default'  %  ID)
+                self.feature.qualifiers["phase"]=0
+
         logging.info("-------+------------------------------------------")
         logging.info("FEATURE|  Name: %s" % self.type)
         logging.info("-"*50)
@@ -316,7 +325,7 @@ class Feature(object):
                 mandatory = True if (qualifier in self.dict_features[self.type]["mandatory"]) else False
                 self.qualifiers[qualifier] = Qualifier(qualifier, self.dict_qualifiers[qualifier], mandatory = mandatory, legal_dbxref=self.dict_qualifiers["legal_dbxref"]["legal_dbxref"])
         else:
-            msg = ">>%s<< is not a valid EMBL feature type. You can ignore this message if you don't need the feature.\nOtherwise tell me which EMBL feature it corresponds to by adding the information within the json mapping file." % (self.type)
+            msg = ">>%s<< is not a valid EMBL feature type. You can ignore this message if you don't need the feature.\n                        Otherwise tell me which EMBL feature it corresponds to by adding the information within the json mapping file." % (self.type)
             self.handle_message("error", msg, msg, 1)
             self.skip_feature=True
             for qualifier in self.dict_qualifiers:
