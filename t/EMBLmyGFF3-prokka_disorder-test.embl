@@ -6,7 +6,6 @@ AC * _ERS324955|SC|contig000001
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -14,14 +13,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-317941
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -5354,7 +5352,6 @@ AC * _ERS324955|SC|contig000002
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -5362,14 +5359,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-57335
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -6344,7 +6340,6 @@ AC * _ERS324955|SC|contig000003
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -6352,14 +6347,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-57237
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -7332,7 +7326,6 @@ AC * _ERS324955|SC|contig000004
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -7340,14 +7333,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-132407
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -9588,7 +9580,6 @@ AC * _ERS324955|SC|contig000005
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -9596,14 +9587,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-131196
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -11809,7 +11799,6 @@ AC * _ERS324955|SC|contig000006
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -11817,14 +11806,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-102838
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -13559,7 +13547,6 @@ AC * _ERS324955|SC|contig000007
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -13567,14 +13554,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-85930
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -15026,7 +15012,6 @@ AC * _ERS324955|SC|contig000008
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -15034,14 +15019,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-78315
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -16375,7 +16359,6 @@ AC * _ERS324955|SC|contig000009
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -16383,14 +16366,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-67683
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -17538,7 +17520,6 @@ AC * _ERS324955|SC|contig000010
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -17546,14 +17527,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-64624
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -18666,7 +18646,6 @@ AC * _ERS324955|SC|contig000011
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -18674,14 +18653,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-161432
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -21404,7 +21382,6 @@ AC * _ERS324955|SC|contig000012
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -21412,14 +21389,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-267336
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -25915,7 +25891,6 @@ AC * _ERS324955|SC|contig000013
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -25923,14 +25898,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-55719
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -26878,7 +26852,6 @@ AC * _ERS324955|SC|contig000014
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -26886,14 +26859,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-53798
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -27809,7 +27781,6 @@ AC * _ERS324955|SC|contig000015
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -27817,14 +27788,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-46744
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -28623,7 +28593,6 @@ AC * _ERS324955|SC|contig000016
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -28631,14 +28600,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-42399
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -29364,7 +29332,6 @@ AC * _ERS324955|SC|contig000017
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -29372,14 +29339,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-40680
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -30076,7 +30042,6 @@ AC * _ERS324955|SC|contig000018
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -30084,14 +30049,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-39787
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -30774,7 +30738,6 @@ AC * _ERS324955|SC|contig000019
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -30782,14 +30745,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-37849
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -31439,7 +31401,6 @@ AC * _ERS324955|SC|contig000020
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -31447,14 +31408,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-35574
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -32066,7 +32026,6 @@ AC * _ERS324955|SC|contig000021
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -32074,14 +32033,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-33199
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -32654,7 +32612,6 @@ AC * _ERS324955|SC|contig000022
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -32662,14 +32619,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-30628
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -33199,7 +33155,6 @@ AC * _ERS324955|SC|contig000023
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -33207,14 +33162,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-27067
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -33685,7 +33639,6 @@ AC * _ERS324955|SC|contig000024
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -33693,14 +33646,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-23145
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -34105,7 +34057,6 @@ AC * _ERS324955|SC|contig000025
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -34113,14 +34064,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-21703
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -34501,7 +34451,6 @@ AC * _ERS324955|SC|contig000026
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -34509,14 +34458,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-21044
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -34886,7 +34834,6 @@ AC * _ERS324955|SC|contig000027
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -34894,14 +34841,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-19971
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -35253,7 +35199,6 @@ AC * _ERS324955|SC|contig000028
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -35261,14 +35206,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-15942
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -35553,7 +35497,6 @@ AC * _ERS324955|SC|contig000029
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -35561,14 +35504,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-2486
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -35629,7 +35571,6 @@ AC * _ERS324955|SC|contig000030
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -35637,14 +35578,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-1475
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -35688,7 +35628,6 @@ AC * _ERS324955|SC|contig000031
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -35696,14 +35635,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-1228
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -35743,7 +35681,6 @@ AC * _ERS324955|SC|contig000032
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -35751,14 +35688,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-412
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
@@ -35784,7 +35720,6 @@ AC * _ERS324955|SC|contig000033
 XX
 PR   Project:17285;
 XX
-DT   02-SEP-2022 (Rel. 133, Created)
 XX
 DE   XXX
 XX
@@ -35792,14 +35727,13 @@ KW   .
 XX
 OS   Escherichia coli
 XX
-OC   cellular organisms; Bacteria; Proteobacteria; Gammaproteobacteria;
+OC   cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria;
 OC   Enterobacterales; Enterobacteriaceae; Escherichia.
 XX
 RN   [1]
 RP   1-321
 RG   REFERENCE_GROUP
 RT   ;
-RL   Submitted (02-SEP-2022) to the INSDC.
 XX
 FH   Key             Location/Qualifiers
 FH
