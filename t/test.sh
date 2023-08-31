@@ -16,10 +16,17 @@ python setup.py install
 
 ## RUN TESTS
 cd t
-thedate=$(LC_TIME=en_US.UTF-8 date +%d-%^b-%Y)
-sed -Ei -e 's/^(DT   )[0-9]{2}-[A-Za-z]{3}-[0-9]{4}/\1'"$thedate"'/' \
-        -e 's/^(RL   Submitted \()[0-9]{2}-[A-Za-z]{3}-[0-9]{4}/\1'"$thedate"'/' \
-       *.embl
+
+# Remove line related to dates
+if [ "$(uname)" == "Darwin" ]; then
+    sed -Ei '' -e '/^DT   .*/d' \
+        -e '/^RL   .*/d' \
+       *.embl  
+else
+    sed -Ei -e '/^DT   .*/d' \
+        -e '/^RL   .*/d' \
+       *.embl 
+fi
 
 SUCCESS=0
 FAIL=0
@@ -27,16 +34,31 @@ FAIL=0
 for NAME in augustus maker prokka prokka_disorder dbxref_test aa; do
     RESULT_FILE="EMBLmyGFF3-${NAME}-example.embl"
     EXPECTED_FILE="EMBLmyGFF3-${NAME}-test.embl"
+    cp $EXPECTED_FILE $EXPECTED_FILE.copy
     [ -f "$RESULT_FILE" ] && rm $RESULT_FILE
     ../examples/${NAME}_example.py
 
-    if diff -q "$RESULT_FILE" "$EXPECTED_FILE"; then
+    # Remove line related to dates
+    if [ "$(uname)" == "Darwin" ]; then
+        sed -Ei '' -e '/^DT   .*/d' \
+            -e '/^RL   .*/d' \
+        $RESULT_FILE $EXPECTED_FILE.copy
+    else
+        sed -Ei -e '/^DT   .*/d' \
+            -e '/^RL   .*/d' \
+        $RESULT_FILE $EXPECTED_FILE.copy
+    fi
+
+    if diff -q "$RESULT_FILE" "$EXPECTED_FILE.copy"; then
         SUCCESS=$(( $SUCCESS + 1 ))
     else
-        diff "$RESULT_FILE" "$EXPECTED_FILE"
+        diff "$RESULT_FILE" "$EXPECTED_FILE.copy"
         FAIL=$(( $FAIL + 1 ))
     fi
-    [ -f "$RESULT_FILE" ] && rm $RESULT_FILE
+    
+    #[ -f "$RESULT_FILE" ] && rm $RESULT_FILE
+    #[ -f "$EXPECTED_FILE.copy" ] && rm $EXPECTED_FILE.copy
+
 done
 
 if [ $FAIL -eq 0 ]; then
