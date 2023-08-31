@@ -42,7 +42,7 @@ def main():
 	MOLECULE="genomic DNA"
 
 	#Create the command
-	command = "EMBLmyGFF3 --translate --rg REFERENCE_GROUP -i "+LOCUS_TAG+" -p "+PROJECT+" -m \""+MOLECULE+"\" -r "+TABLE+" -t linear -s \""+SPECIES+"\" -x "+TAXONOMY+" -o EMBLmyGFF3-aa-example.embl "+fill_path(ANNOTATION)+" "+fill_path(GENOME)
+	command = "EMBLmyGFF3 --no_progress --translate --rg REFERENCE_GROUP -i "+LOCUS_TAG+" -p "+PROJECT+" -m \""+MOLECULE+"\" -r "+TABLE+" -t linear -s \""+SPECIES+"\" -x "+TAXONOMY+" -o EMBLmyGFF3-aa-example.embl "+fill_path(ANNOTATION)+" "+fill_path(GENOME)
 	print("Running the following command: "+command)
 
 	#Execute the command

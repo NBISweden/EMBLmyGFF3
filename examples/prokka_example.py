@@ -48,7 +48,7 @@ def main():
 	STRAIN="K-12"
 
 	#Create the command
-	command = "EMBLmyGFF3 --rg REFERENCE_GROUP -i "+LOCUS_TAG+" -p "+PROJECT+" -m \""+MOLECULE+"\" -r "+TABLE+" -t "+TOPOLOGY+" --strain \""+STRAIN+"\" -s \""+SPECIES+"\" -x "+TAXONOMY+" -o EMBLmyGFF3-prokka-example.embl "+fill_path(ANNOTATION)+" "+fill_path(GENOME)
+	command = "EMBLmyGFF3 --no_progress --rg REFERENCE_GROUP -i "+LOCUS_TAG+" -p "+PROJECT+" -m \""+MOLECULE+"\" -r "+TABLE+" -t "+TOPOLOGY+" --strain \""+STRAIN+"\" -s \""+SPECIES+"\" -x "+TAXONOMY+" -o EMBLmyGFF3-prokka-example.embl "+fill_path(ANNOTATION)+" "+fill_path(GENOME)
 	print("Running the following command: "+command)
 
 	#Execute the command
