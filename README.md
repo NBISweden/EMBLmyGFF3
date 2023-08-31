@@ -62,7 +62,7 @@ __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Ti
 
 ## Prerequisites
 
-**Python >=3.8**, **biopython >=1.78**, **numpy >=1.22** and the **bcbio-gff >=0.6.4** python packages.
+**Python >=3.9**, **biopython >=1.78**, **numpy >=1.22** and the **bcbio-gff >=0.6.4** python packages.
 
 In order to install pip please use the following steps:
 
