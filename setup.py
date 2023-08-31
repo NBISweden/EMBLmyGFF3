@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# Check python version - it is not possible to specify which Python version to use in the setup.py file
+import sys
+if sys.version_info < (3,9):
+    sys.exit('Sorry, Python >= 3.9 is required')
+
 from setuptools import setup, find_packages
 
 # access the version wihtout importing the EMBLmyGFF3 package
@@ -19,7 +24,7 @@ setup(
     license='GPL-3.0',
     packages=find_packages(),
 
-    install_requires=['biopython>=1.78', 'bcbio-gff>=0.6.4','numpy>=1.22', 'python_version>="3.8.0"' ],
+    install_requires=['biopython>=1.78', 'bcbio-gff>=0.6.4','numpy>=1.22'],
     include_package_data=True,
 
     entry_points={
