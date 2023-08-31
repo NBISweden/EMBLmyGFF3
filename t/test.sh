@@ -56,8 +56,8 @@ for NAME in augustus maker prokka prokka_disorder dbxref_test aa; do
         FAIL=$(( $FAIL + 1 ))
     fi
     
-    #[ -f "$RESULT_FILE" ] && rm $RESULT_FILE
-    #[ -f "$EXPECTED_FILE.copy" ] && rm $EXPECTED_FILE.copy
+    [ -f "$RESULT_FILE" ] && rm $RESULT_FILE
+    [ -f "$EXPECTED_FILE.copy" ] && rm $EXPECTED_FILE.copy
 
 done
 
