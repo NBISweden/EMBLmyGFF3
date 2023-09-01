@@ -321,6 +321,7 @@ You can also find a comprehensive help about the different parameters using the 
 |  --isolate|             Individual isolate from which the sequence was obtained. May be needed when organism belongs to Bacteria.|
 |  --isolation_source|    Describes the physical, environmental and/or local geographical source of the biological sample from which the sequence was derived. Mandatory when environmental_sample option used.|
 |  --keep_duplicates|       Do not remove duplicate features during the process. /!\ Option not suitable for submission purpose.|
+|  --keep_short_sequences|       Do not remove short sequences (< 100bp) during the process. /!\ Option not suitable for submission purpose.|
 |  --locus_numbering_start| Start locus numbering with the provided value.|
 |  --no_progress|         Hide conversion progress counter.|
 |  --no_wrap_qualifier|   By default there is a line wrapping at 80 characters. The cut is at the world level. Activating this option will avoid the line-wrapping for the qualifiers.|

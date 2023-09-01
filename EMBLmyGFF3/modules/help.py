@@ -570,6 +570,13 @@ Bolean - Doesnt expect any value
 Do not remove duplicate features during the process. 
 /!\ Option not suitable for submission purpose. Features that have the same key (feature type) and location as another feature are considered as duplicates and aren't allowed by the EMBL database. So they are remove during the process. If you don't plan to submit the file to ENA and you wish to keep these features, use the --keep_duplicates option.
 """ 
+  if(string == "keep_short_sequences" or string == "all"):
+    output += string+""":
+EMBLmyGFF3 tool specific
+Bolean - Doesnt expect any value
+Do not remove short sequences (< 100bp) during the process. 
+/!\ Option not suitable for submission purpose.
+""" 
   if(string == "force_unknown_features" or string == "all"):
     output += string+""":
 EMBLmyGFF3 tool specific
