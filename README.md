@@ -1,6 +1,5 @@
-
-
-[![Build Status](https://travis-ci.org/NBISweden/EMBLmyGFF3.svg?branch=master)](https://travis-ci.org/NBISweden/EMBLmyGFF3) [![DOI](EMBLmyGFF3.svg)](https://doi.org/10.1186/s13104-018-3686-x) 
+![GitHub CI](https://github.com/NBISweden/EMBLmyGFF3/actions/workflows/main.yml/badge.svg)
+[![DOI](EMBLmyGFF3.svg)](https://doi.org/10.1186/s13104-018-3686-x) 
 [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/emblmygff3/README.html) 
 [![Anaconda-Server Badge](https://img.shields.io/conda/dn/bioconda/emblmygff3.svg?style=flat)](https://anaconda.org/bioconda/emblmygff3) 
 [<img alt="docker_emblmygff3" src="https://img.shields.io/badge/container-Docker-blue">](https://quay.io/repository/biocontainers/emblmygff3)
@@ -62,7 +61,7 @@ __You don't know how to submit to ENA ? Please visit the [ENA: Guidelines and Ti
 
 ## Prerequisites
 
-**Python >=3.8**, **biopython >=1.78**, **numpy >=1.22** and the **bcbio-gff >=0.6.4** python packages.
+**Python >=3.9**, **biopython >=1.78**, **numpy >=1.22** and the **bcbio-gff >=0.6.4** python packages.
 
 In order to install pip please use the following steps:
 
@@ -321,6 +320,7 @@ You can also find a comprehensive help about the different parameters using the 
 |  --isolate|             Individual isolate from which the sequence was obtained. May be needed when organism belongs to Bacteria.|
 |  --isolation_source|    Describes the physical, environmental and/or local geographical source of the biological sample from which the sequence was derived. Mandatory when environmental_sample option used.|
 |  --keep_duplicates|       Do not remove duplicate features during the process. /!\ Option not suitable for submission purpose.|
+|  --keep_short_sequences|       Do not remove short sequences (< 100bp) during the process. /!\ Option not suitable for submission purpose.|
 |  --locus_numbering_start| Start locus numbering with the provided value.|
 |  --no_progress|         Hide conversion progress counter.|
 |  --no_wrap_qualifier|   By default there is a line wrapping at 80 characters. The cut is at the world level. Activating this option will avoid the line-wrapping for the qualifiers.|

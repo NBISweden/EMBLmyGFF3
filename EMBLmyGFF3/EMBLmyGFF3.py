@@ -1299,6 +1299,7 @@ def main():
     parser.add_argument("--force_uncomplete_features", action="store_true", help="Force to keep features whithout all the mandatory qualifiers. /!\ Option not suitable for submission purpose.")
     parser.add_argument("--interleave_genes", action="store_false", help="Print gene features with interleaved mRNA and CDS features.")
     parser.add_argument("--keep_duplicates", action="store_true", help="Do not remove duplicate features during the process. /!\ Option not suitable for submission purpose.")
+    parser.add_argument("--keep_short_sequences", action="store_true", help="Do not skip short sequences (<100bp). /!\ Option not suitable for submission purpose.")
     parser.add_argument("--locus_numbering_start", default=1, type=int, help="Start locus numbering with the provided value.")
     parser.add_argument("--no_progress", action="store_false", help="Hide conversion progress counter.")
     parser.add_argument("--no_wrap_qualifier", action="store_true", help="By default there is a line wrapping at 80 characters. The cut is at the world level. Activating this option will avoid the line-wrapping for the qualifiers.")
@@ -1472,9 +1473,11 @@ def main():
                             "For you information, if you use the --translate option the tool will raise an error due to ??? codons that do not exist." % (record.id))
 
         # Check sequence size and skip if < 100 bp
-        if len(record.seq)<100:
-            logging.warning("Sequence %s too short (%s bp)! Minimum accpeted by ENA is 100, we skip it !" % (record.name, len(record.seq) ) )
-            continue
+        if not args.keep_short_sequences:
+            if len(record.seq)<100:
+                logging.warning("Sequence %s too short (%s bp)! Minimum accpeted by ENA is 100, we skip it !" % (record.name, len(record.seq) ) )
+                continue
+            
         writer = EMBL( record, True )
 
         # qualifiers / features json information
