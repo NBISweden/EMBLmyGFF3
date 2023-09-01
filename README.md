@@ -1,6 +1,5 @@
-
-
-[![Build Status](https://travis-ci.org/NBISweden/EMBLmyGFF3.svg?branch=master)](https://travis-ci.org/NBISweden/EMBLmyGFF3) [![DOI](EMBLmyGFF3.svg)](https://doi.org/10.1186/s13104-018-3686-x) 
+![GitHub CI](https://github.com/NBISweden/EMBLmyGFF3/actions/workflows/main.yml/badge.svg)
+[![DOI](EMBLmyGFF3.svg)](https://doi.org/10.1186/s13104-018-3686-x) 
 [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/emblmygff3/README.html) 
 [![Anaconda-Server Badge](https://img.shields.io/conda/dn/bioconda/emblmygff3.svg?style=flat)](https://anaconda.org/bioconda/emblmygff3) 
 [<img alt="docker_emblmygff3" src="https://img.shields.io/badge/container-Docker-blue">](https://quay.io/repository/biocontainers/emblmygff3)
