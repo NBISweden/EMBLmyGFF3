@@ -716,10 +716,20 @@ class EMBL( object ):
                 # create a locus tag base on the prefix + LOCUS + incremented number
                 if not locus_tag:
 
-                    cpt_locus = self.PREVIOUS_VALUES['locus_numbering_start']
+                    # set locus tag with or without padding
+                    padsize = len((str(EMBL.total_features)))
+                    if self.locus_zero_padding:
+                        cpt_locus = str(self.PREVIOUS_VALUES['locus_numbering_start']).zfill(padsize)
+                    else:
+                        cpt_locus = self.PREVIOUS_VALUES['locus_numbering_start']
+
                     locus_tag_suffix="LOCUS"+str(cpt_locus)
-                    # now the locus has been used we can increment the locus value
-                    self.PREVIOUS_VALUES['locus_numbering_start'] += 1
+
+                    # now the locus has been used we can increment the locus value and add padding when true
+                    if self.locus_zero_padding:
+                        self.PREVIOUS_VALUES['locus_numbering_start'] = str(int(self.PREVIOUS_VALUES['locus_numbering_start']) + 1).zfill(padsize)
+                    else:
+                        self.PREVIOUS_VALUES['locus_numbering_start'] += 1
 
                     # replace locus_tag_suffix by the value of the locus_tag qualifier if this one exists
                     for qualifier in feature.qualifiers:
@@ -1034,6 +1044,12 @@ class EMBL( object ):
             self.locus_tag= locus_tag
             EMBL.PREVIOUS_VALUES["locus_tag"] = locus_tag
 
+    def set_locus_zero_padding(self, locus_zero_padding = False):
+        """
+        Sets flag whether to use zero padding in locus tag
+        """
+        self.locus_zero_padding = locus_zero_padding
+
     def set_locus_numbering_start (self, locus_numbering_start = 1):
         """
         Sets the entry locus_numbering_start numbers
@@ -1301,6 +1317,7 @@ def main():
     parser.add_argument("--keep_duplicates", action="store_true", help="Do not remove duplicate features during the process. /!\ Option not suitable for submission purpose.")
     parser.add_argument("--keep_short_sequences", action="store_true", help="Do not skip short sequences (<100bp). /!\ Option not suitable for submission purpose.")
     parser.add_argument("--locus_numbering_start", default=1, type=int, help="Start locus numbering with the provided value.")
+    parser.add_argument("--locus_zero_padding", action="store_true", help="Pad locus tag number with zero using the total amount of features. i.e 0001 instead of 1")
     parser.add_argument("--no_progress", action="store_false", help="Hide conversion progress counter.")
     parser.add_argument("--no_wrap_qualifier", action="store_true", help="By default there is a line wrapping at 80 characters. The cut is at the world level. Activating this option will avoid the line-wrapping for the qualifiers.")
     parser.add_argument("--shame", action="store_true", help="Suppress the shameless plug.")
@@ -1505,6 +1522,7 @@ def main():
         writer.set_attribute_to_use_as_locus_tag( args.use_attribute_value_as_locus_tag ) #has to be before set_locus_tag
         writer.set_locus_tag( args.locus_tag )
         writer.set_locus_numbering_start(args.locus_numbering_start)
+        writer.set_locus_zero_padding(args.locus_zero_padding)
 
         writer.set_molecule_type( args.molecule_type )
         writer.set_no_wrap_qualifier( args.no_wrap_qualifier)
