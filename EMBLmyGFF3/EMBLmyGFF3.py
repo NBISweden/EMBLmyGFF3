@@ -561,7 +561,7 @@ class EMBL( object ):
         """
 
         if self.organelle:
-            return ("OG   %s" % (self.organelle,)).strip() + "\n" + self.spacer
+            return multiline("OG", self.organelle) + self.spacer
         return ""
 
     def RF(self):
